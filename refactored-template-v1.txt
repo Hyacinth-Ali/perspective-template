@@ -40,7 +40,7 @@ private List<Mapping> getMappings(identifier, modelElement) {
   List<Mapping> modelMappings = new ArrayList<Mapping>();
   TypeMapping mapType = getMapType(identifier);
   for (Mapping map : mapType.getInstances()) {
-    if (map.getModelElements().get(0) == modelElement || map.getModelElements().get(1) == modelElement) {
+    if (map.getModelElements().contains(modelElement)) {
         modelMappings.add(map);
     }
   }
