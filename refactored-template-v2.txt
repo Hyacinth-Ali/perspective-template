@@ -40,19 +40,8 @@ private List<Mapping> getMappings(typeID, modelElement) {
   List<Mapping> modelMappings = new ArrayList<Mapping>();
   TypeMapping mappingType = getMappingType(typeID);
   for (Mapping mapping : mappingType.getInstances()) {
-    if (map.getModelElements().contains(modelElement)) {
-        modelMappings.add(map);
-    }
-  }
-  return modelMappings;
-}
-
-private List<Mapping> getMappings(identifier, modelElement) {
-  List<Mapping> modelMappings = new ArrayList<Mapping>();
-  TypeMapping mapType = getMapType(identifier);
-  for (Mapping map : mapType.getInstances()) {
-    if (map.getModelElements().contains(modelElement)) {
-        modelMappings.add(map);
+    if (mapping.getModelElements().contains(modelElement)) {
+        modelMappings.add(mapping);
     }
   }
   return modelMappings;
