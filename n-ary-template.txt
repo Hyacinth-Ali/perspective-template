@@ -24,17 +24,14 @@ private EObject getElementOther(mapping, elementHere) {
 
 public updateElement(elementHere) {
   // language call
-  U(elementHere);
-  updateOthers(elementHere);
+  // U(elementHere);
   updatedElements.clear();
+  updateOthers(elementHere);
 }
 
 private updateOthers(elementHere) {
+  U(elementHere);
   updatedElements.add(elementHere);
-  if (updatedElements.size() > 1) {
-    // language call
-    U(elementHere);
-  }
   for (Mapping mapping : getMappings(<identifier>, elementHere)) {
     elementOther = getElementOther(mapping, elementHere);
     // perspective recursive call
