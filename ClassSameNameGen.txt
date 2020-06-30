@@ -1,0 +1,283 @@
+package ca.mcgill.sel.core.perspective;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+
+import ca.mcgill.sel.classdiagram.*;
+import ca.mcgill.sel.classdiagram.controller.*;
+import ca.mcgill.sel.classdiagram.*;
+import ca.mcgill.sel.classdiagram.controller.*;
+import ca.mcgill.sel.classdiagram.*;
+import ca.mcgill.sel.classdiagram.controller.*;
+import ca.mcgill.sel.classdiagram.*;
+import ca.mcgill.sel.classdiagram.controller.*;
+import ca.mcgill.sel.core.*;
+import ca.mcgill.sel.core.util.*;
+import ca.mcgill.sel.ram.ui.perspective.*;
+
+public class ClassSameNameGen {
+
+    private static final String MAPPING_IDENTIFIER = "ba391af0-5d8a-461b-9fc5-650fdca9c4ed";
+    private static final String DOMAIN_MODEL_ROLENAME = "Domain_Model";
+    private static final String DESIGN_MODEL_ROLENAME = "Design_Model";
+
+    /**
+     * Creates a new instance of {@link ClassSameName}.
+     */
+    public ClassSameNameGen() {
+
+    }
+
+    /**
+     * Creates a model mapping between two instances, potentially from different languages.
+     *
+     * @param perspective
+     * @param elementHere model object of interest
+     * @param elementOther the corresponding model object to be mapped with.
+     */
+     // CHALLENGE 1: How would this be done without mapping identifier?
+    private void createMapping(COREPerspective perspective, EObject elementHere, EObject elementOther) {
+        CORELanguageElementMapping mappingType = getMappingType(perspective,
+                MAPPING_IDENTIFIER);
+        COREModelElementMapping mapping = CoreFactory.eINSTANCE.createCOREModelElementMapping();
+        mapping.getModelElements().add(elementHere);
+        mapping.getModelElements().add(elementOther);
+        mapping.setType(mappingType);
+    }
+
+    /**
+     * Get the corresponding mapped element.
+     *
+     * @param mapping between the model elements.
+     * @param elementHere the current model element.
+     * @return the corresponding mapped element.
+     */
+    @SuppressWarnings("static-method")
+    private EObject getElementOther(COREModelElementMapping mapping, EObject elementHere) {
+        if (mapping.getModelElements().get(0).equals(elementHere)) {
+            return mapping.getModelElements().get(1);
+        } else {
+            return mapping.getModelElements().get(0);
+        }
+    }
+
+    /**
+     * Gets the {@link CORELanguageElementMapping} with a given identifier.
+     *
+     * @param perspective of the language mapping
+     * @param identifier a unique attribute to identify a language mapping.
+     * @return the language mapping which has the identifier.
+     */
+    @SuppressWarnings("static-method")
+    private CORELanguageElementMapping getMappingType(COREPerspective perspective, String identifier) {
+        for (CORELanguageElementMapping mapType : perspective.getMappings()) {
+            if (mapType.getIdentifier().equals(identifier)) {
+                return mapType;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Gets the model mappings of a given model element.
+     *
+     * @param perspective of the model element.
+     * @param identifier of the language mapping.
+     * @param modelElement of the interest.
+     * @return the model mappings of the model element.
+     */
+    private List<COREModelElementMapping> getMappings(COREPerspective perspective, String identifier,
+            EObject modelElement) {
+        List<COREModelElementMapping> modelMappings = new ArrayList<COREModelElementMapping>();
+        CORELanguageElementMapping mappingType = getMappingType(perspective, identifier);
+        if (mappingType != null) {
+            for (COREModelElementMapping mapping : mappingType.getInstances()) {
+                if (mapping.getModelElements().contains(modelElement)) {
+                    modelMappings.add(mapping);
+                }
+            }
+        }
+        return modelMappings;
+    }
+
+    public void createNewDomainModelClass(COREPerspective perspective, ClassDiagram owner, String name, boolean dataType, float x, float y) {
+
+        // Ask user whether to create a mapping
+        QueryAction.INSTANCE.askZeroOrOne();
+        boolean map = QueryAction.INSTANCE.isCreateOtherElement();
+        EObject newDomainModelClass  = (EObject) ControllerFactory.INSTANCE.getClassDiagramController().createNewClass(owner,
+                            name, dataType, x, y);
+        if (map) {
+            // check if the corresponding owner model exists.
+            // TODO : This may be changed after discussing on how to establish related models
+            EObject designCdm = null;
+            for (COREModelElementMapping mapping : getMappings(perspective, MAPPING_IDENTIFIER,
+                    owner)) {
+                designCdm = getElementOther(mapping, owner);
+                break;
+            }
+
+            if (designCdm == null) {
+                designCdm = createClassDiagramAndMappings(perspective, owner, 1);
+            }
+            // CHALLENGE 2: Code generation may not handle this efficiently. Getting the parameters for
+            // creating another class, in this case, is a bit straightforward. However, with different
+            // types of model elements, it becomes more difficult to ascertain the required parameters and
+            // how to get them. In this example, the user can only provide the name and others need
+            // to be gotten from the prevailing situation.
+            createOtherElementsAndMappings(perspective, newDomainModelClass, 1, (ClassDiagram) designCdm,
+                    name, dataType, x, y);
+        }
+    }
+
+    public void createNewDesignModelClass(COREPerspective perspective, ClassDiagram owner, String name, boolean dataType, float x, float y) {
+
+        EObject newDesignModelClass  =
+           (EObject) ControllerFactory.INSTANCE.getClassDiagramController().createNewClass(owner,
+                               name, dataType, x, y);
+
+        // check if the corresponding owner model exists.
+        EObject domainCdm = null;
+        for (COREModelElementMapping mapping : getMappings(perspective, MAPPING_IDENTIFIER,
+                owner)) {
+            domainCdm = getElementOther(mapping, owner);
+            break;
+        }
+        if (domainCdm != null) {
+            // CHALLENGE 3: Similar to CHALLENGE 2, code generation may not handle this efficiently,
+            // A user may be required to edit the generated code
+            createFirstMappingOrElementAndMapping(perspective, MAPPING_IDENTIFIER, newDesignModelClass,
+                    DOMAIN_MODEL_ROLENAME, (ClassDiagram) domainCdm, name, dataType, x, y);
+        }
+     }
+
+    public void deleteDomainModelClass(COREPerspective perspective, EObject elementHere, Classifier classifier) {
+
+        List<COREModelElementMapping> mappings = getMappings(perspective, MAPPING_IDENTIFIER, elementHere);
+        for (COREModelElementMapping mapping : mappings) {
+            EObject designModelElementOther = getElementOther(mapping, elementHere);
+            // CHALLENGE 6: How to provide the parameter. Even if the whole signature is supplied from the dsl,
+            // how would code generation ensure that the parameter is provided accordingly; i.e., the same name and type
+            // For now, the line of code is generated as is, i.e., without any input from the dsl
+            ControllerFactory.INSTANCE.getClassDiagramController().removeClassifier((Classifier) designModelElementOther);
+        }
+        CORELanguageElementMapping mappingType = getMappingType(perspective, MAPPING_IDENTIFIER);
+        mappingType.getInstances().removeAll(mappings);
+        ControllerFactory.INSTANCE.getClassDiagramController().removeClassifier(classifier);
+    }
+
+    public void deleteDesignModelClass(COREPerspective perspective, EObject elementHere, Classifier classifier) {
+
+        // TODO: Code generation, this may need update if there may be muliple parameters for deleting an element
+        List<COREModelElementMapping> mappings = getMappings(perspective, MAPPING_IDENTIFIER, elementHere);
+        CORELanguageElementMapping mappingType = getMappingType(perspective, MAPPING_IDENTIFIER);
+        mappingType.getInstances().removeAll(mappings);
+        ControllerFactory.INSTANCE.getClassDiagramController().removeClassifier(classifier);
+    }
+
+    // CHALLENGE 4: This method seems to be model element specific, instead of template.
+    // Hence, how would this method be used across different model elements since the required parameters may
+    // not be the same.
+    // Although this is generated but it is element specific
+    private void createOtherElementsAndMappings(COREPerspective perspective, EObject elementHere, int numberOfMappings, ClassDiagram owner, String name, boolean dataType, float x, float y) {
+
+        for (int count = 0; count < numberOfMappings; count++) {
+            // CHALLENGE 5: Similar to 4, it is also difficult to determine whether this language call is "from" or "to"
+            // model element. Hence, in addition to being element specific, it also has to be relationship-end specific
+            EObject newDomainModelClass  =
+            (EObject) ControllerFactory.INSTANCE.getClassDiagramController().createNewClass(owner,
+                                name, dataType, x, y);
+            createMapping(perspective, elementHere, newDomainModelClass);
+        }
+    }
+
+    // This is not from our template and may be changed after discussing how to establish related models
+    private EObject createClassDiagramAndMappings(COREPerspective perspective, EObject classDiagramHere,
+            int numberOfMappings) {
+
+        EObject classDiagramOther = null;
+
+        for (int count = 0; count < numberOfMappings; count++) {
+            COREExternalArtefact artefact = COREArtefactUtil.getReferencingExternalArtefact(classDiagramHere);
+            COREConcern concern = artefact.getCoreConcern();
+            COREScene scene = artefact.getScene();
+            List<COREFeature> features = artefact.getScene().getRealizes();
+            COREFeature feature = null;
+            for (COREFeature f : features) {
+                if (f.getName().equals(artefact.getName())) {
+                    feature = f;
+                    break;
+                }
+            }
+            classDiagramOther = PerspectiveInternalAction.INSTANCE.createNewDesignModel(concern, scene, feature,
+                    perspective, DESIGN_MODEL_ROLENAME);
+            createMapping(perspective, classDiagramHere, classDiagramOther);
+        }
+        return classDiagramOther;
+    }
+
+    // TODO: Due to the aforementioned challenges, the code generation of this method is yet to be implemented.
+   private void createFirstMappingOrElementAndMapping(COREPerspective perspective, String mappingIdentifier,
+            EObject elementHere, String roleName, ClassDiagram owner, String name, boolean dataType,
+            float x, float y) {
+        // Check if a corresponding element exists, either mapped or not
+        EObject elementOther = findCorrespondingElementByName(elementHere, roleName);
+        if (elementOther == null || getMappings(perspective, mappingIdentifier, elementOther).size() > 0) {
+            elementOther =
+                    ControllerFactory.INSTANCE.getClassDiagramController().createNewClass(owner,
+                            name, dataType, x, y);
+        }
+        if (elementOther != null) {
+            createMapping(perspective, elementHere, elementOther);
+        }
+    }
+
+    // This method finds corresponding name with name by using EMF reflection
+    private EObject findCorrespondingElementByName(EObject element, String roleName) {
+        EObject correspondingElement = null;
+        COREExternalArtefact artefact = COREArtefactUtil.getReferencingExternalArtefact(element);
+        if (artefact != null) {
+            COREScene scene = artefact.getScene();
+            List<COREArtefact> artefacts = scene.getArtefacts().get(roleName);
+            if (artefacts != null) {
+                for (COREArtefact a : artefacts) {
+                    if (a instanceof COREExternalArtefact) {
+                        COREExternalArtefact extArtefact = (COREExternalArtefact) a;
+                        EObject rootModelElement = extArtefact.getRootModelElement();
+                        // get all contents of the root model element
+                        org.eclipse.emf.common.util.TreeIterator<EObject> rootContents =
+                                rootModelElement.eAllContents();
+                        while (rootContents.hasNext()) {
+                            EObject rootContent = rootContents.next();
+                            // assumption, only instances of EClass are supported
+                            if (!(rootContent.eClass() instanceof EClass)) {
+                                continue;
+                            }
+                            EClass contentEClass = rootContent.eClass();
+                            // System.out.println(eElement.getName());
+                            for (EAttribute attr : contentEClass.getEAllAttributes()) {
+                                // CHALLENGE: EMF can only, generically, return the values of direct attributes.
+                                // Hence, the values of inherited features can't be accessed by using reflection
+                                // This can be solved if the language metamodel has a common metaclass (NamedElement).
+                                if (attr.getName().equals("name")) {
+                                    String rootContentName = (String) rootContent.eGet(CdmPackage.eINSTANCE
+                                            .getNamedElement_Name());
+                                    String elementName = (String) element.eGet(CdmPackage.eINSTANCE
+                                            .getNamedElement_Name());
+                                    if (rootContentName.equals(elementName)) {
+                                        correspondingElement = rootContent;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return correspondingElement;
+    }
+}

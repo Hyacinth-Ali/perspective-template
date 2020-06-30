@@ -1,0 +1,155 @@
+COMMENT: i have removed everything related to CREATE.
+COMMENT: there are several issues that need to be fixed with UPDATE and DELETE first.
+
+Legend: h = here, o = other, "from" = .1, "to" = .2
+Language Actions: C = create, U = update, D = delete
+
+// Each perspective action is treated as a transaction
+// and can be undone if need be. Example, when there is
+// a constraint violation due to create, update, or update
+// of a model element, all the executed steps of the perspective
+// actions are reverted in order to preserve the constraint
+
+// Mapping refers to COREModelElementMapping in the metamodel
+// TypeMapping refers to CoreLanguageElementMapping
+
+COMMENT: why a List in one case and a HashSet in the other cases?
+List<EObject> updatedElements = new ArrayList<EObject>();
+HashSet<EObject> deleteElements = new HashSet<EObject>();
+HashSet<EObject> deleteMappings = new HashSet<EObject>();
+
+COMMENT: this only works for binary mappings.
+private EObject getElementOther(mapping, elementHere) {
+  if (mapping.getModelElements().get(0).equals(elementHere)) {
+    return mapping.getModelElements().get(1);
+  } else {
+    return mapping.getModelElements().get(0);
+  }
+}
+
+private List<Mapping> getMappings(typeMapping, modelElement) {
+  List<Mapping> modelMappings = new ArrayList<Mapping>();
+COMMENT: in the last meeting, we decided that the "instances" reference needs to be removed to avoid cross-file references.
+COMMENT: therefore, this does not work anymore.
+COMMENT: see also comment in DELETE on why DELETE does not use the same recursion as UPDATE.
+COMMENT: if you use the same approach, then this is not needed.
+  for (Mapping mapping : typeMapping.getInstances()) {
+    if (mapping.getModelElements().contains(modelElement)) {
+        modelMappings.add(mapping);
+    }
+  }
+  return modelMappings;
+}
+
+// retrieve all mappings, irrespective of type
+private List<Mapping> getMappings(modelElement) {
+  List<Mapping> modelMappings = new ArrayList<Mapping>();
+COMMENT: getModelElements() is incorrect. it should be getElementMappings().
+COMMENT: i am not sure getScene(perspective) works, because there are many scenes in a perspective; should not it be something like 
+COMMENT: getCurrentScene() (this may only work in touchcore... if the element is changed outside of touchcore, what happens then?).
+  List<Mapping> allMappings = getScene(perspective).getModelElements();
+  for (Mapping mapping : allMappings) {
+    if (mapping.getModelElements().contains(modelElement)) {
+        modelMappings.add(mapping);
+    }
+  }
+  return modelMappings;
+}
+
+COMMENT: it's a good idea to clear updatedElements also after the update, as it is not needed anymore.
+public updateElement(elementHere) {
+  updatedElements.clear();
+  updateElements(elementHere);
+}
+
+COMMENT: it's not a good idea to call the parameter elementHere, because this is a recursive call
+COMMENT: and elementOther will also be passed into this metod: elementHere --> element.
+private updateElements(elementHere) {
+  U(elementHere);
+  updatedElements.add(elementHere);
+  for (Mapping mapping : getMappings(elementHere)) {
+    elementOther = getElementOther(mapping, elementHere);
+    // perspective recursive call
+    if (!updatedElements.contains(elementOther)) {
+      updateElements(elementOther);
+    }
+  }
+}
+
+COMMENT: this is correct.
+// There are basically three types of delete in the Template
+// 1) JUST_DELETE, i.e., just delete the element of interest and its mappings,
+// e.g., from in (1 .. 0..1)
+// 2) DELETE_OTHERS, i.e., delete the element of interest, its mappings, and
+// other mapped elemets e.g., to in (1 .. 0..1)
+// 3) DELETE_SINGLEMAPPED, i.e., delete the element of interest, its mappings,
+// and other elements with single mapping e.g., from in (1 .. 1..*)
+
+public deleteElement(elementHere) {
+  deleteElements.clear();
+  deleteMappings.clear();
+COMMENT: i do not understand, why the basic structure for DELETE and UPDATE have to be different. 
+COMMENT: the recursion through all mappings can be exactly the same. the only difference is that
+COMMENT: in UPDATE there is only one possible action, whereas in DELETE there are three!
+COMMENT: therefore, the condition of the "if" statement in UPDATE needs to change to reflect DELETE.
+COMMENT: furthermore, it is a good idea to collect all elements and only DELETE them at the end to
+COMMENT: avoid issues with constraint violations somewhere along the way.
+COMMENT: however, should not this be done for UPDATE, too, in case a constraint is violated?
+COMMENT: mappings only need to be collected for DELETE but not for UPDATE.
+COMMENT: while deleting all the elements at the end is good for constraint violations, it makes the
+COMMENT: required checks on whether the other element needs to be deleted much more difficult. E.g., the other
+COMMENT: element may be connected to two elements and requires at least one element; if the first one gets
+COMMENT: deleted, there is still one left - no problem. when the second one also gets deleted, then there is 
+COMMENT: no element left and the other element needs to be deleted. however, the first element was not really
+COMMENT: deleted - it was only put in a list to be deleted!
+  for (mappingType : getLanguageElementMappings(elementHere)) {
+    deleteElements(elementHere, mappingType);
+  }
+COMMENT: if statement is probably not needed. does .contents return an empty set/list if it is empty?
+  if (deleteElements.size() > 0) {
+    DELETE(deleteElements.contents);
+    DELETE(deleteMappings.contents);
+  }
+COMMENT: probably good idea to clear deleteElements and deleteMappings, since they are not needed anymore.
+}
+
+COMMENT: this does not work, because the recursion is specific to a mapping type which does not change during the recursion
+COMMENT: however, the other element may have mappings of a completely different types, which are not covered in your implementation!
+COMMENT: note that i did not check whether the correct actions are performed according to the 
+COMMENT: DELETE type (to be checked once all other issue have been fixed).
+private deleteElements(elementHere, mappingType) {
+  List<Mapping> mappings = getMappings(mappingType, elementHere);
+  deleteElements.add(elementHere);
+  deleteMappings.add(mappings);
+  deleteType = getDeleteType(mappingType);
+  if (deleteType != JUST_DELETE) {
+    for (Mapping mapping : mappings) {
+      elementOther = getElementOther(mapping, elementHere);
+      elementOtherMappings = getMappings(mappingType, elementOther);
+      if (deleteType == DELETE_OTHERS && !deleteElements.contains(elementOther)) {
+        deleteElements(elementOther, deleteType);
+      } else {
+        if (elementOtherMappings.size() == 1 && !deleteElements.contains(elementOther)) {
+          deleteElements(elementOther, deleteElements);
+        }
+      }
+    }
+  }
+}
+
+COMMENT: this does not work. in deleteElement(), you are passing in a model element - not a language element!
+private getLanguageElementMappings(languageElement) {
+COMMENT: elementMappings not defined
+  elementMappings = perspective.getMappings();
+  List<TypeMapping> languageElementMappings = new ArrayList<TypeMapping>();
+  for (typeMapping : elementMappings) {
+    for (mappingEnd : typeMapping.getMappingEnds) {
+      if (mappingEnd.getLanguageElement() == languageElement) {
+        languageElementMappings.add(typeMapping);
+      }
+    }
+  }
+  return languageElementMappings;
+}
+
+COMMENT: in general, figuring out the type of template that applies to a DELETE or CREATE is quite complex. i suggest to add two derived attributes to LanguageElementMapping, which determines the deleteType and createType for a mapping based on the multiplicities. with those attributes, it is then easy to check in the above methods which template needs to be applied.

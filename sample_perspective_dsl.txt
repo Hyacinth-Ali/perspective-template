@@ -1,0 +1,87 @@
+
+external language ClassDiagramLanguage {
+
+   rootPackage "ca.mcgill.sel.classdiagram";
+   rootControllerPackage "ca.mcgill.sel.classdiagram.controller";
+   packageClassName CdmPackage;
+
+   nsURI "http://cs.mcgill.ca/sel/cdm/1.0";
+   resourceFactory "ca.mcgill.sel.classdiagram.util.CdmResourceFactoryImpl";
+   adapterFactory "ca.mcgill.sel.classdiagram.provider.CdmItemProviderAdapterFactory";
+   weaverClassName  "ca.mcgill.sel.ram.weaver.RAMWeaver";
+   fileExtension  "cdm";
+
+   actions :
+        action "ClassDiagram.Class.add";
+        action "ClassDiagram.Class.edit";
+        action "ClassDiagram.Class.delete";
+
+   end
+}
+
+
+perspective DomainModel_DesignModel {
+    defaultKey "Domain_Model";
+
+   // This refers to the newly defined languages.
+    languages :
+        Domain_Model ClassDiagramLanguage;
+        Design_Model ClassDiagramLanguage;
+    end
+
+    // this refers to the existing languages which can be loaded from the disk.
+    // this is just for illustration
+    existing languages :
+        existing language Existing_ClassDiagram1 {
+            rootPackage "ca.mcgill.sel.classdiagram";
+            rootControllerPackage "ca.mcgill.sel.classdiagram.controller";
+            packageClassName CdmPackage;
+            roleName RoleNam1;
+        }
+
+        existing language Existing_ClassDiagram2 {
+            rootPackage "ca.mcgill.sel.classdiagram";
+            rootControllerPackage "ca.mcgill.sel.classdiagram.controller";
+            packageClassName CdmPackage;
+            roleName RoleName2;
+        }
+     end
+
+    actions :
+        action redefined Domain_Model "ClassDiagram.Class.add";
+        action redefined Domain_Model "ClassDiagram.Class.edit";
+        action redefined Domain_Model "ClassDiagram.Class.delete";
+
+        action redefined Design_Model "ClassDiagram.Class.add";
+        action redefined Design_Model "ClassDiagram.Class.edit";
+        action redefined Design_Model "ClassDiagram.Class.delete";
+
+    end
+
+    // mappings
+    mappings :
+        mapping ClassSameName {
+            relationship : equality;
+            fromCardinality : 1;
+            toCardinality : 0..1;
+            fromElement : element Class from Domain_Model;
+                createActionParameter : "ClassDiagram owner, String name, boolean dataType, float x, float y";
+                createActionAPICall : "ControllerFactory.INSTANCE.getClassDiagramController().createNewClass(owner,
+                    name, dataType, x, y);";
+                updateActionParameter : "";
+                updateActionAPICall : "";
+                deleteActionParameter : "Classifier classifier";
+                deleteActionAPICall : "ControllerFactory.INSTANCE.getClassDiagramController().removeClassifier(classifier);";
+           toELement : element Class from Design_Model;
+                createActionParameter : "ClassDiagram owner, String name, boolean dataType, float x, float y";
+                createActionAPICall : "ControllerFactory.INSTANCE.getClassDiagramController().createNewClass(owner,
+                    name, dataType, x, y);";
+                updateActionParameter : "";
+                updateActionAPICall : "";
+                deleteActionParameter : "Classifier classifier";
+                deleteActionAPICall : "ControllerFactory.INSTANCE.getClassDiagramController().removeClassifier(classifier);";
+        }
+
+    end
+
+}

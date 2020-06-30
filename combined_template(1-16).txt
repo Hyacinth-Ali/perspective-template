@@ -1,0 +1,395 @@
+Legend: h = here, o = other, "from" = .1, "to" = .2
+Language Actions: C = create, U = update, D = delete
+
+// Each perspective action is treated as a transaction
+// and can be undone if need be. Example, when there is
+// a constraint violation due to create, update, or update
+// of a model element, all the executed steps of the perspective
+// actions are reverted in order to preserve the constraint
+
+// Mapping refers to COREModelElementMapping in the metamodel
+// TypeMapping refers to CoreLanguageElementMapping
+
+// helper methods
+
+private void createMapping(typeMapping, elementHere, elementOther) {
+  mapping = C(ModelElementMapping);
+  mapping.getModelElements().add(elementHere);
+  mapping.getModelElements().add(elementOther);
+  mapping.setType(typeMapping);
+}
+
+private EObject getElementOther(mapping, elementHere) {
+  if (mapping.getModelElements().get(0).equals(elementHere)) {
+    return mapping.getModelElements().get(1);
+  } else {
+    return mapping.getModelElements().get(0);
+  }
+}
+
+private List<Mapping> getTypeMappings(modelElement) {
+  HashSet<TypeMapping> typeMappings = new HashSet();
+  List<Mapping> allMappings = perspective.getScene().getMappings();
+  for (mapping : allMappings) {
+    if (mapping.getModelElements.get(0) == modelElement) {
+      typeMappings.add(mapping.getType());
+    } else if (mapping.getModelElements.get(1) == modelElement) {
+      typeMappings.add(mapping.getType());
+    }
+  }
+  return typeMappings;
+}
+
+private List<Mapping> getMappings(typeID, modelElement) {
+  List<Mapping> modelMappings = new ArrayList<Mapping>();
+  TypeMapping mappingType = getMappingType(typeID);
+  for (Mapping mapping : mappingType.getInstances()) {
+    if (mapping.getModelElements().contains(modelElement)) {
+        modelMappings.add(mapping);
+    }
+  }
+  return modelMappings;
+}
+
+// create other element(s) and mapping(s) 0, one, or multiple times
+// @param numberOfMappings number of mappings to create
+private void createOtherElementsAndMappings(typeID, elementHere, numberOfMappings) {
+  for (int count = 0; count < numberOfMappings; count++) {
+    elementOther = C(o);
+    createMapping(typeID, elementHere, elementOther);
+  }
+}
+
+// create one mapping only if other element is not mapped otherwise create
+// other element and mapping
+private void createFirstMappingOrElementAndMapping(typeID, elementHere) {
+  // Check if a corresponding element exists, either mapped or not
+  elementOther = findCorrespondingElement();
+  if (elementOther == null || getMappings(typeID, elementOther).isEmpty() = false) {
+    elementOther = C(o);
+  }
+  createMapping(typeID, elementHere, elementOther)
+}
+
+// create one mapping, whether other element is mapped or not, otherwise create
+// other element and mapping
+private void createMappingOrElementAndMapping(typeID, elementHere) {
+  elementOther = findCorrespondingElement();
+  if (elementOther == null) {
+    elementOther = C(o);
+  }
+  createMapping(typeID, elementHere, elementOther)
+}
+
+// create many mappings only if each corresponding other element is not mapped
+// and potentially create other elements and mappings
+// @param numberOfMappings the number of mappings to create
+private void createFirstMappingsAndElementsAndMappings(typeID, elementHere, numberOfMappings) {
+  // Find corresponding elements, either mapped or not
+  List<EObject> otherElements = findCorrespondingElements();
+  // create mapping for each corresponding element which is not mapped
+  for (EObject otherElement : otherElements) {
+    if (numberOfMappings <= 0) {
+      break;
+    } else {
+      if (getMappings(typeID, otherElement).size() == 0) {
+        createMapping(typeID, elementHere, otherElement);
+        numberOfMappings--;
+      }
+    }
+  }
+  for (int count = 0; count < numberOfMappings; count++ ) {
+    elementOther = C(o);
+    createMapping(typeID, elementHere, elementOther);
+  }
+}
+
+// create many mappings, each with corresponding other element,
+// and potentially create other elements and mappings
+// @param numberOfMappings the number of mappings to create
+private void createMappingsAndElementsAndMappings(elementHere, numberOfMappings) {
+  // Find corresponding elements, either mapped or not
+  List<EObject> otherElements = findCorrespondingElements();
+  // create mapping for each corresponding element which is not mapped
+  for (EObject element : otherElements) {
+    if (numberOfMappings <= 0) {
+      break;
+    } else {
+      elementOther = element;
+      createMapping(<identifier>, elementHere, elementOther);
+      numberOfMappings--;
+    }
+  }
+  for (int count = 0; count < numberOfMappings; count++ ) {
+    elementOther = C(o);
+    createMapping(<identifier>, elementHere, elementOther);
+  }
+}
+
+// generic update - applies to all cases 1 to 10
+U: updateElement(elementHere) {
+  U(elementHere);
+  for (Mapping mapping : getMappings(<identifier>, elementHere)) {
+    elementOther = getElementOther(mapping, elementHere);
+    U(elementOther);
+  }
+}
+
+================================================================
+1. Compulsory Optional (from 1 -- 0..1 to) Template:
+================================================================
+
+C1.1: createNewElement() {
+  // Ask user whether to create a mapping
+  int numberOfMappings = askZeroOrOne();
+  elementHere = C(h);
+  createOtherElementsAndMappings(<identifier>, elementHere, numberOfMappings);
+}
+
+C1.2: createNewElement() {
+  elementHere = C(h);
+  createFirstMappingOrElementAndMapping(<identifier>, elementHere);
+}
+
+D1.1: deleteElement(elementHere) {
+  List<Mapping> mappings = getMappings(<identifier>, elementHere);
+  for (Mapping mapping : mappings) {
+    elementOther = getElementOther(mapping, elementHere);
+    D(elementOther)
+  }
+  D(mappings);
+  D(elementHere);
+}
+
+D1.2: deleteElement(elementHere) {
+  D(getMappings(<identifier>, elementHere))
+  D(elementHere)
+}
+
+================================================================
+2. Compulsory Compulsory (from 1 -- 1 to) Template:
+================================================================
+
+C2.1: createNewElement() {
+  elementHere = C(h);
+  createOtherElementsAndMappings(<identifier>, elementHere, 1);
+}
+
+C2.2 same as C2.1
+
+D2.1 same as D1.1
+
+D2.2 same as D1.1
+
+================================================================
+3. Compulsory Optional-Multiple (from 1 -- 0..* to) Template.
+================================================================
+
+C3.1: createNewElement() {
+  // Ask user how many mappings to create
+  int numberOfMappings = askMany();
+  elementHere = C(h);
+  createOtherElementsAndMappings(<identifier>, elementHere, numberOfMappings);
+}
+
+C3.2: createNewElement() {
+  elementHere = C(h);
+  createMappingOrElementAndMapping(<identifier>, elementHere);
+}
+
+D3.1 same as D1.1
+
+D3.2 same as D1.2
+
+================================================================
+4. Compulsory Compulsory-Multiple (from 1 -- 1..* to) Template:
+================================================================
+
+C4.1: createNewElement() {
+  // Ask user how many mappings to create (at least one)
+  int numberOfMappings = askAtLeastOne();
+  elementHere = C(h);
+  createOtherElementsAndMappings(<identifier>, elementHere, numberOfMappings);
+}
+
+C4.2 same as C3.2
+
+D4.1 same as D1.1
+
+D4.2: deleteElement(elementHere) {
+  elementHereMappings = getMappings(<identifier>, elementHere);
+  for (Mapping mapping : elementHereMappings) {
+    elementOther = getElementOther(mapping, elementHere);
+    elementOtherMappings = getMappings(<identifier>, elementOther);
+    if (elementOtherMappings.size() == 1) {
+      D(elementOther)
+    }
+  }
+  D(elementHereMappings)
+  D(elementHere)
+}
+
+================================================================
+5. Optional Optional (from 0..1 -- 0..1 to) Template:
+================================================================
+
+C5.1: createNewElement() {
+  // Ask user whether to create a mapping
+  int numberOfMappings = askZeroOrOne();
+  elementHere = C(h);
+  if (numberOfMappings == 1) {
+    createFirstMappingOrElementAndMapping(<identifier>, elementHere);
+  }
+}
+
+C5.2 same as C5.1
+
+D5.1 same as D1.2
+
+D5.2 same as D1.2
+
+================================================================
+6. Compulsory-Multiple Optional (from 1..* -- 0..1 to) Template:
+================================================================
+
+C6.1: createNewElement() {
+  int numberOfMappings = askZeroOrOne();
+  elementHere = C(h);
+  if (numberOfMappings == 1) {
+    createMappingOrElementAndMapping(<identifier>, elementHere);
+  }
+}
+
+C6.2: createNewElement() {
+  // Ask user how many mappings to create (at least one)
+  int numberOfMappings = askAtLeastOne();
+  elementHere = C(h);
+  createFirstMappingsAndElementsAndMappings(<identifier>, elementHere, numberOfMappings);
+}
+
+D6.1 same as D4.2
+
+D6.2 same as D1.2
+
+================================================================
+7. Optional-Multiple Optional (from 0..* -- 0..1 to) Template:
+================================================================
+
+C7.1 same as C6.1
+
+C7.2: createNewElement() {
+  // Ask user how many mappings to create
+  int numberOfMappings = askMany();
+  elementHere = C(h);
+  createFirstMappingsAndElementsAndMappings(<identifier>, elementHere, numberOfMappings);
+}
+
+D7.1 same as D1.2
+
+D7.2 same as D1.2
+
+================================================================
+8. Compulsory-Multiple Compulsory-Multiple (from 1..* -- 1..* to) Template:
+================================================================
+
+C8.1: createNewElement() {
+  // Ask user how many mappings to create (at least one)
+  int numberOfMappings = askAtLeastOne();
+  elementHere = C(h);
+  createMappingsAndElementsAndMappings(<identifier>, elementHere, numberOfMappings);
+}
+
+C8.2 same as C8.1
+
+D8.1 same as D4.2
+
+D8.2 same as D4.2
+
+================================================================
+9. Optional-Multiple Optional-Multiple (from 0..* -- 0..* to) Template:
+================================================================
+
+C9.1: createNewElement() {
+  // Ask user how many mappings to create
+  int numberOfMappings = askMany();
+  elementHere = C(h);
+  createMappingsAndElementsAndMappings(<identifier>, elementHere, numberOfMappings);
+}
+
+C9.2 same as C9.1
+
+D9.1 same as D1.2
+
+D9.2 same as D1.2
+
+================================================================
+10. Optional-Multiple Compulsory-Multiple (from 0..* -- 1..* to) Template:
+================================================================
+
+C10.1 same as C8.1
+
+C10.2 same as C9.1
+
+D10.1 same as D1.2
+
+D10.2 same as D4.2
+
+================================================================
+11. Optional Compulsory (from 0..1 -- 1 to) Template:
+================================================================
+Inverse of of 1
+C11.1 same as C1.2
+C11.2 same as C1.1
+
+D11.1 same as D1.2
+D11.2 same as D1.1
+
+================================================================
+12. Optional-Multiple Compulsory (from 0..* -- 1 to) Template:
+================================================================
+Inverse of of 3
+C12.1 same as C3.2
+C12.2 same as C3.1
+
+D12.1 same as D3.2
+D12.2 same as D3.1
+
+================================================================
+13. Compulsory-Multiple  Compulsory (from 1..* -- 1 to) Template:
+================================================================
+Inverse of of 4
+C13.1 same as C4.2
+C13.2 same as C4.1
+
+D13.1 same as D4.2
+D13.2 same as D4.1
+
+================================================================
+14. Optional Compulsory-Multiple (from 0..1 -- 1..* to) Template:
+================================================================
+Inverse of of 6
+C14.1 same as C6.2
+C14.2 same as C6.1
+
+D14.1 same as D6.2
+D14.2 same as D6.1
+
+================================================================
+15. Optional Optional-Multiple (from 0..1 -- 0..* to) Template:
+================================================================
+Inverse of of 7
+C15.1 same as C7.2
+C15.2 same as C7.1
+
+D15.1 same as D7.2
+D15.2 same as D7.1
+
+================================================================
+16. Compulsory-Multiple Optional-Multiple (from 1..* -- 0..* to) Template:
+================================================================
+Inverse of of 10
+C16.1 same as C10.2
+C16.2 same as C10.1
+
+D16.1 same as D10.2
+D16.2 same as D10.1

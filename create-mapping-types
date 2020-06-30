@@ -1,0 +1,15 @@
+FROM
+C1.1 : Compulsory_Optional
+C2.1 : Compulsory_Compulsory
+C3.1 : Compulsory_Optional_Multiple
+C4.1 : Compulsory_Compulsory_Multiple
+C5.1 : Optional_Optional
+C6.1 : Compulsory_Multiple_Optional
+C8.1 : Compulsory_Multiple_Compulsory_Multiple
+C9.1 : Optional_Multiple_Optional_Multiple
+
+TO
+C1.2 : Compulsory_Optional
+C3.2 : Compulsory_Optional_Multiple
+C6.2 : Compulsory_Multiple_Optional
+C7.2 : Optional_Multiple_Optional_Multiple

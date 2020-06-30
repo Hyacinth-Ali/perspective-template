@@ -1,0 +1,179 @@
+COMMENT: i have removed everything related to CREATE.
+COMMENT: there are several issues that need to be fixed with UPDATE and DELETE first.
+
+Legend: h = here, o = other, "from" = .1, "to" = .2
+Language Actions: C = create, U = update, D = delete
+
+// Each perspective action is treated as a transaction
+// and can be undone if need be. Example, when there is
+// a constraint violation due to create, update, or update
+// of a model element, all the executed steps of the perspective
+// actions are reverted in order to preserve the constraint
+
+// Mapping refers to COREModelElementMapping in the metamodel
+// TypeMapping refers to CoreLanguageElementMapping
+
+List<EObject> updatedElements = new ArrayList<EObject>();
+List<EObject> deleteElements = new ArrayList<EObject>();
+List<EObject> deleteMappings = new ArrayList<EObject>();
+
+private EObject getElementOther(mapping, elementHere) {
+  if (mapping.getModelElements().get(0).equals(elementHere)) {
+    return mapping.getModelElements().get(1);
+  } else {
+    return mapping.getModelElements().get(0);
+  }
+}
+
+private List<Mapping> getMappings(typeMapping, modelElement) {
+  List<Mapping> modelMappings = new ArrayList<Mapping>();
+  COREScene scene = COREArtefactUtil.getReferencingExternalArtefact(modelElement).getScene();
+  // getInstances not shown in this file
+  for (Mapping mapping : typeMapping.getInstances(typeMapping, scene)) {
+    if (mapping.getModelElements().contains(modelElement)) {
+        modelMappings.add(mapping);
+    }
+  }
+  return modelMappings;
+}
+
+// retrieve all mappings, irrespective of type
+private List<Mapping> getMappings(modelElement) {
+  List<Mapping> modelMappings = new ArrayList<Mapping>();
+  COREScene scene = COREArtefactUtil.getReferencingExternalArtefact(modelElement).getScene();
+  List<Mapping> allMappings = scene.getElementMappings();
+  for (Mapping mapping : allMappings) {
+    if (mapping.getModelElements().contains(modelElement)) {
+        modelMappings.add(mapping);
+    }
+  }
+  return modelMappings;
+}
+
+public ActionType getDeleteType(MappingEnd mappingEnd) {
+        ActionType deleteType = null;
+        if (mappingEnd.getCardinality() == Cardinality.COMPULSORY) {
+            deleteType = ActionType.DELETE_OTHERS;
+        } else if (mappingEnd.getCardinality() == Cardinality.OPTIONAL || mappingEnd.getCardinality()
+                == Cardinality.OPTIONAL_MULTIPLE) {
+            deleteType = ActionType.JUST_DELETE;
+        } else if (mappingEnd.getCardinality() == Cardinality.COMPULSORY_MULTIPLE) {
+            deleteType = ActionType.DELETE_SINGLEMAPPED;
+        }
+        return deleteType;
+    }
+
+public updateElement(elementHere) {
+  updatedElements.clear();
+  updateElements(elementHere);
+  updatedElements.clear();
+}
+
+private updateElements(element) {
+  U(element);
+  updatedElements.add(element);
+  for (Mapping mapping : getMappings(element)) {
+    elementOther = getElementOther(mapping, element);
+    // perspective recursive call
+    if (!updatedElements.contains(elementOther)) {
+      updateElements(elementOther);
+    }
+  }
+}
+
+// There are basically three types of delete in the Template
+// 1) DELETE_OTHERS, i.e., just delete the element of interest and its mappings,
+// e.g., from in (1 .. 0..1)
+// 2) JUST_DELETE, i.e., delete the element of interest, its mappings, and
+// other mapped elemets e.g., to in (1 .. 0..1)
+// 3) DELETE_SINGLEMAPPED, i.e., delete the element of interest, its mappings,
+// and other elements with single mapping e.g., from in (1 .. 1..*)
+
+public deleteElement(elementHere) {
+  deleteElements.clear();
+  deleteMappings.clear();
+COMMENT: furthermore, it is a good idea to collect all elements and only DELETE them at the end to
+COMMENT: avoid issues with constraint violations somewhere along the way.
+COMMENT: however, should not this be done for UPDATE, too, in case a constraint is violated?
+COMMENT: mappings only need to be collected for DELETE but not for UPDATE.
+COMMENT: while deleting all the elements at the end is good for constraint violations, it makes the
+COMMENT: required checks on whether the other element needs to be deleted much more difficult. E.g., the other
+COMMENT: element may be connected to two elements and requires at least one element; if the first one gets
+COMMENT: deleted, there is still one left - no problem. when the second one also gets deleted, then there is
+COMMENT: no element left and the other element needs to be deleted. however, the first element was not really
+COMMENT: deleted - it was only put in a list to be deleted!
+RESPONSE: I am yet to apply one of the options as we discussed on June 24.
+for (mappingType : getLanguageElementMappings(elementHere.eClass)) {
+  deleteElements(elementHere);
+}
+DELETE(deleteMappings.contents);
+DELETE(deleteElements.contents);
+deleteElements.clear();
+deleteMappings.clear();
+}
+
+private deleteElements(element) {
+  List<Mapping> mappings = getMappings(element);
+  for (Mapping mapping : mappings) {
+
+    if (!deleteElements.contains(element)) {
+      deleteElements.add(element);
+    }
+    if (!deleteMappings.contains(mapping)) {
+      deleteMappings.add(mapping);
+    }
+
+    mappingType = getMappingType(mapping);
+    ActionType deleteType = null;
+    MappingEnd fromMappingEnd = mappingType.getMappingEnds().get(0);
+    MappingEnd toMappingEnd = mappingType.getMappingEnds().get(1);
+
+    if (fromMappingEnd.getRoleName() == currentRole) {
+      deleteType = getDeleteType(fromMappingEnd);
+    } else {
+      deleteType = getDeleteType(toMappingEnd);
+    }
+    switch(deleteType) {
+      case JUST_DELETE:
+      // do nothing, action already covered
+      break;
+
+      case DELETE_OTHERS:
+      List<Mapping> typeMappings = getMappings(mappingType, element);
+      for (Mapping typeMapping : typeMappings) {
+        elementOther = getElementOther(mapping, element);
+        if (!deleteElements.contains(elementOther)) {
+          deleteElements(elementOther);
+        }
+      }
+      break;
+
+      case DELETE_SINGLEMAPPED:
+      List<Mapping> typeMappings = getMappings(mappingType, element);
+      for (Mapping typeMapping : typeMappings) {
+        elementOther = getElementOther(mapping, element);
+        elementOtherMappings = getMappings(mappingType, elementOther);
+        if (!deleteElements.contains(elementOther) && elementOtherMappings.size() == 1) {
+          deleteElements(elementOther);
+        }
+      }
+      break;
+    }
+
+  }
+}
+
+private getLanguageElementMappings(languageElement) {
+COMMENT: elementMappings not defined
+RESPONSE: elementMappings is defined directly below
+  elementMappings = perspective.getMappings();
+  List<TypeMapping> languageElementMappings = new ArrayList<TypeMapping>();
+  for (typeMapping : elementMappings) {
+    for (mappingEnd : typeMapping.getMappingEnds()) {
+      if (mappingEnd.getLanguageElement() == languageElement) {
+        languageElementMappings.add(typeMapping);
+      }
+    }
+  }
+  return languageElementMappings;
+}

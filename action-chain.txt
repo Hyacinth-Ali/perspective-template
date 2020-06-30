@@ -1,0 +1,341 @@
+Legend: h = here, o = other, "from" = .1, "to" = .2
+Language Actions: C = create, U = update, D = delete
+
+// Each perspective action is treated as a transaction
+// and can be undone if need be. Example, when there is
+// a constraint violation due to create, update, or update
+// of a model element, all the executed steps of the perspective
+// actions are reverted in order to preserve the constraint
+
+// Mapping refers to COREModelElementMapping in the metamodel
+// TypeMapping refers to CoreLanguageElementMapping
+
+List<EObject> updatedElements = new ArrayList<EObject>();
+HashSet<EObject> deleteElements = new HashSet<EObject>();
+HashSet<EObject> deleteMappings = new HashSet<EObject>();
+
+// helper methods
+private void createMapping(typeMapping, elementHere, elementOther) {
+  mapping = C(ModelElementMapping);
+  mapping.getModelElements().add(elementHere);
+  mapping.getModelElements().add(elementOther);
+  mapping.setType(typeMapping);
+}
+
+private EObject getElementOther(mapping, elementHere) {
+  if (mapping.getModelElements().get(0).equals(elementHere)) {
+    return mapping.getModelElements().get(1);
+  } else {
+    return mapping.getModelElements().get(0);
+  }
+}
+
+private List<TypeMapping> getTypeMappings(modelElement) {
+  HashSet<TypeMapping> typeMappings = new HashSet();
+  List<Mapping> allMappings = perspective.getScene().getMappings();
+  for (mapping : allMappings) {
+    if (mapping.getModelElements.get(0) == modelElement) {
+      typeMappings.add(mapping.getType());
+    } else if (mapping.getModelElements.get(1) == modelElement) {
+      typeMappings.add(mapping.getType());
+    }
+  }
+  return typeMappings;
+}
+
+private List<Mapping> getMappings(typeMapping, modelElement) {
+  List<Mapping> modelMappings = new ArrayList<Mapping>();
+  for (Mapping mapping : typeMapping.getInstances()) {
+    if (mapping.getModelElements().contains(modelElement)) {
+        modelMappings.add(mapping);
+    }
+  }
+  return modelMappings;
+}
+
+// retrieve all mappings, irrespective of type
+private List<Mapping> getMappings(modelElement) {
+  List<Mapping> modelMappings = new ArrayList<Mapping>();
+  List<Mapping> allMappings = getScene(perspective).getModelElements();
+  for (Mapping mapping : allMappings) {
+    if (mapping.getModelElements().contains(modelElement)) {
+        modelMappings.add(mapping);
+    }
+  }
+  return modelMappings;
+}
+
+// create other element(s) and mapping(s) 0, one, or multiple times
+// @param numberOfMappings number of mappings to create
+private void createOtherElementsAndMappings(typeMapping, elementHere, numberOfMappings) {
+  for (int count = 0; count < numberOfMappings; count++) {
+    elementOther = C(o);
+    createMapping(typeMapping, elementHere, elementOther);
+  }
+}
+
+// create one mapping only if other element is not mapped otherwise create
+// other element and mapping
+private void createFirstMappingOrElementAndMapping(typeMapping, elementHere) {
+  // Check if a corresponding element exists, either mapped or not
+  elementOther = findCorrespondingElement();
+  if (elementOther == null || getMappings(typeMapping, elementOther).isEmpty() = false) {
+    elementOther = C(o);
+  }
+  createMapping(typeMapping, elementHere, elementOther)
+}
+
+// create one mapping, whether other element is mapped or not, otherwise create
+// other element and mapping
+private void createMappingOrElementAndMapping(typeMapping, elementHere) {
+  elementOther = findCorrespondingElement();
+  if (elementOther == null) {
+    elementOther = C(o);
+  }
+  createMapping(typeMapping, elementHere, elementOther)
+}
+
+// create many mappings only if each corresponding other element is not mapped
+// and potentially create other elements and mappings
+// @param numberOfMappings the number of mappings to create
+private void createFirstMappingsAndElementsAndMappings(typeMapping, elementHere, numberOfMappings) {
+  // Find corresponding elements, either mapped or not
+  List<EObject> otherElements = findCorrespondingElements();
+  // create mapping for each corresponding element which is not mapped
+  for (EObject otherElement : otherElements) {
+    if (numberOfMappings <= 0) {
+      break;
+    } else {
+      if (getMappings(typeMapping, otherElement).size() == 0) {
+        createMapping(typeMapping, elementHere, otherElement);
+        numberOfMappings--;
+      }
+    }
+  }
+  for (int count = 0; count < numberOfMappings; count++ ) {
+    elementOther = C(o);
+    createMapping(typeMapping, elementHere, elementOther);
+  }
+}
+
+// create many mappings, each with corresponding other element,
+// and potentially create other elements and mappings
+// @param numberOfMappings the number of mappings to create
+private void createMappingsAndElementsAndMappings(elementHere, numberOfMappings) {
+  // Find corresponding elements, either mapped or not
+  List<EObject> otherElements = findCorrespondingElements();
+  // create mapping for each corresponding element which is not mapped
+  for (EObject element : otherElements) {
+    if (numberOfMappings <= 0) {
+      break;
+    } else {
+      elementOther = element;
+      createMapping(typeMapping, elementHere, elementOther);
+      numberOfMappings--;
+    }
+  }
+  for (int count = 0; count < numberOfMappings; count++ ) {
+    elementOther = C(o);
+    createMapping(typeMapping, elementHere, elementOther);
+  }
+}
+
+public updateElement(elementHere) {
+  updatedElements.clear();
+  updateElements(elementHere);
+}
+
+private updateElements(elementHere) {
+  U(elementHere);
+  updatedElements.add(elementHere);
+  for (Mapping mapping : getMappings(elementHere)) {
+    elementOther = getElementOther(mapping, elementHere);
+    // perspective recursive call
+    if (!updatedElements.contains(elementOther)) {
+      updateElements(elementOther);
+    }
+  }
+}
+
+// There are basically three types of delete in the Template
+// 1) JUST_DELETE, i.e., just delete the element of interest and its mappings,
+// e.g., from in (1 .. 0..1)
+// 2) DELETE_OTHERS, i.e., delete the element of interest, its mappings, and
+// other mapped elemets e.g., to in (1 .. 0..1)
+// 3) DELETE_SINGLEMAPPED, i.e., delete the element of interest, its mappings,
+// and other elements with single mapping e.g., from in (1 .. 1..*)
+
+public deleteElement(elementHere) {
+  deleteElements.clear();
+  deleteMappings.clear();
+  for (mappingType : getLanguageElementMappings(elementHere)) {
+    deleteElements(elementHere, mappingType);
+  }
+  if (deleteElements.size() > 0) {
+    DELETE(deleteElements.contents);
+    DELETE(deleteMappings.contents);
+  }
+}
+
+private deleteElements(elementHere, mappingType) {
+  List<Mapping> mappings = getMappings(mappingType, elementHere);
+  deleteElements.add(elementHere);
+  deleteMappings.add(mappings);
+  deleteType = getDeleteType(mappingType);
+  if (deleteType != JUST_DELETE) {
+    for (Mapping mapping : mappings) {
+      elementOther = getElementOther(mapping, elementHere);
+      elementOtherMappings = getMappings(mappingType, elementOther);
+      if (deleteType == DELETE_OTHERS && !deleteElements.contains(elementOther)) {
+        deleteElements(elementOther, deleteType);
+      } else {
+        if (elementOtherMappings.size() == 1 && !deleteElements.contains(elementOther)) {
+          deleteElements(elementOther, deleteElements);
+        }
+      }
+    }
+  }
+}
+
+private getLanguageElementMappings(languageElement) {
+  elementMappings = perspective.getMappings();
+  List<TypeMapping> languageElementMappings = new ArrayList<TypeMapping>();
+  for (typeMapping : elementMappings) {
+    for (mappingEnd : typeMapping.getMappingEnds) {
+      if (mappingEnd.getLanguageElement() == languageElement) {
+        languageElementMappings.add(typeMapping);
+      }
+    }
+  }
+  return languageElementMappings;
+}
+
+private getCreateTypeFrom(typeMapping) {
+  if (typeMapping.getMappingEnds().get(0).getCardinality == Compulsory &&
+      typeMapping.getMappingEnds().get(1).getCardinality == Optional) {
+        return Compulsory_Optional;
+  } else if (typeMapping.getMappingEnds().get(0).getCardinality == Compulsory &&
+      typeMapping.getMappingEnds().get(1).getCardinality == Compulsory) {
+        return Compulsory_Compulsory;
+  } else if (typeMapping.getMappingEnds().get(0).getCardinality == Compulsory &&
+      typeMapping.getMappingEnds().get(1).getCardinality == Optional_Multiple) {
+        return Compulsory_Optional_Multiple;
+  } else if (typeMapping.getMappingEnds().get(0).getCardinality == Compulsory &&
+      typeMapping.getMappingEnds().get(1).getCardinality == Compulsory_Multiple) {
+        return Compulsory_Compulsory_Multiple;
+  } else if (typeMapping.getMappingEnds().get(0).getCardinality == Optional &&
+      typeMapping.getMappingEnds().get(1).getCardinality == Optional) {
+        return Optional_Optional;
+  } else if (typeMapping.getMappingEnds().get(0).getCardinality == Compulsory_Multiple &&
+      typeMapping.getMappingEnds().get(1).getCardinality == Optional) {
+        return Compulsory_Multiple_Optional;
+  } else if (typeMapping.getMappingEnds().get(0).getCardinality == Compulsory_Multiple &&
+      typeMapping.getMappingEnds().get(1).getCardinality == Compulsory_Multiple) {
+        return Compulsory_Multiple_Compulsory_Multiple;
+  } else if (typeMapping.getMappingEnds().get(0).getCardinality == Optional_Multiple &&
+      typeMapping.getMappingEnds().get(1).getCardinality == Optional_Multiple) {
+        return Optional_Multiple_Optional_Multiple;
+  }
+}
+
+private getCreateTypeTo(typeMapping) {
+  if (typeMapping.getMappingEnds().get(0).getCardinality == Compulsory &&
+      typeMapping.getMappingEnds().get(1).getCardinality == Optional) {
+        return Compulsory_Optional;
+  } else if (typeMapping.getMappingEnds().get(0).getCardinality == Compulsory &&
+      typeMapping.getMappingEnds().get(1).getCardinality == Optional_Multiple) {
+        return Compulsory_Optional_Multiple;
+  } else if (typeMapping.getMappingEnds().get(0).getCardinality == Compulsory_Multiple &&
+      typeMapping.getMappingEnds().get(1).getCardinality == Optional) {
+        return Compulsory_Multiple_Optional;
+  } else if (typeMapping.getMappingEnds().get(0).getCardinality == Optional_Multiple &&
+      typeMapping.getMappingEnds().get(1).getCardinality == Optional) {
+        return Optional_Multiple_Optional;
+  }
+}
+
+public createNewElement() {
+  elementHere = C(h);
+  int numberOfMappings;
+  EObject languageElement = getLanguageElement();
+  for (typeMapping : getLanguageElementMappings(languageElement)) {
+    if (fromMappingEnd.getRoleName().equals(currentRole)) {
+      EObject otherLanguageElement = typeMapping.getMappingEnds().get(1).getLanguageElement();
+      switch (getCreateTypeFrom(typeMapping)) {
+        // C1.1
+        case Compulsory_Optional:
+        numberOfMappings = askZeroOrOne(otherLanguageElement);
+        //elementHere = C(h);
+        createOtherElementsAndMappings(typeMapping, elementHere, numberOfMappings);
+
+        // C2.1
+        case Compulsory_Compulsory:
+        createOtherElementsAndMappings(typeMapping, elementHere, 1);
+
+        // C3.1
+        case Compulsory_Optional_Multiple:
+        numberOfMappings = askMany(otherLanguageElement);
+        // elementHere = C(h);
+        createOtherElementsAndMappings(typeMapping, elementHere, numberOfMappings);
+
+        // C4.1
+        case Compulsory_Compulsory_Multiple:
+        numberOfMappings = askAtLeastOne(otherLanguageElement);
+        // elementHere = C(h);
+        createOtherElementsAndMappings(typeMapping, elementHere, numberOfMappings);
+
+        // C5.1
+        case Optional_Optional:
+        numberOfMappings = askZeroOrOne(otherLanguageElement);
+        // elementHere = C(h);
+        if (numberOfMappings == 1) {
+          createFirstMappingOrElementAndMapping(typeMapping, elementHere);
+        }
+
+        // C6.1
+        case Compulsory_Multiple_Optional:
+        numberOfMappings = askZeroOrOne(otherLanguageElement);
+        // elementHere = C(h);
+        if (numberOfMappings == 1) {
+          createMappingOrElementAndMapping(typeMapping, elementHere);
+        }
+
+        // C8.1
+        case Compulsory_Multiple_Compulsory_Multiple:
+        numberOfMappings = askAtLeastOne(otherLanguageElement);
+        // elementHere = C(h);
+        createMappingsAndElementsAndMappings(typeMapping, elementHere, numberOfMappings);
+
+
+        // C9.1
+        case Optional_Multiple_Optional_Multiple:
+        numberOfMappings = askMany(otherLanguageElement);
+        // elementHere = C(h);
+        createMappingsAndElementsAndMappings(typeMapping, elementHere, numberOfMappings);
+
+      }
+    } else {
+      switch (getCreateTypeTo(typeMapping)) {
+        // C1.2
+        case Compulsory_Optional:
+        createFirstMappingOrElementAndMapping(typeMapping, elementHere);
+
+        // C3.2
+        case Compulsory_Optional_Multiple:
+        createMappingOrElementAndMapping(typeMapping, elementHere);
+
+        // C6.2
+        case Compulsory_Multiple_Optional:
+        numberOfMappings = askAtLeastOne(otherLanguageElement);
+        // elementHere = C(h);
+        createFirstMappingsAndElementsAndMappings(typeMapping, elementHere, numberOfMappings);
+
+        // C7.2
+        case Optional_Multiple_Optional_Multiple:
+        numberOfMappings = askMany(otherLanguageElement);
+        // elementHere = C(h);
+        createFirstMappingsAndElementsAndMappings(<identifier>, elementHere, numberOfMappings);
+      }
+    }
+  }
+}
