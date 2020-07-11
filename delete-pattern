@@ -1,0 +1,37 @@
+public updateElement(elementHere) {
+   updatedElements.clear(); // clear all data structures needed for
+//delete
+   updateElements(elementHere); // call the recursive delete method
+   // perform the actual delete here
+   updatedElements.clear(); // clear all data structures needed for
+delete
+
+}
+
+private updateElements(element) {
+U(element); // will delete only at the end, so this is not needed
+updatedElements.add(element); // add element to delete list
+for (Mapping mapping : getMappings(element)) { // this is exactly the
+//same
+  // here you need to add the mapping to the delete list if it is not
+//on it
+  // (if it is, the iteration can be skipped)
+  elementOther = getElementOther(mapping, element); // this is exactly
+the same
+
+  // the following needs to be replaced with a check of what kind of
+//delete is needed
+  // based on the delete type; if the other element needs to be
+//deleted, call the
+  // recursive delete method; to figure out whether the other element
+//needs to be deleted, you
+  // may need getMappings(type, element), because you may be
+//interested only in mappings of
+  // a specific type (not sure, may only be needed for CREATE)
+  // perspective recursive call
+  if (!updatedElements.contains(elementOther)) {
+    updateElements(elementOther);
+  }
+
+}
+}

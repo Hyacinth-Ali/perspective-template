@@ -50,7 +50,20 @@ private List<Mapping> getMappings(modelElement) {
   return modelMappings;
 }
 
-public ActionType getDeleteType(MappingEnd mappingEnd) {
+public ActionType getDeleteType(Mapping mapping) {
+
+  MappingEnd mappingEnd;
+  mappingType = getMappingType(mapping);
+  ActionType deleteType = null;
+  MappingEnd fromMappingEnd = mappingType.getMappingEnds().get(0);
+  MappingEnd toMappingEnd = mappingType.getMappingEnds().get(1);
+
+  if (fromMappingEnd.getRoleName() == currentRole) {
+    mappingEnd = fromMappingEnd;
+  } else {
+    fromMappingEnd = toMappingEnd;
+  }
+
         ActionType deleteType = null;
         if (mappingEnd.getCardinality() == Cardinality.COMPULSORY) {
             deleteType = ActionType.DELETE_OTHERS;
@@ -82,12 +95,12 @@ private updateElements(element) {
 }
 
 // There are basically three types of delete in the Template
-// 1) DELETE_OTHERS, i.e., just delete the element of interest and its mappings,
-// e.g., from in (1 .. 0..1)
-// 2) JUST_DELETE, i.e., delete the element of interest, its mappings, and
-// other mapped elemets e.g., to in (1 .. 0..1)
+// 1) JUST_DELETE, i.e., just delete the element of interest and its mappings,
+// e.g., to in (1 .. 0..1)
+// 2) DELETE_OTHERS, i.e., delete the element of interest, its mappings, and
+// other mapped elemets e.g., from in (1 .. 0..1)
 // 3) DELETE_SINGLEMAPPED, i.e., delete the element of interest, its mappings,
-// and other elements with single mapping e.g., from in (1 .. 1..*)
+// and other elements with single mapping e.g., to in (1 .. 1..*)
 
 public deleteElement(elementHere) {
   deleteElements.clear();
@@ -101,60 +114,28 @@ public deleteElement(elementHere) {
 //TODO: keep track of elements to be deleted while checking
 // the condition an element mappings
 private deleteElements(element) {
-  if (!deleteElements.contains(element)) {
-    deleteElements.add(element);
-  }
+  deleteElements.add(element);
   for (Mapping mapping : getMappings(element)) {
 
     if (!deleteMappings.contains(mapping)) {
       deleteMappings.add(mapping);
-    } else {
-      break;
-    }
-
-    elementOther = getElementOther(mapping, element);
-
-    mappingType = getMappingType(mapping);
-    ActionType deleteType = null;
-    MappingEnd fromMappingEnd = mappingType.getMappingEnds().get(0);
-    MappingEnd toMappingEnd = mappingType.getMappingEnds().get(1);
-
-    if (fromMappingEnd.getRoleName() == currentRole) {
-      deleteType = getDeleteType(fromMappingEnd);
-    } else {
-      deleteType = getDeleteType(toMappingEnd);
-    }
-    switch(deleteType) {
-      case JUST_DELETE:
-      // do nothing, action already covered
-      break;
-
-      case DELETE_OTHERS:
-        if (!deleteElements.contains(elementOther)) {
-          deleteElements(elementOther);
-        }
-      break;
-
-      case DELETE_SINGLEMAPPED:
-        elementOtherMappings = getMappings(mappingType, elementOther);
-        if (!deleteElements.contains(elementOther) && elementOtherMappings.size() == 1) {
-          deleteElements(elementOther);
-        }
-      break;
-    }
-
+      elementOther = getElementOther(mapping, element);
+      switch(getDeleteType(mapping)) {
+        case JUST_DELETE:
+         // do nothing, action already covered
+        break;
+        case DELETE_OTHERS:
+          if (!deleteElements.contains(elementOther)) {
+            deleteElements(elementOther);
+          }
+        break;
+        case DELETE_SINGLEMAPPED:
+          elementOtherMappings = getMappings(mappingType, elementOther);
+            if (!deleteElements.contains(elementOther) && elementOtherMappings.size() == 1) {
+                deleteElements(elementOther);
+              }
+        break;
+          }
+     }
   }
-}
-
-private getLanguageElementMappings(languageElement) {
-  elementMappings = perspective.getMappings();
-  List<TypeMapping> languageElementMappings = new ArrayList<TypeMapping>();
-  for (typeMapping : elementMappings) {
-    for (mappingEnd : typeMapping.getMappingEnds()) {
-      if (mappingEnd.getLanguageElement() == languageElement) {
-        languageElementMappings.add(typeMapping);
-      }
-    }
-  }
-  return languageElementMappings;
 }
