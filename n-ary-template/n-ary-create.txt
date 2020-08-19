@@ -1,0 +1,44 @@
+public createElement(p1, p2, ...) {
+  element = create(p1, p2, ...);
+  createElements(element, p1, p2, ...);
+}
+private createElements(element, p1, p2, ...) {
+  for (MappingType type :
+    getMappingTypes(element)) {
+      mappings = getMappings(type, element);
+      metaclasses = getOtherMetaClasses(type, element);
+      otherElemets = null;
+      for (EObject metaclass: metaclasses) {
+        // TODO: n-ary create types
+        // the create type may use binary relationships for the concerned
+        // elements
+        // the parameters may include metaclass and element
+        switch(getCreateType(type)) {
+          case CAN_CREATE:
+            if (mappings.size() == 0 ) {
+              boolean isOther = isCreateOther();
+              if (isOther) {
+                other = CREATE(metaclass, p1, p2, ...);
+                otherElemets.add(other);
+              }
+            }
+            break;
+          case CREATE_OR_USE_NON_MAPPED:
+            if (mappings.size() == 0) {
+              other = findCorrespondingElement();
+              if (other == null ||
+                getMappings(other).size() > 0) {
+                  other = CREATE(metaclass, p1, p2, ...);
+                }
+                otherElemets.add(other);
+              }
+              break;
+            case . . .
+          }
+      }
+      createMapping(type, element, otherElemets);
+      for (other: otherElemets) {
+        createElements(other, p1, p2, ...);
+      }
+      }
+    }

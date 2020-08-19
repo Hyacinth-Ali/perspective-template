@@ -1,0 +1,39 @@
+// retrieves the corresponding mapped elements of a
+// giiven element.
+private List<EObject> getOtherELements(mapping, elementHere) {
+  List<EObject> mappedElements = null;
+  if (mapping.getModelElements().contains(elementHere)) {
+    mapping.getModelElements().remove(elementHere);
+    mappedElements = mapping.getModelElements();
+  }
+  return mappedElements;
+}
+
+public List<EObject> getOtherMetaclasses(MappingType mappingType, EObject element) {
+  List<EObject> otherMetaclasses = new ArrayList<EObject>();;
+  List<MappingEnd> otherMappingEnds = null;
+  for (MappingEnd mappingEnd: mappingType.getMappingEnds()) {
+    if (mappingEnd.getLanguageElement().getLanguageElement().equals(element)) {
+      otherMappingEnds = mappingType.getMappingEnds();
+      otherMappingEnds.remove(mappingEnd);
+      break;
+    }
+  }
+  if (otherMappingEnds != null) {
+    for (MappingEnd mappingEnd: otherMappingEnds) {
+      otherMetaclasses.add(mappingEnd.getLanguageElement().getLanguageElement());
+    }
+  }
+  return otherMetaclasses;
+}
+
+// n-ary create mapping
+public createMapping(MappingType type, EObject element, List<EObject> otherElemets) {
+  // ecoore action
+  MappingType mapping = createMapping();
+  mapping.getModelElements().add(elementHere);
+  for (EObject otherElement : otherElements) {
+    mapping.getModelElements().add(otherElement);
+  }
+  mapping.setLEMid(mappingType.getIdentifier());
+  }

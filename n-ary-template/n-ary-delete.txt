@@ -1,0 +1,38 @@
+public deleteElement(element, p2, p3, ...) {
+  deleteElements(element, p2, p3, ...);
+}
+private deleteElements(element, p2, p3, ...) {
+  mappings = getMappings(element);
+  DELETE(element, p2, p3, ...);
+  for (Mapping mapping : mappings) {
+    others = getOtherElements(mapping, element);
+    otherElemets = null;
+    for (EObject other: others) {
+      // TODO: n-ary delete types
+      // the delete type may use binary relationships for the concerned
+      // elements
+      // the parameters may include other and element
+      deleteType = getDeleteType(mapping);
+      mappingType = mapping.getMappingType();
+      switch(deleteType) {
+        case JUST_DELETE:
+          // do nothing, action already covered
+          break;
+        case DELETE_OTHERS:
+          otherElemets.add(other);
+          break;
+        case DELETE_SINGLE_MAPPED:
+          otherMappings =
+          getMappings(mappingType, other);
+          if (otherMappings.size() == 0) {
+            otherElemets.add(other);
+          }
+          break;
+        }
+    }
+    mapping.delete();
+    for (EObject other: others) {
+      deleteElements(other, p2, p3, ...);
+    }
+  }
+}

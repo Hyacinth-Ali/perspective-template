@@ -1,0 +1,28 @@
+public deleteElement(element, p2, p3, ...) {
+  deleteElements(element, p2, p3, ...);
+}
+private deleteElements(element, p2, p3, ...) {
+  mappings = getMappings(element);
+  DELETE(element, p2, p3, ...);
+  for (Mapping mapping : mappings) {
+    other = getOther(mapping, element);
+    deleteType = getDeleteType(mapping);
+    mappingType = mapping.getMappingType();
+    mapping.delete();
+    switch(deleteType) {
+      case JUST_DELETE:
+        // do nothing, action already covered
+        break;
+      case DELETE_OTHERS:
+        deleteElements(other, p2, p3, ...);
+        break;
+      case DELETE_SINGLE_MAPPED:
+        otherMappings =
+        getMappings(mappingType, other);
+        if (otherMappings.size() == 0) {
+          deleteElements(other, p2, p3, ...);
+        }
+        break;
+      }
+    }
+  }

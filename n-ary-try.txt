@@ -1,0 +1,54 @@
+ public createElement(parameters) {
+    element = CREATE(parameters);
+    createElements(element);
+  }
+  private createElements(element, parameters) {
+    for (NaryType type :
+            getNaryMappingTypes(element)) {
+      mappings = getNaryMappings(type, element);
+      // relationship encodes the multiplicites between a pair of metaclasses
+      // in an n-ary mapping. Ternaty mapping, for example, has three relationships
+      for (Relationship relationship : type.relationships) {
+        List<EObject> others;
+        switch(getCreateType(relationship)) {
+        case CAN_CREATE:
+        // Need to use nary types instead, check ADC paper v3 or 4 from Gunter
+        if (mappings == 0 ) {
+             boolean isOther = isCreateOther();
+             if (isOther) {
+               other = CREATE(parameters);
+               others.add(other);
+               //update other affected elements first
+               affectedElements = element.languageAction.languageElements;
+               updateAffectedElement(affectedElements);
+               createElements(other, parameters);
+             }
+           }
+           break;
+         case CREATE_OR_USE_NON_MAPPED:
+          if (mappings == 0) {
+             other = findCorrespondingElement();
+             if (other == null ||
+                 getMappings(other).size() > 0) {
+               others.add(CREATE(parameters));
+             }
+             createMapping(type, element, other);
+             createElements(other, parameters);
+           }
+           break;
+         case . . .
+       }
+      }
+      createNaryMapping(type, others);
+   }
+ }
+
+
+ updateAffectedElement(affectedElements) {
+   for (affectedElement : affectedElements) {
+     // Figure out how to get the required parameter at this stage
+     // Also, get the model elements instead of the language
+     // elements (affectedElement)
+     this.invoke(affectedElement.updateMethod);
+   }
+ }

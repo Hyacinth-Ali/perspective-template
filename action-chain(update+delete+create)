@@ -1,0 +1,171 @@
+COMMENT: i have removed everything related to CREATE.
+COMMENT: there are several issues that need to be fixed with UPDATE and DELETE first.
+
+Legend: h = here, o = other, "from" = .1, "to" = .2
+Language Actions: C = create, U = update, D = delete
+
+// Each perspective action is treated as a transaction
+// and can be undone if need be. Example, when there is
+// a constraint violation due to create, update, or update
+// of a model element, all the executed steps of the perspective
+// actions are reverted in order to preserve the constraint
+
+// Mapping refers to COREModelElementMapping in the metamodel
+// TypeMapping refers to CoreLanguageElementMapping
+
+List<EObject> updatedElements = new ArrayList<EObject>();
+List<EObject> deleteElements = new ArrayList<EObject>();
+List<EObject> deleteMappings = new ArrayList<EObject>();
+
+private EObject getElementOther(mapping, elementHere) {
+  if (mapping.getModelElements().get(0).equals(elementHere)) {
+    return mapping.getModelElements().get(1);
+  } else {
+    return mapping.getModelElements().get(0);
+  }
+}
+
+private List<Mapping> getMappings(typeMapping, modelElement) {
+  List<Mapping> modelMappings = new ArrayList<Mapping>();
+  COREScene scene = COREArtefactUtil.getReferencingExternalArtefact(modelElement).getScene();
+  // getInstances not shown in this file
+  for (Mapping mapping : typeMapping.getInstances(typeMapping, scene)) {
+    if (mapping.getModelElements().contains(modelElement)) {
+        modelMappings.add(mapping);
+    }
+  }
+  return modelMappings;
+}
+
+// retrieve all mappings, irrespective of type
+private List<Mapping> getMappings(modelElement) {
+  List<Mapping> modelMappings = new ArrayList<Mapping>();
+  COREScene scene = COREArtefactUtil.getReferencingExternalArtefact(modelElement).getScene();
+  List<Mapping> allMappings = scene.getElementMappings();
+  for (Mapping mapping : allMappings) {
+    if (mapping.getModelElements().contains(modelElement)) {
+        modelMappings.add(mapping);
+    }
+  }
+  return modelMappings;
+}
+
+public ActionType getDeleteType(Mapping mapping) {
+
+  MappingEnd mappingEnd;
+  mappingType = getMappingType(mapping);
+  ActionType deleteType = null;
+  MappingEnd fromMappingEnd = mappingType.getMappingEnds().get(0);
+  MappingEnd toMappingEnd = mappingType.getMappingEnds().get(1);
+
+  if (fromMappingEnd.getRoleName() == currentRole) {
+    mappingEnd = fromMappingEnd;
+  } else {
+    fromMappingEnd = toMappingEnd;
+  }
+
+        ActionType deleteType = null;
+        if (mappingEnd.getCardinality() == Cardinality.COMPULSORY) {
+            deleteType = ActionType.DELETE_OTHERS;
+        } else if (mappingEnd.getCardinality() == Cardinality.OPTIONAL || mappingEnd.getCardinality()
+                == Cardinality.OPTIONAL_MULTIPLE) {
+            deleteType = ActionType.JUST_DELETE;
+        } else if (mappingEnd.getCardinality() == Cardinality.COMPULSORY_MULTIPLE) {
+            deleteType = ActionType.DELETE_SINGLEMAPPED;
+        }
+        return deleteType;
+    }
+
+public updateElement(elementHere) {
+  updatedElements.clear();
+  updateElements(elementHere);
+  updatedElements.clear();
+}
+
+private updateElements(element) {
+  U(element);
+  updatedElements.add(element);
+  for (Mapping mapping : getMappings(element)) {
+    elementOther = getElementOther(mapping, element);
+    // perspective recursive call
+    if (!updatedElements.contains(elementOther)) {
+      updateElements(elementOther);
+    }
+  }
+}
+
+// There are basically three types of delete in the Template
+// 1) JUST_DELETE, i.e., just delete the element of interest and its mappings,
+// e.g., to in (1 .. 0..1)
+// 2) DELETE_OTHERS, i.e., delete the element of interest, its mappings, and
+// other mapped elemets e.g., from in (1 .. 0..1)
+// 3) DELETE_SINGLEMAPPED, i.e., delete the element of interest, its mappings,
+// and other elements with single mapping e.g., to in (1 .. 1..*)
+
+public deleteElement(elementHere) {
+  deleteElements.clear();
+  deleteMappings.clear();
+  deleteElements(elementHere);
+  DELETE(deleteMappings.contents);
+  DELETE(deleteElements.contents);
+  deleteElements.clear();
+  deleteMappings.clear();
+}
+//TODO: keep track of elements to be deleted while checking
+// the condition an element mappings
+private deleteElements(element) {
+  deleteElements.add(element);
+  for (Mapping mapping : getMappings(element)) {
+
+    if (!deleteMappings.contains(mapping)) {
+      deleteMappings.add(mapping);
+      elementOther = getElementOther(mapping, element);
+      switch(getDeleteType(mapping)) {
+        case JUST_DELETE:
+         // do nothing, action already covered
+        break;
+        case DELETE_OTHERS:
+          if (!deleteElements.contains(elementOther)) {
+            deleteElements(elementOther);
+          }
+        break;
+        case DELETE_SINGLEMAPPED:
+          elementOtherMappings = getMappings(mappingType, elementOther);
+            if (!deleteElements.contains(elementOther) && elementOtherMappings.size() == 1) {
+                deleteElements(elementOther);
+              }
+        break;
+          }
+     }
+  }
+}
+
+
+1. public createElement() {
+ 2.   element = CREATE();
+ 3.   createElements(element);
+ 4. }
+ 5. private createElements(element) {
+ 6.   for (MappingType type :
+            getMappingTypes(element)) {
+ 7.     switch(getCreateType(type)) {
+ 8.     case CREATE_1:
+ 9.       boolean isOther = isCreateOther();
+10.       if (isOther) {
+11.         other = CREATE();
+12.         createMapping(type, element, other);
+13          createElements(other);
+14.       }
+15.       break;
+16.     case CREATE_2:
+17.       other = findCorrespondingElement();
+18.       if (other == null ||
+                getMappings(other).size() > 0) {
+19.         other = CREATE(o);
+20.       }
+21.       createMapping(type, element, other);
+22.          createElements(other);
+23.       break;
+24.     }
+25.   }
+26. }

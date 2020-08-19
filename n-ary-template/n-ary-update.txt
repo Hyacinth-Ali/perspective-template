@@ -1,0 +1,17 @@
+public updatedElements = new ArrayList<EObject>();
+public updateElement(element, p2, p3, ...) {
+  updatedElements.clear();
+  updateElements(element, p2, p3, ...);
+  updatedElements.clear();
+}
+private updateElements(element, p2, p3, ...) {
+  UPDATE(element, p2, p3, ...);
+  updatedElements.add(element);
+  for (Mapping mapping : getMappings(element)) {
+    other = getOther(mapping, element);
+    // perspective recursive call
+    if (!updatedElements.contains(other)) {
+      updateElements(other, p2, p3, ...);
+    }
+  }
+}
