@@ -1,0 +1,14 @@
+perspective: domain model, design model, and Use Case
+  mappings: Class -- Class
+            Attribute -- Attribute
+            Class -- Actor
+language action: create class
+  mainEffect -- Class
+language action: create attribute
+  mainEffect -- Attribute
+  secondaryEffect -- Class
+language action: create actor
+  mainEffect -- Actor
+
+
+perspective: class diagram and sequence diagram

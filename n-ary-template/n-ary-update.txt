@@ -1,4 +1,4 @@
-public updatedElements = new ArrayList<EObject>();
+updatedElements = new ArrayList<EObject>();
 public updateElement(element, p2, p3, ...) {
   updatedElements.clear();
   updateElements(element, p2, p3, ...);

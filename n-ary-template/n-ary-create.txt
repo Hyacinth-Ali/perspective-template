@@ -1,6 +1,20 @@
 public createElement(p1, p2, ...) {
   element = create(p1, p2, ...);
   createElements(element, p1, p2, ...);
+
+  // secondary effects
+  // create type
+  for (actionEffect : secondaryEffects) {
+    // getSecondaryElement is helper method which returns the affected element
+    secondaryElement = getSecondaryElement(actionEffect);
+    if (actionEffect.languageAction.actionType == CREATE) {
+      createElements(secondaryElement, p1, p2, ...);
+    } else if (actionEffect.languageAction.actionType == DELETE) {
+      deleteElements(secondaryElement, p2, p3, ...);
+    } else if(actionEffect.languageAction.actionType == UPDATE) {
+      updateElement(secondaryElement, p2, p3, ...)
+    }
+  }
 }
 private createElements(element, p1, p2, ...) {
   for (MappingType type :
