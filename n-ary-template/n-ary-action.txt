@@ -6,16 +6,27 @@ public createElement(p1, p2, ...) {
 
   // secondary effects
   for (actionEffect : secondaryEffects) {
-    // getSecondaryElement is a helper method which returns the affected element
-    // this can work for create and update actions.
-    // Assumption: if another element is created (e.g., lifeline), which has LEM and is a
-    // sub-element of the newly created element (e.g., sequence diagram), then it is not covered.
-    // TODO: delete type
-    secondaryElement = getSecondaryElement(actionEffect);
-    if (actionEffect.languageAction.actionType == CREATE) {
-      createElements(secondaryElement, p1, p2, ...);
-    } else if(actionEffect.languageAction.actionType == UPDATE) {
-      updateElement(secondaryElement, p2, p3, ...)
+    if (actionEffect.getParameterEffect == CONTENT) {
+      for (secondaryElement : element.eContents()) {
+        if (secondaryElement instanceof actionEffect.getLanguageElement().getLanguageElement()) {
+          if (actionEffect.languageAction.actionType == CREATE) {
+            createSecondaryElements(secondaryElement, p1, p2, ...);
+          } else if(actionEffect.languageAction.actionType == UPDATE) {
+            updateSecondaryElements(secondaryElement, p2, p3, ...)
+          }
+      }
+    }
+  } else {
+      // getSecondaryElement is a helper method which returns the affected element
+      // this can work for create and update actions.
+      // Delete: To be discussed: the element in question has been deleted while it is
+      // required to retrive other mapped elements.
+      secondaryElement = getSecondaryElement(actionEffect);
+      if (actionEffect.languageAction.actionType == CREATE) {
+        createSecondaryElements(secondaryElement, p1, p2, ...);
+      } else if(actionEffect.languageAction.actionType == UPDATE) {
+        updateSecondaryElements(secondaryElement, p2, p3, ...)
+      }
     }
   }
 }
@@ -60,6 +71,10 @@ private createElements(element, p1, p2, ...) {
     // delete type
     public deleteElement(element, p2, p3, ...) {
       deleteElements(element, p2, p3, ...);
+
+      // secondary effects
+      // To be discussed: the element in question has been deleted while it is
+      // required to retrive other mapped elements.
     }
     private deleteElements(element, p2, p3, ...) {
       mappings = getMappings(element);
@@ -97,19 +112,75 @@ private createElements(element, p1, p2, ...) {
 
     // Update type
     updatedElements = new ArrayList<EObject>();
-    public updateElement(element, p2, p3, ...) {
+    public updateElement(element, feature, value) {
       updatedElements.clear();
-      updateElements(element, p2, p3, ...);
+      updateElements(element, feature, value);
       updatedElements.clear();
+
+      // secondary effects
+      for (actionEffect : secondaryEffects) {
+        if (actionEffect.getParameterEffect == CONTENT) {
+          for (secondaryElement : element.eContents()) {
+            if (secondaryElement instanceof actionEffect.getLanguageElement().getLanguageElement()) {
+              if (actionEffect.languageAction.actionType == CREATE) {
+                createSecondaryElements(secondaryElement, p1, p2, ...);
+              } else if(actionEffect.languageAction.actionType == UPDATE) {
+                updateSecondaryElements(secondaryElement, p2, p3, ...)
+              }
+          }
+        }
+      } else {
+          // getSecondaryElement is a helper method which returns the affected element
+          // this can work for create and update actions.
+          // Delete: To be discussed: the element in question has been deleted while it is
+          // required to retrive other mapped elements.
+          secondaryElement = getSecondaryElement(actionEffect);
+          if (actionEffect.languageAction.actionType == CREATE) {
+            createSecondaryElements(secondaryElement, p1, p2, ...);
+          } else if(actionEffect.languageAction.actionType == UPDATE) {
+            updateSecondaryElements(secondaryElement, p2, p3, ...)
+          }
+        }
+        updatedElements.clear();
+      }
     }
-    private updateElements(element, p2, p3, ...) {
-      UPDATE(element, p2, p3, ...);
+    private updateElements(element, feature, value) {
+      UPDATE(element, feature, value);
       updatedElements.add(element);
       for (Mapping mapping : getMappings(element)) {
-        other = getOther(mapping, element);
-        // perspective recursive call
-        if (!updatedElements.contains(other)) {
-          updateElements(other, p2, p3, ...);
+        MappingType mappingType = getMappingType(mapping);
+        AttributeMapping attributeMappings = mappingType.getAttributeMappings;
+        if (attributeMappings.isEmpty()) {
+            continue;
         }
+
+        others = getOtherElements(mapping, element);
+        for (other : others) {
+          other = getOther(mapping, element);
+          otherMetaclass = other.eClass();
+          otherCoreLE = getCoreLanguageElement(otherMetaclass);
+          for (AttributeMapping attrrMapping : attributeMappings) {
+            for (LanguageElementAttribute elementAttr : attrrMapping.getMappings()) {
+              if (otherCoreLE.getAttributes.contains(elementAttr)) {
+                otherFeature = elementAttr.getAttributeElement();
+                // perspective recursive call
+                if (!updatedElements.contains(other)) {
+                  updateElements(other, otherFeature, value);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    private EObject getSecondaryElement(actionEffect) {
+      EObject affectedElement = null;
+      // I think we just need element, instead of container and element?
+      // Similarly, id, instead of container_id and element_id
+      if (actionEffect.getParameterEffect() == ELEMENT) {
+        affectedElement = actionEffect.getPameter();
+      } else if (actionEffect.getParameterEffect() == ID) {
+        affectedElement = getAffectedElement(actionEffect.getPameter())
       }
     }
