@@ -1,0 +1,54 @@
+
+Mapping (CREATE: from)
+
+// this mapping doesn't require selection of model element.
+CAN_CREATE (C1): C1.1, C11.2
+if (fromElement.mappings.size() == 0) {
+  toElement = createToElement();
+  createMapping(mappingType, fromElement, toElement);
+}
+
+// No option for user mapping.
+CREATE (C2): C2.1, C2.2
+
+
+CAN_CREATE_MANY (C3): C3.1, C12.2
+if (toElement.mappings.size() == 0) {
+  createMapping(mappingType, fromElement, toElement);
+}
+
+CREATE_AT_LEAST_ONE (C4): C4.1, C13.2
+Same as CAN_CREATE_MANY
+
+CAN_CREATE_OR_USE_NON_MAPPED (C5): C5.1, C5.2
+if (fromElement.mappings.size() == 0 && toElement.mappings.size() == 0) {
+  createMapping(mappingType, fromElement, toElement);
+}
+
+CAN_CREATE_OR_USE (C6): C6.1, C7.1, C14.2, C15.2
+if (fromElement.mappings.size() == 0) {
+  createMapping(mappingType, fromElement, toElement);
+}
+
+// No restriction
+CREATE_OR_USE_ATLEAST_ONE (C7): C8.1, C8.2, C10.1, C16.2
+
+// No restriction
+CAN_CREATE_OR_USE_MANY (C8): C9.1, C9.2, C10.2, C16.1
+
+Mapping (CREATE: to)
+
+// No option for user mapping, must be mapped upon creation.
+CREATE_OR_USE_NON_MAPPED (C9): C1.2, C11.1
+
+// No option for user mapping, must be mapped upon creation.
+CREATE_OR_USE (C10): C3.2, C4.2, C12.1, C13.1
+
+
+CREATE_OR_USE_NON_MAPPED_ATLEAST_ONE (C11): C6.2, C14.1
+Same as CAN_CREATE_OR_USE
+
+CAN_CREATE_OR_USE_NON_MAPPED_MANY (C12): C7.2, C15.1
+if (fromElement.mappings.size() == 0) {
+  createMapping(mappingType, fromElement, toElement);
+}

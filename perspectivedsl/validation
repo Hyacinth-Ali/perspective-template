@@ -1,0 +1,28 @@
+public static final String INVALID_NAME = "invalidName";
+
+    @Check
+    public void checkLanguageElementStartsWithCapital(LanguageElement element) {
+        if (!Character.isUpperCase(element.getName().charAt(0))) {
+            warning("Language element name should start with a capital",
+                    PerspectiveDSLPackage.Literals.LANGUAGE_ELEMENT_MAPPING__TO_ELEMENT,
+                    INVALID_NAME);
+        }
+    }
+
+    @Check
+    public void checkLanguageStartsWithCapital(ExternalLanguage language) {
+        if (!Character.isUpperCase(language.getName().charAt(0))) {
+            warning("Language name should start with a capital",
+                    PerspectiveDSLPackage.Literals.LANGUAGE__NAME,
+                    INVALID_NAME);
+        }
+    }
+
+    @Check
+    public void checkLanguageStartsWithCapital(Perspective perspective) {
+        if (!Character.isUpperCase(perspective.getName().charAt(0))) {
+            warning("Perspective name should start with a capital",
+                    PerspectiveDSLPackage.Literals.LANGUAGE__NAME,
+                    INVALID_NAME);
+        }
+    }

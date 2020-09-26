@@ -1,0 +1,114 @@
+for (perspective : resource.allContents.toIterable.filter(Perspective)){
+            fsa.generateFile(
+                 "ca/mcgill/sel/core/perspective/" + perspective.name.toLowerCase() + "/" + perspective.name + ".java",
+                perspective.compile
+                )
+            }
+	}
+
+	private def compile(Perspective perspective) {
+        '''
+        package ca.mcgill.sel.core.perspective.«perspective.name.toLowerCase()»;
+
+        import java.util.HashMap;
+        import java.util.HashSet;
+        import java.util.Map.Entry;
+        import java.util.Set;
+
+        import org.eclipse.emf.common.util.EList;
+        import org.eclipse.emf.ecore.EObject;
+
+        import ca.mcgill.sel.classdiagram.CdmFactory;
+        import ca.mcgill.sel.classdiagram.CdmPackage;
+        import ca.mcgill.sel.core.CORELanguageElementMapping;
+        import ca.mcgill.sel.core.COREModelElementMapping;
+        import ca.mcgill.sel.core.COREPerspective;
+        import ca.mcgill.sel.core.CoreFactory;
+        import ca.mcgill.sel.perspective.COREPerspectiveUtil;
+        import usecase.UsecaseFactory;
+
+
+        public class «perspective.name» {
+
+                // map to keep track of language element mappings
+                HashMap<CORELanguageElementMapping, EObject> languageElementMapping =
+                        new HashMap<CORELanguageElementMapping, EObject>();
+
+                // helper methods
+
+                /**
+                 * creates a model mapping between two instances, potentially from different languages.
+                 */
+                private void createMapping(CORELanguageElementMapping type, EObject elementHere, EObject elementOther) {
+                    COREModelElementMapping mapping = CoreFactory.eINSTANCE.createCOREModelElementMapping();
+                    mapping.getModelElements().add(elementHere);
+                    mapping.getModelElements().add(elementOther);
+                    mapping.setType(type);
+                }
+
+                private EObject getElementOther(COREModelElementMapping mapping, EObject elementHere) {
+                    if (mapping.getModelElements().get(0).equals(elementHere)) {
+                        return mapping.getModelElements().get(1);
+                    } else {
+                        return mapping.getModelElements().get(0);
+                    }
+                }
+
+                public void reinitializetypeMapping() {
+                    for (COREPerspective perspective : COREPerspectiveUtil.INSTANCE.getPerspectives()) {
+                        EList<CORELanguageElementMapping> typeMappings = perspective.getMappings();
+                        for (CORELanguageElementMapping map : typeMappings) {
+                            EObject from = map.getMappingEnds().get(0).getLanguageElement();
+                            EObject to = map.getMappingEnds().get(1).getLanguageElement();
+                            languageElementMapping.put(map, from);
+                            languageElementMapping.put(map, to);
+                        }
+                    }
+                }
+
+                /**
+                 * Returns language element mappings across different templates
+                 *
+                 * @param languageELement of interest
+                 * @return
+                 */
+                public Set<CORELanguageElementMapping> getTypeMappings(EObject languageELement) {
+                    Set<CORELanguageElementMapping> typeMappings = new HashSet<CORELanguageElementMapping>();
+                    for (Entry<CORELanguageElementMapping, EObject> entry : languageElementMapping.entrySet()) {
+                        if (entry.getValue().equals(languageELement)) {
+                            typeMappings.add(entry.getKey());
+                        }
+                    }
+                    return typeMappings;
+                }
+
+            «FOR elementMapping : perspective.mappings»
+                    private void createOtherElementAndMapping(EObject languageElement, EObject elementHere) {
+                        EObject elementOther = (EObject) «elementMapping.toLanguage.name»Factory.eINSTANCE.create«elementMapping.toElement.name»();
+                        CORELanguageElementMapping mapType = (CORELanguageElementMapping) getTypeMappings(languageElement);
+                        COREModelElementMapping modelElement = CoreFactory.eINSTANCE.createCOREModelElementMapping();
+                        modelElement.setType(mapType);
+                        modelElement.getModelElements().add(elementHere);
+                        modelElement.getModelElements().add(elementOther);
+                      }
+
+                    public void createNewElement() {
+                        // Ask user whether to create a mapping
+                        // TODO
+                        // boolean map = askZeroOrOne();
+                        EObject clazz = «elementMapping.fromLanguage.name»Package.eINSTANCE.get«elementMapping.fromElement.name»();
+                        boolean map = true;
+                        EObject Foo = (EObject) «elementMapping.fromLanguage.name»Factory.eINSTANCE.create«elementMapping.fromElement.name»();
+                        if (map) {
+                          createOtherElementAndMapping(clazz, Foo);
+                        }
+                    }
+            «ENDFOR»
+
+
+            }
+
+            '''
+
+            }
+}

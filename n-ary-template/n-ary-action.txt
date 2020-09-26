@@ -6,12 +6,15 @@ public createElement(p1, p2, ...) {
 
   // secondary effects
   for (actionEffect : secondaryEffects) {
+    // i.e., the case where the affected element cannot be retrieved from the paprameters
     if (actionEffect.getParameterEffect == CONTENT) {
       for (secondaryElement : element.eContents()) {
         if (secondaryElement instanceof actionEffect.getLanguageElement().getLanguageElement()) {
           if (actionEffect.languageAction.actionType == CREATE) {
+            // call the respective recursive create method
             createSecondaryElements(secondaryElement, p1, p2, ...);
           } else if(actionEffect.languageAction.actionType == UPDATE) {
+            // call the respective recursive update method
             updateSecondaryElements(secondaryElement, p2, p3, ...)
           }
       }
@@ -20,11 +23,13 @@ public createElement(p1, p2, ...) {
       // getSecondaryElement is a helper method which returns the affected element
       // this can work for create and update actions.
       // Delete: To be discussed: the element in question has been deleted while it is
-      // required to retrive other mapped elements.
+      // required to retrieve other mapped elements.
       secondaryElement = getSecondaryElement(actionEffect);
       if (actionEffect.languageAction.actionType == CREATE) {
+        // call the respective recursive create method
         createSecondaryElements(secondaryElement, p1, p2, ...);
       } else if(actionEffect.languageAction.actionType == UPDATE) {
+        // call the respective recursive update method
         updateSecondaryElements(secondaryElement, p2, p3, ...)
       }
     }
@@ -68,7 +73,7 @@ private createElements(element, p1, p2, ...) {
       }
     }
 
-    // delete type
+    // delete template
     public deleteElement(element, p2, p3, ...) {
       deleteElements(element, p2, p3, ...);
 
@@ -110,10 +115,10 @@ private createElements(element, p1, p2, ...) {
       }
     }
 
-    // Update type
-    updatedElements = new ArrayList<EObject>();
+    // Update element
+
     public updateElement(element, feature, value) {
-      updatedElements.clear();
+      updatedElements = new ArrayList<LanguageElementAttribute>();
       updateElements(element, feature, value);
       updatedElements.clear();
 
@@ -146,6 +151,9 @@ private createElements(element, p1, p2, ...) {
     }
     private updateElements(element, feature, value) {
       UPDATE(element, feature, value);
+      updatedLanguageElement = getCoreLanguageElement(element);
+      CORELanguageElement updatedCoreLanguageElement = getCoreLanguageElement(perspective, modelElement.eClass());
+      //LanguageElementAttribute updatedAttribute = getLanguageElementAttribute(element, feature);
       updatedElements.add(element);
       for (Mapping mapping : getMappings(element)) {
         MappingType mappingType = getMappingType(mapping);

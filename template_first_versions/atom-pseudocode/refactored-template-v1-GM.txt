@@ -12,46 +12,11 @@ Language Actions: C = create, U = update, D = delete
 
 // helper methods
 
-private void createMapping(typeMapping, elementHere, fromRole, elementOther, toRole) {
-  fromCanMap = canMap(typeMapping, elementHere.eClass(), fromRole);
-  toCanMap = canMap(typeMapping, elementOther.eClass(), toRole);
-  if (fromCanMap && toCanMap) {
-    mapping = C(ModelElementMapping);
-    mapping.getModelElements().add(elementHere);
-    mapping.getModelElements().add(elementOther);
-    mapping.setType(typeMapping);
-  } else {
-    display something to the user;
-  }
-
-}
-
-private boolean canMap(MappingType mappingType, elementMetaclass, roleName) {
-  boolean canMap = true;
-  mappingEnd = getMappingENd(mappingType, elementMetaclass, roleName);
-  cardinality = mappingEnd.getCardinality();
-  mappings = mappingType.getMappings();
-  for (mapping : mappings) {
-    while (mapping.getModelElements().hasNext()) {
-      modelElement = mapping.getModelElements().next();
-      if (modelElement instanceof elementMetaclass) {
-        mapped = true;
-        break;
-      }
-    }
-  }
-
-  if (mapped) {
-    switch(cardinality) {
-      case Compulsory:
-      case Optional:
-        canMap = false;
-        break;
-    }
-  }
-
-  return canMap;
-
+private void createMapping(typeID, elementHere, elementOther) {
+  mapping = C(ModelElementMapping);
+  mapping.getModelElements().add(elementHere);
+  mapping.getModelElements().add(elementOther);
+  mapping.setType(getMappingType(typeID));
 }
 
 private EObject getElementOther(mapping, elementHere) {
@@ -62,25 +27,21 @@ private EObject getElementOther(mapping, elementHere) {
   }
 }
 
-private List<Mapping> getTypeMappings(modelElement) {
-  HashSet<TypeMapping> typeMappings = new HashSet();
-  List<Mapping> allMappings = perspective.getScene().getMappings();
-  for (mapping : allMappings) {
-    if (mapping.getModelElements.get(0) == modelElement) {
-      typeMappings.add(mapping.getType());
-    } else if (mapping.getModelElements.get(1) == modelElement) {
-      typeMappings.add(mapping.getType());
+private TypeMapping getMappingType(tpyeID) {
+  for (TypeMapping mappingType : perspective.getMappings()) {
+    if (mappingType.getIdentifier().equals(typeID)) {
+      return type;
     }
   }
-  return typeMappings;
+  return null;
 }
 
 private List<Mapping> getMappings(typeID, modelElement) {
   List<Mapping> modelMappings = new ArrayList<Mapping>();
   TypeMapping mappingType = getMappingType(typeID);
   for (Mapping mapping : mappingType.getInstances()) {
-    if (mapping.getModelElements().contains(modelElement)) {
-        modelMappings.add(mapping);
+    if (mapping.getModelElements().get(0) == modelElement || mapping.getModelElements().get(1) == modelElement) {
+      modelMappings.add(mapping);
     }
   }
   return modelMappings;
@@ -368,63 +329,3 @@ C10.2 same as C9.1
 D10.1 same as D1.2
 
 D10.2 same as D4.2
-
-================================================================
-11. Optional Compulsory (from 0..1 -- 1 to) Template:
-================================================================
-Inverse of of 1
-C11.1 same as C1.2
-C11.2 same as C1.1
-
-D11.1 same as D1.2
-D11.2 same as D1.1
-
-================================================================
-12. Optional-Multiple Compulsory (from 0..* -- 1 to) Template:
-================================================================
-Inverse of of 3
-C12.1 same as C3.2
-C12.2 same as C3.1
-
-D12.1 same as D3.2
-D12.2 same as D3.1
-
-================================================================
-13. Compulsory-Multiple  Compulsory (from 1..* -- 1 to) Template:
-================================================================
-Inverse of of 4
-C13.1 same as C4.2
-C13.2 same as C4.1
-
-D13.1 same as D4.2
-D13.2 same as D4.1
-
-================================================================
-14. Optional Compulsory-Multiple (from 0..1 -- 1..* to) Template:
-================================================================
-Inverse  of 6
-C14.1 same as C6.2
-C14.2 same as C6.1
-
-D14.1 same as D6.2
-D14.2 same as D6.1
-
-================================================================
-15. Optional Optional-Multiple (from 0..1 -- 0..* to) Template:
-================================================================
-Inverse of of 7
-C15.1 same as C7.2
-C15.2 same as C7.1
-
-D15.1 same as D7.2
-D15.2 same as D7.1
-
-================================================================
-16. Compulsory-Multiple Optional-Multiple (from 1..* -- 0..* to) Template:
-================================================================
-Inverse of of 10
-C16.1 same as C10.2
-C16.2 same as C10.1
-
-D16.1 same as D10.2
-D16.2 same as D10.1

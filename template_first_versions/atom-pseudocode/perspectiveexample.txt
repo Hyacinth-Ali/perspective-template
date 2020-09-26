@@ -1,0 +1,28 @@
+external language ClassDiagram {
+  element Class;
+  element Association;
+  action DELETE_CLASS;
+  action CREATE_CLASS;
+  action CREATE_ASSOCIATION;
+}
+
+external language UseCaseMap {
+  element Actor;
+  action DELETE_ACTOR;
+  action CREATE_ACTOR;
+}
+
+perspective Class_UseCase {
+
+  action re-expose CREATE_ASSOCIATION;
+  action redefined CREATE_CLASS;
+  action redefined CREATE_ACTOR;
+
+  template Compulsory-Optional {
+    relationship : equality;
+    fromCardinality : compulsory;
+    toCardinality : optional;
+    fromELement :  ClassDiagram.Class;
+    toElement : UseCaseMap.Actor;
+  }
+}

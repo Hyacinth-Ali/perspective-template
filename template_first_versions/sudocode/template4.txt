@@ -1,0 +1,40 @@
+
+Compulsory Compulsory-Multiple (from 1 -- 1..* to) Template.
+legends: h = here, o = other, Language Actions: C = create, U = Update, D = delete
+
+"from" language (from 1 -- 1..* to):
+C4.1:  createNewElement() {
+  elementHere = C(h);
+  elementOther = C(o);
+  mapping = C(map(elementHere, elementOther));
+  elementOther.add(mapping);
+  elementHere.add(mapping);
+   // Ask user either to create another mapping
+    boolean map = isCreateMapping();
+    while(map) {
+      elementOther = C(o);
+      mapping = C(map(elementHere, elementOther));
+      elementOther.add(mapping);
+      elementHere.add(mapping);
+      map = isCreateMapping();
+    }
+}
+
+// Same as C1.2
+"from" language (from 1 -- 1..* to):
+C4.1:  createNewElement() {
+
+}
+
+// Same as D1.1
+  "from" language (from 1 -- 0..* to):
+ D4.1 deleteElement(elementHere) {
+ }
+ 
+ // Same as D1.2
+  "from" language (from 1 -- 0..* to):
+ D4.1 deleteElement(elementHere) {
+ }
+
+
+  

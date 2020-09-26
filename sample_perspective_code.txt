@@ -1,0 +1,55 @@
+private void createClassOthers(EObject element, COREPerspective perspective, String currentRoleName, EObject owner,
+            String name, boolean dataType, float x, float y) {
+
+        List<CORELanguageElementMapping> mappingTypes = COREPerspectiveUtil.INSTANCE.getMappingTypes(perspective,
+                element.eClass(), currentRoleName);
+        for (CORELanguageElementMapping mappingType : mappingTypes) {
+            List<COREModelElementMapping> mappings = COREPerspectiveUtil.INSTANCE.getMappings(mappingType, element);
+
+            List<String> roleNames = COREPerspectiveUtil.INSTANCE.getOtherRoleNames(mappingType, element,
+                    currentRoleName);
+
+            // for binary mapping
+            String roleName = roleNames.get(0);
+
+            // the metaclass of the element to be created.
+            EObject metaclass = COREPerspectiveUtil.INSTANCE.getOtherMetaclasses(mappingType, currentRoleName,
+                    element.eClass()).get(0);
+
+            EObject other = null;
+            switch (TemplateType.INSTANCE.getCreateType(mappingType, currentRoleName)) {
+                // C1.1
+                case CAN_CREATE:
+                    if (mappings.size() == 0) {
+                        boolean isOther = QueryAction.INSTANCE.askZeroOrOne();
+
+                        if (isOther) {
+                            other = FacadeAction.INSTANCE.createClassAndOthers(metaclass, mappingType,
+                                    perspective, currentRoleName, owner, name, dataType, x, y);
+                            COREPerspectiveUtil.INSTANCE.createMapping(perspective, element, other, mappingType);
+                            createClassOthers(other, perspective, roleName, other.eContainer(), name, dataType, x, y);
+                        }
+                    }
+                    break;
+                // C1.2
+                case CREATE_OR_USE_NON_MAPPED:
+                    if (mappings.size() == 0) {
+                        // find the corresponding element based on the consistency type.
+                        switch (mappingType.getRelationship().getValue()) {
+                            case CORERelationship.EQUALITY_VALUE:
+                                String fromRoleName = mappingType.getMappingEnds().get(0).getRoleName();
+                                other = QueryAction.INSTANCE.findCorrespondingElementByName(element, fromRoleName);
+                                break;
+                        }
+                        if (other == null || COREPerspectiveUtil.INSTANCE.getMappings(mappingType, element)
+                                .size() > 0) {
+                            other = FacadeAction.INSTANCE.createClassAndOthers(metaclass, mappingType,
+                                    perspective, currentRoleName, owner, name, dataType, x, y);
+                        }
+                        COREPerspectiveUtil.INSTANCE.createMapping(perspective, element, other, mappingType);
+                        createClassOthers(other, perspective, roleName, other.eContainer(), name, dataType, x, y);
+                    }
+                    break;
+            }
+        }
+    }

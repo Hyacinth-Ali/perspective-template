@@ -1,0 +1,269 @@
+Legends: h = here, o = other, Language Actions: C = create, U = Update,
+D = delete,  "from" - .1, "to" - .2
+
+ ================================================================
+  1. Compulsory Optional (from 1 -- 0..1 to) Template:
+ ================================================================
+ // helper method
+private void createMapping(elementHere, elementOther) {
+    mapping = C(map(elementHere, elementOther));
+    elementOther.add(mapping);
+    elementHere.add(mapping);
+}
+
+
+"from" language (from 1 -- 0..1 to):
+C1.1: createNewElement() {
+  // Ask user either to create a mapping
+  boolean map = isCreateMapping();
+  elementHere = C(h);
+  if (map) {
+    elementOther = C(o);
+    createMapping(elementHere, elementOther)
+  }
+}
+
+"to" language (from 1 -- 0..1 to):
+C1.2: createNewElement() {
+  elementHere = C(h);
+  // Check if a corresponding element exist, either mapped or not
+  elementOther = findCorrespondingElement();
+  // logical OR operator, second condition is not checked if first
+  // condition is true
+  if (elementOther == null || elementOther.mapped() == null) {
+    elementOther = C(o);
+  }
+  createMapping(elementHere, elementOther)
+}
+
+  //generic update
+  "from" language (from 1 -- 0..1 to):
+ U1.1: updateElement(elementHere) {
+    U(elementHere);
+    for (Mapping map : elementHere.getMappings) {
+      boolean elementHereIsTo = map.getTo.equals(elementHere);
+      if (elementHereIsTo) {
+        elementOther = map.getFrom;
+      } else {
+        elementOther = map.getTo;
+      }
+      U(elementOther);
+    }
+  }
+
+  "from" language (from 1 -- 0..1 to):
+ D1.1 deleteElement(elementHere) {
+    List<Mapping> maps = elementHere.getMappings();
+    for (Mapping map : maps) {
+      elementOther = map.getElementOther;
+      D(elementOther)
+    }
+    Delete(maps);
+    D(elementHere)
+  }
+
+  "to" language (from 1 -- 0..1 to):
+D1.2  deleteElement(elementHere) {
+    D(elementHere.getMapings())
+    D(elementHere)
+  }
+
+  ================================================================
+  2. Compulsory Compulsory (from 1 -- 1 to) Template:
+  ================================================================
+
+C2.1: createNewElement() {
+  elementHere = C(h);
+  elementOther = C(o);
+  createMapping(elementHere, elementOther)
+}
+
+C2.2 same as C2.1
+
+D2.1 same as D1.1
+
+D2.2 same as D1.1
+
+  ================================================================
+   3. Compulsory Optional-Multiple (from 1 -- 0..* to) Template.
+  ================================================================
+  "from" language (from 1 -- 0..* to):
+ C3.1: createNewElement() {
+   // Ask user either to create mappings
+   int numberOfMappings = askNumberOfMappings();
+   elementHere = C(h);
+   if (numberOfMappings > 0) {
+     for (int count : numberOfMappings) {
+       elementOther = C(o);
+       createMapping(elementHere, elementOther);
+     }
+   }
+  }
+
+  C3.2 "to" language (from 1 -- 0..* to):
+  createNewElement() {
+    elementHere = C(h);
+    // Check if a corresponding element exist, either mapped or not
+    elementOther = findCorrespondingElement();
+    if (elementOther == null) {
+      elementOther = C(o);
+    }
+    createMapping(elementHere, elementOther)
+
+  }
+
+D3.1 Same as D1.1
+
+ D3.1 Same as D1.2
+
+ ================================================================
+ 4. Compulsory Compulsory-Multiple (from 1 -- 1..* to) Template:
+ ================================================================
+
+ "from" language (from 1 -- 1..* to):
+C4.1:  createNewElement() {
+  // Ask user either to create additional mappings
+  int numberOfMappings = askNumberOfMappings();
+  elementHere = C(h);
+  elementOther = C(o);
+  createMapping(elementHere, elementOther)
+if (numberOfMappings > 0) {
+  for (int count : numberOfMappings) {
+    elementOther = C(o);
+    createMapping(elementHere, elementOther)
+  }
+}
+}
+
+C4.2 Same as C3.2
+
+D4.1 same as D1.1
+
+"to" language (from 1 -- 1..* to):
+ D4.2 deleteElement(elementHere) {
+   elementOther = elementHere.map.getOther();
+   if (elementOther != null && elementOther.getMappings().size() == 1) {
+     D(elementOther)
+   }
+   D(elementHere.getMapings())
+   D(elementHere)
+
+ }
+
+================================================================
+ 5. Optional Optional (from 0..1 -- 0..1 to) Template:
+================================================================
+
+ C5.1 same as C1.1
+
+ C5.2 same as C1.1
+
+ D5.1 same as D1.2
+
+ D5.2 same as D1.2
+
+ ================================================================
+ 6. Compulsory-Multiple Optional (from 1..* -- 0..1 to) Template:
+ ================================================================
+
+"from" language (from 1..* -- 0..1 to):
+C6.1: createNewElement() {
+  // Ask user either to create a mapping
+  boolean map = isCreateMapping();
+  elementHere = C(h);
+  if (map) {
+    // Check if a corresponding element exist
+    elementOther = findCorrespondingElement();
+    if (elementOther == null) {
+      elementOther = C(o);
+    }
+    createMapping(elementHere, elementOther)
+  }
+}
+
+
+ "to" language (from 1..* -- 0..1 to):
+C6.2: createNewElement() {
+  // Ask user either to create additional mapping
+  int numberOfMappings = askNumberOfMappings();
+
+  elementHere = C(h);
+  // Check if a corresponding element exist
+  elementOther = findCorrespondingElement();
+  if (elementOther == null) {
+    elementOther = C(o);
+  }
+  createMapping(elementHere, elementOther)
+  if (numberOfMappings > 0) {
+    for (int count : numberOfMappings) {
+      // Check if a corresponding element exist
+      elementOther = findCorrespondingElement();
+      if (elementOther == null) {
+          elementOther = C(o);
+      }
+      createMapping(elementHere, elementOther)
+    }
+  }
+}
+
+  D6.1 same as D4.2
+
+  D6.2 same as D1.2
+
+ ================================================================
+ 7. Optional-Multiple Optional (from 0..* -- 0..1 to) Template:
+ ================================================================
+
+ C7.1 same as 6.1
+
+ "to" language (from 0..* -- 0..1 to):
+  C7.2: createNewElement() {
+    // Ask user either to create a mapping
+    int numberOfMappings = askNumberOfMappings();
+    elementHere = C(h);
+    if (numberOfMappings > 0) {
+      for (int count : numberOfMappings) {
+        elementOther = C(o);
+        createMapping(elementHere, elementOther)
+      }
+    }
+  }
+
+   D7.1 same as D1.2
+
+   D7.2 same as D1.2
+
+ ================================================================
+ 8. Compulsory-Multiple Compulsory-Multiple (from 1..* -- 1..* to) Template:
+ ================================================================
+
+  C8.1 same as C6.2
+
+  C8.2 same as C6.2
+
+  D8.1 same as D4.2
+
+  D8.2 same as D4.2
+
+ ================================================================
+ 9. Optional-Multiple Optional-Multiple (from 0..* -- 0..* to) Template:
+ ================================================================
+
+ C9.1 same as C7.2
+
+ C9.2 same as C7.2
+
+ D9.1 same as D1.2
+
+ D9.2 same as D1.2
+
+ ================================================================
+ 10. Optional-Multiple Compulsory-Multiple (from 0..* -- 1..* to) Template:
+ ================================================================
+C10.1 same as C6.2
+
+C10.2 same as C7.2
+
+D10.1 same as D1.2
+
+D10.2 same as D4.2

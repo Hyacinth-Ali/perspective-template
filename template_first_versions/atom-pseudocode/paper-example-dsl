@@ -1,0 +1,57 @@
+
+external language ClassDiagramLanguage {
+
+   rootPackage "cdm.package";
+   rootControllerPackage "cdm.controller";
+   packageClassName CdmPackage;
+   nsURI "http://cdem/1.0";
+   resourceFactory "CdmResourceFactoryImpl";
+   adapterFactory "CdmItemProviderAdapterFactory";
+   weaverClassName  "";
+   fileExtension  "cdm";
+   actions :
+        action "ClassDiagram.Class.add";
+   end
+}
+
+language element Class {
+    createActionAPICall : "ClassDiagramController.
+        createNewClass(owner, name, dataType, x, y);";
+    updateActionAPICall : "";
+    deleteActionAPICall : "";
+    createActionParameters :
+        ClassDiagram owner;
+        String name;
+        boolean dataType;
+        float x;
+        float y;
+    updateActionParameters :
+    deleteActionParameters :
+}
+
+perspective DomainModel_DesignModel {
+    defaultKey "Domain_Model";
+    languages :
+        Domain_Model ClassDiagramLanguage;
+        Design_Model ClassDiagramLanguage;
+    end
+    actions :
+        action redefined Domain_Model "ClassDiagram.Class.add";
+        action redefined Design_Model "ClassDiagram.Class.add";
+    end
+    mappings :
+        mapping ClassSameName {
+            relationship : SAME_NAME;
+            fromCardinality : 1;
+            toCardinality : 0..1;
+            fromElement : element Class from Domain_Model;
+            toELement : element Class from Design_Model;
+    }
+    end
+}
+
+
+
+
+
+ 
