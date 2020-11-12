@@ -1,4 +1,4 @@
-
+The from and to are strictly based on mapping end cardinality
 
 ================================================================
 1. Compulsory Optional (from 1 -- 0..1 to) Template:
@@ -15,7 +15,6 @@ if (from.getMapping == to.getMapping) {
 }  else {
   map(from, to);
 }
-
 ================================================================
 2. Compulsory Compulsory (from 1 -- 1 to) Template:
 ================================================================
@@ -38,13 +37,13 @@ if (from.getMapping == to.getMapping) {
 ================================================================
 4. Compulsory Compulsory-Multiple (from 1 -- 1..* to) Template:
 ================================================================
-
+//TODO; Buggy, please update
 if (from.getMapping == to.getMapping) {
   // the two model elements are already mapped.
-} else if (to.mappings.size() == 1 && to.mapping.from.mappings.size
+} else if (to.mappings.size() == 1 && getOther(to).mappings.size
 () == 1) {
   // can't create the mapping due perspective constraints
-}  else if (to.mappings.size() == 1 && to.mapping.from.mappings.size
+}  else if (to.mappings.size() == 1 && getOther(to).mappings.size
 () > 1){
   deleteMapping(to.getMapping);
   map(from, to);
@@ -55,89 +54,90 @@ if (from.getMapping == to.getMapping) {
 ================================================================
 5. Optional Optional (from 0..1 -- 0..1 to) Template:
 ================================================================
-
+if (from.getMapping == to.getMapping) {
+  // the two model elements are already mapped.
+} else if ((from.getMappings.size() == 1 and to.getMappings.size() == 0) {
+  deleteMapping(from.getMapping);
+  map(from, to);
+} else if ((from.getMappings.size() == 0 and to.getMappings.size() == 1)
+|| (from.getMappings.size() == 1 and to.getMappings.size() == 1)) {
+  deleteMapping(to.getMapping);
+  map(from, to);
+} else {
+  map(from, to);
+}
 // NoCreate
-C5.1: createNewElement() {
-
-    }
-
-C5.2 same as C5.1
-
-D5.1 same as D1.2
-
-D5.2 same as D1.2
 
 ================================================================
 6. Compulsory-Multiple Optional (from 1..* -- 0..1 to) Template:
 ================================================================
 
-// NoCreate
-C6.1: createNewElement() {
-
+if (from.getMapping == to.getMapping) {
+  // the two model elements are already mapped.
+} else if (from.getMappings.size() == 1 && getOther(from).getMappings.size() == 1){
+  // can't create the mapping due perspective constraints
+}else if (from.getMappings.size() == 1 && getOther(from).getMappings.size() > 1) {
+  deleteMapping(from.getMapping);
+  map(from, to);
+} else {
+  map(from, to);
 }
-
-// Create
-C6.2: createNewElement() {
-
-}
-
-D6.1 same as D4.2
-
-D6.2 same as D1.2
 
 ================================================================
 7. Optional-Multiple Optional (from 0..* -- 0..1 to) Template:
 ================================================================
-
-C7.1 same as C6.1
-
-//NoCreate
-C7.2: createNewElement() {
-
+if (from.getMapping == to.getMapping) {
+  // the two model elements are already mapped.
+} else if (from.getMappings.size() == 1) {
+  deleteMapping(from.getMapping);
+  map(from, to);
+} else {
+  map(from, to);
 }
-
-D7.1 same as D1.2
-
-D7.2 same as D1.2
-
 ================================================================
 8. Compulsory-Multiple Compulsory-Multiple (from 1..* -- 1..* to) Template:
 ================================================================
-
-// CREATE_OR_USE
-C8.1: createNewElement() {
-
-}
-
-C8.2 same as C8.1
-
-D8.1 same as D4.2
-
-D8.2 same as D4.2
+// TODO: updated, because of 1 -- 1 relationship
+map(from, to);
 
 ================================================================
 9. Optional-Multiple Optional-Multiple (from 0..* -- 0..* to) Template:
 ================================================================
 
-// NoCreate
-C9.1: createNewElement() {
-
-}
-
-C9.2 same as C9.1
-
-D9.1 same as D1.2
-
-D9.2 same as D1.2
+Same as 8
 
 ================================================================
 10. Optional-Multiple Compulsory-Multiple (from 0..* -- 1..* to) Template:
 ================================================================
 
-C10.1 same as C8.1
+Same as 8
 
-C10.2 same as C9.1
+================================================================
+11. Optional Compulsory (from 0..1 -- 1 to) Template:
+================================================================
+Inverse of of 1
 
-D10.1 same as D1.2
+================================================================
+12. Optional-Multiple Compulsory (from 0..* -- 1 to) Template:
+================================================================
+Inverse of of 3
 
-D10.2 same as D4.2
+================================================================
+13. Compulsory-Multiple  Compulsory (from 1..* -- 1 to) Template:
+================================================================
+Inverse of of 4
+
+================================================================
+14. Optional Compulsory-Multiple (from 0..1 -- 1..* to) Template:
+================================================================
+Inverse  of 6
+
+================================================================
+15. Optional Optional-Multiple (from 0..1 -- 0..* to) Template:
+================================================================
+Inverse of of 7
+
+================================================================
+16. Compulsory-Multiple Optional-Multiple (from 1..* -- 0..* to) Template:
+================================================================
+Inverse of of 10

@@ -1,0 +1,29 @@
+Uses (Needs it): Model elements from model A refer to model elements of B.
+Multiplicity constraints can handle it?
+
+Extends (Don't Need it): This is a relationship where model elements of model A extend
+model elements of model B. A and B conform to the same metamodel. Or, we can use
+it in a multi-role single-language perspective. Design class extends Domain class
+Multiplicity constraints can handle it?
+
+Refines (Needs it): Model element of Model A refines another model element in B model.
+In this case, the A element captures more concrete design decision about B element.
+E.g., class diagram refines operation
+Multiplicity constraints can handle it?
+
+Complements: Model A and Model B describe two different views of the same
+system and possibly include little overlap with each
+other.
+Equality constraint can handle it.
+
+Alternative For (Needs it): It is similar to Complements, but with more
+overlapping.
+
+Aspect Of (Don't need it): Model B captures additional information related
+to elements of model A.
+
+Aspects Of: In this case, two model elements have Aspect of relationship
+with another element.
+
+Weaves (Don't need it): A weaving model is used to link a number of otherwise unrelated
+models.

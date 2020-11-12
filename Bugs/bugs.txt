@@ -1,0 +1,3 @@
+handling consistencies with deleting attributes
+Creating attribute in un-mapped model element.
+Creating actor from the use case editor

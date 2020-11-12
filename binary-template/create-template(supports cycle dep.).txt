@@ -1,0 +1,53 @@
+private List<EObject> newElements = new ArrayList<EObject>();
+
+public createElement(p1, p2, ...) {
+  element = create(p1, p2, ...);
+  createElements(element, p1, p2, ...);
+  newElements.clear();
+}
+private createElements(element, p1, p2, ...) {
+  for (MappingType type : getMappingTypes(element)) {
+      mappings = getMappings(type, element);
+      metaclass = getOtherMetaClass(type, element);
+      EObject other = null;
+      boolean otherExist = true;
+      switch(getCreateType(type)) {
+        case CAN_CREATE:
+          if (mappings.size() == 0 ) {
+            boolean isOther = isCreateOther();
+            if (isOther) {
+              other = findCorrespondingElement();
+              // check if this element is newly created.
+              // this create type can only use newly created element.
+              if (!(other != null && newElements.contains(other))) {
+                other = CREATE(metaclass, p1, p2, ...);
+                otherExist = false;
+              }
+              createMapping(type, element, other);
+              if (!otherExist) {
+                createElements(other, p1, p2, ...);
+              }
+              otherExist = true;
+            }
+          }
+          break;
+        case CREATE_OR_USE_NON_MAPPED:
+          if (mappings.size() == 0) {
+            // this find operation includes both old elements and new elements.
+            other = findCorrespondingElement();
+            // create other if it is null or mapped.
+            if (other == null || getMappings(other).size() > 0) {
+                other = CREATE(metaclass, p1, p2, ...);
+                otherExist = false;
+            }
+            createMapping(type, element, other);
+            if (!otherExist) {
+              createElements(other, p1, p2, ...);
+            }
+            otherExist = true;
+            }
+            break;
+          case . . .
+        }
+      }
+    }
