@@ -1,0 +1,63 @@
+grammar ca.mcgill.sel.core.perspectivedsl.PerspectiveDSL with org.eclipse.xtext.common.Terminals
+
+generate perspectiveDSL "http://www.mcgill.ca/sel/core/perspectivedsl/PerspectiveDSL"
+
+PerspectiveModel:
+    (languages += Language)*
+;
+
+Language:
+   Perspective | ExternalLanguage
+;
+
+Perspective:
+    'perspective' name = ID '{'
+    	'languages' ':'
+        (languages += [Language])*
+        'end'
+
+        'actions' ':'
+        (actions += Action)*
+        'end'
+
+        'templates' ':'
+        (mappings += LanguageElementMapping)*
+        'end'
+
+    '}'
+;
+
+ExternalLanguage:
+    'external' 'language' name = ID '{'
+        (actions += Action)*
+    '}'
+;
+
+LanguageElementMapping:
+    'template' name = ID '{'
+        'relationship' ':' relationship = Relationship';'
+        'fromCardinality' ':' fromCardinality = Cardinality';'
+        'toCardinality' ':' toCardinality = Cardinality';'
+        'fromElement' ':' 'element' fromElement = ID 'from' fromLanguage = [Language]';'
+        'toELement' ':' 'element' toElement = ID 'from' toLanguage = [Language]';'
+    '}'
+;
+
+
+Action:
+   'action' (actionType ?= PerspectiveActionType)?  name = ID';'
+;
+
+
+
+enum Relationship:
+    EQUALITY='equality' | REFINES='refines' | USES='uses' | EXTENDS='extends' | REQUIRES='requires'
+;
+
+enum Cardinality:
+    COMPULSORY='compulsory' | OPTIONAL='optional' | COMPULSORY_MULTIPLE='compulsoryMultiple' | OPTIONAL_MULTIPLE='optionalMultiple'
+;
+
+enum PerspectiveActionType :
+    REEXPOSE='re_expose' | REDEFINED='redefined' | CREATE_MAPPING='create_mapping'
+;

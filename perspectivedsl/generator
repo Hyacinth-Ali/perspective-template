@@ -69,7 +69,7 @@ for (perspective : resource.allContents.toIterable.filter(Perspective)){
                 /**
                  * Returns language element mappings across different templates
                  *
-                 * @param languageELement of interest
+                 * @param languageElement of interest
                  * @return
                  */
                 public Set<CORELanguageElementMapping> getTypeMappings(EObject languageELement) {

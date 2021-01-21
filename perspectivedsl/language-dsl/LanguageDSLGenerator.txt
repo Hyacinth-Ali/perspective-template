@@ -1,0 +1,9 @@
+override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
+        for (language : resource.allContents.toIterable.filter(Language)){
+            fsa.generateFile(
+                 "ca/mcgill/sel/core/language/"
+                 + language.name + ".java",
+                LanguageRegistration.compile(language)
+                )
+        }
+	}
