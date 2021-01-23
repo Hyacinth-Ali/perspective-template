@@ -1,0 +1,769 @@
+package ca.mcgill.sel.ram.ui.perspective.controller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
+
+import ca.mcgill.sel.classdiagram.Attribute;
+import ca.mcgill.sel.classdiagram.CdmPackage;
+import ca.mcgill.sel.classdiagram.Class;
+import ca.mcgill.sel.classdiagram.ClassDiagram;
+import ca.mcgill.sel.classdiagram.Classifier;
+import ca.mcgill.sel.classdiagram.ObjectType;
+import ca.mcgill.sel.classdiagram.Parameter;
+import ca.mcgill.sel.classdiagram.Type;
+import ca.mcgill.sel.classdiagram.VisibilityType;
+import ca.mcgill.sel.classdiagram.language.controller.ControllerFactory;
+import ca.mcgill.sel.commons.emf.util.EMFEditUtil;
+import ca.mcgill.sel.core.COREExternalArtefact;
+import ca.mcgill.sel.core.CORELanguageElement;
+import ca.mcgill.sel.core.CORELanguageElementMapping;
+import ca.mcgill.sel.core.COREModelElementMapping;
+import ca.mcgill.sel.core.COREPerspective;
+import ca.mcgill.sel.core.COREScene;
+import ca.mcgill.sel.core.MappingEnd;
+import ca.mcgill.sel.core.perspective.ActionType;
+import ca.mcgill.sel.core.perspective.COREPerspectiveUtil;
+import ca.mcgill.sel.core.perspective.TemplateType;
+import ca.mcgill.sel.core.util.COREArtefactUtil;
+import ca.mcgill.sel.ram.ui.RamApp;
+import ca.mcgill.sel.ram.ui.perspective.FacadeAction;
+import ca.mcgill.sel.ram.ui.perspective.PerspectiveException;
+import ca.mcgill.sel.ram.ui.perspective.QueryAction;
+import ca.mcgill.sel.usecases.Actor;
+import ca.mcgill.sel.usecases.UseCaseModel;
+import ca.mcgill.sel.usecases.language.controller.UseCaseControllerFactory;
+
+public class DomainDesignUseCaseController {
+
+	private List<EObject> newElements = new ArrayList<EObject>();
+
+	/**
+	 * Creates a new instance of {@link DomainDesignModelController}.
+	 */
+	public DomainDesignUseCaseController() {
+	}
+
+	/**
+	 * Creates a new operation.
+	 *
+	 * @param owner
+	 * @param index
+	 * @param name
+	 * @param visibility
+	 * @param returnType
+	 * @param parameters
+	 */
+	public void createOperation(COREPerspective perspective, String currentRole, Class owner, int index, String name,
+			VisibilityType visibility, Type returnType, List<Parameter> parameters) {
+		// List<EObject> elements = new ArrayList<EObject>();
+		// List<EObject> initialElements = new ArrayList<EObject>();
+		// initialElements.addAll(owner.getOperations());
+
+		ControllerFactory.INSTANCE.getClassController().createOperation(owner, index, name, visibility, returnType,
+				parameters);
+
+		// elements.addAll(owner.getOperations());
+		// elements.removeAll(initialElements);
+		//
+		// EObject newOperation = elements.get(0);
+
+		updateElement(perspective, currentRole, owner, CdmPackage.eINSTANCE.getClassifier_Visibility(),
+				owner.getVisibility());
+
+	}
+
+	/**
+	 * Creates a class in a domain design use case perspective.
+	 *
+	 * @param perspective
+	 * @param currentRole
+	 * @param owner
+	 * @param name
+	 * @param dataType
+	 * @param x
+	 * @param y
+	 */
+	public void createNewClass(COREPerspective perspective, String currentRole, ClassDiagram owner, String name,
+			boolean dataType, float x, float y) {
+		List<EObject> elements = new ArrayList<EObject>();
+		List<EObject> initialElements = new ArrayList<EObject>();
+		initialElements.addAll(owner.getClasses());
+
+		// primary language action
+		ControllerFactory.INSTANCE.getClassDiagramController().createNewClass(owner, name, dataType, false, x, y);
+		elements.addAll(owner.getClasses());
+		elements.removeAll(initialElements);
+
+		EObject newClass = elements.get(0);
+
+		COREExternalArtefact artefact = COREArtefactUtil.getReferencingExternalArtefact(owner);
+		COREScene scene = artefact.getScene();
+
+		// save the recent changes
+		BasePerspectiveController.saveModel(artefact, currentRole);
+
+		try {
+			createClassOthers(perspective, scene, newClass, currentRole, owner, name, dataType, x, y);
+		} catch (PerspectiveException e) {
+			RamApp.getActiveScene().displayPopup(e.getMessage());
+		}
+
+		newElements.clear();
+
+	}
+
+	/**
+	 * This is a helper method to create other model elements based on the
+	 * existing mappings of a Class metaclass.
+	 *
+	 * @param perspective
+	 * @param artefact TODO
+	 * @param element
+	 * @param currentRoleName is the role name of the new created element, i.e.,
+	 * the element that was created before the recursive method is called.
+	 * @param owner
+	 * @param name
+	 * @param dataType
+	 * @param x
+	 * @param y
+	 */
+	private void createClassOthers(COREPerspective perspective, COREScene scene, EObject element,
+			String currentRoleName, EObject owner, String name, boolean dataType, float x, float y)
+					throws PerspectiveException {
+
+		// add the the newly created model element
+		newElements.add(element);
+
+		List<CORELanguageElementMapping> mappingTypes = COREPerspectiveUtil.INSTANCE.getMappingTypes(perspective,
+				element.eClass(), currentRoleName);
+		for (CORELanguageElementMapping mappingType : mappingTypes) {
+			List<COREModelElementMapping> mappings = COREPerspectiveUtil.INSTANCE.getMappings(mappingType, element);
+
+			List<String> roleNames = COREPerspectiveUtil.INSTANCE.getOtherRoleNames(mappingType, element,
+					currentRoleName);
+
+			// for binary mapping
+			String toCreateRoleName = roleNames.get(0);
+
+			// get the external artefact which references the model of the new
+			// element
+			COREExternalArtefact artefact = (COREExternalArtefact) scene.getArtefacts().get(toCreateRoleName).get(0);
+
+			// the metaclass of the element to be created.
+			EObject metaclass = COREPerspectiveUtil.INSTANCE
+					.getOtherMetaclasses(mappingType, currentRoleName, element.eClass()).get(0);
+
+			EObject other = null;
+			boolean otherExist = true;
+			switch (TemplateType.INSTANCE.getCreateType(mappingType, currentRoleName)) {
+			// All the "Can..." create actions are suspended because TouchCORE
+			// doesn't support interaction with the user while the code
+			// is executing.
+
+			// C1.2
+			case CREATE_OR_USE_NON_MAPPED:
+				// C6.2
+				// the algorithm of C1.2 is used, because only one corresponding
+				// element can be created or used for now
+			case CREATE_OR_USE_NON_MAPPED_AT_LEAST_ONE:
+				if (mappings.size() == 0) {
+					// find the corresponding element, can return new or old
+					// element.
+					// Hence, naming must be unique
+					other = QueryAction.INSTANCE.findCorrespondingElementByName(scene, element, toCreateRoleName);
+
+					// create other if the corresponding element is null or
+					// mapped.
+					if (other == null || COREPerspectiveUtil.INSTANCE.getMappings(mappingType, element).size() > 0) {
+						otherExist = false;
+						other = FacadeAction.createClassAndOthers(perspective, metaclass, owner, toCreateRoleName, name,
+								dataType, x, y);
+
+					}
+					COREPerspectiveUtil.INSTANCE.createMapping(perspective, element, other, mappingType);
+
+					BasePerspectiveController.saveModel(artefact, toCreateRoleName);
+					// stop the recursion if other element exists.
+					if (!otherExist) {
+						createClassOthers(perspective, scene, other, toCreateRoleName, other.eContainer(), name,
+								dataType, x, y);
+					}
+					otherExist = true;
+
+				}
+				break;
+			// C2.1
+			// with this case, only newly created element can be returned as a
+			// corresponding element (in the case of cyclic dependency)
+			case CREATE:
+				// C4.1
+				// the algorithm of C2.1 is used, because only one corresponding
+				// element can be created for now
+				// with this case, only newly created element can be returned as a
+				// corresponding element (in the case of cyclic dependency)
+			case CREATE_AT_LEAST_ONE:
+				// C8.1
+				// the algorithm of C2.1 is used, because only one corresponding
+				// element can be created for now. Also,
+				// with this case, either the newly created or old element can be returned as a
+				// corresponding element (in the case of cyclic dependency)
+			case CREATE_OR_USE_AT_LEAST_ONE:
+				// C4.2
+				// the algorithm of C2.1 is used, because only one corresponding
+				// element can be created for now. Also,
+				// with this case, either the newly created or old element can be returned as a
+				// corresponding element (in the case of cyclic dependency)
+			case CREATE_OR_USE:
+
+				if (mappings.size() == 0) {
+
+					// find the corresponding element, can return new or old
+					// element.
+					other = QueryAction.INSTANCE.findCorrespondingElementByName(scene, element, toCreateRoleName);
+
+					if (other == null) {
+						otherExist = false;
+						other = FacadeAction.createClassAndOthers(perspective, metaclass, owner, toCreateRoleName, name,
+								dataType, x, y);
+					}
+
+					COREPerspectiveUtil.INSTANCE.createMapping(perspective, element, other, mappingType);
+
+					// save the recent changes
+					BasePerspectiveController.saveModel(artefact, toCreateRoleName);
+					// stop the recursion if other element exists.
+					if (!otherExist) {
+						createClassOthers(perspective, scene, other, toCreateRoleName, other.eContainer(), name,
+								dataType, x, y);
+					}
+					otherExist = true;
+				}
+				break;
+
+			// C1.1
+//			case CAN_CREATE:
+//				if (mappings.size() == 0) {
+//
+//					boolean isOther = QueryAction.INSTANCE.askZeroOrOne() ==  1;
+//					if (isOther) {
+//						other = QueryAction.INSTANCE.findCorrespondingElementByName(element, toCreateRoleName);
+//						// this create type can only use newly created element.
+//						if (!(other != null && newElements.contains(other))) {
+//							other = FacadeAction.createClassAndOthers(perspective, metaclass, owner, toCreateRoleName,
+//									name, dataType, x, y);
+//							otherExist = false;
+//						}
+//						COREPerspectiveUtil.INSTANCE.createMapping(perspective, element, other, mappingType);
+//						// stop the recursion if other element exists.
+//						if (!otherExist) {
+//							createClassOthers(perspective, other, toCreateRoleName, other.eContainer(), name, dataType,
+//									x, y);
+//						}
+//						otherExist = true;
+//
+//					}
+//				}
+//				break;
+
+			// C6.1
+//			case CAN_CREATE_OR_USE:
+//				if (mappings.size() == 0) {
+//					// Ask user whether to create a mapping
+//					// this return false, because touchcore doesn't support user
+//					// interaction during the recursion.
+//					// not updated
+//					// TODO: update when needed
+//					boolean isOther = QueryAction.INSTANCE.askZeroOrOne() == 0;
+//					if (isOther) {
+//						// Check if a corresponding element exist (by name,
+//						// either mapped or not
+//						// String fromRoleName =
+//						// mappingType.getMappingEnds().get(0).getRoleName();
+//						other = QueryAction.INSTANCE.findCorrespondingElementByName(element, toCreateRoleName);
+//						if (other == null) {
+//							other = FacadeAction.createClassAndOthers(perspective, metaclass, owner, toCreateRoleName,
+//									name, dataType, x, y);
+//						}
+//						COREPerspectiveUtil.INSTANCE.createMapping(perspective, element, other, mappingType);
+//						createClassOthers(perspective, other, toCreateRoleName, other.eContainer(), name, dataType, x,
+//								y);
+//					}
+//				}
+//				break;
+			}
+		}
+	}
+
+	/**
+	 * Creates an actor in a domain design use case perspective.
+	 *
+	 * @param perspective
+	 * @param currentRole
+	 * @param owner
+	 * @param name
+	 * @param x
+	 * @param y
+	 */
+	public void createNewActor(COREPerspective perspective, String currentRole, UseCaseModel owner, String name,
+			float x, float y) {
+		List<EObject> elements = new ArrayList<EObject>();
+		List<EObject> initialElements = new ArrayList<EObject>();
+		initialElements.addAll(owner.getActors());
+		UseCaseControllerFactory.INSTANCE.getUseCaseDiagramController().createNewActor(owner, name, x, y);
+		elements.addAll(owner.getActors());
+		elements.removeAll(initialElements);
+
+		COREExternalArtefact artefact = COREArtefactUtil.getReferencingExternalArtefact(owner);
+		COREScene scene = artefact.getScene();
+		// save the recent changes
+		BasePerspectiveController.saveModel(artefact, currentRole);
+
+		EObject newActor = elements.get(0);
+		createActorOthers(newActor, scene, perspective, currentRole, owner, name, x, y);
+
+	}
+
+	/**
+	 * This is a helper method to create other model elements based on the
+	 * existing mappings of an Actor metaclass.
+	 *
+	 * @param element
+	 * @param perspective
+	 * @param currentRole
+	 * @param owner
+	 * @param name
+	 * @param x
+	 * @param y
+	 */
+	private void createActorOthers(EObject element, COREScene scene, COREPerspective perspective, String currentRole,
+			EObject owner, String name, float x, float y) {
+		for (CORELanguageElementMapping mappingType : COREPerspectiveUtil.INSTANCE.getMappingTypes(perspective,
+				element.eClass(), currentRole)) {
+			List<COREModelElementMapping> mappings = COREPerspectiveUtil.INSTANCE.getMappings(mappingType, element);
+
+			// The role name of the model of the element to be created.
+			List<String> roleNames = COREPerspectiveUtil.INSTANCE.getOtherRoleNames(mappingType, element, currentRole);
+
+			// for binary mapping
+			String toCreateRoleName = roleNames.get(0);
+
+			// get the external artefact which references the model of the new
+			// element
+			COREExternalArtefact artefact = (COREExternalArtefact) scene.getArtefacts().get(toCreateRoleName).get(0);
+
+			// the metaclass of the element to be created.
+			EObject metaclass = COREPerspectiveUtil.INSTANCE
+					.getOtherMetaclasses(mappingType, currentRole, element.eClass()).get(0);
+
+			EObject other = null;
+			boolean otherExist = false;
+			switch (TemplateType.INSTANCE.getCreateType(mappingType, currentRole)) {
+			// C1.1
+			case CAN_CREATE:
+				if (mappings.size() == 0) {
+					boolean isOther = QueryAction.INSTANCE.askZeroOrOne() == 1;
+					// elementHere = C(h);
+					if (isOther) {
+						other = FacadeAction.createActorOthers(perspective, metaclass, owner, toCreateRoleName, name, x,
+								y);
+						COREPerspectiveUtil.INSTANCE.createMapping(perspective, element, other, mappingType);
+						// save the recent changes
+						BasePerspectiveController.saveModel(artefact, toCreateRoleName);
+						createActorOthers(other, scene, perspective, toCreateRoleName, other.eContainer(), name, x, y);
+					}
+				}
+				break;
+
+			// C1.2
+			case CREATE_OR_USE_NON_MAPPED:
+				if (mappings.size() == 0) {
+					// find the corresponding element.
+					other = QueryAction.INSTANCE.findCorrespondingElementByName(scene, element, toCreateRoleName);
+
+					if (other == null || COREPerspectiveUtil.INSTANCE.getMappings(mappingType, element).size() > 0) {
+						other = FacadeAction.createActorOthers(perspective, metaclass, owner, toCreateRoleName, name, x,
+								y);
+					}
+					COREPerspectiveUtil.INSTANCE.createMapping(perspective, element, other, mappingType);
+					// save the recent changes
+					BasePerspectiveController.saveModel(artefact, toCreateRoleName);
+					createActorOthers(other, scene, perspective, toCreateRoleName, other.eContainer(), name, x, y);
+				}
+				break;
+			// C6.2
+			// the algorithm of CREATE_OR_USE_NON_MAPPED is used, because only
+			// one mapped element can be created
+			// for now.
+			case CREATE_OR_USE_NON_MAPPED_AT_LEAST_ONE:
+				if (mappings.size() == 0) {
+
+					// find the corresponding element.
+					other = QueryAction.INSTANCE.findCorrespondingElementByName(scene, element, toCreateRoleName);
+					otherExist = other != null;
+
+					if (other == null || COREPerspectiveUtil.INSTANCE.getMappings(mappingType, element).size() > 0) {
+						other = FacadeAction.createActorOthers(perspective, metaclass, owner, toCreateRoleName, name, x,
+								y);
+					}
+					COREPerspectiveUtil.INSTANCE.createMapping(perspective, element, other, mappingType);
+					// save the recent changes
+					BasePerspectiveController.saveModel(artefact, toCreateRoleName);
+					if (!otherExist) {
+						createActorOthers(other, scene, perspective, toCreateRoleName, other.eContainer(), name, x, y);
+					}
+
+				}
+				break;
+			}
+		}
+	}
+
+	/**
+	 * Creates an attribute in a domain design use case perspective.
+	 *
+	 * @param perspective
+	 * @param currentRole
+	 * @param owner
+	 * @param index
+	 * @param name
+	 * @param objectType
+	 */
+	public void createAttribute(COREPerspective perspective, String currentRole, Class owner, int index, String name,
+			ObjectType objectType) {
+		List<EObject> elements = new ArrayList<EObject>();
+		List<EObject> initialElements = new ArrayList<EObject>();
+		initialElements.addAll(owner.getAttributes());
+
+		// primary language action
+		ControllerFactory.INSTANCE.getClassController().createAttribute(owner, index, name, objectType);
+		elements.addAll(owner.getAttributes());
+		elements.removeAll(initialElements);
+
+		COREExternalArtefact artefact = COREArtefactUtil.getReferencingExternalArtefact(owner);
+		COREScene scene = artefact.getScene();
+		// save the recent changes
+		BasePerspectiveController.saveModel(artefact, currentRole);
+
+		EObject newAttribute = elements.get(0);
+		try {
+			createAttributeOthers(newAttribute, scene, perspective, currentRole, owner, index, name, objectType);
+		} catch (PerspectiveException e) {
+			RamApp.getActiveScene().displayPopup(e.getMessage());
+		}
+
+		// secondary effects
+		// class updated, then update corresponding mapped elements
+		// updateClassOthers(owner);
+
+	}
+
+	/**
+	 * This is a helper method to create other model elements based on the
+	 * existing mappings of an Attribute metaclass.
+	 *
+	 * @param element
+	 * @param scene TODO
+	 * @param perspective
+	 * @param currentRoleName
+	 * @param owner
+	 * @param index
+	 * @param name
+	 * @param objectType
+	 */
+	private void createAttributeOthers(EObject element, COREScene scene, COREPerspective perspective,
+			String currentRoleName, EObject owner, int index, String name, ObjectType objectType)
+			throws PerspectiveException {
+
+		List<CORELanguageElementMapping> mappingTypes = COREPerspectiveUtil.INSTANCE.getMappingTypes(perspective,
+				element.eClass(), currentRoleName);
+		for (CORELanguageElementMapping mappingType : mappingTypes) {
+			List<COREModelElementMapping> mappings = COREPerspectiveUtil.INSTANCE.getMappings(mappingType, element);
+
+			// The role name of the model of the element to be created.
+			List<String> roleNames = COREPerspectiveUtil.INSTANCE.getOtherRoleNames(mappingType, element,
+					currentRoleName);
+
+			// for binary mapping
+			String roleName = roleNames.get(0);
+
+			// the metaclass of the element to be created.
+			EObject metaclass = COREPerspectiveUtil.INSTANCE
+					.getOtherMetaclasses(mappingType, currentRoleName, element.eClass()).get(0);
+
+			EObject other = null;
+			switch (TemplateType.INSTANCE.getCreateType(mappingType, currentRoleName)) {
+			// C1.1
+			case CAN_CREATE:
+				if (mappings.size() == 0) {
+					boolean isOther = QueryAction.INSTANCE.askZeroOrOne() == 1;
+					if (isOther) {
+						other = FacadeAction.createAttributeAndOthers(metaclass, mappingType, perspective, roleName,
+								owner, name, objectType);
+						COREPerspectiveUtil.INSTANCE.createMapping(perspective, element, other, mappingType);
+						createAttributeOthers(other, scene, perspective, roleName, other.eContainer(), index, name,
+								objectType);
+					}
+				}
+				break;
+
+			// C1.2
+			case CREATE_OR_USE_NON_MAPPED:
+				if (mappings.size() == 0) {
+					// find the corresponding element.
+					other = QueryAction.INSTANCE.findCorrespondingElementByName(scene, element, roleName);
+
+					if (other == null || COREPerspectiveUtil.INSTANCE.getMappings(mappingType, element).size() > 0) {
+						other = FacadeAction.createAttributeAndOthers(metaclass, mappingType, perspective, roleName,
+								owner, name, objectType);
+					}
+					COREPerspectiveUtil.INSTANCE.createMapping(perspective, element, other, mappingType);
+					createAttributeOthers(other, scene, perspective, roleName, other.eContainer(), index, name,
+							objectType);
+				}
+				break;
+			}
+		}
+	}
+
+	// private void removeMapping(COREModelElementMapping mapping) {
+	// EditingDomain editingDomain = EMFEditUtil.getEditingDomain(mapping);
+	// CompoundCommand compoundCommand = new CompoundCommand();
+	//
+	// // Create remove Command.
+	// compoundCommand.append(RemoveCommand.create(editingDomain, mapping));
+	//
+	// doExecute(editingDomain, compoundCommand);
+	// }
+	//
+	// /**
+	// * Executes the given command on the given editing domain.
+	// *
+	// * @param editingDomain the editing domain the command should be executed
+	// on
+	// * @param command the command to be executed
+	// */
+	// protected void doExecute(EditingDomain editingDomain, Command command) {
+	// if (!command.canExecute()) {
+	// throw new RuntimeException("Command " + command + " not executable.");
+	// }
+	// editingDomain.getCommandStack().execute(command);
+	// }
+
+	public void deleteClassifier(COREPerspective perspective, String currentRole, Classifier classifier) {
+		deleteClassifierAndOthers(perspective, currentRole, classifier);
+	}
+
+	private void deleteClassifierAndOthers(COREPerspective perspective, String currentRole, EObject element) {
+
+		List<COREModelElementMapping> mappings = COREPerspectiveUtil.INSTANCE.getMappings(element);
+		FacadeAction.deleteModelElement(perspective, element);
+
+		// Traditional for loop is used here to avoid
+		// ConcurrentModificationException
+		for (int i = 0; i < mappings.size(); i++) {
+			// get mapped element
+			COREModelElementMapping mapping = mappings.get(i);
+			EObject other = COREPerspectiveUtil.INSTANCE.getOtherElement(mapping, element);
+			ActionType deleteType = null;
+			CORELanguageElementMapping mappingType = COREPerspectiveUtil.INSTANCE.getMappingType(perspective, mapping);
+
+			List<String> roleNames = COREPerspectiveUtil.INSTANCE.getOtherRoleNames(mappingType, element, currentRole);
+
+			// for binary mapping
+			String otherRoleName = roleNames.get(0);
+
+			for (MappingEnd mappingEnd : mappingType.getMappingEnds()) {
+				if (mappingEnd.getRoleName().equals(currentRole)) {
+					deleteType = TemplateType.INSTANCE.getDeleteType(mappingEnd);
+					break;
+				}
+			}
+
+			BasePerspectiveController.removeMapping(mapping);
+
+			if (deleteType == null) {
+				return;
+			}
+
+			switch (deleteType) {
+
+			case DELETE_OTHERS:
+				deleteClassifierAndOthers(perspective, otherRoleName, other);
+				break;
+
+			case DELETE_SINGLEMAPPED:
+				List<COREModelElementMapping> otherMappings = COREPerspectiveUtil.INSTANCE.getMappings(mappingType,
+						element);
+				if (otherMappings.size() == 0) {
+					deleteClassifierAndOthers(perspective, otherRoleName, other);
+				}
+				break;
+			}
+		}
+	}
+
+	public void deleteActor(COREPerspective perspective, String currentRole, Actor actor) {
+		deleteActorAndOthers(perspective, currentRole, actor);
+	}
+
+	private void deleteActorAndOthers(COREPerspective perspective, String currentRole, EObject element) {
+
+		List<COREModelElementMapping> mappings = COREPerspectiveUtil.INSTANCE.getMappings(element);
+		FacadeAction.deleteModelElement(perspective, element);
+
+		// Traditional for loop is used here to avoid
+		// ConcurrentModificationException
+		for (int i = 0; i < mappings.size(); i++) {
+			// get mapped element
+			COREModelElementMapping mapping = mappings.get(i);
+			EObject other = COREPerspectiveUtil.INSTANCE.getOtherElement(mapping, element);
+			ActionType deleteType = null;
+			CORELanguageElementMapping mappingType = COREPerspectiveUtil.INSTANCE.getMappingType(perspective, mapping);
+
+			for (MappingEnd mappingEnd : mappingType.getMappingEnds()) {
+				if (mappingEnd.getRoleName().equals(currentRole)) {
+					deleteType = TemplateType.INSTANCE.getDeleteType(mappingEnd);
+					break;
+				}
+			}
+
+			BasePerspectiveController.removeMapping(mapping);
+
+			switch (deleteType) {
+
+			case DELETE_OTHERS:
+				deleteClassifierAndOthers(perspective, currentRole, other);
+				break;
+
+			case DELETE_SINGLEMAPPED:
+				List<COREModelElementMapping> otherMappings = COREPerspectiveUtil.INSTANCE.getMappings(mappingType,
+						element);
+				if (otherMappings.size() == 0) {
+					deleteClassifierAndOthers(perspective, currentRole, other);
+				}
+				break;
+			}
+		}
+
+	}
+
+	public void deleteAttribute(COREPerspective perspective, String currentRole, Attribute attribute) {
+		deleteAttributeAndOthers(perspective, currentRole, attribute);
+	}
+
+	private void deleteAttributeAndOthers(COREPerspective perspective, String currentRole, EObject element) {
+
+		List<COREModelElementMapping> mappings = COREPerspectiveUtil.INSTANCE.getMappings(element);
+		FacadeAction.deleteModelElement(perspective, element);
+
+		// Traditional for loop is used here to avoid
+		// ConcurrentModificationException
+		for (int i = 0; i < mappings.size(); i++) {
+			// get mapped element
+			COREModelElementMapping mapping = mappings.get(i);
+			EObject other = COREPerspectiveUtil.INSTANCE.getOtherElement(mapping, element);
+			ActionType deleteType = null;
+			CORELanguageElementMapping mappingType = COREPerspectiveUtil.INSTANCE.getMappingType(perspective, mapping);
+
+			for (MappingEnd mappingEnd : mappingType.getMappingEnds()) {
+				if (mappingEnd.getRoleName().equals(currentRole)) {
+					deleteType = TemplateType.INSTANCE.getDeleteType(mappingEnd);
+					break;
+				}
+			}
+			BasePerspectiveController.removeMapping(mapping);
+
+			switch (deleteType) {
+
+			case DELETE_OTHERS:
+				deleteAttributeAndOthers(perspective, currentRole, other);
+				break;
+
+			case DELETE_SINGLEMAPPED:
+				List<COREModelElementMapping> otherMappings = COREPerspectiveUtil.INSTANCE.getMappings(mappingType,
+						element);
+				if (otherMappings.size() == 0) {
+					deleteAttributeAndOthers(perspective, currentRole, other);
+				}
+				break;
+			}
+		}
+
+	}
+
+	public void updateElement(COREPerspective perspective, String currentRole, EObject element,
+			EStructuralFeature feature, Object value) {
+		// list of updated attributes.
+		List<EObject> updatedElements = new ArrayList<EObject>();
+		updateElements(perspective, currentRole, updatedElements, element, feature, value);
+		// updatedElements.clear();
+	}
+
+	private void updateElements(COREPerspective perspective, String currentRole, List<EObject> updatedElements,
+			EObject modelElement, EStructuralFeature feature, Object value) {
+		// FacadeAction.INSTANCE.updateElement(perspective, currentRole,
+		// element, feature, value);
+		// call respective language action (generically) to update the element.
+		EMFEditUtil.getPropertyDescriptor(modelElement, feature).setPropertyValue(modelElement, value);
+
+		// get the updated core language element, i.e., the representation of
+		// the metaclass of the updated model element
+		CORELanguageElement updatedCoreLanguageElement = COREPerspectiveUtil.INSTANCE
+				.getCoreLanguageElement(perspective, modelElement.eClass());
+
+		// check if the metaclass of the updated element has attribute, i.e.,
+		// nested elements
+		if (updatedCoreLanguageElement == null || updatedCoreLanguageElement.getNestedElements().size() < 0) {
+			return;
+		}
+		// the updated nested element of the model element.
+		CORELanguageElement updatednestedElement = COREPerspectiveUtil.INSTANCE
+				.getNestedLanguageElement(updatedCoreLanguageElement, feature);
+
+		// iterate over all the model mappings of the updated model element
+		for (COREModelElementMapping mapping : COREPerspectiveUtil.INSTANCE.getMappings(modelElement)) {
+
+			// get the mapping mappingType, i.e., metaclass mapping, of the
+			// updated model element.
+			CORELanguageElementMapping mappingType = COREPerspectiveUtil.INSTANCE.getMappingType(perspective, mapping);
+
+			// get the mapping end of the updated attribute
+			MappingEnd nestedMappingEnd = COREPerspectiveUtil.INSTANCE.getNestedMappingEnd(mappingType, currentRole,
+					updatednestedElement);
+
+			// null indicates that this attribute is not mapped.
+			if (nestedMappingEnd != null) {
+				// add the updated model element
+				updatedElements.add(modelElement);
+
+				List<MappingEnd> otherMappingEnds = COREPerspectiveUtil.INSTANCE.getOtherMappingEnds(nestedMappingEnd);
+
+				List<EObject> others = COREPerspectiveUtil.INSTANCE.getOtherElements(mapping, modelElement);
+				for (EObject otherElement : others) {
+					EObject otherMetaclass = otherElement.eClass();
+
+					CORELanguageElement otherCoreLE = COREPerspectiveUtil.INSTANCE.getCoreLanguageElement(perspective,
+							otherMetaclass);
+					for (MappingEnd mappingEnd : otherMappingEnds) {
+						CORELanguageElement toBeUpdatedElement = mappingEnd.getLanguageElement();
+						if (otherCoreLE.getNestedElements().contains(toBeUpdatedElement)) {
+							if (!updatedElements.contains(otherElement)) {
+								EStructuralFeature otherFeature = (EStructuralFeature) mappingEnd.getLanguageElement()
+										.getLanguageElement();
+								String roleName = mappingEnd.getRoleName();
+								// perspective recursive call
+								updateElements(perspective, roleName, updatedElements, otherElement, otherFeature,
+										value);
+							}
+						}
+					}
+				}
+			}
+
+		}
+	}
+
+}

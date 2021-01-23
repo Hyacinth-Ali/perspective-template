@@ -1,0 +1,30 @@
+
+language UseCaseMap {
+    rootPackage "ca.mcgill.sel.ucm";
+    rootControllerPackage "ca.mcgill.sel.classdiagram.language.controller";
+    packageClassName UCMPackage;
+    nsURI "http://cs.mcgill.ca/sel/ucm/1.0";
+    resourceFactory "ca.mcgill.sel.classdiagram.util.UCMResourceFactoryImpl";
+    adapterFactory "ca.mcgill.sel.classdiagram.provider.UCMItemProviderAdapterFactory";
+    weaverClassName "ca.mcgill.sel.ram.weaver.RAMWeaver";
+    fileExtension  ucm;
+    modelUtilClassName "ca.mcgill.sel.classdiagram.util.UCMModelUtil";
+
+    language elements :
+        languageElement : Class;
+        languageElement : Attribute;
+    end
+
+    actions :
+        create "createClass(ClassDiagram owner, float x, float y)" {
+            metaclass: Class;
+            classQualifiedName : "ControllerFactory.INSTANCE.getClassController()";
+        }
+
+        create "createAttribute(Class owner, float x, float y)" {
+            metaclass: Attribute;
+            classQualifiedName : "ControllerFactory.INSTANCE.getClassController()";
+        }
+    end
+
+}

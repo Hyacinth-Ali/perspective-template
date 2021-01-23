@@ -1,0 +1,150 @@
+
+external language ClassDiagramLanguage {
+
+   rootPackage "ca.mcgill.sel.classdiagram";
+   rootControllerPackage "ca.mcgill.sel.classdiagram.controller";
+   packageClassName CdmPackage;
+
+   nsURI "http://cs.mcgill.ca/sel/cdm/1.0";
+   resourceFactory "ca.mcgill.sel.classdiagram.util.CdmResourceFactoryImpl";
+   adapterFactory "ca.mcgill.sel.classdiagram.provider.CdmItemProviderAdapterFactory";
+   weaverClassName  "ca.mcgill.sel.ram.weaver.RAMWeaver";
+   fileExtension  "cdm";
+
+   actions :
+        action "ClassDiagram.Class.add";
+        action "ClassDiagram.Class.edit";
+        action "ClassDiagram.Class.delete";
+        action "ClassDiagram.Note.add";
+        action "ClassDiagram.Note.edit";
+        action "ClassDiagram.Note.delete";
+        action "ClassDiagram.Association.add";
+        action "ClassDiagram.Association.edit";
+        action "ClassDiagram.Association.delete";
+        action "ClassDiagram.NaryAssociation.add";
+        action "ClassDiagram.NaryAssociation.delete";
+        action "ClassDiagram.Classifier.Attribute.add";
+        action "ClassDiagram.Classifier.Attribute.edit";
+        action "ClassDiagram.Classifier.Attribute.delete";
+        action "ClassDiagram.CDEnum.add";
+        action "ClassDiagram.CDEnum.edit";
+        action "ClassDiagram.CDEnum.delete";
+        action "ClassDiagram.StructuralFeature.static.edit";
+        action "ClassDiagram.ImplementationClass.add";
+        action "ClassDiagram.ImplementationClass.edit";
+        action "ClassDiagram.ImplementationClass.delete";
+        action "ClassDiagram.Classifier.Operation.add";
+        action "ClassDiagram.Classifier.Operation.edit";
+        action "ClassDiagram.Classifier.Operation.delete";
+        action "ClassDiagram.Classifier.Operation.Parameter.add";
+        action "ClassDiagram.Classifier.Operation.Parameter.edit";
+        action "ClassDiagram.Classifier.Operation.Parameter.delete";
+        action "ClassDiagram.VisibilityType.edit";
+   end
+}
+
+
+perspective DomainModel_DesignModel {
+    // defaultKey "Domain_Model";
+
+    languages :
+        Domain_Model ClassDiagramLanguage;
+        Design_Model ClassDiagramLanguage;
+    end
+
+    existing languages :
+        existing language ClassDiagram_Gen {
+            rootPackage "ca.mcgill.sel.classdiagram";
+            rootControllerPackage "ca.mcgill.sel.classdiagram.controller";
+            packageClassName CdmPackage;
+            roleName Domain_Model;
+        }
+
+//        existing language ClassDiagram_Gen {
+//            rootPackage "ca.mcgill.sel.classdiagram";
+//            rootControllerPackage "ca.mcgill.sel.classdiagram.controller";
+//            packageClassName CdmPackage;
+//            roleName Design_Model;
+//        }
+     end
+
+    actions :
+        action redefined Domain_Model "ClassDiagram.Class.add";
+        action redefined Domain_Model "ClassDiagram.Class.edit";
+        action redefined Domain_Model "ClassDiagram.Class.delete";
+        action re_expose Domain_Model "ClassDiagram.Note.add";
+        action re_expose Domain_Model "ClassDiagram.Note.edit";
+        action re_expose Domain_Model "ClassDiagram.Note.delete";
+        action re_expose Domain_Model "ClassDiagram.Association.add";
+        action re_expose Domain_Model "ClassDiagram.Association.edit";
+        action re_expose Domain_Model "ClassDiagram.Association.delete";
+        action re_expose Domain_Model "ClassDiagram.NaryAssociation.add";
+        action re_expose Domain_Model "ClassDiagram.NaryAssociation.delete";
+        action redefined Domain_Model "ClassDiagram.Classifier.Attribute.add";
+        action redefined Domain_Model "ClassDiagram.Classifier.Attribute.edit";
+        action redefined Domain_Model "ClassDiagram.Classifier.Attribute.delete";
+        action re_expose Domain_Model "ClassDiagram.CDEnum.add";
+        action re_expose Domain_Model "ClassDiagram.CDEnum.edit";
+        action re_expose Domain_Model "ClassDiagram.CDEnum.delete";
+        action re_expose Domain_Model "ClassDiagram.StructuralFeature.static.edit";
+        action re_expose Domain_Model "ClassDiagram.VisibilityType.edit";
+
+        action redefined Design_Model "ClassDiagram.Class.add";
+        action redefined Design_Model "ClassDiagram.Class.edit";
+        action redefined Design_Model "ClassDiagram.Class.delete";
+        action re_expose Design_Model "ClassDiagram.Note.add";
+        action re_expose Design_Model "ClassDiagram.Note.edit";
+        action re_expose Design_Model "ClassDiagram.Note.delete";
+        action re_expose Design_Model "ClassDiagram.Association.add";
+        action re_expose Design_Model "ClassDiagram.Association.edit";
+        action re_expose Design_Model "ClassDiagram.Association.delete";
+        action re_expose Design_Model "ClassDiagram.NaryAssociation.add";
+        action re_expose Design_Model "ClassDiagram.NaryAssociation.delete";
+        action redefined Design_Model "ClassDiagram.Classifier.Attribute.add";
+        action redefined Design_Model "ClassDiagram.Classifier.Attribute.edit";
+        action redefined Design_Model "ClassDiagram.Classifier.Attribute.delete";
+        action re_expose Design_Model "ClassDiagram.CDEnum.add";
+        action re_expose Design_Model "ClassDiagram.CDEnum.edit";
+        action re_expose Design_Model "ClassDiagram.CDEnum.delete";
+        action re_expose Design_Model "ClassDiagram.StructuralFeature.static.edit";
+        action re_expose Design_Model "ClassDiagram.ImplementationClass.add";
+        action re_expose Design_Model "ClassDiagram.ImplementationClass.edit";
+        action re_expose Design_Model "ClassDiagram.ImplementationClass.delete";
+        action re_expose Design_Model "ClassDiagram.Classifier.Operation.add";
+        action re_expose Design_Model "ClassDiagram.Classifier.Operation.edit";
+        action re_expose Design_Model "ClassDiagram.Classifier.Operation.delete";
+        action re_expose Design_Model "ClassDiagram.Classifier.Operation.Parameter.add";
+        action re_expose Design_Model "ClassDiagram.Classifier.Operation.Parameter.edit";
+        action re_expose Design_Model "ClassDiagram.Classifier.Operation.Parameter.delete";
+        action re_expose Design_Model "ClassDiagram.VisibilityType.edit";
+    end
+
+    // mappings
+//    mappings :
+//        mapping ClassSameName {
+//            relationship : equality;
+//            fromCardinality : 1;
+//            toCardinality : 0..1;
+//            fromElement : element Class from Domain_Model;
+//                createActionParameter : "ClassDiagram owner, String name, boolean dataType, float x, float y";
+//                createActionAPICall : "ControllerFactory.INSTANCE.getClassDiagramController().createNewClass(owner,
+//                    name, dataType, x, y);";
+//                updateActionParameter : "";
+//                updateActionAPICall : "";
+//                deleteActionParameter : "";
+//                deleteActionAPICall : "";
+//           toELement : element Class from Design_Model;
+//                createActionParameter : "ClassDiagram owner, String name, boolean dataType, float x, float y";
+//                createActionAPICall : "ControllerFactory.INSTANCE.getClassDiagramController().createNewClass(owner,
+//                    name, dataType, x, y);";
+//                updateActionParameter : "";
+//                updateActionAPICall : "";
+//                deleteActionParameter : "";
+//                deleteActionAPICall : "";
+//        }
+//
+//    end
+
+}
+
+ 
