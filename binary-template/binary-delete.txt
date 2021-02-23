@@ -5,6 +5,7 @@ private deleteElements(element, p2, p3, ...) {
   mappings = getMappings(element);
   DELETE(element, p2, p3, ...);
   for (Mapping mapping : mappings) {
+    // mapping still refer to the deleted element, hence, it can be retrieved
     other = getOther(mapping, element);
     deleteType = getDeleteType(mapping);
     mappingType = mapping.getMappingType();

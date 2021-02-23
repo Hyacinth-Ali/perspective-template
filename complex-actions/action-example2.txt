@@ -1,0 +1,20 @@
+
+1. Primary action: Creates an operation which also creates a sequence diagram.
+Secondary effect: updates a class
+Signature: createNewOperation(Class owner, String name)
+secondaryEffect: update owner with the features
+No secondary effect
+
+2. Primary action: Create Actor (EM):
+Secondary effect: Potentially creates an actor type (owner of the new actor
+  can give us the new actorType).
+Signature: createNewActor(EM owner, String name)
+secondaryEffect: create actor type,
+Diff(instances of ActorTypes) = new actor type(s)
+
+
+Primary action: Create Message (EM):
+Secondary effect: Potentially creates message type (owner of the new message
+  can't give us the new message type)
+  Signature: createNewMessage(Actor owner, String name)
+  secondaryEffect: Diff(instances of MessageType) = new message types

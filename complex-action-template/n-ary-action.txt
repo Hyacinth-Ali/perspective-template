@@ -6,7 +6,7 @@ public createElement(p1, p2, ...) {
 
   // secondary effects
   for (actionEffect : secondaryEffects) {
-    // i.e., the case where the affected element cannot be retrieved from the paprameters
+    // i.e., the case where the affected element cannot be retrieved from the parameters
     if (actionEffect.getParameterEffect == CONTENT) {
       for (secondaryElement : element.eContents()) {
         if (secondaryElement instanceof actionEffect.getLanguageElement().getLanguageElement()) {
@@ -79,7 +79,7 @@ private createElements(element, p1, p2, ...) {
 
       // secondary effects
       // To be discussed: the element in question has been deleted while it is
-      // required to retrive other mapped elements.
+      // required to retrieve other mapped elements.
     }
     private deleteElements(element, p2, p3, ...) {
       mappings = getMappings(element);

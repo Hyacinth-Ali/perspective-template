@@ -1,0 +1,21 @@
+public createElement(p1, p2, ...) {
+  element = create(p1, p2, ...);
+  createElements(element, p1, p2, ...);
+
+  // create complex action effects
+  List<EObject> newElements = newElementOwner.getNewElements;
+  newElements.remove(newElement);
+  for (element : newElements) {
+    // the recursive method to call is determined by the metaclass of the new element
+    createOtherElements(element, p1, p2, ...);
+  }
+
+  for (actionEffect : actionEffects) {
+    if (actionType == UPDATE) {
+      element = getElement(parameterEffect);
+      updateElements(element, element.getFeatureNewValue(featureUpdate), featureUpdate);
+    } else if (actionType == DELETE) {
+      deleteElement(getElement(parameterEffect));
+    }
+  }
+}
