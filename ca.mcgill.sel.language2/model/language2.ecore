@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="language2" nsURI="language2" nsPrefix="language2">
+  <eClassifiers xsi:type="ecore:EClass" name="Language2" eSuperTypes="#//NameElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lema2s" upperBound="-1"
+        eType="#//LEMA2" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lemb2s" upperBound="-1"
+        eType="#//LEMB2" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="leme2s" upperBound="-1"
+        eType="#//LEME2" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lemc2s" upperBound="-1"
+        eType="#//LEMC2" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="leml2s" upperBound="-1"
+        eType="#//LEML2" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lemf2s" upperBound="-1"
+        eType="#//LEMF2" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lemd2s" upperBound="-1"
+        eType="#//LEMD2" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lemg2s" upperBound="-1"
+        eType="#//LEMG2" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lemk2s" upperBound="-1"
+        eType="#//LEMK2" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lemj2s" upperBound="-1"
+        eType="#//LEMJ2" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lemi2s" upperBound="-1"
+        eType="#//LEMI2" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lemh2s" upperBound="-1"
+        eType="#//LEMH2" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LEMA2" eSuperTypes="#//NameElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LEMB2" eSuperTypes="#//NameElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LEMC2" eSuperTypes="#//NameElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LEMD2" eSuperTypes="#//NameElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LEME2" eSuperTypes="#//NameElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LEMF2" eSuperTypes="#//NameElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LEMG2" eSuperTypes="#//NameElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LEMH2" eSuperTypes="#//NameElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LEMI2" eSuperTypes="#//NameElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LEMJ2" eSuperTypes="#//NameElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LEMK2" eSuperTypes="#//NameElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LEML2" eSuperTypes="#//NameElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NameElement" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+</ecore:EPackage>
