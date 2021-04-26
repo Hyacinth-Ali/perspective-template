@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="language1" nsURI="language1" nsPrefix="language1">
-  <eClassifiers xsi:type="ecore:EClass" name="Language1" eSuperTypes="#//NameElement">
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="language1" nsURI="http://cs.mcgill.ca/sel/language1/1.0" nsPrefix="language1">
+  <eClassifiers xsi:type="ecore:EClass" name="Language1" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="lema1s" upperBound="-1"
         eType="#//LEMA1" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="lemb1s" upperBound="-1"
@@ -27,19 +27,19 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="lemh1s" upperBound="-1"
         eType="#//LEMH1" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LEMA1" eSuperTypes="#//NameElement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="LEMB1" eSuperTypes="#//NameElement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="LEMC1" eSuperTypes="#//NameElement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="LEMD1" eSuperTypes="#//NameElement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="LEME1" eSuperTypes="#//NameElement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="LEMF1" eSuperTypes="#//NameElement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="LEMG1" eSuperTypes="#//NameElement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="LEMH1" eSuperTypes="#//NameElement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="LEMI1" eSuperTypes="#//NameElement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="LEMJ1" eSuperTypes="#//NameElement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="LEMK1" eSuperTypes="#//NameElement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="LEML1" eSuperTypes="#//NameElement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="NameElement" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="LEMA1" eSuperTypes="#//NamedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LEMB1" eSuperTypes="#//NamedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LEMC1" eSuperTypes="#//NamedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LEMD1" eSuperTypes="#//NamedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LEME1" eSuperTypes="#//NamedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LEMF1" eSuperTypes="#//NamedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LEMG1" eSuperTypes="#//NamedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LEMH1" eSuperTypes="#//NamedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LEMI1" eSuperTypes="#//NamedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LEMJ1" eSuperTypes="#//NamedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LEMK1" eSuperTypes="#//NamedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LEML1" eSuperTypes="#//NamedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>

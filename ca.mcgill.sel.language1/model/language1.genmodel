@@ -5,7 +5,7 @@
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
     operationReflection="true" importOrganizing="true">
   <foreignModel>language1.ecore</foreignModel>
-  <genPackages prefix="Language1" resource="XMI" disposableProviderFactory="true"
+  <genPackages prefix="Language1" basePackage="ca.mcgill.sel" resource="XMI" disposableProviderFactory="true"
       fileExtensions="lang1" ecorePackage="language1.ecore#/">
     <genClasses ecoreClass="language1.ecore#//Language1">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference language1.ecore#//Language1/lema1s"/>
@@ -33,8 +33,8 @@
     <genClasses ecoreClass="language1.ecore#//LEMJ1"/>
     <genClasses ecoreClass="language1.ecore#//LEMK1"/>
     <genClasses ecoreClass="language1.ecore#//LEML1"/>
-    <genClasses image="false" ecoreClass="language1.ecore#//NameElement">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute language1.ecore#//NameElement/name"/>
+    <genClasses image="false" ecoreClass="language1.ecore#//NamedElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute language1.ecore#//NamedElement/name"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

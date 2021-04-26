@@ -9,8 +9,8 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated language1 -->
       <package
-            uri="language1"
-            class="language1.Language1Package"
+            uri="http://cs.mcgill.ca/sel/language1/1.0"
+            class="ca.mcgill.sel.language1.Language1Package"
             genModel="model/language1.genmodel"/>
    </extension>
 
@@ -18,7 +18,6 @@
       <!-- @generated language1 -->
       <parser
             type="lang1"
-            class="language1.util.Language1ResourceFactoryImpl"/>
+            class="ca.mcgill.sel.language1.util.Language1ResourceFactoryImpl"/>
    </extension>
-
 </plugin>

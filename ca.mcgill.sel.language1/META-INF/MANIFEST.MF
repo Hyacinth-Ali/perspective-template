@@ -8,10 +8,11 @@ Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: language1,
- language1.impl,
- language1.util
+Export-Package: ca.mcgill.sel.language1,
+ ca.mcgill.sel.language1.impl,
+ ca.mcgill.sel.language1.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
- org.eclipse.emf.ecore.xmi;visibility:=reexport
+ org.eclipse.emf.ecore.xmi;visibility:=reexport,
+ ca.mcgill.sel.core.controller;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy

@@ -9,8 +9,8 @@
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <!-- @generated language1 -->
       <factory
-            uri="language1"
-            class="language1.provider.Language1ItemProviderAdapterFactory"
+            uri="http://cs.mcgill.ca/sel/language1/1.0"
+            class="ca.mcgill.sel.language1.provider.Language1ItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider
