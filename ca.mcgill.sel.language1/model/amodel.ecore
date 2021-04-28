@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="amodel" nsURI="http://cs.mcgill.ca/sel/amodel/1.0" nsPrefix="amodel">
+  <eClassifiers xsi:type="ecore:EClass" name="AModel" eSuperTypes="#//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="a1s" upperBound="-1" eType="#//A1"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="a2s" upperBound="-1" eType="#//A2"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="a5s" upperBound="-1" eType="#//A5"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="a3s" upperBound="-1" eType="#//A3"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="a12s" upperBound="-1" eType="#//A12"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="a6s" upperBound="-1" eType="#//A6"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="a4s" upperBound="-1" eType="#//A4"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="a7s" upperBound="-1" eType="#//A7"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="a11s" upperBound="-1" eType="#//A11"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="a10s" upperBound="-1" eType="#//A10"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="a9s" upperBound="-1" eType="#//A9"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="a8s" upperBound="-1" eType="#//A8"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="A1" eSuperTypes="#//NamedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="A2" eSuperTypes="#//NamedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="A3" eSuperTypes="#//NamedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="A4" eSuperTypes="#//NamedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="A5" eSuperTypes="#//NamedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="A6" eSuperTypes="#//NamedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="A7" eSuperTypes="#//NamedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="A8" eSuperTypes="#//NamedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="A9" eSuperTypes="#//NamedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="A10" eSuperTypes="#//NamedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="A11" eSuperTypes="#//NamedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="A12" eSuperTypes="#//NamedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+</ecore:EPackage>

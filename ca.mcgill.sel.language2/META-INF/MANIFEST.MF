@@ -1,16 +1,16 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
-Bundle-SymbolicName: ca.mcgill.sel.language2;singleton:=true
-Automatic-Module-Name: ca.mcgill.sel.language2
+Bundle-SymbolicName: ca.mcgill.sel.bmodel;singleton:=true
+Automatic-Module-Name: ca.mcgill.sel.bmodel
 Bundle-Version: 0.1.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: ca.mcgill.sel.language2,
- ca.mcgill.sel.language2.impl,
- ca.mcgill.sel.language2.util
+Export-Package: ca.mcgill.sel.bmodel,
+ ca.mcgill.sel.bmodel.impl,
+ ca.mcgill.sel.bmodel.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,

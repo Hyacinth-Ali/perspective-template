@@ -10,14 +10,28 @@
       <!-- @generated language1 -->
       <package
             uri="http://cs.mcgill.ca/sel/language1/1.0"
-            class="ca.mcgill.sel.language1.Language1Package"
-            genModel="model/language1.genmodel"/>
+            class="ca.mcgill.sel.amodel.Language1Package"
+            genModel="model/amodel.genmodel"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.extension_parser">
       <!-- @generated language1 -->
       <parser
             type="lang1"
-            class="ca.mcgill.sel.language1.util.Language1ResourceFactoryImpl"/>
+            class="ca.mcgill.sel.amodel.util.Language1ResourceFactoryImpl"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated amodel -->
+      <package
+            uri="http://cs.mcgill.ca/sel/amodel/1.0"
+            class="ca.mcgill.sel.amodel.AmodelPackage"
+            genModel="model/amodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated amodel -->
+      <parser
+            type="amodel"
+            class="ca.mcgill.sel.amodel.util.AmodelResourceFactoryImpl"/>
    </extension>
 </plugin>

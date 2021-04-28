@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/ca.mcgill.sel.bmodel/src" modelPluginID="ca.mcgill.sel.bmodel"
+    modelName="Bmodel" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>bmodel.ecore</foreignModel>
+  <genPackages prefix="Bmodel" basePackage="ca.mcgill.sel" resource="XMI" disposableProviderFactory="true"
+      ecorePackage="bmodel.ecore#/">
+    <genClasses ecoreClass="bmodel.ecore#//BModel">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bmodel.ecore#//BModel/b1s"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bmodel.ecore#//BModel/b2s"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bmodel.ecore#//BModel/b5s"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bmodel.ecore#//BModel/b3s"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bmodel.ecore#//BModel/b12s"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bmodel.ecore#//BModel/b6s"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bmodel.ecore#//BModel/b4s"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bmodel.ecore#//BModel/b7s"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bmodel.ecore#//BModel/b11s"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bmodel.ecore#//BModel/b10s"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bmodel.ecore#//BModel/b9s"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bmodel.ecore#//BModel/b8s"/>
+    </genClasses>
+    <genClasses ecoreClass="bmodel.ecore#//B1"/>
+    <genClasses ecoreClass="bmodel.ecore#//B2"/>
+    <genClasses ecoreClass="bmodel.ecore#//B3"/>
+    <genClasses ecoreClass="bmodel.ecore#//B4"/>
+    <genClasses ecoreClass="bmodel.ecore#//B5"/>
+    <genClasses ecoreClass="bmodel.ecore#//B6"/>
+    <genClasses ecoreClass="bmodel.ecore#//B7"/>
+    <genClasses ecoreClass="bmodel.ecore#//B8"/>
+    <genClasses ecoreClass="bmodel.ecore#//B9"/>
+    <genClasses ecoreClass="bmodel.ecore#//B10"/>
+    <genClasses ecoreClass="bmodel.ecore#//B11"/>
+    <genClasses ecoreClass="bmodel.ecore#//B12"/>
+    <genClasses image="false" ecoreClass="bmodel.ecore#//NamedElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bmodel.ecore#//NamedElement/name"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

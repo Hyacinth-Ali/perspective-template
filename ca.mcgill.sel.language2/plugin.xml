@@ -10,14 +10,29 @@
       <!-- @generated language2 -->
       <package
             uri="http://cs.mcgill.ca/sel/language2/1.0"
-            class="ca.mcgill.sel.language2.Language2Package"
-            genModel="model/language2.genmodel"/>
+            class="ca.mcgill.sel.bmodel.Language2Package"
+            genModel="model/bmodel.genmodel"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.extension_parser">
       <!-- @generated language2 -->
       <parser
             type="language2"
-            class="ca.mcgill.sel.language2.util.Language2ResourceFactoryImpl"/>
+            class="ca.mcgill.sel.bmodel.util.Language2ResourceFactoryImpl"/>
    </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated bmodel -->
+      <package
+            uri="http://cs.mcgill.ca/sel/bmodel/1.0"
+            class="ca.mcgill.sel.bmodel.BmodelPackage"
+            genModel="model/bmodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated bmodel -->
+      <parser
+            type="bmodel"
+            class="ca.mcgill.sel.bmodel.util.BmodelResourceFactoryImpl"/>
+   </extension>
+
 </plugin>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/ca.mcgill.sel.amodel/src" modelPluginID="ca.mcgill.sel.amodel"
+    modelName="Amodel" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>amodel.ecore</foreignModel>
+  <genPackages prefix="Amodel" basePackage="ca.mcgill.sel" resource="XMI" disposableProviderFactory="true"
+      ecorePackage="amodel.ecore#/">
+    <genClasses ecoreClass="amodel.ecore#//AModel">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference amodel.ecore#//AModel/a1s"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference amodel.ecore#//AModel/a2s"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference amodel.ecore#//AModel/a5s"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference amodel.ecore#//AModel/a3s"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference amodel.ecore#//AModel/a12s"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference amodel.ecore#//AModel/a6s"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference amodel.ecore#//AModel/a4s"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference amodel.ecore#//AModel/a7s"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference amodel.ecore#//AModel/a11s"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference amodel.ecore#//AModel/a10s"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference amodel.ecore#//AModel/a9s"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference amodel.ecore#//AModel/a8s"/>
+    </genClasses>
+    <genClasses ecoreClass="amodel.ecore#//A1"/>
+    <genClasses ecoreClass="amodel.ecore#//A2"/>
+    <genClasses ecoreClass="amodel.ecore#//A3"/>
+    <genClasses ecoreClass="amodel.ecore#//A4"/>
+    <genClasses ecoreClass="amodel.ecore#//A5"/>
+    <genClasses ecoreClass="amodel.ecore#//A6"/>
+    <genClasses ecoreClass="amodel.ecore#//A7"/>
+    <genClasses ecoreClass="amodel.ecore#//A8"/>
+    <genClasses ecoreClass="amodel.ecore#//A9"/>
+    <genClasses ecoreClass="amodel.ecore#//A10"/>
+    <genClasses ecoreClass="amodel.ecore#//A11"/>
+    <genClasses ecoreClass="amodel.ecore#//A12"/>
+    <genClasses image="false" ecoreClass="amodel.ecore#//NamedElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute amodel.ecore#//NamedElement/name"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
