@@ -40,6 +40,9 @@
   <eClassifiers xsi:type="ecore:EClass" name="A11" eSuperTypes="#//NamedElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="A12" eSuperTypes="#//NamedElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true">
+    <eAnnotations source="http://www.obeo.fr/dsl/dnc/archetype">
+      <details key="archetype" value="Description"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>
