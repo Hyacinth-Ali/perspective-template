@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: ca.mcgill.sel.perspective.test
+Bundle-SymbolicName: ca.mcgill.sel.perspective.test; singleton:=true
+Bundle-Version: 0.1.0.qualifier
+Require-Bundle: org.eclipse.emf.ecore,
+ ca.mcgill.sel.core.controller;bundle-version="1.0.0",
+ ca.mcgill.sel.commons;bundle-version="1.0.0",
+ ca.mcgill.sel.core.perspective;bundle-version="1.0.0",
+ ca.mcgill.sel.amodel;bundle-version="0.1.0",
+ ca.mcgill.sel.amodel.controller;bundle-version="0.1.0",
+ ca.mcgill.sel.bmodel;bundle-version="0.1.0",
+ ca.mcgill.sel.bmodel.controller;bundle-version="0.1.0",
+ ca.mcgill.sel.cmodel;bundle-version="0.1.0",
+ ca.mcgill.sel.cmodel.controller;bundle-version="0.1.0",
+ ca.mcgill.sel.ram.controller;bundle-version="1.0.0",
+ ca.mcgill.sel.core.edit;bundle-version="1.0.0",
+ ca.mcgill.sel.ram.edit;bundle-version="2.0.0",
+ ca.mcgill.sel.ram.gui;bundle-version="1.0.0"
