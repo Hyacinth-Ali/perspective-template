@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: ca.mcgill.sel.cmodel.controller
+Bundle-SymbolicName: ca.mcgill.sel.cmodel.controller; singleton:=true
+Bundle-Version: 0.1.0.qualifier
+Require-Bundle: org.eclipse.emf.ecore,
+ ca.mcgill.sel.core.controller;bundle-version="1.0.0",
+ ca.mcgill.sel.cmodel;bundle-version="0.1.0",
+ ca.mcgill.sel.commons;bundle-version="1.0.0"

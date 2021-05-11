@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: ca.mcgill.sel.core.perspective.domain.design.models
+Bundle-SymbolicName: ca.mcgill.sel.core.perspective.design;singleton:=true
+Bundle-Version: 0.1.0.qualifier
+Require-Bundle: org.eclipse.emf.ecore,
+ ca.mcgill.sel.classdiagram;bundle-version="1.0.0",
+ ca.mcgill.sel.core;bundle-version="1.1.0",
+ ca.mcgill.sel.commons;bundle-version="1.0.0",
+ ca.mcgill.sel.ram.gui;bundle-version="1.0.0",
+ ca.mcgill.sel.core.edit;bundle-version="1.0.0",
+ ca.mcgill.sel.classdiagram.language;bundle-version="1.0.0",
+ ca.mcgill.sel.usecases;bundle-version="1.0.0",
+ ca.mcgill.sel.operationmodel;bundle-version="0.1.0",
+ ca.mcgill.sel.environmentmodel;bundle-version="0.1.0"

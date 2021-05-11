@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated cmodel -->
+      <package
+            uri="http://cs.mcgill.ca/sel/cmodel/1.0"
+            class="ca.mcgill.sel.cmodel.CmodelPackage"
+            genModel="model/cmodel.genmodel"/>
+   </extension>
+
+</plugin>

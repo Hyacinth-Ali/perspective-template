@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/ca.mcgill.sel.cmodel/src" modelPluginID="ca.mcgill.sel.cmodel"
+    modelName="Cmodel" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>cmodel.ecore</foreignModel>
+  <genPackages prefix="Cmodel" basePackage="ca.mcgill.sel" disposableProviderFactory="true"
+      ecorePackage="cmodel.ecore#/">
+    <genClasses ecoreClass="cmodel.ecore#//CModel">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cmodel.ecore#//CModel/c1s"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cmodel.ecore#//CModel/c2s"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cmodel.ecore#//CModel/c3s"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cmodel.ecore#//CModel/c4s"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="cmodel.ecore#//NamedElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cmodel.ecore#//NamedElement/name"/>
+    </genClasses>
+    <genClasses ecoreClass="cmodel.ecore#//C1"/>
+    <genClasses ecoreClass="cmodel.ecore#//C2"/>
+    <genClasses ecoreClass="cmodel.ecore#//C3"/>
+    <genClasses ecoreClass="cmodel.ecore#//C4"/>
+  </genPackages>
+</genmodel:GenModel>
