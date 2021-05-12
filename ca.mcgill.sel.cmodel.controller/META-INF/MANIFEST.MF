@@ -7,3 +7,4 @@ Require-Bundle: org.eclipse.emf.ecore,
  ca.mcgill.sel.core.controller;bundle-version="1.0.0",
  ca.mcgill.sel.cmodel;bundle-version="0.1.0",
  ca.mcgill.sel.commons;bundle-version="1.0.0"
+Export-Package: ca.mcgill.sel.cmodel.controller

@@ -6,9 +6,13 @@ import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 
-import ca.mcgill.sel.cmodel.*;
+import ca.mcgill.sel.cmodel.C1;
+import ca.mcgill.sel.cmodel.C2;
+import ca.mcgill.sel.cmodel.C3;
+import ca.mcgill.sel.cmodel.C4;
 import ca.mcgill.sel.cmodel.CModel;
 import ca.mcgill.sel.cmodel.CmodelFactory;
+import ca.mcgill.sel.cmodel.CmodelPackage;
 import ca.mcgill.sel.commons.emf.util.EMFEditUtil;
 import ca.mcgill.sel.core.controller.CoreBaseController;
 
@@ -18,19 +22,26 @@ import ca.mcgill.sel.core.controller.CoreBaseController;
  * @author hyacinthali
  *
  */
-public class AModelController extends CoreBaseController {
+public class CModelController extends CoreBaseController {
 
-	private static AModelController aModelController;
-
+	private static CModelController cModelController;
+	private static CModel cModel;
 	private boolean complexAction;
-	
-	private AModelController() {
+	private C1 c1;
+
+	private CModelController() {
 
 	}
 
-	private static CModel cModel;
+	public C1 getC1() {
+		return c1;
+	}
 
-	public CModel getAModel() {
+	public void setC1(C1 c1) {
+		this.c1 = c1;
+	}
+
+	public CModel getCModel() {
 
 		if (cModel == null) {
 			// create new model
@@ -41,7 +52,7 @@ public class AModelController extends CoreBaseController {
 	}
 
 	// create language actions
-	
+
 	public C1 createC1(CModel owner, String name) {
 
 		C1 newC1 = CmodelFactory.eINSTANCE.createC1();
@@ -77,6 +88,14 @@ public class AModelController extends CoreBaseController {
 		compoundCommand.append(addA2Command);
 
 		doExecute(editingDomain, compoundCommand);
+
+		// check if the C1 with the same name exist
+		C1 c1 = c1Exist(owner, name);
+		if (c1 == null) {
+			// create new message type
+			c1 = createC1(owner, name);
+			setC1(c1);
+		}
 
 		return newC2;
 
@@ -122,7 +141,6 @@ public class AModelController extends CoreBaseController {
 
 	}
 
-	
 	public void removeC1(C1 c) {
 		CModel cModel = (CModel) c.eContainer();
 		EditingDomain editingDomain = EMFEditUtil.getEditingDomain(cModel);
@@ -147,6 +165,7 @@ public class AModelController extends CoreBaseController {
 		compoundCommand.append(removeaCommand);
 
 		doExecute(editingDomain, compoundCommand);
+
 	}
 
 	public void removeC3(C3 c) {
@@ -175,11 +194,21 @@ public class AModelController extends CoreBaseController {
 		doExecute(editingDomain, compoundCommand);
 	}
 
-	public static AModelController getInstance() {
-		if (aModelController == null) {
-			aModelController = new AModelController();
+	public static CModelController getInstance() {
+		if (cModelController == null) {
+			cModelController = new CModelController();
 		}
-		return aModelController;
+		return cModelController;
+	}
+
+	private C1 c1Exist(CModel cModel, String name) {
+		C1 c1 = null;
+		for (C1 t : cModel.getC1s()) {
+			if (t.getName().equals(name)) {
+				c1 = t;
+			}
+		}
+		return c1;
 	}
 
 }

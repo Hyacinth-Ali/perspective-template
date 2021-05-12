@@ -73,7 +73,7 @@ public static void createOtherElementsForA1(COREPerspective perspective, CORESce
 				currentElement);
 
 		// other role names, i.e., excluding the current role
-		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(perspective, currentRoleName);
+		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRoleName);
 
 		// the metaclass of the element to be created.
 		EObject otherLE = COREPerspectiveUtil.INSTANCE
@@ -686,7 +686,7 @@ public static void createOtherElementsForA2(COREPerspective perspective, CORESce
 				currentElement);
 
 		// other role names, i.e., excluding the current role
-		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(perspective, currentRoleName);
+		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRoleName);
 
 		// the metaclass of the element to be created.
 		EObject otherLE = COREPerspectiveUtil.INSTANCE
@@ -1299,7 +1299,7 @@ public static void createOtherElementsForA3(COREPerspective perspective, CORESce
 				currentElement);
 
 		// other role names, i.e., excluding the current role
-		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(perspective, currentRoleName);
+		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRoleName);
 
 		// the metaclass of the element to be created.
 		EObject otherLE = COREPerspectiveUtil.INSTANCE
@@ -1912,7 +1912,7 @@ public static void createOtherElementsForA4(COREPerspective perspective, CORESce
 				currentElement);
 
 		// other role names, i.e., excluding the current role
-		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(perspective, currentRoleName);
+		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRoleName);
 
 		// the metaclass of the element to be created.
 		EObject otherLE = COREPerspectiveUtil.INSTANCE
@@ -2525,7 +2525,7 @@ public static void createOtherElementsForA5(COREPerspective perspective, CORESce
 				currentElement);
 
 		// other role names, i.e., excluding the current role
-		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(perspective, currentRoleName);
+		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRoleName);
 
 		// the metaclass of the element to be created.
 		EObject otherLE = COREPerspectiveUtil.INSTANCE
@@ -3138,7 +3138,7 @@ public static void createOtherElementsForA6(COREPerspective perspective, CORESce
 				currentElement);
 
 		// other role names, i.e., excluding the current role
-		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(perspective, currentRoleName);
+		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRoleName);
 
 		// the metaclass of the element to be created.
 		EObject otherLE = COREPerspectiveUtil.INSTANCE
@@ -3751,7 +3751,7 @@ public static void createOtherElementsForA7(COREPerspective perspective, CORESce
 				currentElement);
 
 		// other role names, i.e., excluding the current role
-		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(perspective, currentRoleName);
+		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRoleName);
 
 		// the metaclass of the element to be created.
 		EObject otherLE = COREPerspectiveUtil.INSTANCE
@@ -4364,7 +4364,7 @@ public static void createOtherElementsForA8(COREPerspective perspective, CORESce
 				currentElement);
 
 		// other role names, i.e., excluding the current role
-		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(perspective, currentRoleName);
+		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRoleName);
 
 		// the metaclass of the element to be created.
 		EObject otherLE = COREPerspectiveUtil.INSTANCE
@@ -4977,7 +4977,7 @@ public static void createOtherElementsForA9(COREPerspective perspective, CORESce
 				currentElement);
 
 		// other role names, i.e., excluding the current role
-		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(perspective, currentRoleName);
+		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRoleName);
 
 		// the metaclass of the element to be created.
 		EObject otherLE = COREPerspectiveUtil.INSTANCE
@@ -5590,7 +5590,7 @@ public static void createOtherElementsForA10(COREPerspective perspective, CORESc
 				currentElement);
 
 		// other role names, i.e., excluding the current role
-		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(perspective, currentRoleName);
+		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRoleName);
 
 		// the metaclass of the element to be created.
 		EObject otherLE = COREPerspectiveUtil.INSTANCE
@@ -6203,7 +6203,7 @@ public static void createOtherElementsForA11(COREPerspective perspective, CORESc
 				currentElement);
 
 		// other role names, i.e., excluding the current role
-		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(perspective, currentRoleName);
+		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRoleName);
 
 		// the metaclass of the element to be created.
 		EObject otherLE = COREPerspectiveUtil.INSTANCE
@@ -6816,7 +6816,7 @@ public static void createOtherElementsForA12(COREPerspective perspective, CORESc
 				currentElement);
 
 		// other role names, i.e., excluding the current role
-		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(perspective, currentRoleName);
+		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRoleName);
 
 		// the metaclass of the element to be created.
 		EObject otherLE = COREPerspectiveUtil.INSTANCE
@@ -7426,7 +7426,7 @@ private static void deleteOtherElementsForA1(COREPerspective perspective, CORESc
 		}
 
 		// get other role name
-		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(perspective, currentRole);
+		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRole);
 		switch (deleteType) {
 
 		case DELETE_OTHERS:
@@ -7481,7 +7481,7 @@ public static void deleteOtherElementsForA2(COREPerspective perspective, CORESce
 		}
 
 		// get other role name
-		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(perspective, currentRole);
+		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRole);
 		switch (deleteType) {
 
 		case DELETE_OTHERS:
@@ -7536,7 +7536,7 @@ private static void deleteOtherElementsForA3(COREPerspective perspective, CORESc
 		}
 
 		// get other role name
-		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(perspective, currentRole);
+		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRole);
 		switch (deleteType) {
 
 		case DELETE_OTHERS:
@@ -7591,7 +7591,7 @@ private static void deleteOtherElementsForA4(COREPerspective perspective, CORESc
 		}
 
 		// get other role name
-		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(perspective, currentRole);
+		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRole);
 		switch (deleteType) {
 
 		case DELETE_OTHERS:
@@ -7646,7 +7646,7 @@ private static void deleteOtherElementsForA5(COREPerspective perspective, CORESc
 		}
 
 		// get other role name
-		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(perspective, currentRole);
+		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRole);
 		switch (deleteType) {
 
 		case DELETE_OTHERS:
@@ -7701,7 +7701,7 @@ private static void deleteOtherElementsForA6(COREPerspective perspective, CORESc
 		}
 
 		// get other role name
-		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(perspective, currentRole);
+		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRole);
 		switch (deleteType) {
 
 		case DELETE_OTHERS:
@@ -7756,7 +7756,7 @@ private static void deleteOtherElementsForA7(COREPerspective perspective, CORESc
 		}
 
 		// get other role name
-		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(perspective, currentRole);
+		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRole);
 		switch (deleteType) {
 
 		case DELETE_OTHERS:
@@ -7811,7 +7811,7 @@ private static void deleteOtherElementsForA8(COREPerspective perspective, CORESc
 		}
 
 		// get other role name
-		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(perspective, currentRole);
+		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRole);
 		switch (deleteType) {
 
 		case DELETE_OTHERS:
@@ -7866,7 +7866,7 @@ private static void deleteOtherElementsForA9(COREPerspective perspective, CORESc
 		}
 
 		// get other role name
-		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(perspective, currentRole);
+		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRole);
 		switch (deleteType) {
 
 		case DELETE_OTHERS:
@@ -7921,7 +7921,7 @@ private static void deleteOtherElementsForA10(COREPerspective perspective, CORES
 		}
 
 		// get other role name
-		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(perspective, currentRole);
+		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRole);
 		switch (deleteType) {
 
 		case DELETE_OTHERS:
@@ -7976,7 +7976,7 @@ private static void deleteOtherElementsForA11(COREPerspective perspective, CORES
 		}
 
 		// get other role name
-		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(perspective, currentRole);
+		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRole);
 		switch (deleteType) {
 
 		case DELETE_OTHERS:
@@ -8031,7 +8031,7 @@ private static void deleteOtherElementsForA12(COREPerspective perspective, CORES
 		}
 
 		// get other role name
-		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(perspective, currentRole);
+		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRole);
 		switch (deleteType) {
 
 		case DELETE_OTHERS:

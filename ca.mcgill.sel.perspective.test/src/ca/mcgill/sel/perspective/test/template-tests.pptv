@@ -3,7 +3,7 @@ perspective PerspectiveTest {
     default A_Model;
      
     display name "Template Test";
-           
+            
     languages {
     	existing language AModel {
             rootPackage "ca.mcgill.sel.amodel";
