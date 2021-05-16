@@ -131,6 +131,7 @@ public class TemplateMainTest {
 		aModelController.setComplexAction(true);
 		QueryAction.INSTANCE.setNumberOfMapping(2);
 		QueryAction.INSTANCE.setCreateMapping(true);
+		// creating A1 creates A2, A3, and A4 if each doesn't exist
 		RedefinedAModelAction.createNewA1(perspective, scene, "A_Model", aModel, "name");
 		aModelController.setComplexAction(false);
 		
@@ -601,7 +602,7 @@ public class TemplateMainTest {
 	public void testDeleteOthersComplexAction() {
 		aModelController.setComplexAction(true);
 		QueryAction.INSTANCE.setNumberOfMapping(6);
-		// this action creates A4 as a secondary effect
+		// this action can create A4 as a secondary effect
 		RedefinedAModelAction.createNewA1(perspective, scene, "A_Model", aModel, "name");
 		
 		int nElements = aModel.getA1s().size();
@@ -612,6 +613,7 @@ public class TemplateMainTest {
 		nElements = bModel.getB4s().size();
 		assertEquals(6, nElements);
 
+		// removing a1 removes a4
 		RedefinedAModelAction.deleteA1(perspective, scene, "A_Model", aModel.getA1s().get(0));
 		nElements = aModel.getA1s().size();
 		assertEquals(0, nElements);

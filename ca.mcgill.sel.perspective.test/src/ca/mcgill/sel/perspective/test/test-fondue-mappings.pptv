@@ -1,0 +1,331 @@
+
+perspective TestFondueMapping {
+    default A_Model;
+     
+    display name "Fondue Mapping Test";
+           
+    languages {
+    	existing language AModel {
+            rootPackage "ca.mcgill.sel.amodel";
+            packageClassName AmodelPackage;
+            controllerPackage "ca.mcgill.sel.amodel.controller";
+            roleName A_Model;
+            facadeActionPackage : "ca.mcgill.sel.perspective.test";
+        }  
+                
+        existing language BModel {
+            rootPackage "ca.mcgill.sel.bmodel";
+            packageClassName BmodelPackage;
+            controllerPackage "ca.mcgill.sel.bmodel.controller";
+            roleName B_Model;
+            facadeActionPackage : "ca.mcgill.sel.perspective.test";
+        }
+        
+        existing language CModel {
+            rootPackage "ca.mcgill.sel.cmodel";
+            packageClassName CmodelPackage;
+            controllerPackage "ca.mcgill.sel.cmodel.controller";
+            roleName C_Model;
+            facadeActionPackage : "ca.mcgill.sel.perspective.test";
+        }
+          
+    }    
+           
+    actions {
+    	
+    	// A model language actions
+    	redefined create action createNewA1 {
+    		roleName : A_Model;
+    		methodTypeAndParameters : "EObject owner, String name";
+    		methodCall :  "AModelController.getInstance().createA1((AModel) owner, name)";
+    		methodParameters : "owner, name";
+    		metaclassName : A1;
+    		metaclassObject : "AmodelPackage.eINSTANCE.getA1()";
+    		
+    	}
+    	 
+    	redefined create action createNewA2 {
+    		roleName : A_Model;
+    		methodTypeAndParameters : "EObject owner, String name";
+    		methodCall :  "AModelController.getInstance().createA2((AModel) owner, name)";
+    		methodParameters : "owner, name";
+    		metaclassName : A2;
+    		metaclassObject : "AmodelPackage.eINSTANCE.getA2()";
+    		secondaryEffects {
+    			languageElement : "AmodelPackage.eINSTANCE.getA3()";
+    			languageElement : "AmodelPackage.eINSTANCE.getA4()";
+    		}
+    	}
+    	 
+    	redefined create action createNewA3 {
+    		roleName : A_Model;
+    		methodTypeAndParameters : "EObject owner, String name";
+    		methodCall :  "AModelController.getInstance().createA3((AModel) owner, name)";
+    		methodParameters : "owner, name";
+    		metaclassName : A3;
+    		metaclassObject : "AmodelPackage.eINSTANCE.getA3()";
+    	}
+    	
+    	redefined create action createNewA4 {
+    		roleName : A_Model;
+    		methodTypeAndParameters : "EObject owner, String name";
+    		methodCall :  "AModelController.getInstance().createA4((AModel) owner, name)";
+    		methodParameters : "owner, name";
+    		metaclassName : A4;
+    		metaclassObject : "AmodelPackage.eINSTANCE.getA4()";
+    	}
+    	
+    	redefined delete action deleteA1 {
+    		roleName : A_Model;
+    		methodTypeAndParameters : "EObject currentElement";
+    		methodCall :  "AModelController.getInstance().removeA1((A1) currentElement)";
+    		methodParameters : "currentElement";
+    		metaclassName : A1;
+    		metaclassObject : "AmodelPackage.eINSTANCE.getA1()";
+    		secondaryEffects {
+    			element : "AModelController.getInstance().getA4()";
+    		}
+    	} 
+    	
+    	redefined delete action deleteA2 {
+    		roleName : A_Model;
+    		methodTypeAndParameters : "EObject currentElement";
+    		methodCall :  "AModelController.getInstance().removeA2((A2) currentElement)";
+    		methodParameters : "currentElement";
+    		metaclassName : A2;
+    		metaclassObject : "AmodelPackage.eINSTANCE.getA2()";
+    	}  
+    	
+    	redefined delete action deleteA3 {
+    		roleName : A_Model;
+    		methodTypeAndParameters : "EObject currentElement";
+    		methodCall :  "AModelController.getInstance().removeA3((A3) currentElement)";
+    		methodParameters : "currentElement";
+    		metaclassName : A3;
+    		metaclassObject : "AmodelPackage.eINSTANCE.getA3()";
+    	}  
+    	
+    	redefined delete action deleteA4 {
+    		roleName : A_Model;
+    		methodTypeAndParameters : "EObject currentElement";
+    		methodCall :  "AModelController.getInstance().removeA4((A4) currentElement)";
+    		methodParameters : "currentElement";
+    		metaclassName : A4;
+    		metaclassObject : "AmodelPackage.eINSTANCE.getA4()";
+    	}  
+    	
+    	
+    	// B model language actions
+    	
+    	redefined create action createNewB1 {
+    		roleName : B_Model;
+    		methodTypeAndParameters : "EObject owner, String name";
+    		methodCall :  "BModelController.getInstance().createB1((BModel) owner, name)";
+    		methodParameters : "owner, name";
+    		metaclassName : B1;
+    		metaclassObject : "BmodelPackage.eINSTANCE.getB1()";
+    	}
+    	
+    	redefined create action createNewB3 {
+    		roleName : B_Model;
+    		methodTypeAndParameters : "EObject owner, String name";
+    		methodCall :  "BModelController.getInstance().createB3((BModel) owner, name)";
+    		methodParameters : "owner, name";
+    		metaclassName : B3;
+    		metaclassObject : "BmodelPackage.eINSTANCE.getB3()";
+    	}
+    	
+    	redefined delete action deleteB1 {
+    		roleName : B_Model;
+    		methodTypeAndParameters : "EObject currentElement";
+    		methodCall :  "BModelController.getInstance().removeB1((B1) currentElement)";
+    		methodParameters : "currentElement";
+    		metaclassName : B1;
+    		metaclassObject : "BmodelPackage.eINSTANCE.getB1()";
+    	}  
+    	
+    	redefined delete action deleteB3 {
+    		roleName : B_Model;
+    		methodTypeAndParameters : "EObject currentElement";
+    		methodCall :  "BModelController.getInstance().removeB3((B3) currentElement)";
+    		methodParameters : "currentElement";
+    		metaclassName : B3;
+    		metaclassObject : "BmodelPackage.eINSTANCE.getB3()";
+    	}
+    	
+    	// C MOdel actions
+    	redefined create action createNewC1 {
+    		roleName : C_Model;
+    		methodTypeAndParameters : "EObject owner, String name";
+    		methodCall :  "CModelController.getInstance().createC1((CModel) owner, name)";
+    		methodParameters : "owner, name";
+    		metaclassName : C1;
+    		metaclassObject : "CmodelPackage.eINSTANCE.getC1()";
+    		
+    	}
+    	 
+    	 redefined create action createNewC2 {
+    		roleName : C_Model;
+    		methodTypeAndParameters : "EObject owner, String name";
+    		methodCall :  "CModelController.getInstance().createC2((CModel) owner, name)";
+    		methodParameters : "owner, name";
+    		metaclassName : C2;
+    		metaclassObject : "CmodelPackage.eINSTANCE.getC2()";
+    		secondaryEffects {
+    			languageElement : "CmodelPackage.eINSTANCE.getC1()";
+    		}
+    	} 
+    	
+    	redefined create action createNewC3 {
+    		roleName : C_Model;
+    		methodTypeAndParameters : "EObject owner, String name";
+    		methodCall :  "CModelController.getInstance().createC3((CModel) owner, name)";
+    		methodParameters : "owner, name";
+    		metaclassName : C3;
+    		metaclassObject : "CmodelPackage.eINSTANCE.getC3()";
+    		
+    	}
+    	
+    	redefined create action createNewC4 {
+    		roleName : C_Model;
+    		methodTypeAndParameters : "EObject owner, String name";
+    		methodCall :  "CModelController.getInstance().createC4((CModel) owner, name)";
+    		methodParameters : "owner, name";
+    		metaclassName : C4;
+    		metaclassObject : "CmodelPackage.eINSTANCE.getC4()";
+    		
+    	}  
+    	
+    	redefined delete action deleteC1 {
+    		roleName : C_Model;
+    		methodTypeAndParameters : "EObject currentElement";
+    		methodCall :  "CModelController.getInstance().removeC1((C1) currentElement)";
+    		methodParameters : "currentElement";
+    		metaclassName : C1;
+    		metaclassObject : "CmodelPackage.eINSTANCE.getC1()";
+    	}
+    	
+    	redefined delete action deleteC2 {
+    		roleName : C_Model;
+    		methodTypeAndParameters : "EObject currentElement";
+    		methodCall :  "CModelController.getInstance().removeC2((C2) currentElement)";
+    		methodParameters : "currentElement";
+    		metaclassName : C2;
+    		metaclassObject : "CmodelPackage.eINSTANCE.getC2()";
+    	}
+    	
+    	redefined delete action deleteC3 {
+    		roleName : C_Model;
+    		methodTypeAndParameters : "EObject currentElement";
+    		methodCall :  "CModelController.getInstance().removeC3((C3) currentElement)";
+    		methodParameters : "currentElement";
+    		metaclassName : C3;
+    		metaclassObject : "CmodelPackage.eINSTANCE.getC3()";
+    	}
+    	
+    	redefined delete action deleteC4 {
+    		roleName : C_Model;
+    		methodTypeAndParameters : "EObject currentElement";
+    		methodCall :  "CModelController.getInstance().removeC4((C4) currentElement)";
+    		methodParameters : "currentElement";
+    		metaclassName : C4;
+    		metaclassObject : "CmodelPackage.eINSTANCE.getC4()";
+    	}    
+    }
+    
+      
+      
+       // mappings
+       // root model element mapping
+    mappings {
+    	// language element mappings for root model element
+    	 mapping AModel_BModel {
+            fromCardinality : 1;
+            toCardinality : 1;
+            fromElement : AModel from A_Model fromGetElement "AmodelPackage.eINSTANCE.getAModel()";
+            toELement : BModel from B_Model toGetElement "BmodelPackage.eINSTANCE.getBModel()";
+    
+        }
+        
+        mapping AModel_CModel {
+            fromCardinality : 1;
+            toCardinality : 1;
+            fromElement : AModel from A_Model fromGetElement "AmodelPackage.eINSTANCE.getAModel()";
+            toELement : CModel from C_Model toGetElement "CmodelPackage.eINSTANCE.getCModel()";
+    
+        }
+        
+        mapping BModel_CModel {
+            fromCardinality : 1;
+            toCardinality : 1;
+            fromElement : BModel from B_Model fromGetElement "BmodelPackage.eINSTANCE.getBModel()";
+            toELement : CModel from C_Model toGetElement "CmodelPackage.eINSTANCE.getCModel()";
+    
+        }         
+                 // CREATE - C2
+        mapping A2_C2 {
+            fromCardinality : 1;
+            toCardinality : 1..*;
+            fromElement : AModel from A_Model fromGetElement "AmodelPackage.eINSTANCE.getA2()";
+            toELement : CModel from C_Model toGetElement "CmodelPackage.eINSTANCE.getC2()";
+            
+            nested mappings {
+            	nested mapping A2Name_C2Name {
+            		matchMaker : true;
+            		fromElement : elementName "name" from A_Model;
+                    toELement : elementName "name" from C_Model;
+            	}	
+            }
+        } 
+        
+          // CAN_CREATE_MANY - C3
+        mapping A3_B3 {
+            fromCardinality : 0..1;
+            toCardinality : 1..*;
+            fromElement : AModel from A_Model fromGetElement "AmodelPackage.eINSTANCE.getA3()";
+            toELement : BModel from B_Model toGetElement "BmodelPackage.eINSTANCE.getB3()";
+            
+            nested mappings {
+            	nested mapping A3Name_B3Name {
+            		matchMaker : true;
+            		fromElement : elementName "name" from A_Model;
+                    toELement : elementName "name" from B_Model;
+            	}	
+            }
+        }
+        
+          // CREATE_AT_LEAST_ONE - C4
+        mapping A4_B1 {
+            fromCardinality : 1;
+            toCardinality : 1;
+            fromElement : AModel from A_Model fromGetElement "AmodelPackage.eINSTANCE.getA4()";
+            toELement : BModel from B_Model toGetElement "BmodelPackage.eINSTANCE.getB1()";
+            
+            nested mappings {
+            	nested mapping A4Name_B1Name {
+            		matchMaker : true;
+            		fromElement : elementName "name" from A_Model;
+                    toELement : elementName "name" from B_Model;
+            	}	
+            }
+        }
+        
+        mapping B1_C1 {
+            fromCardinality : 0..1;
+            toCardinality : 1..*;
+            fromElement : BModel from B_Model fromGetElement "BmodelPackage.eINSTANCE.getB1()";
+            toELement : CModel from C_Model toGetElement "CmodelPackage.eINSTANCE.getC1()";
+            
+            nested mappings {
+            	nested mapping B1Name_C1Name {
+            		matchMaker : true;
+            		fromElement : elementName "name" from A_Model;
+                    toELement : elementName "name" from B_Model;
+            	}	
+            }
+        }
+        
+    	}
+    
+    }
+  

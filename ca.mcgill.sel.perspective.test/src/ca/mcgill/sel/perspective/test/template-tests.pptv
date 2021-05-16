@@ -3,25 +3,25 @@ perspective PerspectiveTest {
     default A_Model;
      
     display name "Template Test";
-            
+           
     languages {
     	existing language AModel {
             rootPackage "ca.mcgill.sel.amodel";
             packageClassName AmodelPackage;
             controllerPackage "ca.mcgill.sel.amodel.controller";
             roleName A_Model;
-            facadeActionPackage : "ca.mcgill.sel.ram.ui.perspective.test";
+            facadeActionPackage : "ca.mcgill.sel.perspective.test";
         }  
-             
+              
         existing language BModel {
             rootPackage "ca.mcgill.sel.bmodel";
             packageClassName BmodelPackage;
             controllerPackage "ca.mcgill.sel.bmodel.controller";
             roleName B_Model;
-            facadeActionPackage : "ca.mcgill.sel.ram.ui.perspective.test";
+            facadeActionPackage : "ca.mcgill.sel.perspective.test";
         }
           
-    }    
+    }     
            
     actions {
     	

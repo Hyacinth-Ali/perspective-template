@@ -10,9 +10,9 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
-public class BaseFacade {
+public class ModelElementStatus {
 
-	public static BaseFacade INSTANCE = new BaseFacade();
+	public static ModelElementStatus INSTANCE = new ModelElementStatus();
 	/**
 	 * A list to contain all the existing afterElements before 
 	 * the create action is called.
@@ -35,7 +35,7 @@ public class BaseFacade {
 	 */
 	private Map<EObject, Collection<EObject>> after;
 	
-	private BaseFacade() {
+	private ModelElementStatus() {
 		beforeElements = new ArrayList<EObject>();
 		before = new HashMap<EObject, Collection<EObject>>();
 		after = new HashMap<EObject, Collection<EObject>>();

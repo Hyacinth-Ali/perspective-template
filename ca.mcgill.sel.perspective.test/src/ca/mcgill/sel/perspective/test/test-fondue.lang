@@ -1,7 +1,7 @@
 
 
 
-language CModel {
+language CModelLanguage {
     rootPackage "ca.mcgill.sel.cmodel";
     rootControllerPackage "ca.mcgill.sel.cmodel.controller";
     packageClassName CmodelPackage;

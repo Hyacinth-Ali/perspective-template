@@ -29,6 +29,7 @@ import ca.mcgill.sel.bmodel.B8;
 import ca.mcgill.sel.bmodel.B9;
 import ca.mcgill.sel.bmodel.BmodelPackage;
 import ca.mcgill.sel.bmodel.controller.BModelController;
+import ca.mcgill.sel.cmodel.CmodelPackage;
 import ca.mcgill.sel.core.COREPerspective;
 import ca.mcgill.sel.core.COREScene;
 
@@ -50,11 +51,12 @@ public class AModelFacadeAction {
 			 String name) {
 
 		EObject newElement = null;
-		EObject otherMetaclass = BmodelPackage.eINSTANCE.getB2();
 		
-		if (metaclass.equals(otherMetaclass)) {
+		if (metaclass.equals(BmodelPackage.eINSTANCE.getB2())) {
 			newElement = HandleBModelAction.createB2(perspective, scene, roleName, otherOwner, name);
-		}
+		} else if (metaclass.equals(CmodelPackage.eINSTANCE.getC2())) {
+			newElement = HandleCModelAction.createC2(perspective, scene, roleName, otherOwner, name);
+		} 
 		return newElement;
 	}
 	
@@ -74,10 +76,13 @@ public class AModelFacadeAction {
 			 String name) {
 
 		EObject newElement = null;
-		EObject otherMetaclass = BmodelPackage.eINSTANCE.getB4();
 		
-		if (metaclass.equals(otherMetaclass)) {
+		if (metaclass.equals(BmodelPackage.eINSTANCE.getB1())) {
+			newElement = HandleBModelAction.createB1(perspective, scene, roleName, otherOwner, name);
+		} else if (metaclass.equals(BmodelPackage.eINSTANCE.getB4())) {
 			newElement = HandleBModelAction.createB4(perspective, scene, roleName, otherOwner, name);
+		} else if (metaclass.equals(CmodelPackage.eINSTANCE.getC1())) {
+			newElement = HandleCModelAction.createC1(perspective, scene, roleName, otherOwner, name);
 		}
 		return newElement;
 	}

@@ -24,7 +24,7 @@ import ca.mcgill.sel.ram.ui.perspective.controller.PerspectiveException;
 
 import ca.mcgill.sel.amodel.*;
 import ca.mcgill.sel.amodel.controller.*;
-import ca.mcgill.sel.ram.ui.perspective.test.*;
+import ca.mcgill.sel.perspective.test.*;
 
 public class RedefinedAModelAction {
 public static void createNewA1(COREPerspective perspective, COREScene scene, String currentRole, 
@@ -36,17 +36,17 @@ public static void createNewA1(COREPerspective perspective, COREScene scene, Str
 	createSecondaryEffects.add(AmodelPackage.eINSTANCE.getA4());
 	
 	// record existing elements.
-	BaseFacade.INSTANCE.setMainExistingElements(owner, AmodelPackage.eINSTANCE.getA1());
-	BaseFacade.INSTANCE.setOtherExistingElements(owner, createSecondaryEffects);
+	ModelElementStatus.INSTANCE.setMainExistingElements(owner, AmodelPackage.eINSTANCE.getA1());
+	ModelElementStatus.INSTANCE.setOtherExistingElements(owner, createSecondaryEffects);
 	
 	// primary language action to create a new class
 	AModelController.getInstance().createA1((AModel) owner, name);
 
 	// retrieve the new element
-	EObject newElement = BaseFacade.INSTANCE.getNewElement(owner, AmodelPackage.eINSTANCE.getA1());
+	EObject newElement = ModelElementStatus.INSTANCE.getNewElement(owner, AmodelPackage.eINSTANCE.getA1());
 	
 	// get other new elements foe each language element
-	Map<EObject, Collection<EObject>> after = BaseFacade.INSTANCE.getOtherNewElements(owner, createSecondaryEffects);
+	Map<EObject, Collection<EObject>> after = ModelElementStatus.INSTANCE.getOtherNewElements(owner, createSecondaryEffects);
 
 	createOtherElementsForA1(perspective, scene, currentRole, newElement,
 	 	owner, name);
@@ -649,17 +649,17 @@ public static void createNewA2(COREPerspective perspective, COREScene scene, Str
 	List<EObject> createSecondaryEffects = new ArrayList<EObject>();
 	
 	// record existing elements.
-	BaseFacade.INSTANCE.setMainExistingElements(owner, AmodelPackage.eINSTANCE.getA2());
-	BaseFacade.INSTANCE.setOtherExistingElements(owner, createSecondaryEffects);
+	ModelElementStatus.INSTANCE.setMainExistingElements(owner, AmodelPackage.eINSTANCE.getA2());
+	ModelElementStatus.INSTANCE.setOtherExistingElements(owner, createSecondaryEffects);
 	
 	// primary language action to create a new class
 	AModelController.getInstance().createA2((AModel) owner, name);
 
 	// retrieve the new element
-	EObject newElement = BaseFacade.INSTANCE.getNewElement(owner, AmodelPackage.eINSTANCE.getA2());
+	EObject newElement = ModelElementStatus.INSTANCE.getNewElement(owner, AmodelPackage.eINSTANCE.getA2());
 	
 	// get other new elements foe each language element
-	Map<EObject, Collection<EObject>> after = BaseFacade.INSTANCE.getOtherNewElements(owner, createSecondaryEffects);
+	Map<EObject, Collection<EObject>> after = ModelElementStatus.INSTANCE.getOtherNewElements(owner, createSecondaryEffects);
 
 	createOtherElementsForA2(perspective, scene, currentRole, newElement,
 	 	owner, name);
@@ -1262,17 +1262,17 @@ public static void createNewA3(COREPerspective perspective, COREScene scene, Str
 	List<EObject> createSecondaryEffects = new ArrayList<EObject>();
 	
 	// record existing elements.
-	BaseFacade.INSTANCE.setMainExistingElements(owner, AmodelPackage.eINSTANCE.getA3());
-	BaseFacade.INSTANCE.setOtherExistingElements(owner, createSecondaryEffects);
+	ModelElementStatus.INSTANCE.setMainExistingElements(owner, AmodelPackage.eINSTANCE.getA3());
+	ModelElementStatus.INSTANCE.setOtherExistingElements(owner, createSecondaryEffects);
 	
 	// primary language action to create a new class
 	AModelController.getInstance().createA3((AModel) owner, name);
 
 	// retrieve the new element
-	EObject newElement = BaseFacade.INSTANCE.getNewElement(owner, AmodelPackage.eINSTANCE.getA3());
+	EObject newElement = ModelElementStatus.INSTANCE.getNewElement(owner, AmodelPackage.eINSTANCE.getA3());
 	
 	// get other new elements foe each language element
-	Map<EObject, Collection<EObject>> after = BaseFacade.INSTANCE.getOtherNewElements(owner, createSecondaryEffects);
+	Map<EObject, Collection<EObject>> after = ModelElementStatus.INSTANCE.getOtherNewElements(owner, createSecondaryEffects);
 
 	createOtherElementsForA3(perspective, scene, currentRole, newElement,
 	 	owner, name);
@@ -1875,17 +1875,17 @@ public static void createNewA4(COREPerspective perspective, COREScene scene, Str
 	List<EObject> createSecondaryEffects = new ArrayList<EObject>();
 	
 	// record existing elements.
-	BaseFacade.INSTANCE.setMainExistingElements(owner, AmodelPackage.eINSTANCE.getA4());
-	BaseFacade.INSTANCE.setOtherExistingElements(owner, createSecondaryEffects);
+	ModelElementStatus.INSTANCE.setMainExistingElements(owner, AmodelPackage.eINSTANCE.getA4());
+	ModelElementStatus.INSTANCE.setOtherExistingElements(owner, createSecondaryEffects);
 	
 	// primary language action to create a new class
 	AModelController.getInstance().createA4((AModel) owner, name);
 
 	// retrieve the new element
-	EObject newElement = BaseFacade.INSTANCE.getNewElement(owner, AmodelPackage.eINSTANCE.getA4());
+	EObject newElement = ModelElementStatus.INSTANCE.getNewElement(owner, AmodelPackage.eINSTANCE.getA4());
 	
 	// get other new elements foe each language element
-	Map<EObject, Collection<EObject>> after = BaseFacade.INSTANCE.getOtherNewElements(owner, createSecondaryEffects);
+	Map<EObject, Collection<EObject>> after = ModelElementStatus.INSTANCE.getOtherNewElements(owner, createSecondaryEffects);
 
 	createOtherElementsForA4(perspective, scene, currentRole, newElement,
 	 	owner, name);
@@ -2488,17 +2488,17 @@ public static void createNewA5(COREPerspective perspective, COREScene scene, Str
 	List<EObject> createSecondaryEffects = new ArrayList<EObject>();
 	
 	// record existing elements.
-	BaseFacade.INSTANCE.setMainExistingElements(owner, AmodelPackage.eINSTANCE.getA5());
-	BaseFacade.INSTANCE.setOtherExistingElements(owner, createSecondaryEffects);
+	ModelElementStatus.INSTANCE.setMainExistingElements(owner, AmodelPackage.eINSTANCE.getA5());
+	ModelElementStatus.INSTANCE.setOtherExistingElements(owner, createSecondaryEffects);
 	
 	// primary language action to create a new class
 	AModelController.getInstance().createA5((AModel) owner, name);
 
 	// retrieve the new element
-	EObject newElement = BaseFacade.INSTANCE.getNewElement(owner, AmodelPackage.eINSTANCE.getA5());
+	EObject newElement = ModelElementStatus.INSTANCE.getNewElement(owner, AmodelPackage.eINSTANCE.getA5());
 	
 	// get other new elements foe each language element
-	Map<EObject, Collection<EObject>> after = BaseFacade.INSTANCE.getOtherNewElements(owner, createSecondaryEffects);
+	Map<EObject, Collection<EObject>> after = ModelElementStatus.INSTANCE.getOtherNewElements(owner, createSecondaryEffects);
 
 	createOtherElementsForA5(perspective, scene, currentRole, newElement,
 	 	owner, name);
@@ -3101,17 +3101,17 @@ public static void createNewA6(COREPerspective perspective, COREScene scene, Str
 	List<EObject> createSecondaryEffects = new ArrayList<EObject>();
 	
 	// record existing elements.
-	BaseFacade.INSTANCE.setMainExistingElements(owner, AmodelPackage.eINSTANCE.getA6());
-	BaseFacade.INSTANCE.setOtherExistingElements(owner, createSecondaryEffects);
+	ModelElementStatus.INSTANCE.setMainExistingElements(owner, AmodelPackage.eINSTANCE.getA6());
+	ModelElementStatus.INSTANCE.setOtherExistingElements(owner, createSecondaryEffects);
 	
 	// primary language action to create a new class
 	AModelController.getInstance().createA6((AModel) owner, name);
 
 	// retrieve the new element
-	EObject newElement = BaseFacade.INSTANCE.getNewElement(owner, AmodelPackage.eINSTANCE.getA6());
+	EObject newElement = ModelElementStatus.INSTANCE.getNewElement(owner, AmodelPackage.eINSTANCE.getA6());
 	
 	// get other new elements foe each language element
-	Map<EObject, Collection<EObject>> after = BaseFacade.INSTANCE.getOtherNewElements(owner, createSecondaryEffects);
+	Map<EObject, Collection<EObject>> after = ModelElementStatus.INSTANCE.getOtherNewElements(owner, createSecondaryEffects);
 
 	createOtherElementsForA6(perspective, scene, currentRole, newElement,
 	 	owner, name);
@@ -3714,17 +3714,17 @@ public static void createNewA7(COREPerspective perspective, COREScene scene, Str
 	List<EObject> createSecondaryEffects = new ArrayList<EObject>();
 	
 	// record existing elements.
-	BaseFacade.INSTANCE.setMainExistingElements(owner, AmodelPackage.eINSTANCE.getA7());
-	BaseFacade.INSTANCE.setOtherExistingElements(owner, createSecondaryEffects);
+	ModelElementStatus.INSTANCE.setMainExistingElements(owner, AmodelPackage.eINSTANCE.getA7());
+	ModelElementStatus.INSTANCE.setOtherExistingElements(owner, createSecondaryEffects);
 	
 	// primary language action to create a new class
 	AModelController.getInstance().createA7((AModel) owner, name);
 
 	// retrieve the new element
-	EObject newElement = BaseFacade.INSTANCE.getNewElement(owner, AmodelPackage.eINSTANCE.getA7());
+	EObject newElement = ModelElementStatus.INSTANCE.getNewElement(owner, AmodelPackage.eINSTANCE.getA7());
 	
 	// get other new elements foe each language element
-	Map<EObject, Collection<EObject>> after = BaseFacade.INSTANCE.getOtherNewElements(owner, createSecondaryEffects);
+	Map<EObject, Collection<EObject>> after = ModelElementStatus.INSTANCE.getOtherNewElements(owner, createSecondaryEffects);
 
 	createOtherElementsForA7(perspective, scene, currentRole, newElement,
 	 	owner, name);
@@ -4327,17 +4327,17 @@ public static void createNewA8(COREPerspective perspective, COREScene scene, Str
 	List<EObject> createSecondaryEffects = new ArrayList<EObject>();
 	
 	// record existing elements.
-	BaseFacade.INSTANCE.setMainExistingElements(owner, AmodelPackage.eINSTANCE.getA8());
-	BaseFacade.INSTANCE.setOtherExistingElements(owner, createSecondaryEffects);
+	ModelElementStatus.INSTANCE.setMainExistingElements(owner, AmodelPackage.eINSTANCE.getA8());
+	ModelElementStatus.INSTANCE.setOtherExistingElements(owner, createSecondaryEffects);
 	
 	// primary language action to create a new class
 	AModelController.getInstance().createA8((AModel) owner, name);
 
 	// retrieve the new element
-	EObject newElement = BaseFacade.INSTANCE.getNewElement(owner, AmodelPackage.eINSTANCE.getA8());
+	EObject newElement = ModelElementStatus.INSTANCE.getNewElement(owner, AmodelPackage.eINSTANCE.getA8());
 	
 	// get other new elements foe each language element
-	Map<EObject, Collection<EObject>> after = BaseFacade.INSTANCE.getOtherNewElements(owner, createSecondaryEffects);
+	Map<EObject, Collection<EObject>> after = ModelElementStatus.INSTANCE.getOtherNewElements(owner, createSecondaryEffects);
 
 	createOtherElementsForA8(perspective, scene, currentRole, newElement,
 	 	owner, name);
@@ -4940,17 +4940,17 @@ public static void createNewA9(COREPerspective perspective, COREScene scene, Str
 	List<EObject> createSecondaryEffects = new ArrayList<EObject>();
 	
 	// record existing elements.
-	BaseFacade.INSTANCE.setMainExistingElements(owner, AmodelPackage.eINSTANCE.getA9());
-	BaseFacade.INSTANCE.setOtherExistingElements(owner, createSecondaryEffects);
+	ModelElementStatus.INSTANCE.setMainExistingElements(owner, AmodelPackage.eINSTANCE.getA9());
+	ModelElementStatus.INSTANCE.setOtherExistingElements(owner, createSecondaryEffects);
 	
 	// primary language action to create a new class
 	AModelController.getInstance().createA9((AModel) owner, name);
 
 	// retrieve the new element
-	EObject newElement = BaseFacade.INSTANCE.getNewElement(owner, AmodelPackage.eINSTANCE.getA9());
+	EObject newElement = ModelElementStatus.INSTANCE.getNewElement(owner, AmodelPackage.eINSTANCE.getA9());
 	
 	// get other new elements foe each language element
-	Map<EObject, Collection<EObject>> after = BaseFacade.INSTANCE.getOtherNewElements(owner, createSecondaryEffects);
+	Map<EObject, Collection<EObject>> after = ModelElementStatus.INSTANCE.getOtherNewElements(owner, createSecondaryEffects);
 
 	createOtherElementsForA9(perspective, scene, currentRole, newElement,
 	 	owner, name);
@@ -5553,17 +5553,17 @@ public static void createNewA10(COREPerspective perspective, COREScene scene, St
 	List<EObject> createSecondaryEffects = new ArrayList<EObject>();
 	
 	// record existing elements.
-	BaseFacade.INSTANCE.setMainExistingElements(owner, AmodelPackage.eINSTANCE.getA10());
-	BaseFacade.INSTANCE.setOtherExistingElements(owner, createSecondaryEffects);
+	ModelElementStatus.INSTANCE.setMainExistingElements(owner, AmodelPackage.eINSTANCE.getA10());
+	ModelElementStatus.INSTANCE.setOtherExistingElements(owner, createSecondaryEffects);
 	
 	// primary language action to create a new class
 	AModelController.getInstance().createA10((AModel) owner, name);
 
 	// retrieve the new element
-	EObject newElement = BaseFacade.INSTANCE.getNewElement(owner, AmodelPackage.eINSTANCE.getA10());
+	EObject newElement = ModelElementStatus.INSTANCE.getNewElement(owner, AmodelPackage.eINSTANCE.getA10());
 	
 	// get other new elements foe each language element
-	Map<EObject, Collection<EObject>> after = BaseFacade.INSTANCE.getOtherNewElements(owner, createSecondaryEffects);
+	Map<EObject, Collection<EObject>> after = ModelElementStatus.INSTANCE.getOtherNewElements(owner, createSecondaryEffects);
 
 	createOtherElementsForA10(perspective, scene, currentRole, newElement,
 	 	owner, name);
@@ -6166,17 +6166,17 @@ public static void createNewA11(COREPerspective perspective, COREScene scene, St
 	List<EObject> createSecondaryEffects = new ArrayList<EObject>();
 	
 	// record existing elements.
-	BaseFacade.INSTANCE.setMainExistingElements(owner, AmodelPackage.eINSTANCE.getA11());
-	BaseFacade.INSTANCE.setOtherExistingElements(owner, createSecondaryEffects);
+	ModelElementStatus.INSTANCE.setMainExistingElements(owner, AmodelPackage.eINSTANCE.getA11());
+	ModelElementStatus.INSTANCE.setOtherExistingElements(owner, createSecondaryEffects);
 	
 	// primary language action to create a new class
 	AModelController.getInstance().createA11((AModel) owner, name);
 
 	// retrieve the new element
-	EObject newElement = BaseFacade.INSTANCE.getNewElement(owner, AmodelPackage.eINSTANCE.getA11());
+	EObject newElement = ModelElementStatus.INSTANCE.getNewElement(owner, AmodelPackage.eINSTANCE.getA11());
 	
 	// get other new elements foe each language element
-	Map<EObject, Collection<EObject>> after = BaseFacade.INSTANCE.getOtherNewElements(owner, createSecondaryEffects);
+	Map<EObject, Collection<EObject>> after = ModelElementStatus.INSTANCE.getOtherNewElements(owner, createSecondaryEffects);
 
 	createOtherElementsForA11(perspective, scene, currentRole, newElement,
 	 	owner, name);
@@ -6779,17 +6779,17 @@ public static void createNewA12(COREPerspective perspective, COREScene scene, St
 	List<EObject> createSecondaryEffects = new ArrayList<EObject>();
 	
 	// record existing elements.
-	BaseFacade.INSTANCE.setMainExistingElements(owner, AmodelPackage.eINSTANCE.getA12());
-	BaseFacade.INSTANCE.setOtherExistingElements(owner, createSecondaryEffects);
+	ModelElementStatus.INSTANCE.setMainExistingElements(owner, AmodelPackage.eINSTANCE.getA12());
+	ModelElementStatus.INSTANCE.setOtherExistingElements(owner, createSecondaryEffects);
 	
 	// primary language action to create a new class
 	AModelController.getInstance().createA12((AModel) owner, name);
 
 	// retrieve the new element
-	EObject newElement = BaseFacade.INSTANCE.getNewElement(owner, AmodelPackage.eINSTANCE.getA12());
+	EObject newElement = ModelElementStatus.INSTANCE.getNewElement(owner, AmodelPackage.eINSTANCE.getA12());
 	
 	// get other new elements foe each language element
-	Map<EObject, Collection<EObject>> after = BaseFacade.INSTANCE.getOtherNewElements(owner, createSecondaryEffects);
+	Map<EObject, Collection<EObject>> after = ModelElementStatus.INSTANCE.getOtherNewElements(owner, createSecondaryEffects);
 
 	createOtherElementsForA12(perspective, scene, currentRole, newElement,
 	 	owner, name);

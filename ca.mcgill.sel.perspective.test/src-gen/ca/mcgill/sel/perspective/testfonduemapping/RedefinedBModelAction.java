@@ -1,4 +1,4 @@
-package ca.mcgill.sel.perspective.perspectivetest;
+package ca.mcgill.sel.perspective.testfonduemapping;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -42,74 +42,26 @@ public class RedefinedBModelAction {
  	        
 
 
- 	        
-
-
- 	        
-
-
- 	        
-
-
- 	        
-
-
- 	        
-
-
- 	        
-
-
- 	        
-
-
- 	        
-
-
- 	        
-
-
- 	        
-
-
- 	        
-
-
- 	        
-
-
- 	        
-
-
- 	        
-
-
- 	        
-
-
- 	        
-
-
-public static void createNewB4(COREPerspective perspective, COREScene scene, String currentRole, 
+public static void createNewB1(COREPerspective perspective, COREScene scene, String currentRole, 
 	EObject owner, String name) {
 	
 	List<EObject> createSecondaryEffects = new ArrayList<EObject>();
 	
 	// record existing elements.
-	ModelElementStatus.INSTANCE.setMainExistingElements(owner, BmodelPackage.eINSTANCE.getB4());
+	ModelElementStatus.INSTANCE.setMainExistingElements(owner, BmodelPackage.eINSTANCE.getB1());
 	ModelElementStatus.INSTANCE.setOtherExistingElements(owner, createSecondaryEffects);
 	
 	// primary language action to create a new class
-	BModelController.getInstance().createB4((BModel) owner, name);
+	BModelController.getInstance().createB1((BModel) owner, name);
 
 	// retrieve the new element
-	EObject newElement = ModelElementStatus.INSTANCE.getNewElement(owner, BmodelPackage.eINSTANCE.getB4());
+	EObject newElement = ModelElementStatus.INSTANCE.getNewElement(owner, BmodelPackage.eINSTANCE.getB1());
 	
 	// get other new elements for each language element
 	Map<EObject, Collection<EObject>> a = ModelElementStatus.INSTANCE.getOtherNewElements(owner, createSecondaryEffects);
 	Map<EObject, Collection<EObject>> after = new HashMap<EObject, Collection<EObject>>(a);
 
-	createOtherElementsForB4(perspective, scene, currentRole, newElement,
+	createOtherElementsForB1(perspective, scene, currentRole, newElement,
 	 	owner, name);
 	 	
 	HandleSecondaryEffect.INSTANCE.createSecondaryEffects(perspective, scene, currentRole, after, 
@@ -124,7 +76,7 @@ public static void createNewB4(COREPerspective perspective, COREScene scene, Str
 
 }
 
-public static void createOtherElementsForB4(COREPerspective perspective, COREScene scene, String currentRoleName,
+public static void createOtherElementsForB1(COREPerspective perspective, COREScene scene, String currentRoleName,
 		EObject currentElement, EObject owner, String name) throws PerspectiveException {
 
 	List<CORELanguageElementMapping> mappingTypes = COREPerspectiveUtil.INSTANCE.getMappingTypes(perspective,
@@ -150,52 +102,52 @@ public static void createOtherElementsForB4(COREPerspective perspective, CORESce
 		// C1/C9
 		case CAN_CREATE:
 		case CAN_CREATE_OR_USE_NON_MAPPED:
-			canCreateOrUseNonMappedElementForB4(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
+			canCreateOrUseNonMappedElementForB1(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
 					otherLE, owner, name);
 			break;
 
 		// C2/C10
 		case CREATE:
 		case CREATE_OR_USE_NON_MAPPED:
-			createOrUseNonMappedElementForB4(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
+			createOrUseNonMappedElementForB1(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
 					otherLE, owner, name);
 			break;
 
 		// C3/C11
 		case CAN_CREATE_MANY:
 		case CAN_CREATE_OR_USE_NON_MAPPED_MANY:
-			canCreateOrUseNonMappedManyElementsForB4(perspective, mappingType, scene, currentElement, currentRoleName,
+			canCreateOrUseNonMappedManyElementsForB1(perspective, mappingType, scene, currentElement, currentRoleName,
 					otherRoleName, otherLE, owner, name);
 			break;
 
 		// C4/C12
 		case CREATE_AT_LEAST_ONE:
 		case CREATE_OR_USE_NON_MAPPED_AT_LEAST_ONE:
-			createOrUseNonMappedAtLeastOneElementForB4(perspective, mappingType, scene, currentElement, currentRoleName,
+			createOrUseNonMappedAtLeastOneElementForB1(perspective, mappingType, scene, currentElement, currentRoleName,
 					otherRoleName, otherLE, owner, name);
 			break;
 		
 		// C5
 		case CAN_CREATE_OR_USE:
-			canCreateOrUseElementForB4(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
+			canCreateOrUseElementForB1(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
 					owner, name);
 			break;
 
 		// C6
 		case CREATE_OR_USE:
-			createOrUseElementForB4(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
+			createOrUseElementForB1(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
 					owner, name);
 			break;
 
 		// C7
 		case CAN_CREATE_OR_USE_MANY:
-			canCreateOrUseManyElementsForB4(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
+			canCreateOrUseManyElementsForB1(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
 					owner, name);
 			break;
 
 		// C8
 		case CREATE_OR_USE_AT_LEAST_ONE:
-			createOrUseAtLeastOneElementForB4(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
+			createOrUseAtLeastOneElementForB1(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
 					owner, name);
 			break;
 
@@ -220,7 +172,7 @@ public static void createOtherElementsForB4(COREPerspective perspective, CORESce
  * @param currentOwner
  * @param name
  */
-private static void canCreateOrUseElementForB4(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene,
+private static void canCreateOrUseElementForB1(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene,
 		EObject currentElement, String currentRoleName, String otherRoleName, EObject otherLE, EObject owner, String name) {
 
 	EObject otherElement = null;
@@ -232,13 +184,13 @@ private static void canCreateOrUseElementForB4(COREPerspective perspective, CORE
 		otherElement = QueryAction.INSTANCE.findCorrespondingElement(scene, mappingType, currentElement.eClass(), currentElement, currentRoleName, otherRoleName);
 		if (otherElement == null) {
 			otherExist = false;
-			otherElement = BModelFacadeAction.createOtherElementsForB4(perspective, otherLE, otherRoleName, scene, owner, name);
+			otherElement = BModelFacadeAction.createOtherElementsForB1(perspective, otherLE, otherRoleName, scene, owner, name);
 		}
 		COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
 		// save the recent changes
 		// BasePerspectiveController.saveModel(scene);
 		if(!otherExist) {
-			createOtherElementsForB4(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(), name);	
+			createOtherElementsForB1(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(), name);	
 		}
 	}
 }
@@ -261,7 +213,7 @@ private static void canCreateOrUseElementForB4(COREPerspective perspective, CORE
  * @param currentOwner
  * @param name
  */
-private static void createOrUseElementForB4(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene, EObject currentElement,
+private static void createOrUseElementForB1(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene, EObject currentElement,
 		String currentRoleName, String otherRoleName, EObject otherLE, EObject owner, String name) {
 
 	EObject otherElement = null;
@@ -269,13 +221,13 @@ private static void createOrUseElementForB4(COREPerspective perspective, CORELan
 	otherElement = QueryAction.INSTANCE.findCorrespondingElement(scene, mappingType, currentElement.eClass(), currentElement, currentRoleName, otherRoleName);
 	if (otherElement == null) {
 		otherExist = false;
-		otherElement = BModelFacadeAction.createOtherElementsForB4(perspective, otherLE, otherRoleName, scene, 
+		otherElement = BModelFacadeAction.createOtherElementsForB1(perspective, otherLE, otherRoleName, scene, 
 			owner, name);
 	}
 	COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
 //		BasePerspectiveController.saveModel(scene);
 	if (!otherExist) {
-		createOtherElementsForB4(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(), name);
+		createOtherElementsForB1(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(), name);
 	}
 	
 }
@@ -298,7 +250,7 @@ private static void createOrUseElementForB4(COREPerspective perspective, CORELan
  * @param currentOwner
  * @param name
  */
-private static void canCreateOrUseManyElementsForB4(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene,
+private static void canCreateOrUseManyElementsForB1(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene,
 		EObject currentElement, String currentRoleName, String otherRoleName, EObject otherLE, EObject owner, String name) {
 
 	EObject otherElement = null;
@@ -316,11 +268,11 @@ private static void canCreateOrUseManyElementsForB4(COREPerspective perspective,
 		}
 	}
 	for (int count = 0; count < numberOfMappings; count++) {
-		otherElement = BModelFacadeAction.createOtherElementsForB4(perspective, otherLE, otherRoleName, scene, 
+		otherElement = BModelFacadeAction.createOtherElementsForB1(perspective, otherLE, otherRoleName, scene, 
 									owner, name);
 		COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
 //	  		BasePerspectiveController.saveModel(scene);
-		createOtherElementsForB4(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(),
+		createOtherElementsForB1(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(),
 				name);
 	}
 }
@@ -342,7 +294,7 @@ private static void canCreateOrUseManyElementsForB4(COREPerspective perspective,
  * @param currentOwner
  * @param name
  */
-private static void createOrUseAtLeastOneElementForB4(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene,
+private static void createOrUseAtLeastOneElementForB1(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene,
 		EObject currentElement, String currentRoleName, String otherRoleName, EObject otherLE, EObject owner, String name) {
 
 	EObject otherElement = null;
@@ -360,12 +312,12 @@ private static void createOrUseAtLeastOneElementForB4(COREPerspective perspectiv
 		}
 	}
 	for (int count = 0; count < numberOfMappings; count++) {
-		otherElement = BModelFacadeAction.createOtherElementsForB4(perspective, otherLE, otherRoleName, scene, 
+		otherElement = BModelFacadeAction.createOtherElementsForB1(perspective, otherLE, otherRoleName, scene, 
 									owner, name);
 		COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
 //	  		BasePerspectiveController.saveModel(scene);
 		// call recursive method since a new element was used in the mapping
-		createOtherElementsForB4(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(),
+		createOtherElementsForB1(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(),
 				name);
 	}
 }
@@ -387,7 +339,7 @@ private static void createOrUseAtLeastOneElementForB4(COREPerspective perspectiv
  * @param currentOwner
  * @param name
  */
-private static void canCreateOrUseNonMappedElementForB4(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene,
+private static void canCreateOrUseNonMappedElementForB1(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene,
 		EObject currentElement, String currentRoleName, String otherRoleName, EObject otherLE, EObject owner, String name) {
 
 	EObject otherElement = null;
@@ -399,13 +351,13 @@ private static void canCreateOrUseNonMappedElementForB4(COREPerspective perspect
 		// already mapped.
 		if (otherElement == null || COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene, otherElement).size() != 0) {
 			otherExist = false;
-			otherElement = BModelFacadeAction.createOtherElementsForB4(perspective, otherLE, otherRoleName, scene, 
+			otherElement = BModelFacadeAction.createOtherElementsForB1(perspective, otherLE, otherRoleName, scene, 
 										owner, name);
 		}
 		COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
 //				BasePerspectiveController.saveModel(scene);
 		if (!otherExist) {
-			createOtherElementsForB4(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(), name);
+			createOtherElementsForB1(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(), name);
 		}
 		
 
@@ -429,7 +381,7 @@ private static void canCreateOrUseNonMappedElementForB4(COREPerspective perspect
  * @param currentOwner
  * @param name
  */
-private static void createOrUseNonMappedElementForB4(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene,
+private static void createOrUseNonMappedElementForB1(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene,
 		EObject currentElement, String currentRoleName, String otherRoleName, EObject otherLE, EObject owner, String name) {
 
 	EObject otherElement = null;
@@ -440,14 +392,14 @@ private static void createOrUseNonMappedElementForB4(COREPerspective perspective
 	// or mapped.
 	if (otherElement == null || COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene, otherElement).size() > 0) {
 		otherExist = false;
-		otherElement = BModelFacadeAction.createOtherElementsForB4(perspective, otherLE, otherRoleName, scene, 
+		otherElement = BModelFacadeAction.createOtherElementsForB1(perspective, otherLE, otherRoleName, scene, 
 									owner, name);
 	}
 	COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
 //		BasePerspectiveController.saveModel(scene);
 	// stop the recursion if other element exists.
 	if (!otherExist) {
-		createOtherElementsForB4(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(),
+		createOtherElementsForB1(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(),
 				name);
 	}
 }
@@ -469,7 +421,7 @@ private static void createOrUseNonMappedElementForB4(COREPerspective perspective
  * @param currentOwner
  * @param name
  */
-private static void canCreateOrUseNonMappedManyElementsForB4(COREPerspective perspective, CORELanguageElementMapping mappingType,
+private static void canCreateOrUseNonMappedManyElementsForB1(COREPerspective perspective, CORELanguageElementMapping mappingType,
 		COREScene scene, EObject currentElement, String currentRoleName, String otherRoleName,
 		EObject otherLE, EObject owner, String name) {
 
@@ -490,11 +442,11 @@ private static void canCreateOrUseNonMappedManyElementsForB4(COREPerspective per
 		}
 	}
 	for (int count = 0; count < numberOfMappings; count++) {
-		otherElement = BModelFacadeAction.createOtherElementsForB4(perspective, otherLE, otherRoleName, scene, 
+		otherElement = BModelFacadeAction.createOtherElementsForB1(perspective, otherLE, otherRoleName, scene, 
 									owner, name);
 		COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
 //	  		BasePerspectiveController.saveModel(scene);
-		createOtherElementsForB4(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(),
+		createOtherElementsForB1(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(),
 				name);
 	}
 }
@@ -516,7 +468,7 @@ private static void canCreateOrUseNonMappedManyElementsForB4(COREPerspective per
  * @param currentOwner
  * @param name
  */
-private static void createOrUseNonMappedAtLeastOneElementForB4(COREPerspective perspective, CORELanguageElementMapping mappingType,
+private static void createOrUseNonMappedAtLeastOneElementForB1(COREPerspective perspective, CORELanguageElementMapping mappingType,
 		COREScene scene, EObject currentElement, String currentRoleName, String otherRoleName,
 		EObject otherLE, EObject owner, String name) {
 
@@ -538,11 +490,11 @@ private static void createOrUseNonMappedAtLeastOneElementForB4(COREPerspective p
 		}
 	}
 	for (int count = 0; count < numberOfMappings; count++) {
-		otherElement = BModelFacadeAction.createOtherElementsForB4(perspective, otherLE, otherRoleName, scene, 
+		otherElement = BModelFacadeAction.createOtherElementsForB1(perspective, otherLE, otherRoleName, scene, 
 									owner, name);
 		COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
 //	  		BasePerspectiveController.saveModel(scene);
-		createOtherElementsForB4(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(),
+		createOtherElementsForB1(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(),
 				name);
 	}
 }
@@ -550,26 +502,26 @@ private static void createOrUseNonMappedAtLeastOneElementForB4(COREPerspective p
  	        
 
 
-public static void createNewB11(COREPerspective perspective, COREScene scene, String currentRole, 
+public static void createNewB3(COREPerspective perspective, COREScene scene, String currentRole, 
 	EObject owner, String name) {
 	
 	List<EObject> createSecondaryEffects = new ArrayList<EObject>();
 	
 	// record existing elements.
-	ModelElementStatus.INSTANCE.setMainExistingElements(owner, BmodelPackage.eINSTANCE.getB11());
+	ModelElementStatus.INSTANCE.setMainExistingElements(owner, BmodelPackage.eINSTANCE.getB3());
 	ModelElementStatus.INSTANCE.setOtherExistingElements(owner, createSecondaryEffects);
 	
 	// primary language action to create a new class
-	BModelController.getInstance().createB11((BModel) owner, name);
+	BModelController.getInstance().createB3((BModel) owner, name);
 
 	// retrieve the new element
-	EObject newElement = ModelElementStatus.INSTANCE.getNewElement(owner, BmodelPackage.eINSTANCE.getB11());
+	EObject newElement = ModelElementStatus.INSTANCE.getNewElement(owner, BmodelPackage.eINSTANCE.getB3());
 	
 	// get other new elements for each language element
 	Map<EObject, Collection<EObject>> a = ModelElementStatus.INSTANCE.getOtherNewElements(owner, createSecondaryEffects);
 	Map<EObject, Collection<EObject>> after = new HashMap<EObject, Collection<EObject>>(a);
 
-	createOtherElementsForB11(perspective, scene, currentRole, newElement,
+	createOtherElementsForB3(perspective, scene, currentRole, newElement,
 	 	owner, name);
 	 	
 	HandleSecondaryEffect.INSTANCE.createSecondaryEffects(perspective, scene, currentRole, after, 
@@ -584,7 +536,7 @@ public static void createNewB11(COREPerspective perspective, COREScene scene, St
 
 }
 
-public static void createOtherElementsForB11(COREPerspective perspective, COREScene scene, String currentRoleName,
+public static void createOtherElementsForB3(COREPerspective perspective, COREScene scene, String currentRoleName,
 		EObject currentElement, EObject owner, String name) throws PerspectiveException {
 
 	List<CORELanguageElementMapping> mappingTypes = COREPerspectiveUtil.INSTANCE.getMappingTypes(perspective,
@@ -610,52 +562,52 @@ public static void createOtherElementsForB11(COREPerspective perspective, CORESc
 		// C1/C9
 		case CAN_CREATE:
 		case CAN_CREATE_OR_USE_NON_MAPPED:
-			canCreateOrUseNonMappedElementForB11(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
+			canCreateOrUseNonMappedElementForB3(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
 					otherLE, owner, name);
 			break;
 
 		// C2/C10
 		case CREATE:
 		case CREATE_OR_USE_NON_MAPPED:
-			createOrUseNonMappedElementForB11(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
+			createOrUseNonMappedElementForB3(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
 					otherLE, owner, name);
 			break;
 
 		// C3/C11
 		case CAN_CREATE_MANY:
 		case CAN_CREATE_OR_USE_NON_MAPPED_MANY:
-			canCreateOrUseNonMappedManyElementsForB11(perspective, mappingType, scene, currentElement, currentRoleName,
+			canCreateOrUseNonMappedManyElementsForB3(perspective, mappingType, scene, currentElement, currentRoleName,
 					otherRoleName, otherLE, owner, name);
 			break;
 
 		// C4/C12
 		case CREATE_AT_LEAST_ONE:
 		case CREATE_OR_USE_NON_MAPPED_AT_LEAST_ONE:
-			createOrUseNonMappedAtLeastOneElementForB11(perspective, mappingType, scene, currentElement, currentRoleName,
+			createOrUseNonMappedAtLeastOneElementForB3(perspective, mappingType, scene, currentElement, currentRoleName,
 					otherRoleName, otherLE, owner, name);
 			break;
 		
 		// C5
 		case CAN_CREATE_OR_USE:
-			canCreateOrUseElementForB11(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
+			canCreateOrUseElementForB3(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
 					owner, name);
 			break;
 
 		// C6
 		case CREATE_OR_USE:
-			createOrUseElementForB11(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
+			createOrUseElementForB3(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
 					owner, name);
 			break;
 
 		// C7
 		case CAN_CREATE_OR_USE_MANY:
-			canCreateOrUseManyElementsForB11(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
+			canCreateOrUseManyElementsForB3(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
 					owner, name);
 			break;
 
 		// C8
 		case CREATE_OR_USE_AT_LEAST_ONE:
-			createOrUseAtLeastOneElementForB11(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
+			createOrUseAtLeastOneElementForB3(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
 					owner, name);
 			break;
 
@@ -680,7 +632,7 @@ public static void createOtherElementsForB11(COREPerspective perspective, CORESc
  * @param currentOwner
  * @param name
  */
-private static void canCreateOrUseElementForB11(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene,
+private static void canCreateOrUseElementForB3(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene,
 		EObject currentElement, String currentRoleName, String otherRoleName, EObject otherLE, EObject owner, String name) {
 
 	EObject otherElement = null;
@@ -692,13 +644,13 @@ private static void canCreateOrUseElementForB11(COREPerspective perspective, COR
 		otherElement = QueryAction.INSTANCE.findCorrespondingElement(scene, mappingType, currentElement.eClass(), currentElement, currentRoleName, otherRoleName);
 		if (otherElement == null) {
 			otherExist = false;
-			otherElement = BModelFacadeAction.createOtherElementsForB11(perspective, otherLE, otherRoleName, scene, owner, name);
+			otherElement = BModelFacadeAction.createOtherElementsForB3(perspective, otherLE, otherRoleName, scene, owner, name);
 		}
 		COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
 		// save the recent changes
 		// BasePerspectiveController.saveModel(scene);
 		if(!otherExist) {
-			createOtherElementsForB11(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(), name);	
+			createOtherElementsForB3(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(), name);	
 		}
 	}
 }
@@ -721,7 +673,7 @@ private static void canCreateOrUseElementForB11(COREPerspective perspective, COR
  * @param currentOwner
  * @param name
  */
-private static void createOrUseElementForB11(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene, EObject currentElement,
+private static void createOrUseElementForB3(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene, EObject currentElement,
 		String currentRoleName, String otherRoleName, EObject otherLE, EObject owner, String name) {
 
 	EObject otherElement = null;
@@ -729,13 +681,13 @@ private static void createOrUseElementForB11(COREPerspective perspective, CORELa
 	otherElement = QueryAction.INSTANCE.findCorrespondingElement(scene, mappingType, currentElement.eClass(), currentElement, currentRoleName, otherRoleName);
 	if (otherElement == null) {
 		otherExist = false;
-		otherElement = BModelFacadeAction.createOtherElementsForB11(perspective, otherLE, otherRoleName, scene, 
+		otherElement = BModelFacadeAction.createOtherElementsForB3(perspective, otherLE, otherRoleName, scene, 
 			owner, name);
 	}
 	COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
 //		BasePerspectiveController.saveModel(scene);
 	if (!otherExist) {
-		createOtherElementsForB11(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(), name);
+		createOtherElementsForB3(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(), name);
 	}
 	
 }
@@ -758,7 +710,7 @@ private static void createOrUseElementForB11(COREPerspective perspective, CORELa
  * @param currentOwner
  * @param name
  */
-private static void canCreateOrUseManyElementsForB11(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene,
+private static void canCreateOrUseManyElementsForB3(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene,
 		EObject currentElement, String currentRoleName, String otherRoleName, EObject otherLE, EObject owner, String name) {
 
 	EObject otherElement = null;
@@ -776,11 +728,11 @@ private static void canCreateOrUseManyElementsForB11(COREPerspective perspective
 		}
 	}
 	for (int count = 0; count < numberOfMappings; count++) {
-		otherElement = BModelFacadeAction.createOtherElementsForB11(perspective, otherLE, otherRoleName, scene, 
+		otherElement = BModelFacadeAction.createOtherElementsForB3(perspective, otherLE, otherRoleName, scene, 
 									owner, name);
 		COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
 //	  		BasePerspectiveController.saveModel(scene);
-		createOtherElementsForB11(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(),
+		createOtherElementsForB3(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(),
 				name);
 	}
 }
@@ -802,7 +754,7 @@ private static void canCreateOrUseManyElementsForB11(COREPerspective perspective
  * @param currentOwner
  * @param name
  */
-private static void createOrUseAtLeastOneElementForB11(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene,
+private static void createOrUseAtLeastOneElementForB3(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene,
 		EObject currentElement, String currentRoleName, String otherRoleName, EObject otherLE, EObject owner, String name) {
 
 	EObject otherElement = null;
@@ -820,12 +772,12 @@ private static void createOrUseAtLeastOneElementForB11(COREPerspective perspecti
 		}
 	}
 	for (int count = 0; count < numberOfMappings; count++) {
-		otherElement = BModelFacadeAction.createOtherElementsForB11(perspective, otherLE, otherRoleName, scene, 
+		otherElement = BModelFacadeAction.createOtherElementsForB3(perspective, otherLE, otherRoleName, scene, 
 									owner, name);
 		COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
 //	  		BasePerspectiveController.saveModel(scene);
 		// call recursive method since a new element was used in the mapping
-		createOtherElementsForB11(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(),
+		createOtherElementsForB3(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(),
 				name);
 	}
 }
@@ -847,7 +799,7 @@ private static void createOrUseAtLeastOneElementForB11(COREPerspective perspecti
  * @param currentOwner
  * @param name
  */
-private static void canCreateOrUseNonMappedElementForB11(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene,
+private static void canCreateOrUseNonMappedElementForB3(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene,
 		EObject currentElement, String currentRoleName, String otherRoleName, EObject otherLE, EObject owner, String name) {
 
 	EObject otherElement = null;
@@ -859,13 +811,13 @@ private static void canCreateOrUseNonMappedElementForB11(COREPerspective perspec
 		// already mapped.
 		if (otherElement == null || COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene, otherElement).size() != 0) {
 			otherExist = false;
-			otherElement = BModelFacadeAction.createOtherElementsForB11(perspective, otherLE, otherRoleName, scene, 
+			otherElement = BModelFacadeAction.createOtherElementsForB3(perspective, otherLE, otherRoleName, scene, 
 										owner, name);
 		}
 		COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
 //				BasePerspectiveController.saveModel(scene);
 		if (!otherExist) {
-			createOtherElementsForB11(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(), name);
+			createOtherElementsForB3(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(), name);
 		}
 		
 
@@ -889,7 +841,7 @@ private static void canCreateOrUseNonMappedElementForB11(COREPerspective perspec
  * @param currentOwner
  * @param name
  */
-private static void createOrUseNonMappedElementForB11(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene,
+private static void createOrUseNonMappedElementForB3(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene,
 		EObject currentElement, String currentRoleName, String otherRoleName, EObject otherLE, EObject owner, String name) {
 
 	EObject otherElement = null;
@@ -900,14 +852,14 @@ private static void createOrUseNonMappedElementForB11(COREPerspective perspectiv
 	// or mapped.
 	if (otherElement == null || COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene, otherElement).size() > 0) {
 		otherExist = false;
-		otherElement = BModelFacadeAction.createOtherElementsForB11(perspective, otherLE, otherRoleName, scene, 
+		otherElement = BModelFacadeAction.createOtherElementsForB3(perspective, otherLE, otherRoleName, scene, 
 									owner, name);
 	}
 	COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
 //		BasePerspectiveController.saveModel(scene);
 	// stop the recursion if other element exists.
 	if (!otherExist) {
-		createOtherElementsForB11(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(),
+		createOtherElementsForB3(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(),
 				name);
 	}
 }
@@ -929,7 +881,7 @@ private static void createOrUseNonMappedElementForB11(COREPerspective perspectiv
  * @param currentOwner
  * @param name
  */
-private static void canCreateOrUseNonMappedManyElementsForB11(COREPerspective perspective, CORELanguageElementMapping mappingType,
+private static void canCreateOrUseNonMappedManyElementsForB3(COREPerspective perspective, CORELanguageElementMapping mappingType,
 		COREScene scene, EObject currentElement, String currentRoleName, String otherRoleName,
 		EObject otherLE, EObject owner, String name) {
 
@@ -950,11 +902,11 @@ private static void canCreateOrUseNonMappedManyElementsForB11(COREPerspective pe
 		}
 	}
 	for (int count = 0; count < numberOfMappings; count++) {
-		otherElement = BModelFacadeAction.createOtherElementsForB11(perspective, otherLE, otherRoleName, scene, 
+		otherElement = BModelFacadeAction.createOtherElementsForB3(perspective, otherLE, otherRoleName, scene, 
 									owner, name);
 		COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
 //	  		BasePerspectiveController.saveModel(scene);
-		createOtherElementsForB11(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(),
+		createOtherElementsForB3(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(),
 				name);
 	}
 }
@@ -976,7 +928,7 @@ private static void canCreateOrUseNonMappedManyElementsForB11(COREPerspective pe
  * @param currentOwner
  * @param name
  */
-private static void createOrUseNonMappedAtLeastOneElementForB11(COREPerspective perspective, CORELanguageElementMapping mappingType,
+private static void createOrUseNonMappedAtLeastOneElementForB3(COREPerspective perspective, CORELanguageElementMapping mappingType,
 		COREScene scene, EObject currentElement, String currentRoleName, String otherRoleName,
 		EObject otherLE, EObject owner, String name) {
 
@@ -998,11 +950,11 @@ private static void createOrUseNonMappedAtLeastOneElementForB11(COREPerspective 
 		}
 	}
 	for (int count = 0; count < numberOfMappings; count++) {
-		otherElement = BModelFacadeAction.createOtherElementsForB11(perspective, otherLE, otherRoleName, scene, 
+		otherElement = BModelFacadeAction.createOtherElementsForB3(perspective, otherLE, otherRoleName, scene, 
 									owner, name);
 		COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
 //	  		BasePerspectiveController.saveModel(scene);
-		createOtherElementsForB11(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(),
+		createOtherElementsForB3(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(),
 				name);
 	}
 }
@@ -1010,479 +962,19 @@ private static void createOrUseNonMappedAtLeastOneElementForB11(COREPerspective 
  	        
 
 
-public static void createNewB12(COREPerspective perspective, COREScene scene, String currentRole, 
-	EObject owner, String name) {
-	
-	List<EObject> createSecondaryEffects = new ArrayList<EObject>();
-	
-	// record existing elements.
-	ModelElementStatus.INSTANCE.setMainExistingElements(owner, BmodelPackage.eINSTANCE.getB12());
-	ModelElementStatus.INSTANCE.setOtherExistingElements(owner, createSecondaryEffects);
-	
-	// primary language action to create a new class
-	BModelController.getInstance().createB12((BModel) owner, name);
-
-	// retrieve the new element
-	EObject newElement = ModelElementStatus.INSTANCE.getNewElement(owner, BmodelPackage.eINSTANCE.getB12());
-	
-	// get other new elements for each language element
-	Map<EObject, Collection<EObject>> a = ModelElementStatus.INSTANCE.getOtherNewElements(owner, createSecondaryEffects);
-	Map<EObject, Collection<EObject>> after = new HashMap<EObject, Collection<EObject>>(a);
-
-	createOtherElementsForB12(perspective, scene, currentRole, newElement,
-	 	owner, name);
-	 	
-	HandleSecondaryEffect.INSTANCE.createSecondaryEffects(perspective, scene, currentRole, after, 
-		owner, name);
-
-//		try {
-//			createOtherElementsForLEMA1(perspective, scene, newElement, currentRole, owner, name);
-//		} catch (PerspectiveException e) {
-//			RamApp.getActiveScene().displayPopup(e.getMessage());
-//		}
-
-
-}
-
-public static void createOtherElementsForB12(COREPerspective perspective, COREScene scene, String currentRoleName,
-		EObject currentElement, EObject owner, String name) throws PerspectiveException {
-
-	List<CORELanguageElementMapping> mappingTypes = COREPerspectiveUtil.INSTANCE.getMappingTypes(perspective,
-			currentElement.eClass(), currentRoleName);
-	for (CORELanguageElementMapping mappingType : mappingTypes) {
-		List<COREModelElementMapping> mappings = COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene,
-				currentElement);
-
-		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRoleName);
-
-		// the metaclass of the element to be created.
-		EObject otherLE = COREPerspectiveUtil.INSTANCE
-				.getOtherLanguageElements(mappingType, currentElement.eClass(), currentRoleName).get(0);
-
-		ActionType actionType = TemplateType.INSTANCE.getCreateType(mappingType, currentRoleName);
-
-		// check that the number of existing mappings is not zero.
-		if (mappings.size() != 0) {
-			continue;
-		}
-		switch (actionType) {
-		
-		// C1/C9
-		case CAN_CREATE:
-		case CAN_CREATE_OR_USE_NON_MAPPED:
-			canCreateOrUseNonMappedElementForB12(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
-					otherLE, owner, name);
-			break;
-
-		// C2/C10
-		case CREATE:
-		case CREATE_OR_USE_NON_MAPPED:
-			createOrUseNonMappedElementForB12(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
-					otherLE, owner, name);
-			break;
-
-		// C3/C11
-		case CAN_CREATE_MANY:
-		case CAN_CREATE_OR_USE_NON_MAPPED_MANY:
-			canCreateOrUseNonMappedManyElementsForB12(perspective, mappingType, scene, currentElement, currentRoleName,
-					otherRoleName, otherLE, owner, name);
-			break;
-
-		// C4/C12
-		case CREATE_AT_LEAST_ONE:
-		case CREATE_OR_USE_NON_MAPPED_AT_LEAST_ONE:
-			createOrUseNonMappedAtLeastOneElementForB12(perspective, mappingType, scene, currentElement, currentRoleName,
-					otherRoleName, otherLE, owner, name);
-			break;
-		
-		// C5
-		case CAN_CREATE_OR_USE:
-			canCreateOrUseElementForB12(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
-					owner, name);
-			break;
-
-		// C6
-		case CREATE_OR_USE:
-			createOrUseElementForB12(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
-					owner, name);
-			break;
-
-		// C7
-		case CAN_CREATE_OR_USE_MANY:
-			canCreateOrUseManyElementsForB12(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
-					owner, name);
-			break;
-
-		// C8
-		case CREATE_OR_USE_AT_LEAST_ONE:
-			createOrUseAtLeastOneElementForB12(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
-					owner, name);
-			break;
-
-		}
-	}
-}
-
-/**
- * (C1/C5): This method optionally creates a new element and then
- * establishes model element mapping between the "element" parameter and the
- * new element.
- * 
- * @author Hyacinth Ali
- * 
- * @param perspective
- * @param mappingType
- * @param scene
- * @param currentElement
- * @param currentRoleName 
- * @param otherRoleName
- * @param otherLE
- * @param currentOwner
- * @param name
- */
-private static void canCreateOrUseElementForB12(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene,
-		EObject currentElement, String currentRoleName, String otherRoleName, EObject otherLE, EObject owner, String name) {
-
-	EObject otherElement = null;
-	boolean otherExist = true;
-	// Ask the user whether to create other model element and then establish
-	// the MEM
-	boolean isCreateMapping = QueryAction.INSTANCE.isCreateMapping();
-	if (isCreateMapping) {
-		otherElement = QueryAction.INSTANCE.findCorrespondingElement(scene, mappingType, currentElement.eClass(), currentElement, currentRoleName, otherRoleName);
-		if (otherElement == null) {
-			otherExist = false;
-			otherElement = BModelFacadeAction.createOtherElementsForB12(perspective, otherLE, otherRoleName, scene, owner, name);
-		}
-		COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-		// save the recent changes
-		// BasePerspectiveController.saveModel(scene);
-		if(!otherExist) {
-			createOtherElementsForB12(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(), name);	
-		}
-	}
-}
-
-
-/**
- * (C2/C6): This method proactively creates a new element and then
- * establishes model element mapping between the "element" parameter and the
- * new element.
- * 
- * @author Hyacinth Ali
- * 
- * @param perspective
- * @param mappingType
- * @param scene
- * @param currentElement
- * @param currentRoleName 
- * @param otherRoleName
- * @param otherLE
- * @param currentOwner
- * @param name
- */
-private static void createOrUseElementForB12(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene, EObject currentElement,
-		String currentRoleName, String otherRoleName, EObject otherLE, EObject owner, String name) {
-
-	EObject otherElement = null;
-	boolean otherExist = true;
-	otherElement = QueryAction.INSTANCE.findCorrespondingElement(scene, mappingType, currentElement.eClass(), currentElement, currentRoleName, otherRoleName);
-	if (otherElement == null) {
-		otherExist = false;
-		otherElement = BModelFacadeAction.createOtherElementsForB12(perspective, otherLE, otherRoleName, scene, 
-			owner, name);
-	}
-	COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-//		BasePerspectiveController.saveModel(scene);
-	if (!otherExist) {
-		createOtherElementsForB12(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(), name);
-	}
-	
-}
-
-/**
- * (C3/C7): This method can create or use an existing elements to
- * establish model element mappings between the "element" parameter and each of the
- * new element or existing elements. Similarly, the usser decides if the method should
- * create the mappings.
- * 
- * @author Hyacinth Ali
- * 
- * @param perspective
- * @param mappingType
- * @param scene
- * @param currentElement
- * @param currentRoleName 
- * @param otherRoleName
- * @param otherLE
- * @param currentOwner
- * @param name
- */
-private static void canCreateOrUseManyElementsForB12(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene,
-		EObject currentElement, String currentRoleName, String otherRoleName, EObject otherLE, EObject owner, String name) {
-
-	EObject otherElement = null;
-	// Ask user how many mappings to create
-	int numberOfMappings = QueryAction.INSTANCE.askNumberOfMappings();
-	List<EObject> otherElements = QueryAction.INSTANCE.findCorrespondingElements(scene, mappingType, currentElement.eClass(), currentElement, currentRoleName, otherRoleName);
-	for (EObject existingElement : otherElements) {
-		if (numberOfMappings <= 0) {
-			break;
-		} else {
-			otherElement = existingElement;
-			COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-//	  			BasePerspectiveController.saveModel(scene);
-				numberOfMappings--;
-		}
-	}
-	for (int count = 0; count < numberOfMappings; count++) {
-		otherElement = BModelFacadeAction.createOtherElementsForB12(perspective, otherLE, otherRoleName, scene, 
-									owner, name);
-		COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-//	  		BasePerspectiveController.saveModel(scene);
-		createOtherElementsForB12(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(),
-				name);
-	}
-}
-
-/**
- * (C4/C8): This method proactively creates or uses an existing element,
- * at least one element, to establishes model element mapping between the 
- * "element" parameter and the new element or the existing element.
- * 
- * @author Hyacinth Ali
- * 
- * @param perspective
- * @param mappingType
- * @param scene
- * @param currentElement
- * @param currentRoleName 
- * @param otherRoleName
- * @param otherLE
- * @param currentOwner
- * @param name
- */
-private static void createOrUseAtLeastOneElementForB12(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene,
-		EObject currentElement, String currentRoleName, String otherRoleName, EObject otherLE, EObject owner, String name) {
-
-	EObject otherElement = null;
-	// Ask user how many mappings to create
-	int numberOfMappings = QueryAction.INSTANCE.askNumberOfMappingsAtLeastOne();
-	List<EObject> otherElements = QueryAction.INSTANCE.findCorrespondingElements(scene, mappingType, currentElement.eClass(), currentElement, currentRoleName, otherRoleName);
-	for (EObject existingElement : otherElements) {
-		if (numberOfMappings <= 0) {
-			break;
-		} else {
-			otherElement = existingElement;
-			COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-//	  			BasePerspectiveController.saveModel(scene);
-				numberOfMappings--;
-		}
-	}
-	for (int count = 0; count < numberOfMappings; count++) {
-		otherElement = BModelFacadeAction.createOtherElementsForB12(perspective, otherLE, otherRoleName, scene, 
-									owner, name);
-		COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-//	  		BasePerspectiveController.saveModel(scene);
-		// call recursive method since a new element was used in the mapping
-		createOtherElementsForB12(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(),
-				name);
-	}
-}
-
-/**
- * (C9): This method can create or use non-mapped existing element to
- * establishes model element mapping between the "element" parameter and the
- * new element or the existing element.
- * 
- * @author Hyacinth Ali
- * 
- * @param perspective
- * @param mappingType
- * @param scene
- * @param currentElement
- * @param currentRoleName 
- * @param otherRoleName
- * @param otherLE
- * @param currentOwner
- * @param name
- */
-private static void canCreateOrUseNonMappedElementForB12(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene,
-		EObject currentElement, String currentRoleName, String otherRoleName, EObject otherLE, EObject owner, String name) {
-
-	EObject otherElement = null;
-	boolean otherExist = true;
-	boolean isCreateMapping = QueryAction.INSTANCE.isCreateMapping();
-	if (isCreateMapping) {
-		otherElement = QueryAction.INSTANCE.findCorrespondingElement(scene, mappingType, currentElement.eClass(), currentElement, currentRoleName, otherRoleName);
-		// creates new element if other element does not exist or it is
-		// already mapped.
-		if (otherElement == null || COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene, otherElement).size() != 0) {
-			otherExist = false;
-			otherElement = BModelFacadeAction.createOtherElementsForB12(perspective, otherLE, otherRoleName, scene, 
-										owner, name);
-		}
-		COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-//				BasePerspectiveController.saveModel(scene);
-		if (!otherExist) {
-			createOtherElementsForB12(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(), name);
-		}
-		
-
-	}
-}
-
-/**
- * (C10): This method proactively creates or uses non-mapped existing element to
- * establishes model element mapping between the "element" parameter and the
- * new element or the existing element.
- * 
- * @author Hyacinth Ali
- * 
- * @param perspective
- * @param mappingType
- * @param scene
- * @param currentElement
- * @param currentRoleName 
- * @param otherRoleName
- * @param otherLE
- * @param currentOwner
- * @param name
- */
-private static void createOrUseNonMappedElementForB12(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene,
-		EObject currentElement, String currentRoleName, String otherRoleName, EObject otherLE, EObject owner, String name) {
-
-	EObject otherElement = null;
-	boolean otherExist = true;
-	otherElement = QueryAction.INSTANCE.findCorrespondingElement(scene, mappingType, currentElement.eClass(), currentElement, currentRoleName, otherRoleName);
-
-	// create other element if the corresponding element is null
-	// or mapped.
-	if (otherElement == null || COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene, otherElement).size() > 0) {
-		otherExist = false;
-		otherElement = BModelFacadeAction.createOtherElementsForB12(perspective, otherLE, otherRoleName, scene, 
-									owner, name);
-	}
-	COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-//		BasePerspectiveController.saveModel(scene);
-	// stop the recursion if other element exists.
-	if (!otherExist) {
-		createOtherElementsForB12(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(),
-				name);
-	}
-}
-
-/**
- * (C11): This method can create many elements or use non-mapped 
- * existing elements to establish model element mappings between the "element" parameter 
- * and each of the new element or the existing element.
- * 
- * @author Hyacinth Ali
- * 
- * @param perspective
- * @param mappingType
- * @param scene
- * @param currentElement
- * @param currentRoleName 
- * @param otherRoleName
- * @param otherLE
- * @param currentOwner
- * @param name
- */
-private static void canCreateOrUseNonMappedManyElementsForB12(COREPerspective perspective, CORELanguageElementMapping mappingType,
-		COREScene scene, EObject currentElement, String currentRoleName, String otherRoleName,
-		EObject otherLE, EObject owner, String name) {
-
-	EObject otherElement = null;
-	int numberOfMappings = QueryAction.INSTANCE.askNumberOfMappings();
-	List<EObject> otherElements = QueryAction.INSTANCE.findCorrespondingElements(scene, mappingType, currentElement.eClass(), currentElement, currentRoleName, otherRoleName);
-	// create mapping for each corresponding element which is not mapped
-	for (EObject existingElement : otherElements) {
-		if (numberOfMappings <= 0) {
-			break;
-		} else {
-			if (COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene, existingElement).size() == 0) {
-				otherElement = existingElement;
-				COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-//	  			BasePerspectiveController.saveModel(scene);
-				numberOfMappings--;
-			}
-		}
-	}
-	for (int count = 0; count < numberOfMappings; count++) {
-		otherElement = BModelFacadeAction.createOtherElementsForB12(perspective, otherLE, otherRoleName, scene, 
-									owner, name);
-		COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-//	  		BasePerspectiveController.saveModel(scene);
-		createOtherElementsForB12(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(),
-				name);
-	}
-}
-
-/**
- * (C12): This method proactively creates many elements or uses non-mapped 
- * existing elements to establish model element mappings between the "element" parameter 
- * and each of the new element or the existing element.
- * 
- * @author Hyacinth Ali
- * 
- * @param perspective
- * @param mappingType
- * @param scene
- * @param currentElement
- * @param currentRoleName 
- * @param otherRoleName
- * @param otherLE
- * @param currentOwner
- * @param name
- */
-private static void createOrUseNonMappedAtLeastOneElementForB12(COREPerspective perspective, CORELanguageElementMapping mappingType,
-		COREScene scene, EObject currentElement, String currentRoleName, String otherRoleName,
-		EObject otherLE, EObject owner, String name) {
-
-	EObject otherElement = null;
-	// Ask user how many mappings to create (at least one)
-	int numberOfMappings = QueryAction.INSTANCE.askNumberOfMappingsAtLeastOne();
-	List<EObject> otherElements = QueryAction.INSTANCE.findCorrespondingElements(scene, mappingType, currentElement.eClass(), currentElement, currentRoleName, otherRoleName);
-	// create mapping for each corresponding element which is not mapped
-	for (EObject existingElement : otherElements) {
-		if (numberOfMappings <= 0) {
-			break;
-		} else {
-			if (COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene, existingElement).size() == 0) {
-				otherElement = existingElement;
-				COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-//		  			BasePerspectiveController.saveModel(scene);
-					numberOfMappings--;
-			}
-		}
-	}
-	for (int count = 0; count < numberOfMappings; count++) {
-		otherElement = BModelFacadeAction.createOtherElementsForB12(perspective, otherLE, otherRoleName, scene, 
-									owner, name);
-		COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-//	  		BasePerspectiveController.saveModel(scene);
-		createOtherElementsForB12(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(),
-				name);
-	}
-}
-
- 	        
-
-
-public static void deleteB4(COREPerspective perspective, COREScene scene, String currentRole, EObject currentElement) {
+public static void deleteB1(COREPerspective perspective, COREScene scene, String currentRole, EObject currentElement) {
 	
 	List<EObject> deleteSecondaryEffects = new ArrayList<EObject>();
 						
-	BModelController.getInstance().removeB4((B4) currentElement);
-	deleteOtherElementsForB4(perspective, scene, currentRole, currentElement);
+	BModelController.getInstance().removeB1((B1) currentElement);
+	deleteOtherElementsForB1(perspective, scene, currentRole, currentElement);
 	
 	if (deleteSecondaryEffects != null) {
 		HandleSecondaryEffect.INSTANCE.deleteSecondaryEffects(perspective, scene, currentRole, deleteSecondaryEffects);
 	}
 }
 
-public static void deleteOtherElementsForB4(COREPerspective perspective, COREScene scene, String currentRole, EObject currentElement) {
+public static void deleteOtherElementsForB1(COREPerspective perspective, COREScene scene, String currentRole, EObject currentElement) {
 
 	List<COREModelElementMapping> mappings = COREPerspectiveUtil.INSTANCE.getMappings(scene, currentElement);
 	// Traditional for loop is used here to avoid
@@ -1514,7 +1006,7 @@ public static void deleteOtherElementsForB4(COREPerspective perspective, CORESce
 
 		case DELETE_OTHERS:
 			BModelFacadeAction.deleteModelElement(otherElement);
-			deleteOtherElementsForB4(perspective, scene, otherRoleName, otherElement);
+			deleteOtherElementsForB1(perspective, scene, otherRoleName, otherElement);
 			break;
 
 		case DELETE_SINGLEMAPPED:
@@ -1522,7 +1014,7 @@ public static void deleteOtherElementsForB4(COREPerspective perspective, CORESce
 					otherElement);
 			if (otherMappings.size() == 0) {
 				BModelFacadeAction.deleteModelElement(otherElement);
-				deleteOtherElementsForB4(perspective, scene, otherRoleName, otherElement);
+				deleteOtherElementsForB1(perspective, scene, otherRoleName, otherElement);
 			}
 			break;
 		}
@@ -1532,19 +1024,19 @@ public static void deleteOtherElementsForB4(COREPerspective perspective, CORESce
  	        
 
 
-public static void deleteB11(COREPerspective perspective, COREScene scene, String currentRole, EObject currentElement) {
+public static void deleteB3(COREPerspective perspective, COREScene scene, String currentRole, EObject currentElement) {
 	
 	List<EObject> deleteSecondaryEffects = new ArrayList<EObject>();
 						
-	BModelController.getInstance().removeB11((B11) currentElement);
-	deleteOtherElementsForB11(perspective, scene, currentRole, currentElement);
+	BModelController.getInstance().removeB3((B3) currentElement);
+	deleteOtherElementsForB3(perspective, scene, currentRole, currentElement);
 	
 	if (deleteSecondaryEffects != null) {
 		HandleSecondaryEffect.INSTANCE.deleteSecondaryEffects(perspective, scene, currentRole, deleteSecondaryEffects);
 	}
 }
 
-public static void deleteOtherElementsForB11(COREPerspective perspective, COREScene scene, String currentRole, EObject currentElement) {
+public static void deleteOtherElementsForB3(COREPerspective perspective, COREScene scene, String currentRole, EObject currentElement) {
 
 	List<COREModelElementMapping> mappings = COREPerspectiveUtil.INSTANCE.getMappings(scene, currentElement);
 	// Traditional for loop is used here to avoid
@@ -1576,7 +1068,7 @@ public static void deleteOtherElementsForB11(COREPerspective perspective, CORESc
 
 		case DELETE_OTHERS:
 			BModelFacadeAction.deleteModelElement(otherElement);
-			deleteOtherElementsForB11(perspective, scene, otherRoleName, otherElement);
+			deleteOtherElementsForB3(perspective, scene, otherRoleName, otherElement);
 			break;
 
 		case DELETE_SINGLEMAPPED:
@@ -1584,7 +1076,7 @@ public static void deleteOtherElementsForB11(COREPerspective perspective, CORESc
 					otherElement);
 			if (otherMappings.size() == 0) {
 				BModelFacadeAction.deleteModelElement(otherElement);
-				deleteOtherElementsForB11(perspective, scene, otherRoleName, otherElement);
+				deleteOtherElementsForB3(perspective, scene, otherRoleName, otherElement);
 			}
 			break;
 		}
@@ -1594,64 +1086,26 @@ public static void deleteOtherElementsForB11(COREPerspective perspective, CORESc
  	        
 
 
-public static void deleteB12(COREPerspective perspective, COREScene scene, String currentRole, EObject currentElement) {
-	
-	List<EObject> deleteSecondaryEffects = new ArrayList<EObject>();
-						
-	BModelController.getInstance().removeB12((B12) currentElement);
-	deleteOtherElementsForB12(perspective, scene, currentRole, currentElement);
-	
-	if (deleteSecondaryEffects != null) {
-		HandleSecondaryEffect.INSTANCE.deleteSecondaryEffects(perspective, scene, currentRole, deleteSecondaryEffects);
-	}
-}
+ 	        
 
-public static void deleteOtherElementsForB12(COREPerspective perspective, COREScene scene, String currentRole, EObject currentElement) {
 
-	List<COREModelElementMapping> mappings = COREPerspectiveUtil.INSTANCE.getMappings(scene, currentElement);
-	// Traditional for loop is used here to avoid
-	// ConcurrentModificationException
-	for (int i = 0; i < mappings.size(); i++) {
-		COREModelElementMapping mapping = mappings.get(i);
-		EObject otherElement = COREPerspectiveUtil.INSTANCE.getOtherElement(mapping, currentElement);
-		CORELanguageElementMapping mappingType = COREPerspectiveUtil.INSTANCE.getMappingType(perspective, mapping);
-		
-		// get the delete action type
-		ActionType deleteType = null;
-		for (MappingEnd mappingEnd : mappingType.getMappingEnds()) {
-			if (mappingEnd.getRoleName().equals(currentRole)) {
-				deleteType = TemplateType.INSTANCE.getDeleteType(mappingEnd);
-				break;
-			}
-		}
+ 	        
 
-		// remove the mapping
-		BasePerspectiveController.removeMapping(mapping);
-		
-		if (deleteType == null) {
-			return;
-		}
 
-		// get other role name
-		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRole);
-		switch (deleteType) {
+ 	        
 
-		case DELETE_OTHERS:
-			BModelFacadeAction.deleteModelElement(otherElement);
-			deleteOtherElementsForB12(perspective, scene, otherRoleName, otherElement);
-			break;
 
-		case DELETE_SINGLEMAPPED:
-			List<COREModelElementMapping> otherMappings = COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene,
-					otherElement);
-			if (otherMappings.size() == 0) {
-				BModelFacadeAction.deleteModelElement(otherElement);
-				deleteOtherElementsForB12(perspective, scene, otherRoleName, otherElement);
-			}
-			break;
-		}
-	}
-}
+ 	        
+
+
+ 	        
+
+
+ 	        
+
+
+ 	        
+
 
  	        
 
