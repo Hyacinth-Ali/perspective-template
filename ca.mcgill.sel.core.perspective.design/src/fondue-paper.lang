@@ -1,168 +1,168 @@
-
-
-
-language ClassDiagram {
-    rootPackage "classdiagram.package";
-    rootControllerPackage "classdiagram.controller";
-    packageClassName ClassDiagramPackage;
-    nsURI "http://classdiagram/1.0";
-    resourceFactory "ClassDiagramResourceFactoryImpl";
-    adapterFactory "ClassDiagramItemProviderAdapterFactory";
-    weaverClassName "ca.mcgill.sel.ram.weaver.RAMWeaver";
-    fileExtension  cdm;
-    modelUtilClassName "ca.mcgill.sel.classdiagram.util.CdmModelUtil";
-      
-    language elements {
-    	languageElement ClassDiagram {
-        	 
-        }
-        languageElement Class {
-        	nestedElement Class_Name elementName name;
-        }
-        languageElement Attribute {
-        	
-        } 
-    }
-       
-    actions {
-    	create "createClass(ClassDiagram owner, String name, boolean dataType)" {
-            metaclass: Class;
-            classQualifiedName : "ControllerFactory.INSTANCE.getClassController()";
-            
-            secondary effects {
-            	delete element : deleteParameterEffect gghgjk;
-            	create element : type vbfgnhj;
-            	update element : updateParameterEffect gfhghjk affectedFeature grhtyui;
-            }
-        }
-        
-        create "createAttribute(Class owner, float x, float y)" {
-            metaclass: Attribute;
-            classQualifiedName : "ControllerFactory.INSTANCE.getClassController()";
-        }
-    }
-         
-}  
-
-language UseCases {
-    rootPackage "ca.mcgill.sel.usecases";
-    rootControllerPackage "ca.mcgill.sel.usecases.language.controller";
-    packageClassName UcPackage;
-    nsURI "http://cs.mcgill.ca/sel/uc/1.0";
-    resourceFactory "ca.mcgill.sel.usecases.util.UcResourceFactoryImpl";
-    adapterFactory "ca.mcgill.sel.usecases.provider.UcItemProviderAdapterFactory";
-    weaverClassName "";
-    fileExtension  uc;
-    modelUtilClassName "ca.mcgill.sel.usecases.util.UcModelUtil";
-      
-    language elements {
-    	languageElement UseCaseModel {
-        	
-        }
-        languageElement Actor {
-        	nestedElement NamedElement_Name elementName name;
-        }
-    }
-    
-      
-    actions {
-    	create "createClass(ClassDiagram owner, float x, float y)" {
-            metaclass: Class;
-            classQualifiedName : "ControllerFactory.INSTANCE.getClassController()";
-        }
-        
-        create "createAttribute(Class owner, float x, float y)" {
-            metaclass: Attribute;
-            classQualifiedName : "ControllerFactory.INSTANCE.getClassController()";
-        }
-    }
-         
-}
-
-
-language EnvironmentModel {
-    rootPackage "ca.mcgill.sel.environmentmodel";
-    rootControllerPackage "ca.mcgill.sel.environmentmodel.language.controller";
-    packageClassName EmPackage;
-    nsURI "http://cs.mcgill.ca/sel/em/1.0";
-    resourceFactory "ca.mcgill.sel.environmentmodel.util.EmResourceFactoryImpl";
-    adapterFactory "ca.mcgill.sel.environmentmodel.provider.EmItemProviderAdapterFactory";
-    weaverClassName "";
-    fileExtension  em;
-    modelUtilClassName "ca.mcgill.sel.environmentmodel.util.EmModelUtil";
-      
-    language elements {
-    	languageElement EnvironmentModel {
-        	
-        }
-        languageElement Actor {
-        	nestedElement NamedElement_Name elementName name;
-        }
-        languageElement ActorType {
-        	nestedElement NamedElement_Name elementName name;
-        }
-        languageElement Message {
-        }
-        languageElement MessageType {
-        	nestedElement NamedElement_Name elementName name;
-        }
-    }
-    	
-      
-    actions {
-    	 create "createClass(ClassDiagram owner, float x, float y)" {
-            metaclass: Class;
-            classQualifiedName : "ControllerFactory.INSTANCE.getClassController()";
-        }
-        
-        create "createAttribute(Class owner, float x, float y)" {
-            metaclass: Attribute;
-            classQualifiedName : "ControllerFactory.INSTANCE.getClassController()";
-        }
-    }
-       
-         
-}
-
-language OperationSchema {
-    rootPackage "ca.mcgill.sel.operationmodel";
-    rootControllerPackage "ca.mcgill.sel.operationmodel.language.controller";
-    packageClassName OmPackage;
-    nsURI "http://cs.mcgill.ca/sel/om/1.0";
-    resourceFactory "ca.mcgill.sel.operationmodel.util.OmResourceFactoryImpl";
-    adapterFactory "ca.mcgill.sel.operationmodel.provider.OmItemProviderAdapterFactory";
-    weaverClassName "";
-    fileExtension  om;
-    modelUtilClassName "ca.mcgill.sel.operationmodel.util.OmModelUtil";
-       
-    language elements {
-    	languageElement OperationSchema {
-        	
-        }
-        languageElement Actor {
-        	nestedElement NamedElement_Name elementName name;
-        }
-        
-        languageElement Classifier {
-        	nestedElement NamedElement_Name elementName name;
-        }
-        
-        languageElement Message {
-        	nestedElement NamedElement_Name elementName name;
-        }
-    }
-    	
-       
-    actions {
-    	create "createClass(ClassDiagram owner, float x, float y)" {
-            metaclass: Class;
-            classQualifiedName : "ControllerFactory.INSTANCE.getClassController()";
-        }
-        
-        create "createAttribute(Class owner, float x, float y)" {
-            metaclass: Attribute;
-            classQualifiedName : "ControllerFactory.INSTANCE.getClassController()";
-        }
-    }
-         
-}
+//
+//
+//
+//language ClassDiagram {
+//    rootPackage "classdiagram.package";
+//    rootControllerPackage "classdiagram.controller";
+//    packageClassName ClassDiagramPackage;
+//    nsURI "http://classdiagram/1.0";
+//    resourceFactory "ClassDiagramResourceFactoryImpl";
+//    adapterFactory "ClassDiagramItemProviderAdapterFactory";
+//    weaverClassName "ca.mcgill.sel.ram.weaver.RAMWeaver";
+//    fileExtension  cdm;
+//    modelUtilClassName "ca.mcgill.sel.classdiagram.util.CdmModelUtil";
+//      
+//    language elements {
+//    	languageElement ClassDiagram {
+//        	 
+//        }
+//        languageElement Class {
+//        	nestedElement Class_Name elementName name;
+//        }
+//        languageElement Attribute {
+//        	
+//        } 
+//    }
+//       
+//    actions {
+//    	create "createClass(ClassDiagram owner, String name, boolean dataType)" {
+//            metaclass: Class;
+//            classQualifiedName : "ControllerFactory.INSTANCE.getClassController()";
+//            
+//            secondary effects {
+//            	delete element : deleteParameterEffect gghgjk;
+//            	create element : type vbfgnhj;
+//            	update element : updateParameterEffect gfhghjk affectedFeature grhtyui;
+//            }
+//        }
+//        
+//        create "createAttribute(Class owner, float x, float y)" {
+//            metaclass: Attribute;
+//            classQualifiedName : "ControllerFactory.INSTANCE.getClassController()";
+//        }
+//    }
+//         
+//}  
+//
+//language UseCases {
+//    rootPackage "ca.mcgill.sel.usecases";
+//    rootControllerPackage "ca.mcgill.sel.usecases.language.controller";
+//    packageClassName UcPackage;
+//    nsURI "http://cs.mcgill.ca/sel/uc/1.0";
+//    resourceFactory "ca.mcgill.sel.usecases.util.UcResourceFactoryImpl";
+//    adapterFactory "ca.mcgill.sel.usecases.provider.UcItemProviderAdapterFactory";
+//    weaverClassName "";
+//    fileExtension  uc;
+//    modelUtilClassName "ca.mcgill.sel.usecases.util.UcModelUtil";
+//      
+//    language elements {
+//    	languageElement UseCaseModel {
+//        	
+//        }
+//        languageElement Actor {
+//        	nestedElement NamedElement_Name elementName name;
+//        }
+//    }
+//    
+//      
+//    actions {
+//    	create "createClass(ClassDiagram owner, float x, float y)" {
+//            metaclass: Class;
+//            classQualifiedName : "ControllerFactory.INSTANCE.getClassController()";
+//        }
+//        
+//        create "createAttribute(Class owner, float x, float y)" {
+//            metaclass: Attribute;
+//            classQualifiedName : "ControllerFactory.INSTANCE.getClassController()";
+//        }
+//    }
+//         
+//}
+//
+//
+//language EnvironmentModel {
+//    rootPackage "ca.mcgill.sel.environmentmodel";
+//    rootControllerPackage "ca.mcgill.sel.environmentmodel.language.controller";
+//    packageClassName EmPackage;
+//    nsURI "http://cs.mcgill.ca/sel/em/1.0";
+//    resourceFactory "ca.mcgill.sel.environmentmodel.util.EmResourceFactoryImpl";
+//    adapterFactory "ca.mcgill.sel.environmentmodel.provider.EmItemProviderAdapterFactory";
+//    weaverClassName "";
+//    fileExtension  em;
+//    modelUtilClassName "ca.mcgill.sel.environmentmodel.util.EmModelUtil";
+//      
+//    language elements {
+//    	languageElement EnvironmentModel {
+//        	
+//        }
+//        languageElement Actor {
+//        	nestedElement NamedElement_Name elementName name;
+//        }
+//        languageElement ActorType {
+//        	nestedElement NamedElement_Name elementName name;
+//        }
+//        languageElement Message {
+//        }
+//        languageElement MessageType {
+//        	nestedElement NamedElement_Name elementName name;
+//        }
+//    }
+//    	
+//      
+//    actions {
+//    	 create "createClass(ClassDiagram owner, float x, float y)" {
+//            metaclass: Class;
+//            classQualifiedName : "ControllerFactory.INSTANCE.getClassController()";
+//        }
+//        
+//        create "createAttribute(Class owner, float x, float y)" {
+//            metaclass: Attribute;
+//            classQualifiedName : "ControllerFactory.INSTANCE.getClassController()";
+//        }
+//    }
+//       
+//         
+//}
+//
+//language OperationSchema {
+//    rootPackage "ca.mcgill.sel.operationmodel";
+//    rootControllerPackage "ca.mcgill.sel.operationmodel.language.controller";
+//    packageClassName OmPackage;
+//    nsURI "http://cs.mcgill.ca/sel/om/1.0";
+//    resourceFactory "ca.mcgill.sel.operationmodel.util.OmResourceFactoryImpl";
+//    adapterFactory "ca.mcgill.sel.operationmodel.provider.OmItemProviderAdapterFactory";
+//    weaverClassName "";
+//    fileExtension  om;
+//    modelUtilClassName "ca.mcgill.sel.operationmodel.util.OmModelUtil";
+//       
+//    language elements {
+//    	languageElement OperationSchema {
+//        	
+//        }
+//        languageElement Actor {
+//        	nestedElement NamedElement_Name elementName name;
+//        }
+//        
+//        languageElement Classifier {
+//        	nestedElement NamedElement_Name elementName name;
+//        }
+//        
+//        languageElement Message {
+//        	nestedElement NamedElement_Name elementName name;
+//        }
+//    }
+//    	
+//       
+//    actions {
+//    	create "createClass(ClassDiagram owner, float x, float y)" {
+//            metaclass: Class;
+//            classQualifiedName : "ControllerFactory.INSTANCE.getClassController()";
+//        }
+//        
+//        create "createAttribute(Class owner, float x, float y)" {
+//            metaclass: Attribute;
+//            classQualifiedName : "ControllerFactory.INSTANCE.getClassController()";
+//        }
+//    }
+//         
+//}

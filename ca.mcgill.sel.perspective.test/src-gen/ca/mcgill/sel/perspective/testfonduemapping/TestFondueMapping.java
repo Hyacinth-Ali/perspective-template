@@ -57,7 +57,7 @@ public class TestFondueMapping {
         
 
         // Add existing external languages, if any
-        List<String> languages = ResourceUtil.getResourceListing("models/testlanguages/", ".core");
+        List<String> languages = ResourceUtil.getResourceListing("models/languages/", ".core");
         if (languages != null) {
         	for (String l : languages) {
         		// load existing languages
@@ -104,7 +104,7 @@ public class TestFondueMapping {
         // initialize perspective with perspective actions and mappings
         TestFondueMappingSpecification.initializePerspective(perspective);
         
-        String fileName = "/Users/hyacinthali/workspace/TouchCORE2/touchram/ca.mcgill.sel.ram/resources/models/testperspectives/"
+        String fileName = "/Users/hyacinthali/workspace/TouchCORE2/touchram/ca.mcgill.sel.ram/resources/models/perspectives/"
            + "TestFondueMapping_Perspective";
         
         try {

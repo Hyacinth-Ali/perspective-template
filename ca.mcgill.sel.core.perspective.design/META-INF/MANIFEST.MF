@@ -12,4 +12,5 @@ Require-Bundle: org.eclipse.emf.ecore,
  ca.mcgill.sel.classdiagram.language;bundle-version="1.0.0",
  ca.mcgill.sel.usecases;bundle-version="1.0.0",
  ca.mcgill.sel.operationmodel;bundle-version="0.1.0",
- ca.mcgill.sel.environmentmodel;bundle-version="0.1.0"
+ ca.mcgill.sel.environmentmodel;bundle-version="0.1.0",
+ ca.mcgill.sel.ucm;bundle-version="1.0.0"

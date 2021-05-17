@@ -63,7 +63,7 @@ public class CModelLanguage {
 
     langConcern.getArtefacts().add(language);
 
-    String language1FileName = "/Users/hyacinthali/workspace/TouchCORE2/touchram/ca.mcgill.sel.ram/resources/models/testlanguages/"
+    String language1FileName = "/Users/hyacinthali/workspace/TouchCORE2/touchram/ca.mcgill.sel.ram/resources/models/languages/"
             + "CModelLanguage";
 
      try {
