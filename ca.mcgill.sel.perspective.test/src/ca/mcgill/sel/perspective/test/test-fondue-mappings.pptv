@@ -44,7 +44,7 @@ perspective TestFondueMapping {
     		roleName : A_Model;
     		methodTypeAndParameters : "EObject owner, String name";
     		methodCall :  "AModelController.getInstance().createA1((AModel) owner, name)";
-    		methodParameters : "owner, name";
+    		methodParameters : "name";
     		metaclassName : A1;
     		metaclassObject : "AmodelPackage.eINSTANCE.getA1()";
     		
@@ -54,7 +54,7 @@ perspective TestFondueMapping {
     		roleName : A_Model;
     		methodTypeAndParameters : "EObject owner, String name";
     		methodCall :  "AModelController.getInstance().createA2((AModel) owner, name)";
-    		methodParameters : "owner, name";
+    		methodParameters : "name";
     		metaclassName : A2;
     		metaclassObject : "AmodelPackage.eINSTANCE.getA2()";
     		secondaryEffects {
@@ -67,7 +67,7 @@ perspective TestFondueMapping {
     		roleName : A_Model;
     		methodTypeAndParameters : "EObject owner, String name";
     		methodCall :  "AModelController.getInstance().createA3((AModel) owner, name)";
-    		methodParameters : "owner, name";
+    		methodParameters : "name";
     		metaclassName : A3;
     		metaclassObject : "AmodelPackage.eINSTANCE.getA3()";
     	}
@@ -76,7 +76,7 @@ perspective TestFondueMapping {
     		roleName : A_Model;
     		methodTypeAndParameters : "EObject owner, String name";
     		methodCall :  "AModelController.getInstance().createA4((AModel) owner, name)";
-    		methodParameters : "owner, name";
+    		methodParameters : "name";
     		metaclassName : A4;
     		metaclassObject : "AmodelPackage.eINSTANCE.getA4()";
     	}
@@ -127,7 +127,7 @@ perspective TestFondueMapping {
     		roleName : B_Model;
     		methodTypeAndParameters : "EObject owner, String name";
     		methodCall :  "BModelController.getInstance().createB1((BModel) owner, name)";
-    		methodParameters : "owner, name";
+    		methodParameters : "name";
     		metaclassName : B1;
     		metaclassObject : "BmodelPackage.eINSTANCE.getB1()";
     	}
@@ -136,7 +136,7 @@ perspective TestFondueMapping {
     		roleName : B_Model;
     		methodTypeAndParameters : "EObject owner, String name";
     		methodCall :  "BModelController.getInstance().createB3((BModel) owner, name)";
-    		methodParameters : "owner, name";
+    		methodParameters : "name";
     		metaclassName : B3;
     		metaclassObject : "BmodelPackage.eINSTANCE.getB3()";
     	}
@@ -164,7 +164,7 @@ perspective TestFondueMapping {
     		roleName : C_Model;
     		methodTypeAndParameters : "EObject owner, String name";
     		methodCall :  "CModelController.getInstance().createC1((CModel) owner, name)";
-    		methodParameters : "owner, name";
+    		methodParameters : "name";
     		metaclassName : C1;
     		metaclassObject : "CmodelPackage.eINSTANCE.getC1()";
     		
@@ -174,7 +174,7 @@ perspective TestFondueMapping {
     		roleName : C_Model;
     		methodTypeAndParameters : "EObject owner, String name";
     		methodCall :  "CModelController.getInstance().createC2((CModel) owner, name)";
-    		methodParameters : "owner, name";
+    		methodParameters : "name";
     		metaclassName : C2;
     		metaclassObject : "CmodelPackage.eINSTANCE.getC2()";
     		secondaryEffects {
@@ -186,7 +186,7 @@ perspective TestFondueMapping {
     		roleName : C_Model;
     		methodTypeAndParameters : "EObject owner, String name";
     		methodCall :  "CModelController.getInstance().createC3((CModel) owner, name)";
-    		methodParameters : "owner, name";
+    		methodParameters : "name";
     		metaclassName : C3;
     		metaclassObject : "CmodelPackage.eINSTANCE.getC3()";
     		
@@ -196,7 +196,7 @@ perspective TestFondueMapping {
     		roleName : C_Model;
     		methodTypeAndParameters : "EObject owner, String name";
     		methodCall :  "CModelController.getInstance().createC4((CModel) owner, name)";
-    		methodParameters : "owner, name";
+    		methodParameters : "name";
     		metaclassName : C4;
     		metaclassObject : "CmodelPackage.eINSTANCE.getC4()";
     		
