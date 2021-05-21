@@ -10,7 +10,9 @@ perspective TestFondueMapping {
             packageClassName AmodelPackage;
             controllerPackage "ca.mcgill.sel.amodel.controller";
             roleName A_Model;
-            facadeActionPackage : "ca.mcgill.sel.perspective.test";
+            utilPackage : "ca.mcgill.sel.perspective.test";
+            otherRootPackage "ca.mcgill.sel.bmodel";
+            otherRootPackage "ca.mcgill.sel.cmodel";
         }  
                 
         existing language BModel {
@@ -18,7 +20,9 @@ perspective TestFondueMapping {
             packageClassName BmodelPackage;
             controllerPackage "ca.mcgill.sel.bmodel.controller";
             roleName B_Model;
-            facadeActionPackage : "ca.mcgill.sel.perspective.test";
+            utilPackage : "ca.mcgill.sel.perspective.test";
+            otherRootPackage "ca.mcgill.sel.amodel";
+            otherRootPackage "ca.mcgill.sel.cmodel";
         }
         
         existing language CModel {
@@ -26,7 +30,9 @@ perspective TestFondueMapping {
             packageClassName CmodelPackage;
             controllerPackage "ca.mcgill.sel.cmodel.controller";
             roleName C_Model;
-            facadeActionPackage : "ca.mcgill.sel.perspective.test";
+            utilPackage : "ca.mcgill.sel.perspective.test";
+            otherRootPackage "ca.mcgill.sel.amodel";
+            otherRootPackage "ca.mcgill.sel.bmodel";
         }
           
     }    

@@ -56,7 +56,7 @@ public class TemplateMainTest {
 	public void setUp() throws Exception {
 
 		// establish root MEM
-		COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, rootMappingType, aModel, bModel, true);
+		COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, rootMappingType, aModel, bModel, false);
 
 	}
 
@@ -105,7 +105,7 @@ public class TemplateMainTest {
 		// Assuming the user decides not to create mapping after creating A1
 		// element
 		QueryAction.INSTANCE.setCreateMapping(false);
-		RedefinedAModelAction.createNewA1(perspective, scene, "A_Model", aModel, "name");
+		RedefinedAModelAction.createNewA1(perspective, scene, "A_Model", false, aModel, "name");
 
 		int nElements = aModel.getA1s().size();
 		assertEquals(1, nElements);
@@ -114,7 +114,7 @@ public class TemplateMainTest {
 
 		// Assuming the user decides to create mapping after creating A1 element
 		QueryAction.INSTANCE.setCreateMapping(true);
-		RedefinedAModelAction.createNewA1(perspective, scene, "A_Model", aModel, "name");
+		RedefinedAModelAction.createNewA1(perspective, scene, "A_Model", false, aModel, "name");
 
 		nElements = aModel.getA1s().size();
 		assertEquals(2, nElements);
@@ -132,7 +132,7 @@ public class TemplateMainTest {
 		QueryAction.INSTANCE.setNumberOfMapping(2);
 		QueryAction.INSTANCE.setCreateMapping(true);
 		// creating A1 creates A2, A3, and A4 if each doesn't exist
-		RedefinedAModelAction.createNewA1(perspective, scene, "A_Model", aModel, "name");
+		RedefinedAModelAction.createNewA1(perspective, scene, "A_Model", false, aModel, "name");
 		aModelController.setComplexAction(false);
 		
 		int nElements = aModel.getA1s().size();
@@ -157,7 +157,7 @@ public class TemplateMainTest {
 	@Test
 	public void testCreateElement() {
 
-		RedefinedAModelAction.createNewA2(perspective, scene, "A_Model", aModel, "name");
+		RedefinedAModelAction.createNewA2(perspective, scene, "A_Model", false, aModel, "name");
 
 		int nElements = aModel.getA2s().size();
 		assertEquals(1, nElements);
@@ -176,7 +176,7 @@ public class TemplateMainTest {
 		// Assuming the user decides not to create mapping after creating A3
 		// element
 		QueryAction.INSTANCE.setNumberOfMapping(0);
-		RedefinedAModelAction.createNewA3(perspective, scene, "A_Model", aModel, "name");
+		RedefinedAModelAction.createNewA3(perspective, scene, "A_Model", false, aModel, "name");
 
 		int nElements = aModel.getA3s().size();
 		assertEquals(1, nElements);
@@ -186,7 +186,7 @@ public class TemplateMainTest {
 		// Assuming the user decides to create one mapping after creating A3
 		// element
 		QueryAction.INSTANCE.setNumberOfMapping(1);
-		RedefinedAModelAction.createNewA3(perspective, scene, "A_Model", aModel, "name");
+		RedefinedAModelAction.createNewA3(perspective, scene, "A_Model", false, aModel, "name");
 
 		nElements = aModel.getA3s().size();
 		assertEquals(2, nElements);
@@ -196,7 +196,7 @@ public class TemplateMainTest {
 		// Assuming the user decides to create five mappings after creating A3
 		// element
 		QueryAction.INSTANCE.setNumberOfMapping(5);
-		RedefinedAModelAction.createNewA3(perspective, scene, "A_Model", aModel, "name");
+		RedefinedAModelAction.createNewA3(perspective, scene, "A_Model", false, aModel, "name");
 
 		nElements = aModel.getA3s().size();
 		assertEquals(3, nElements);
@@ -213,7 +213,7 @@ public class TemplateMainTest {
 		// Assuming the user decides to create one mapping after creating A4
 		// element
 		QueryAction.INSTANCE.setNumberOfMapping(1);
-		RedefinedAModelAction.createNewA4(perspective, scene, "A_Model", aModel, "name");
+		RedefinedAModelAction.createNewA4(perspective, scene, "A_Model", false, aModel, "name");
 
 		int nElements = aModel.getA4s().size();
 		assertEquals(1, nElements);
@@ -223,7 +223,7 @@ public class TemplateMainTest {
 		// Assuming the user decides to create six mappings after creating A4
 		// element
 		QueryAction.INSTANCE.setNumberOfMapping(6);
-		RedefinedAModelAction.createNewA4(perspective, scene, "A_Model", aModel, "name");
+		RedefinedAModelAction.createNewA4(perspective, scene, "A_Model", false, aModel, "name");
 
 		nElements = aModel.getA4s().size();
 		assertEquals(2, nElements);
@@ -241,7 +241,7 @@ public class TemplateMainTest {
 		// Assuming the user decides not to create mapping after creating A5
 		// element
 		QueryAction.INSTANCE.setCreateMapping(false);
-		RedefinedAModelAction.createNewA5(perspective, scene, "A_Model", aModel, "name");
+		RedefinedAModelAction.createNewA5(perspective, scene, "A_Model", false, aModel, "name");
 
 		int nElements = aModel.getA5s().size();
 		assertEquals(1, nElements);
@@ -252,7 +252,7 @@ public class TemplateMainTest {
 		// element
 		// and there is no existing B5 element
 		QueryAction.INSTANCE.setCreateMapping(true);
-		RedefinedAModelAction.createNewA5(perspective, scene, "A_Model", aModel, "name");
+		RedefinedAModelAction.createNewA5(perspective, scene, "A_Model", false, aModel, "name");
 
 		nElements = aModel.getA5s().size();
 		assertEquals(2, nElements);
@@ -264,7 +264,7 @@ public class TemplateMainTest {
 		// and there is existing B5 element
 		QueryAction.INSTANCE.setCreateMapping(true);
 		// create element A1
-		RedefinedAModelAction.createNewA5(perspective, scene, "A_Model", aModel, "name");
+		RedefinedAModelAction.createNewA5(perspective, scene, "A_Model", false, aModel, "name");
 
 		nElements = aModel.getA5s().size();
 		assertEquals(3, nElements);
@@ -279,7 +279,7 @@ public class TemplateMainTest {
 	public void testCreateOrUseElement() {
 
 		// There is no corresponding element
-		RedefinedAModelAction.createNewA6(perspective, scene, "A_Model", aModel, "name");
+		RedefinedAModelAction.createNewA6(perspective, scene, "A_Model", false, aModel, "name");
 
 		int nElements = aModel.getA6s().size();
 		assertEquals(1, nElements);
@@ -287,7 +287,7 @@ public class TemplateMainTest {
 		assertEquals(1, nElements);
 
 		// Now, there is a corresponding B element
-		RedefinedAModelAction.createNewA6(perspective, scene, "A_Model", aModel, "name");
+		RedefinedAModelAction.createNewA6(perspective, scene, "A_Model", false, aModel, "name");
 
 		nElements = aModel.getA6s().size();
 		assertEquals(2, nElements);
@@ -296,7 +296,7 @@ public class TemplateMainTest {
 
 		// Here, there is no corresponding element, because of "name2" instead
 		// of "name"
-		RedefinedAModelAction.createNewA6(perspective, scene, "A_Model", aModel, "name2");
+		RedefinedAModelAction.createNewA6(perspective, scene, "A_Model", false, aModel, "name2");
 
 		nElements = aModel.getA6s().size();
 		assertEquals(3, nElements);
@@ -313,7 +313,7 @@ public class TemplateMainTest {
 		// Assuming the user decides not to create mapping after creating A7
 		// element
 		QueryAction.INSTANCE.setNumberOfMapping(0);
-		RedefinedAModelAction.createNewA7(perspective, scene, "A_Model", aModel, "name");
+		RedefinedAModelAction.createNewA7(perspective, scene, "A_Model", false, aModel, "name");
 
 		int nElements = aModel.getA7s().size();
 		assertEquals(1, nElements);
@@ -324,7 +324,7 @@ public class TemplateMainTest {
 		// element
 		// and there is no existing B7 element
 		QueryAction.INSTANCE.setNumberOfMapping(5);
-		RedefinedAModelAction.createNewA7(perspective, scene, "A_Model", aModel, "name");
+		RedefinedAModelAction.createNewA7(perspective, scene, "A_Model", false, aModel, "name");
 
 		nElements = aModel.getA7s().size();
 		assertEquals(2, nElements);
@@ -334,7 +334,7 @@ public class TemplateMainTest {
 		// Assuming the user decides to create mapping after creating A7 element
 		// and there is existing B7 elements
 		QueryAction.INSTANCE.setNumberOfMapping(8);
-		RedefinedAModelAction.createNewA7(perspective, scene, "A_Model", aModel, "name");
+		RedefinedAModelAction.createNewA7(perspective, scene, "A_Model", false, aModel, "name");
 
 		nElements = aModel.getA7s().size();
 		assertEquals(3, nElements);
@@ -349,7 +349,7 @@ public class TemplateMainTest {
 	public void testCreateOrUseAtLeastOneElement() {
 
 		QueryAction.INSTANCE.setNumberOfMapping(1);
-		RedefinedAModelAction.createNewA8(perspective, scene, "A_Model", aModel, "name");
+		RedefinedAModelAction.createNewA8(perspective, scene, "A_Model", false, aModel, "name");
 
 		int nElements = aModel.getA8s().size();
 		assertEquals(1, nElements);
@@ -361,7 +361,7 @@ public class TemplateMainTest {
 		// and there is one existing B8 element (hence, 4 new elements are
 		// created)
 		QueryAction.INSTANCE.setNumberOfMapping(5);
-		RedefinedAModelAction.createNewA8(perspective, scene, "A_Model", aModel, "name");
+		RedefinedAModelAction.createNewA8(perspective, scene, "A_Model", false, aModel, "name");
 
 		nElements = aModel.getA8s().size();
 		assertEquals(2, nElements);
@@ -372,7 +372,7 @@ public class TemplateMainTest {
 		// element
 		// and the existing B elements do match to be mapped, "name2"
 		QueryAction.INSTANCE.setNumberOfMapping(8);
-		RedefinedAModelAction.createNewA8(perspective, scene, "A_Model", aModel, "name2");
+		RedefinedAModelAction.createNewA8(perspective, scene, "A_Model", false, aModel, "name2");
 
 		nElements = aModel.getA8s().size();
 		assertEquals(3, nElements);
@@ -389,7 +389,7 @@ public class TemplateMainTest {
 		// Assuming the user decides not to create mapping after creating A9
 		// element
 		QueryAction.INSTANCE.setCreateMapping(false);
-		RedefinedAModelAction.createNewA9(perspective, scene, "A_Model", aModel, "name");
+		RedefinedAModelAction.createNewA9(perspective, scene, "A_Model", false, aModel, "name");
 
 		int nElements = aModel.getA9s().size();
 		assertEquals(1, nElements);
@@ -399,7 +399,7 @@ public class TemplateMainTest {
 		// Assuming the user decides to create mapping after creating A9 element
 		// and there is no existing B9 element
 		QueryAction.INSTANCE.setCreateMapping(true);
-		RedefinedAModelAction.createNewA9(perspective, scene, "A_Model", aModel, "name");
+		RedefinedAModelAction.createNewA9(perspective, scene, "A_Model", false, aModel, "name");
 
 		nElements = aModel.getA9s().size();
 		assertEquals(2, nElements);
@@ -409,7 +409,7 @@ public class TemplateMainTest {
 		// Assuming the user decides to create mapping after creating A9 element
 		// and there is existing B9 element which is mapped
 		QueryAction.INSTANCE.setCreateMapping(true);
-		RedefinedAModelAction.createNewA9(perspective, scene, "A_Model", aModel, "name");
+		RedefinedAModelAction.createNewA9(perspective, scene, "A_Model", false, aModel, "name");
 
 		nElements = aModel.getA9s().size();
 		assertEquals(3, nElements);
@@ -420,7 +420,7 @@ public class TemplateMainTest {
 		// and there is a corresponding B element which is not mapped
 		bModelController.createB9(bModel, "name2");
 		QueryAction.INSTANCE.setCreateMapping(true);
-		RedefinedAModelAction.createNewA9(perspective, scene, "A_Model", aModel, "name2");
+		RedefinedAModelAction.createNewA9(perspective, scene, "A_Model", false, aModel, "name2");
 
 		nElements = aModel.getA9s().size();
 		assertEquals(4, nElements);
@@ -434,14 +434,14 @@ public class TemplateMainTest {
 	@Test
 	public void testCreateOrUseNonMappedElement() {
 
-		RedefinedAModelAction.createNewA10(perspective, scene, "A_Model", aModel, "name");
+		RedefinedAModelAction.createNewA10(perspective, scene, "A_Model", false, aModel, "name");
 		int nElements = aModel.getA10s().size();
 		assertEquals(1, nElements);
 		nElements = bModel.getB10s().size();
 		assertEquals(1, nElements);
 
 		// There is existing B10 element which is mapped
-		RedefinedAModelAction.createNewA10(perspective, scene, "A_Model", aModel, "name");
+		RedefinedAModelAction.createNewA10(perspective, scene, "A_Model", false, aModel, "name");
 
 		nElements = aModel.getA10s().size();
 		assertEquals(2, nElements);
@@ -452,7 +452,7 @@ public class TemplateMainTest {
 		// element
 		// and there is existing B10 element which is not mapped
 		bModelController.createB10(bModel, "name2");
-		RedefinedAModelAction.createNewA10(perspective, scene, "A_Model", aModel, "name2");
+		RedefinedAModelAction.createNewA10(perspective, scene, "A_Model", false, aModel, "name2");
 
 		nElements = aModel.getA10s().size();
 		assertEquals(3, nElements);
@@ -470,7 +470,7 @@ public class TemplateMainTest {
 		// Assuming the user decides not to create mapping after creating A11
 		// element
 		QueryAction.INSTANCE.setNumberOfMapping(0);
-		RedefinedAModelAction.createNewA11(perspective, scene, "A_Model", aModel, "name");
+		RedefinedAModelAction.createNewA11(perspective, scene, "A_Model", false, aModel, "name");
 		int nElements = aModel.getA11s().size();
 		assertEquals(1, nElements);
 		nElements = bModel.getB11s().size();
@@ -480,7 +480,7 @@ public class TemplateMainTest {
 		// element
 		// and there is no existing B11 element
 		QueryAction.INSTANCE.setNumberOfMapping(5);
-		RedefinedAModelAction.createNewA11(perspective, scene, "A_Model", aModel, "name");
+		RedefinedAModelAction.createNewA11(perspective, scene, "A_Model", false, aModel, "name");
 		nElements = aModel.getA11s().size();
 		assertEquals(2, nElements);
 		nElements = bModel.getB11s().size();
@@ -490,7 +490,7 @@ public class TemplateMainTest {
 		// element
 		// and there is existing B11 element which is mapped
 		QueryAction.INSTANCE.setNumberOfMapping(3);
-		RedefinedAModelAction.createNewA11(perspective, scene, "A_Model", aModel, "name");
+		RedefinedAModelAction.createNewA11(perspective, scene, "A_Model", false, aModel, "name");
 
 		nElements = aModel.getA11s().size();
 		assertEquals(3, nElements);
@@ -503,7 +503,7 @@ public class TemplateMainTest {
 		bModelController.createB11(bModel, "name2");
 		bModelController.createB11(bModel, "name2");
 		QueryAction.INSTANCE.setNumberOfMapping(7);
-		RedefinedAModelAction.createNewA11(perspective, scene, "A_Model", aModel, "name2");
+		RedefinedAModelAction.createNewA11(perspective, scene, "A_Model", false, aModel, "name2");
 
 		nElements = aModel.getA11s().size();
 		assertEquals(4, nElements);
@@ -518,7 +518,7 @@ public class TemplateMainTest {
 	public void testCreateOrUseNonMappedAtLeastOneElement() {
 
 		QueryAction.INSTANCE.setNumberOfMapping(2);
-		RedefinedAModelAction.createNewA12(perspective, scene, "A_Model", aModel, "name");
+		RedefinedAModelAction.createNewA12(perspective, scene, "A_Model", false, aModel, "name");
 		int nElements = aModel.getA12s().size();
 		assertEquals(1, nElements);
 		nElements = bModel.getB12s().size();
@@ -528,7 +528,7 @@ public class TemplateMainTest {
 		// element
 		// and there are existing B12 elements which are mapped
 		QueryAction.INSTANCE.setNumberOfMapping(5);
-		RedefinedAModelAction.createNewA12(perspective, scene, "A_Model", aModel, "name");
+		RedefinedAModelAction.createNewA12(perspective, scene, "A_Model", false, aModel, "name");
 		nElements = aModel.getA12s().size();
 		assertEquals(2, nElements);
 		nElements = bModel.getB12s().size();
@@ -539,7 +539,7 @@ public class TemplateMainTest {
 		// and there is existing B12 element which is not mapped
 		bModelController.createB12(bModel, "name2");
 		QueryAction.INSTANCE.setNumberOfMapping(3);
-		RedefinedAModelAction.createNewA12(perspective, scene, "A_Model", aModel, "name2");
+		RedefinedAModelAction.createNewA12(perspective, scene, "A_Model", false, aModel, "name2");
 		nElements = aModel.getA12s().size();
 		assertEquals(3, nElements);
 		nElements = bModel.getB12s().size();
@@ -558,7 +558,7 @@ public class TemplateMainTest {
 		// Assuming the user decides to create mappings after creating A1
 		// element
 		QueryAction.INSTANCE.setNumberOfMapping(5);
-		RedefinedAModelAction.createNewA11(perspective, scene, "A_Model", aModel, "name");
+		RedefinedAModelAction.createNewA11(perspective, scene, "A_Model", false, aModel, "name");
 		int nElements = aModel.getA11s().size();
 		assertEquals(1, nElements);
 		nElements = bModel.getB11s().size();
@@ -580,7 +580,7 @@ public class TemplateMainTest {
 		// Assuming the user decides to create one mapping after creating A4
 		// element
 		QueryAction.INSTANCE.setNumberOfMapping(6);
-		RedefinedAModelAction.createNewA4(perspective, scene, "A_Model", aModel, "name");
+		RedefinedAModelAction.createNewA4(perspective, scene, "A_Model", false, aModel, "name");
 
 		int nElements = aModel.getA4s().size();
 		assertEquals(1, nElements);
@@ -603,7 +603,7 @@ public class TemplateMainTest {
 		aModelController.setComplexAction(true);
 		QueryAction.INSTANCE.setNumberOfMapping(6);
 		// this action can create A4 as a secondary effect
-		RedefinedAModelAction.createNewA1(perspective, scene, "A_Model", aModel, "name");
+		RedefinedAModelAction.createNewA1(perspective, scene, "A_Model", false, aModel, "name");
 		
 		int nElements = aModel.getA1s().size();
 		assertEquals(1, nElements);
@@ -631,7 +631,7 @@ public class TemplateMainTest {
 	public void testDeleteSingleMapped1() {
 
 		QueryAction.INSTANCE.setCreateMapping(true);
-		RedefinedBModelAction.createNewB4(perspective, scene, "B_Model", bModel, "name");
+		RedefinedBModelAction.createNewB4(perspective, scene, "B_Model", false, bModel, "name");
 
 		int nElements = bModel.getB4s().size();
 		assertEquals(1, nElements);
@@ -656,7 +656,7 @@ public class TemplateMainTest {
 		// element
 		// and there is no existing A12 element
 		QueryAction.INSTANCE.setCreateMapping(true);
-		RedefinedBModelAction.createNewB12(perspective, scene, "B_Model", bModel, "name");
+		RedefinedBModelAction.createNewB12(perspective, scene, "B_Model", false, bModel, "name");
 
 		int nElements = bModel.getB12s().size();
 		assertEquals(1, nElements);
@@ -667,7 +667,7 @@ public class TemplateMainTest {
 		// element
 		// and there is corresponding A12 element
 		QueryAction.INSTANCE.setCreateMapping(true);
-		RedefinedBModelAction.createNewB12(perspective, scene, "B_Model", bModel, "name");
+		RedefinedBModelAction.createNewB12(perspective, scene, "B_Model", false, bModel, "name");
 
 		nElements = bModel.getB12s().size();
 		assertEquals(2, nElements);
@@ -690,7 +690,7 @@ public class TemplateMainTest {
 	@Test
 	public void testUpdate() {
 		QueryAction.INSTANCE.setCreateMapping(true);
-		RedefinedAModelAction.createNewA1(perspective, scene, "A_Model", aModel, "name");
+		RedefinedAModelAction.createNewA1(perspective, scene, "A_Model", false, aModel, "name");
 
 		int nElements = aModel.getA1s().size();
 		assertEquals(1, nElements);
@@ -709,7 +709,7 @@ public class TemplateMainTest {
 	@Test
 	public void testUpdateMultiple() {
 		QueryAction.INSTANCE.setNumberOfMapping(6);
-		RedefinedAModelAction.createNewA4(perspective, scene, "A_Model", aModel, "name");
+		RedefinedAModelAction.createNewA4(perspective, scene, "A_Model", false, aModel, "name");
 
 		int nElements = aModel.getA4s().size();
 		assertEquals(1, nElements);
@@ -735,7 +735,7 @@ public class TemplateMainTest {
 		// Assuming the user decides to create 7 mappings after creating A11
 		// element
 		QueryAction.INSTANCE.setNumberOfMapping(7);
-		RedefinedAModelAction.createNewA11(perspective, scene, "A_Model", aModel, "name");
+		RedefinedAModelAction.createNewA11(perspective, scene, "A_Model", false, aModel, "name");
 
 		int nElements = aModel.getA11s().size();
 		assertEquals(1, nElements);
@@ -762,7 +762,7 @@ public class TemplateMainTest {
 		// Assuming the user decides to create 7 mappings after creating A11
 		// element
 		QueryAction.INSTANCE.setNumberOfMapping(7);
-		RedefinedAModelAction.createNewA11(perspective, scene, "A_Model", aModel, "name");
+		RedefinedAModelAction.createNewA11(perspective, scene, "A_Model", false, aModel, "name");
 
 		int nElements = aModel.getA11s().size();
 		assertEquals(1, nElements);
@@ -771,9 +771,9 @@ public class TemplateMainTest {
 
 		QueryAction.INSTANCE.setCreateMapping(false);
 		// create element B11 (3X)
-		RedefinedBModelAction.createNewB11(perspective, scene, "B_Model", bModel, "name2");
-		RedefinedBModelAction.createNewB11(perspective, scene, "B_Model", bModel, "name2");
-		RedefinedBModelAction.createNewB11(perspective, scene, "B_Model", bModel, "name2");
+		RedefinedBModelAction.createNewB11(perspective, scene, "B_Model", false, bModel, "name2");
+		RedefinedBModelAction.createNewB11(perspective, scene, "B_Model", false,  bModel, "name2");
+		RedefinedBModelAction.createNewB11(perspective, scene, "B_Model", false, bModel, "name2");
 		nElements = bModel.getB11s().size();
 		assertEquals(10, nElements);
 

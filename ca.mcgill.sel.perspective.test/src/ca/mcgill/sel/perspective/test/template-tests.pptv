@@ -10,7 +10,8 @@ perspective PerspectiveTest {
             packageClassName AmodelPackage;
             controllerPackage "ca.mcgill.sel.amodel.controller";
             roleName A_Model;
-            facadeActionPackage : "ca.mcgill.sel.perspective.test";
+            utilPackage : "ca.mcgill.sel.perspective.test";
+            otherRootPackage "ca.mcgill.sel.bmodel";
         }  
               
         existing language BModel {
@@ -18,10 +19,11 @@ perspective PerspectiveTest {
             packageClassName BmodelPackage;
             controllerPackage "ca.mcgill.sel.bmodel.controller";
             roleName B_Model;
-            facadeActionPackage : "ca.mcgill.sel.perspective.test";
+            utilPackage : "ca.mcgill.sel.perspective.test";
+            otherRootPackage "ca.mcgill.sel.amodel";
         }
           
-    }     
+    }      
            
     actions {
     	
@@ -30,7 +32,7 @@ perspective PerspectiveTest {
     		roleName : A_Model;
     		methodTypeAndParameters : "EObject owner, String name";
     		methodCall :  "AModelController.getInstance().createA1((AModel) owner, name)";
-    		methodParameters : "owner, name";
+    		methodParameters : "name";
     		metaclassName : A1;
     		metaclassObject : "AmodelPackage.eINSTANCE.getA1()";
     		secondaryEffects {
@@ -44,7 +46,7 @@ perspective PerspectiveTest {
     		roleName : A_Model;
     		methodTypeAndParameters : "EObject owner, String name";
     		methodCall :  "AModelController.getInstance().createA2((AModel) owner, name)";
-    		methodParameters : "owner, name";
+    		methodParameters : "name";
     		metaclassName : A2;
     		metaclassObject : "AmodelPackage.eINSTANCE.getA2()";
     	}
@@ -53,7 +55,7 @@ perspective PerspectiveTest {
     		roleName : A_Model;
     		methodTypeAndParameters : "EObject owner, String name";
     		methodCall :  "AModelController.getInstance().createA3((AModel) owner, name)";
-    		methodParameters : "owner, name";
+    		methodParameters : "name";
     		metaclassName : A3;
     		metaclassObject : "AmodelPackage.eINSTANCE.getA3()";
     	}
@@ -62,7 +64,7 @@ perspective PerspectiveTest {
     		roleName : A_Model;
     		methodTypeAndParameters : "EObject owner, String name";
     		methodCall :  "AModelController.getInstance().createA4((AModel) owner, name)";
-    		methodParameters : "owner, name";
+    		methodParameters : "name";
     		metaclassName : A4;
     		metaclassObject : "AmodelPackage.eINSTANCE.getA4()";
     	}
@@ -71,7 +73,7 @@ perspective PerspectiveTest {
     		roleName : A_Model;
     		methodTypeAndParameters : "EObject owner, String name";
     		methodCall :  "AModelController.getInstance().createA5((AModel) owner, name)";
-    		methodParameters : "owner, name";
+    		methodParameters : "name";
     		metaclassName : A5;
     		metaclassObject : "AmodelPackage.eINSTANCE.getA5()";
     	}
@@ -80,7 +82,7 @@ perspective PerspectiveTest {
     		roleName : A_Model;
     		methodTypeAndParameters : "EObject owner, String name";
     		methodCall :  "AModelController.getInstance().createA6((AModel) owner, name)";
-    		methodParameters : "owner, name";
+    		methodParameters : "name";
     		metaclassName : A6;
     		metaclassObject : "AmodelPackage.eINSTANCE.getA6()";
     	}
@@ -89,7 +91,7 @@ perspective PerspectiveTest {
     		roleName : A_Model;
     		methodTypeAndParameters : "EObject owner, String name";
     		methodCall :  "AModelController.getInstance().createA7((AModel) owner, name)";
-    		methodParameters : "owner, name";
+    		methodParameters : "name";
     		metaclassName : A7;
     		metaclassObject : "AmodelPackage.eINSTANCE.getA7()";
     	}
@@ -98,7 +100,7 @@ perspective PerspectiveTest {
     		roleName : A_Model;
     		methodTypeAndParameters : "EObject owner, String name";
     		methodCall :  "AModelController.getInstance().createA8((AModel) owner, name)";
-    		methodParameters : "owner, name";
+    		methodParameters : "name";
     		metaclassName : A8;
     		metaclassObject : "AmodelPackage.eINSTANCE.getA8()";
     	}
@@ -107,7 +109,7 @@ perspective PerspectiveTest {
     		roleName : A_Model;
     		methodTypeAndParameters : "EObject owner, String name";
     		methodCall :  "AModelController.getInstance().createA9((AModel) owner, name)";
-    		methodParameters : "owner, name";
+    		methodParameters : "name";
     		metaclassName : A9;
     		metaclassObject : "AmodelPackage.eINSTANCE.getA9()";
     	}
@@ -116,7 +118,7 @@ perspective PerspectiveTest {
     		roleName : A_Model;
     		methodTypeAndParameters : "EObject owner, String name";
     		methodCall :  "AModelController.getInstance().createA10((AModel) owner, name)";
-    		methodParameters : "owner, name";
+    		methodParameters : "name";
     		metaclassName : A10;
     		metaclassObject : "AmodelPackage.eINSTANCE.getA10()";
     	}
@@ -125,7 +127,7 @@ perspective PerspectiveTest {
     		roleName : A_Model;
     		methodTypeAndParameters : "EObject owner, String name";
     		methodCall :  "AModelController.getInstance().createA11((AModel) owner, name)";
-    		methodParameters : "owner, name";
+    		methodParameters : "name";
     		metaclassName : A11;
     		metaclassObject : "AmodelPackage.eINSTANCE.getA11()";
     	}
@@ -134,7 +136,7 @@ perspective PerspectiveTest {
     		roleName : A_Model;
     		methodTypeAndParameters : "EObject owner, String name";
     		methodCall :  "AModelController.getInstance().createA12((AModel) owner, name)";
-    		methodParameters : "owner, name";
+    		methodParameters : "name";
     		metaclassName : A12;
     		metaclassObject : "AmodelPackage.eINSTANCE.getA12()";
     	}
@@ -256,7 +258,7 @@ perspective PerspectiveTest {
     		roleName : B_Model;
     		methodTypeAndParameters : "EObject owner, String name";
     		methodCall :  "BModelController.getInstance().createB4((BModel) owner, name)";
-    		methodParameters : "owner, name";
+    		methodParameters : "name";
     		metaclassName : B4;
     		metaclassObject : "BmodelPackage.eINSTANCE.getB4()";
     	}
@@ -265,7 +267,7 @@ perspective PerspectiveTest {
     		roleName : B_Model;
     		methodTypeAndParameters : "EObject owner, String name";
     		methodCall :  "BModelController.getInstance().createB11((BModel) owner, name)";
-    		methodParameters : "owner, name";
+    		methodParameters : "name";
     		metaclassName : B11;
     		metaclassObject : "BmodelPackage.eINSTANCE.getB11()";
     	}
@@ -274,7 +276,7 @@ perspective PerspectiveTest {
     		roleName : B_Model;
     		methodTypeAndParameters : "EObject owner, String name";
     		methodCall :  "BModelController.getInstance().createB12((BModel) owner, name)";
-    		methodParameters : "owner, name";
+    		methodParameters : "name";
     		metaclassName : B12;
     		metaclassObject : "BmodelPackage.eINSTANCE.getB12()";
     	}
