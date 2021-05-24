@@ -156,7 +156,52 @@ public class PerspectiveTestSpecification {
         perspective.getActions().add(pAction);
         
         pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
+        pAction.setName("createNewB1");
+        pAction.setForRole("B_Model");
+        perspective.getActions().add(pAction);
+        
+        pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
+        pAction.setName("createNewB2");
+        pAction.setForRole("B_Model");
+        perspective.getActions().add(pAction);
+        
+        pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
+        pAction.setName("createNewB3");
+        pAction.setForRole("B_Model");
+        perspective.getActions().add(pAction);
+        
+        pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
         pAction.setName("createNewB4");
+        pAction.setForRole("B_Model");
+        perspective.getActions().add(pAction);
+        
+        pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
+        pAction.setName("createNewB5");
+        pAction.setForRole("B_Model");
+        perspective.getActions().add(pAction);
+        
+        pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
+        pAction.setName("createNewB6");
+        pAction.setForRole("B_Model");
+        perspective.getActions().add(pAction);
+        
+        pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
+        pAction.setName("createNewB7");
+        pAction.setForRole("B_Model");
+        perspective.getActions().add(pAction);
+        
+        pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
+        pAction.setName("createNewB8");
+        pAction.setForRole("B_Model");
+        perspective.getActions().add(pAction);
+        
+        pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
+        pAction.setName("createNewB9");
+        pAction.setForRole("B_Model");
+        perspective.getActions().add(pAction);
+        
+        pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
+        pAction.setName("createNewB10");
         pAction.setForRole("B_Model");
         perspective.getActions().add(pAction);
         

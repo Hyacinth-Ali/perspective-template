@@ -115,7 +115,7 @@ public class TestFonduMapping {
 		aModelController.setComplexAction(true);
 		QueryAction.INSTANCE.setNumberOfMapping(5);
 //		QueryAction.INSTANCE.setCreateMapping(true);
-		RedefinedAModelAction.createNewA2(perspective, scene, "A_Model", aModel, "name");
+		RedefinedAModelAction.createNewA2(perspective, scene, "A_Model", false, aModel, "name");
 
 		int nElements = aModel.getA2s().size();
 		assertEquals(1, nElements);
@@ -145,7 +145,7 @@ public class TestFonduMapping {
 		aModelController.setComplexAction(true);
 		QueryAction.INSTANCE.setNumberOfMapping(5);
 		QueryAction.INSTANCE.setCreateMapping(true);
-		RedefinedAModelAction.createNewA2(perspective, scene, "A_Model", aModel, "name");
+		RedefinedAModelAction.createNewA2(perspective, scene, "A_Model", false, aModel, "name");
 
 		int nElements = aModel.getA2s().size();
 		assertEquals(1, nElements);
@@ -174,7 +174,7 @@ public class TestFonduMapping {
 
 		QueryAction.INSTANCE.setNumberOfMapping(5);
 		QueryAction.INSTANCE.setCreateMapping(true);
-		RedefinedCModelAction.createNewC2(perspective, scene, "C_Model", cModel, "name");
+		RedefinedCModelAction.createNewC2(perspective, scene, "C_Model", false, cModel, "name");
 
 		int nElements = cModel.getC2s().size();
 		assertEquals(1, nElements);

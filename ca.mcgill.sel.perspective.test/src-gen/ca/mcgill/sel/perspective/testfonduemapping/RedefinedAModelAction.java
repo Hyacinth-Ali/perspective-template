@@ -38,8 +38,8 @@ public class RedefinedAModelAction {
 		Map<EObject, Collection<EObject>> after = new HashMap<EObject, Collection<EObject>>(a);
 	
 		if (!isFacadeCall) {
-			createOtherElementsForA1(perspective, scene, currentRole, newElement,
-			 	owner, name);						
+			createOtherElementsForA1(perspective, scene, currentRole, newElement, owner,
+			 	name);						
 		}
 	
 	//		try {
@@ -165,10 +165,9 @@ public class RedefinedAModelAction {
 			}
 			COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
 			// save the recent changes
-			BasePerspectiveController.saveModel(scene);
+			// BasePerspectiveController.saveModel(scene);
 			if(!otherExist) {
-				owner = otherElement.eContainer();
-				createOtherElementsForA1(perspective, scene, otherRoleName, otherElement, owner, name);	
+				createOtherElementsForA1(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(), name);	
 			}
 		}
 	}
@@ -203,10 +202,9 @@ public class RedefinedAModelAction {
 				owner, name);
 		}
 		COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-		BasePerspectiveController.saveModel(scene);
+		// BasePerspectiveController.saveModel(scene);
 		if (!otherExist) {
-			owner = otherElement.eContainer();
-			createOtherElementsForA1(perspective, scene, otherRoleName, otherElement, owner, name);
+			createOtherElementsForA1(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(), name);
 		}
 		
 	}
@@ -242,7 +240,7 @@ public class RedefinedAModelAction {
 			} else {
 				otherElement = existingElement;
 				COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-				BasePerspectiveController.saveModel(scene);
+				// BasePerspectiveController.saveModel(scene);
 				numberOfMappings--;
 			}
 		}
@@ -250,9 +248,8 @@ public class RedefinedAModelAction {
 			otherElement = AModelFacadeAction.createOtherElementsForA1(perspective, otherLE, otherRoleName, scene, 
 										owner, name);
 			COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-			BasePerspectiveController.saveModel(scene);
-			owner = otherElement.eContainer();
-			createOtherElementsForA1(perspective, scene, otherRoleName, otherElement, owner, name);
+			// BasePerspectiveController.saveModel(scene);
+			createOtherElementsForA1(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(), name);
 		}
 	}
 	
@@ -286,7 +283,7 @@ public class RedefinedAModelAction {
 			} else {
 				otherElement = existingElement;
 				COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-				BasePerspectiveController.saveModel(scene);
+				// BasePerspectiveController.saveModel(scene);
 				numberOfMappings--;
 			}
 		}
@@ -294,9 +291,8 @@ public class RedefinedAModelAction {
 			otherElement = AModelFacadeAction.createOtherElementsForA1(perspective, otherLE, otherRoleName, scene, 
 										owner, name);
 			COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-			BasePerspectiveController.saveModel(scene);
-			owner = otherElement.eContainer();
-			createOtherElementsForA1(perspective, scene, otherRoleName, otherElement, owner, name);
+			// BasePerspectiveController.saveModel(scene);
+			createOtherElementsForA1(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(), name);
 		}
 	}
 	
@@ -333,10 +329,9 @@ public class RedefinedAModelAction {
 											owner, name);
 			}
 			COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-			BasePerspectiveController.saveModel(scene);
+			// BasePerspectiveController.saveModel(scene);
 			if (!otherExist) {
-				owner = otherElement.eContainer();
-				createOtherElementsForA1(perspective, scene, otherRoleName, otherElement, owner, name);
+				createOtherElementsForA1(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(), name);
 			}
 			
 	
@@ -375,11 +370,10 @@ public class RedefinedAModelAction {
 										owner, name);
 		}
 		COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-		BasePerspectiveController.saveModel(scene);
+		// BasePerspectiveController.saveModel(scene);
 		// stop the recursion if other element exists.
 		if (!otherExist) {
-			owner = otherElement.eContainer();
-			createOtherElementsForA1(perspective, scene, otherRoleName, otherElement, owner, name);
+			createOtherElementsForA1(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(), name);
 		}
 	}
 	
@@ -415,7 +409,7 @@ public class RedefinedAModelAction {
 				if (COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene, existingElement).size() == 0) {
 					otherElement = existingElement;
 					COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-		  			BasePerspectiveController.saveModel(scene);
+		  			// BasePerspectiveController.saveModel(scene);
 					numberOfMappings--;
 				}
 			}
@@ -424,9 +418,8 @@ public class RedefinedAModelAction {
 			otherElement = AModelFacadeAction.createOtherElementsForA1(perspective, otherLE, otherRoleName, scene, 
 										owner, name);
 			COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-		  	BasePerspectiveController.saveModel(scene);
-		  	owner = otherElement.eContainer();
-			createOtherElementsForA1(perspective, scene, otherRoleName, otherElement, owner, name);
+		  	// BasePerspectiveController.saveModel(scene);
+		  	createOtherElementsForA1(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(), name);
 		}
 	}
 	
@@ -463,7 +456,7 @@ public class RedefinedAModelAction {
 				if (COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene, existingElement).size() == 0) {
 					otherElement = existingElement;
 					COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-			  		BasePerspectiveController.saveModel(scene);
+			  		// BasePerspectiveController.saveModel(scene);
 					numberOfMappings--;
 				}
 			}
@@ -472,9 +465,8 @@ public class RedefinedAModelAction {
 			otherElement = AModelFacadeAction.createOtherElementsForA1(perspective, otherLE, otherRoleName, scene, 
 										owner, name);
 			COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-		  	BasePerspectiveController.saveModel(scene);
-		  	owner = otherElement.eContainer();
-			createOtherElementsForA1(perspective, scene, otherRoleName, otherElement, owner, name);
+		  	// BasePerspectiveController.saveModel(scene);
+		  	createOtherElementsForA1(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(), name);
 		}
 	}
 	
@@ -500,11 +492,11 @@ public class RedefinedAModelAction {
 		Map<EObject, Collection<EObject>> after = new HashMap<EObject, Collection<EObject>>(a);
 	
 		if (!isFacadeCall) {
-			createOtherElementsForA2(perspective, scene, currentRole, newElement,
-			 	owner, name);						
+			createOtherElementsForA2(perspective, scene, currentRole, newElement, owner,
+			 	name);						
 		}
-		HandleSecondaryEffect.INSTANCE.createSecondaryEffects(perspective, scene, currentRole, after, 
-			owner, name);
+		HandleSecondaryEffect.INSTANCE.createSecondaryEffects(perspective, scene, currentRole, after, owner, 
+			name);
 	
 	//		try {
 	//			createOtherElementsForLEMA1(perspective, scene, newElement, currentRole, owner, name);
@@ -629,10 +621,9 @@ public class RedefinedAModelAction {
 			}
 			COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
 			// save the recent changes
-			BasePerspectiveController.saveModel(scene);
+			// BasePerspectiveController.saveModel(scene);
 			if(!otherExist) {
-				owner = otherElement.eContainer();
-				createOtherElementsForA2(perspective, scene, otherRoleName, otherElement, owner, name);	
+				createOtherElementsForA2(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(), name);	
 			}
 		}
 	}
@@ -667,10 +658,9 @@ public class RedefinedAModelAction {
 				owner, name);
 		}
 		COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-		BasePerspectiveController.saveModel(scene);
+		// BasePerspectiveController.saveModel(scene);
 		if (!otherExist) {
-			owner = otherElement.eContainer();
-			createOtherElementsForA2(perspective, scene, otherRoleName, otherElement, owner, name);
+			createOtherElementsForA2(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(), name);
 		}
 		
 	}
@@ -706,7 +696,7 @@ public class RedefinedAModelAction {
 			} else {
 				otherElement = existingElement;
 				COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-				BasePerspectiveController.saveModel(scene);
+				// BasePerspectiveController.saveModel(scene);
 				numberOfMappings--;
 			}
 		}
@@ -714,9 +704,8 @@ public class RedefinedAModelAction {
 			otherElement = AModelFacadeAction.createOtherElementsForA2(perspective, otherLE, otherRoleName, scene, 
 										owner, name);
 			COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-			BasePerspectiveController.saveModel(scene);
-			owner = otherElement.eContainer();
-			createOtherElementsForA2(perspective, scene, otherRoleName, otherElement, owner, name);
+			// BasePerspectiveController.saveModel(scene);
+			createOtherElementsForA2(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(), name);
 		}
 	}
 	
@@ -750,7 +739,7 @@ public class RedefinedAModelAction {
 			} else {
 				otherElement = existingElement;
 				COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-				BasePerspectiveController.saveModel(scene);
+				// BasePerspectiveController.saveModel(scene);
 				numberOfMappings--;
 			}
 		}
@@ -758,9 +747,8 @@ public class RedefinedAModelAction {
 			otherElement = AModelFacadeAction.createOtherElementsForA2(perspective, otherLE, otherRoleName, scene, 
 										owner, name);
 			COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-			BasePerspectiveController.saveModel(scene);
-			owner = otherElement.eContainer();
-			createOtherElementsForA2(perspective, scene, otherRoleName, otherElement, owner, name);
+			// BasePerspectiveController.saveModel(scene);
+			createOtherElementsForA2(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(), name);
 		}
 	}
 	
@@ -797,10 +785,9 @@ public class RedefinedAModelAction {
 											owner, name);
 			}
 			COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-			BasePerspectiveController.saveModel(scene);
+			// BasePerspectiveController.saveModel(scene);
 			if (!otherExist) {
-				owner = otherElement.eContainer();
-				createOtherElementsForA2(perspective, scene, otherRoleName, otherElement, owner, name);
+				createOtherElementsForA2(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(), name);
 			}
 			
 	
@@ -839,11 +826,10 @@ public class RedefinedAModelAction {
 										owner, name);
 		}
 		COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-		BasePerspectiveController.saveModel(scene);
+		// BasePerspectiveController.saveModel(scene);
 		// stop the recursion if other element exists.
 		if (!otherExist) {
-			owner = otherElement.eContainer();
-			createOtherElementsForA2(perspective, scene, otherRoleName, otherElement, owner, name);
+			createOtherElementsForA2(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(), name);
 		}
 	}
 	
@@ -879,7 +865,7 @@ public class RedefinedAModelAction {
 				if (COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene, existingElement).size() == 0) {
 					otherElement = existingElement;
 					COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-		  			BasePerspectiveController.saveModel(scene);
+		  			// BasePerspectiveController.saveModel(scene);
 					numberOfMappings--;
 				}
 			}
@@ -888,9 +874,8 @@ public class RedefinedAModelAction {
 			otherElement = AModelFacadeAction.createOtherElementsForA2(perspective, otherLE, otherRoleName, scene, 
 										owner, name);
 			COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-		  	BasePerspectiveController.saveModel(scene);
-		  	owner = otherElement.eContainer();
-			createOtherElementsForA2(perspective, scene, otherRoleName, otherElement, owner, name);
+		  	// BasePerspectiveController.saveModel(scene);
+		  	createOtherElementsForA2(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(), name);
 		}
 	}
 	
@@ -927,7 +912,7 @@ public class RedefinedAModelAction {
 				if (COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene, existingElement).size() == 0) {
 					otherElement = existingElement;
 					COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-			  		BasePerspectiveController.saveModel(scene);
+			  		// BasePerspectiveController.saveModel(scene);
 					numberOfMappings--;
 				}
 			}
@@ -936,9 +921,8 @@ public class RedefinedAModelAction {
 			otherElement = AModelFacadeAction.createOtherElementsForA2(perspective, otherLE, otherRoleName, scene, 
 										owner, name);
 			COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-		  	BasePerspectiveController.saveModel(scene);
-		  	owner = otherElement.eContainer();
-			createOtherElementsForA2(perspective, scene, otherRoleName, otherElement, owner, name);
+		  	// BasePerspectiveController.saveModel(scene);
+		  	createOtherElementsForA2(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(), name);
 		}
 	}
 	
@@ -962,8 +946,8 @@ public class RedefinedAModelAction {
 		Map<EObject, Collection<EObject>> after = new HashMap<EObject, Collection<EObject>>(a);
 	
 		if (!isFacadeCall) {
-			createOtherElementsForA3(perspective, scene, currentRole, newElement,
-			 	owner, name);						
+			createOtherElementsForA3(perspective, scene, currentRole, newElement, owner,
+			 	name);						
 		}
 	
 	//		try {
@@ -1089,10 +1073,9 @@ public class RedefinedAModelAction {
 			}
 			COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
 			// save the recent changes
-			BasePerspectiveController.saveModel(scene);
+			// BasePerspectiveController.saveModel(scene);
 			if(!otherExist) {
-				owner = otherElement.eContainer();
-				createOtherElementsForA3(perspective, scene, otherRoleName, otherElement, owner, name);	
+				createOtherElementsForA3(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(), name);	
 			}
 		}
 	}
@@ -1127,10 +1110,9 @@ public class RedefinedAModelAction {
 				owner, name);
 		}
 		COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-		BasePerspectiveController.saveModel(scene);
+		// BasePerspectiveController.saveModel(scene);
 		if (!otherExist) {
-			owner = otherElement.eContainer();
-			createOtherElementsForA3(perspective, scene, otherRoleName, otherElement, owner, name);
+			createOtherElementsForA3(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(), name);
 		}
 		
 	}
@@ -1166,7 +1148,7 @@ public class RedefinedAModelAction {
 			} else {
 				otherElement = existingElement;
 				COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-				BasePerspectiveController.saveModel(scene);
+				// BasePerspectiveController.saveModel(scene);
 				numberOfMappings--;
 			}
 		}
@@ -1174,9 +1156,8 @@ public class RedefinedAModelAction {
 			otherElement = AModelFacadeAction.createOtherElementsForA3(perspective, otherLE, otherRoleName, scene, 
 										owner, name);
 			COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-			BasePerspectiveController.saveModel(scene);
-			owner = otherElement.eContainer();
-			createOtherElementsForA3(perspective, scene, otherRoleName, otherElement, owner, name);
+			// BasePerspectiveController.saveModel(scene);
+			createOtherElementsForA3(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(), name);
 		}
 	}
 	
@@ -1210,7 +1191,7 @@ public class RedefinedAModelAction {
 			} else {
 				otherElement = existingElement;
 				COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-				BasePerspectiveController.saveModel(scene);
+				// BasePerspectiveController.saveModel(scene);
 				numberOfMappings--;
 			}
 		}
@@ -1218,9 +1199,8 @@ public class RedefinedAModelAction {
 			otherElement = AModelFacadeAction.createOtherElementsForA3(perspective, otherLE, otherRoleName, scene, 
 										owner, name);
 			COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-			BasePerspectiveController.saveModel(scene);
-			owner = otherElement.eContainer();
-			createOtherElementsForA3(perspective, scene, otherRoleName, otherElement, owner, name);
+			// BasePerspectiveController.saveModel(scene);
+			createOtherElementsForA3(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(), name);
 		}
 	}
 	
@@ -1257,10 +1237,9 @@ public class RedefinedAModelAction {
 											owner, name);
 			}
 			COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-			BasePerspectiveController.saveModel(scene);
+			// BasePerspectiveController.saveModel(scene);
 			if (!otherExist) {
-				owner = otherElement.eContainer();
-				createOtherElementsForA3(perspective, scene, otherRoleName, otherElement, owner, name);
+				createOtherElementsForA3(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(), name);
 			}
 			
 	
@@ -1299,11 +1278,10 @@ public class RedefinedAModelAction {
 										owner, name);
 		}
 		COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-		BasePerspectiveController.saveModel(scene);
+		// BasePerspectiveController.saveModel(scene);
 		// stop the recursion if other element exists.
 		if (!otherExist) {
-			owner = otherElement.eContainer();
-			createOtherElementsForA3(perspective, scene, otherRoleName, otherElement, owner, name);
+			createOtherElementsForA3(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(), name);
 		}
 	}
 	
@@ -1339,7 +1317,7 @@ public class RedefinedAModelAction {
 				if (COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene, existingElement).size() == 0) {
 					otherElement = existingElement;
 					COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-		  			BasePerspectiveController.saveModel(scene);
+		  			// BasePerspectiveController.saveModel(scene);
 					numberOfMappings--;
 				}
 			}
@@ -1348,9 +1326,8 @@ public class RedefinedAModelAction {
 			otherElement = AModelFacadeAction.createOtherElementsForA3(perspective, otherLE, otherRoleName, scene, 
 										owner, name);
 			COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-		  	BasePerspectiveController.saveModel(scene);
-		  	owner = otherElement.eContainer();
-			createOtherElementsForA3(perspective, scene, otherRoleName, otherElement, owner, name);
+		  	// BasePerspectiveController.saveModel(scene);
+		  	createOtherElementsForA3(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(), name);
 		}
 	}
 	
@@ -1387,7 +1364,7 @@ public class RedefinedAModelAction {
 				if (COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene, existingElement).size() == 0) {
 					otherElement = existingElement;
 					COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-			  		BasePerspectiveController.saveModel(scene);
+			  		// BasePerspectiveController.saveModel(scene);
 					numberOfMappings--;
 				}
 			}
@@ -1396,9 +1373,8 @@ public class RedefinedAModelAction {
 			otherElement = AModelFacadeAction.createOtherElementsForA3(perspective, otherLE, otherRoleName, scene, 
 										owner, name);
 			COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-		  	BasePerspectiveController.saveModel(scene);
-		  	owner = otherElement.eContainer();
-			createOtherElementsForA3(perspective, scene, otherRoleName, otherElement, owner, name);
+		  	// BasePerspectiveController.saveModel(scene);
+		  	createOtherElementsForA3(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(), name);
 		}
 	}
 	
@@ -1422,8 +1398,8 @@ public class RedefinedAModelAction {
 		Map<EObject, Collection<EObject>> after = new HashMap<EObject, Collection<EObject>>(a);
 	
 		if (!isFacadeCall) {
-			createOtherElementsForA4(perspective, scene, currentRole, newElement,
-			 	owner, name);						
+			createOtherElementsForA4(perspective, scene, currentRole, newElement, owner,
+			 	name);						
 		}
 	
 	//		try {
@@ -1549,10 +1525,9 @@ public class RedefinedAModelAction {
 			}
 			COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
 			// save the recent changes
-			BasePerspectiveController.saveModel(scene);
+			// BasePerspectiveController.saveModel(scene);
 			if(!otherExist) {
-				owner = otherElement.eContainer();
-				createOtherElementsForA4(perspective, scene, otherRoleName, otherElement, owner, name);	
+				createOtherElementsForA4(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(), name);	
 			}
 		}
 	}
@@ -1587,10 +1562,9 @@ public class RedefinedAModelAction {
 				owner, name);
 		}
 		COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-		BasePerspectiveController.saveModel(scene);
+		// BasePerspectiveController.saveModel(scene);
 		if (!otherExist) {
-			owner = otherElement.eContainer();
-			createOtherElementsForA4(perspective, scene, otherRoleName, otherElement, owner, name);
+			createOtherElementsForA4(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(), name);
 		}
 		
 	}
@@ -1626,7 +1600,7 @@ public class RedefinedAModelAction {
 			} else {
 				otherElement = existingElement;
 				COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-				BasePerspectiveController.saveModel(scene);
+				// BasePerspectiveController.saveModel(scene);
 				numberOfMappings--;
 			}
 		}
@@ -1634,9 +1608,8 @@ public class RedefinedAModelAction {
 			otherElement = AModelFacadeAction.createOtherElementsForA4(perspective, otherLE, otherRoleName, scene, 
 										owner, name);
 			COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-			BasePerspectiveController.saveModel(scene);
-			owner = otherElement.eContainer();
-			createOtherElementsForA4(perspective, scene, otherRoleName, otherElement, owner, name);
+			// BasePerspectiveController.saveModel(scene);
+			createOtherElementsForA4(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(), name);
 		}
 	}
 	
@@ -1670,7 +1643,7 @@ public class RedefinedAModelAction {
 			} else {
 				otherElement = existingElement;
 				COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-				BasePerspectiveController.saveModel(scene);
+				// BasePerspectiveController.saveModel(scene);
 				numberOfMappings--;
 			}
 		}
@@ -1678,9 +1651,8 @@ public class RedefinedAModelAction {
 			otherElement = AModelFacadeAction.createOtherElementsForA4(perspective, otherLE, otherRoleName, scene, 
 										owner, name);
 			COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-			BasePerspectiveController.saveModel(scene);
-			owner = otherElement.eContainer();
-			createOtherElementsForA4(perspective, scene, otherRoleName, otherElement, owner, name);
+			// BasePerspectiveController.saveModel(scene);
+			createOtherElementsForA4(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(), name);
 		}
 	}
 	
@@ -1717,10 +1689,9 @@ public class RedefinedAModelAction {
 											owner, name);
 			}
 			COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-			BasePerspectiveController.saveModel(scene);
+			// BasePerspectiveController.saveModel(scene);
 			if (!otherExist) {
-				owner = otherElement.eContainer();
-				createOtherElementsForA4(perspective, scene, otherRoleName, otherElement, owner, name);
+				createOtherElementsForA4(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(), name);
 			}
 			
 	
@@ -1759,11 +1730,10 @@ public class RedefinedAModelAction {
 										owner, name);
 		}
 		COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-		BasePerspectiveController.saveModel(scene);
+		// BasePerspectiveController.saveModel(scene);
 		// stop the recursion if other element exists.
 		if (!otherExist) {
-			owner = otherElement.eContainer();
-			createOtherElementsForA4(perspective, scene, otherRoleName, otherElement, owner, name);
+			createOtherElementsForA4(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(), name);
 		}
 	}
 	
@@ -1799,7 +1769,7 @@ public class RedefinedAModelAction {
 				if (COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene, existingElement).size() == 0) {
 					otherElement = existingElement;
 					COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-		  			BasePerspectiveController.saveModel(scene);
+		  			// BasePerspectiveController.saveModel(scene);
 					numberOfMappings--;
 				}
 			}
@@ -1808,9 +1778,8 @@ public class RedefinedAModelAction {
 			otherElement = AModelFacadeAction.createOtherElementsForA4(perspective, otherLE, otherRoleName, scene, 
 										owner, name);
 			COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-		  	BasePerspectiveController.saveModel(scene);
-		  	owner = otherElement.eContainer();
-			createOtherElementsForA4(perspective, scene, otherRoleName, otherElement, owner, name);
+		  	// BasePerspectiveController.saveModel(scene);
+		  	createOtherElementsForA4(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(), name);
 		}
 	}
 	
@@ -1847,7 +1816,7 @@ public class RedefinedAModelAction {
 				if (COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene, existingElement).size() == 0) {
 					otherElement = existingElement;
 					COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-			  		BasePerspectiveController.saveModel(scene);
+			  		// BasePerspectiveController.saveModel(scene);
 					numberOfMappings--;
 				}
 			}
@@ -1856,9 +1825,8 @@ public class RedefinedAModelAction {
 			otherElement = AModelFacadeAction.createOtherElementsForA4(perspective, otherLE, otherRoleName, scene, 
 										owner, name);
 			COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
-		  	BasePerspectiveController.saveModel(scene);
-		  	owner = otherElement.eContainer();
-			createOtherElementsForA4(perspective, scene, otherRoleName, otherElement, owner, name);
+		  	// BasePerspectiveController.saveModel(scene);
+		  	createOtherElementsForA4(perspective, scene, otherRoleName, otherElement, otherElement.eContainer(), name);
 		}
 	}
 	

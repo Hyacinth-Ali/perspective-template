@@ -132,6 +132,9 @@ public class RedefinedAModelAction {
 				createOrUseAtLeastOneElementForA1(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
 						owner, name);
 				break;
+				
+			default:
+				// does nothing
 	
 			}
 		}
@@ -584,6 +587,9 @@ public class RedefinedAModelAction {
 				createOrUseAtLeastOneElementForA2(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
 						owner, name);
 				break;
+				
+			default:
+				// does nothing
 	
 			}
 		}
@@ -1036,6 +1042,9 @@ public class RedefinedAModelAction {
 				createOrUseAtLeastOneElementForA3(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
 						owner, name);
 				break;
+				
+			default:
+				// does nothing
 	
 			}
 		}
@@ -1488,6 +1497,9 @@ public class RedefinedAModelAction {
 				createOrUseAtLeastOneElementForA4(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
 						owner, name);
 				break;
+				
+			default:
+				// does nothing
 	
 			}
 		}
@@ -1940,6 +1952,9 @@ public class RedefinedAModelAction {
 				createOrUseAtLeastOneElementForA5(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
 						owner, name);
 				break;
+				
+			default:
+				// does nothing
 	
 			}
 		}
@@ -2392,6 +2407,9 @@ public class RedefinedAModelAction {
 				createOrUseAtLeastOneElementForA6(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
 						owner, name);
 				break;
+				
+			default:
+				// does nothing
 	
 			}
 		}
@@ -2844,6 +2862,9 @@ public class RedefinedAModelAction {
 				createOrUseAtLeastOneElementForA7(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
 						owner, name);
 				break;
+				
+			default:
+				// does nothing
 	
 			}
 		}
@@ -3296,6 +3317,9 @@ public class RedefinedAModelAction {
 				createOrUseAtLeastOneElementForA8(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
 						owner, name);
 				break;
+				
+			default:
+				// does nothing
 	
 			}
 		}
@@ -3748,6 +3772,9 @@ public class RedefinedAModelAction {
 				createOrUseAtLeastOneElementForA9(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
 						owner, name);
 				break;
+				
+			default:
+				// does nothing
 	
 			}
 		}
@@ -4200,6 +4227,9 @@ public class RedefinedAModelAction {
 				createOrUseAtLeastOneElementForA10(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
 						owner, name);
 				break;
+				
+			default:
+				// does nothing
 	
 			}
 		}
@@ -4652,6 +4682,9 @@ public class RedefinedAModelAction {
 				createOrUseAtLeastOneElementForA11(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
 						owner, name);
 				break;
+				
+			default:
+				// does nothing
 	
 			}
 		}
@@ -5104,6 +5137,9 @@ public class RedefinedAModelAction {
 				createOrUseAtLeastOneElementForA12(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
 						owner, name);
 				break;
+				
+			default:
+				// does nothing
 	
 			}
 		}

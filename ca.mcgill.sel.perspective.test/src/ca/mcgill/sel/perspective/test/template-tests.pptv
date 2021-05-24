@@ -253,6 +253,32 @@ perspective PerspectiveTest {
     	} 
     	 
     	// B model language actions
+    	redefined create action createNewB1 {
+    		roleName : B_Model;
+    		methodTypeAndParameters : "EObject owner, String name";
+    		methodCall :  "BModelController.getInstance().createB1((BModel) owner, name)";
+    		methodParameters : "name";
+    		metaclassName : B1;
+    		metaclassObject : "BmodelPackage.eINSTANCE.getB1()";
+    	}
+    	
+    	redefined create action createNewB2 {
+    		roleName : B_Model;
+    		methodTypeAndParameters : "EObject owner, String name";
+    		methodCall :  "BModelController.getInstance().createB2((BModel) owner, name)";
+    		methodParameters : "name";
+    		metaclassName : B2;
+    		metaclassObject : "BmodelPackage.eINSTANCE.getB2()";
+    	}
+    	
+    	redefined create action createNewB3 {
+    		roleName : B_Model;
+    		methodTypeAndParameters : "EObject owner, String name";
+    		methodCall :  "BModelController.getInstance().createB3((BModel) owner, name)";
+    		methodParameters : "name";
+    		metaclassName : B3;
+    		metaclassObject : "BmodelPackage.eINSTANCE.getB3()";
+    	}
     	
     	redefined create action createNewB4 {
     		roleName : B_Model;
@@ -261,6 +287,60 @@ perspective PerspectiveTest {
     		methodParameters : "name";
     		metaclassName : B4;
     		metaclassObject : "BmodelPackage.eINSTANCE.getB4()";
+    	}
+    	
+    	redefined create action createNewB5 {
+    		roleName : B_Model;
+    		methodTypeAndParameters : "EObject owner, String name";
+    		methodCall :  "BModelController.getInstance().createB5((BModel) owner, name)";
+    		methodParameters : "name";
+    		metaclassName : B5;
+    		metaclassObject : "BmodelPackage.eINSTANCE.getB5()";
+    	}
+    	
+    	redefined create action createNewB6 {
+    		roleName : B_Model;
+    		methodTypeAndParameters : "EObject owner, String name";
+    		methodCall :  "BModelController.getInstance().createB6((BModel) owner, name)";
+    		methodParameters : "name";
+    		metaclassName : B6;
+    		metaclassObject : "BmodelPackage.eINSTANCE.getB6()";
+    	}
+    	
+    	redefined create action createNewB7 {
+    		roleName : B_Model;
+    		methodTypeAndParameters : "EObject owner, String name";
+    		methodCall :  "BModelController.getInstance().createB7((BModel) owner, name)";
+    		methodParameters : "name";
+    		metaclassName : B7;
+    		metaclassObject : "BmodelPackage.eINSTANCE.getB7()";
+    	}
+    	
+    	redefined create action createNewB8 {
+    		roleName : B_Model;
+    		methodTypeAndParameters : "EObject owner, String name";
+    		methodCall :  "BModelController.getInstance().createB8((BModel) owner, name)";
+    		methodParameters : "name";
+    		metaclassName : B8;
+    		metaclassObject : "BmodelPackage.eINSTANCE.getB8()";
+    	}
+    	
+    	redefined create action createNewB9 {
+    		roleName : B_Model;
+    		methodTypeAndParameters : "EObject owner, String name";
+    		methodCall :  "BModelController.getInstance().createB9((BModel) owner, name)";
+    		methodParameters : "name";
+    		metaclassName : B9;
+    		metaclassObject : "BmodelPackage.eINSTANCE.getB9()";
+    	}
+    	
+    	redefined create action createNewB10 {
+    		roleName : B_Model;
+    		methodTypeAndParameters : "EObject owner, String name";
+    		methodCall :  "BModelController.getInstance().createB10((BModel) owner, name)";
+    		methodParameters : "name";
+    		metaclassName : B10;
+    		metaclassObject : "BmodelPackage.eINSTANCE.getB10()";
     	}
     	
     	redefined create action createNewB11 {
@@ -307,7 +387,528 @@ perspective PerspectiveTest {
     		metaclassName : B12;
     		metaclassObject : "BmodelPackage.eINSTANCE.getB12()";
     	}       
-    }  
+    } 
+    
+    facade actions {
+    	facadeAction create createOtherElementsForA1 {
+    		roleName : A_Model;
+    		metaclassName : A1;
+    		methodTypeAndParameters : "EObject owner, String name";
+    		facade calls {
+    			// first call
+    			metaclassObject : "BmodelPackage.eINSTANCE.getB1()";
+    	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
+				mapping "BModel otherOwner = (BModel) o";
+				methodCall : "RedefinedBModelAction.createNewB1(perspective, scene, otherRoleName, 
+					true, otherOwner, name)";
+					
+    		} 
+    	}
+    	
+    	facadeAction create createOtherElementsForA2 {
+    		roleName : A_Model;
+    		metaclassName : A2;
+    		methodTypeAndParameters : "EObject owner, String name";
+    		facade calls {
+    			// first call
+    			metaclassObject : "BmodelPackage.eINSTANCE.getB2()";
+    	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
+				mapping "BModel otherOwner = (BModel) o";
+				methodCall : "RedefinedBModelAction.createNewB2(perspective, scene, otherRoleName, 
+					true, otherOwner, name)";
+					
+    		} 
+    	}
+    	
+    	facadeAction create createOtherElementsForA4 {
+    		roleName : A_Model;
+    		metaclassName : A4;
+    		methodTypeAndParameters : "EObject owner, String name";
+    		facade calls {
+    			// first call
+    			metaclassObject : "BmodelPackage.eINSTANCE.getB4()";
+    	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
+				mapping "BModel otherOwner = (BModel) o";
+				methodCall : "RedefinedBModelAction.createNewB4(perspective, scene, otherRoleName, 
+					true, otherOwner, name)";
+					
+    		} 
+    	}
+    	
+    	facadeAction create createOtherElementsForA3 {
+    		roleName : A_Model;
+    		metaclassName : A3;
+    		methodTypeAndParameters : "EObject owner, String name";
+    		facade calls {
+    			// first call
+    			metaclassObject : "BmodelPackage.eINSTANCE.getB3()";
+    	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
+				mapping "BModel otherOwner = (BModel) o";
+				methodCall : "RedefinedBModelAction.createNewB3(perspective, scene, otherRoleName, 
+					true, otherOwner, name)";
+					
+    		} 
+    	}
+    	
+    	facadeAction create createOtherElementsForA5 {
+    		roleName : A_Model;
+    		metaclassName : A5;
+    		methodTypeAndParameters : "EObject owner, String name";
+    		facade calls {
+    			// first call
+    			metaclassObject : "BmodelPackage.eINSTANCE.getB5()";
+    	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
+				mapping "BModel otherOwner = (BModel) o";
+				methodCall : "RedefinedBModelAction.createNewB5(perspective, scene, otherRoleName, 
+					true, otherOwner, name)";
+					
+    		} 
+    	}
+    	
+    	facadeAction create createOtherElementsForA6 {
+    		roleName : A_Model;
+    		metaclassName : A6;
+    		methodTypeAndParameters : "EObject owner, String name";
+    		facade calls {
+    			// first call
+    			metaclassObject : "BmodelPackage.eINSTANCE.getB6()";
+    	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
+				mapping "BModel otherOwner = (BModel) o";
+				methodCall : "RedefinedBModelAction.createNewB6(perspective, scene, otherRoleName, 
+					true, otherOwner, name)";
+					
+    		} 
+    	}
+    	
+    	facadeAction create createOtherElementsForA7 {
+    		roleName : A_Model;
+    		metaclassName : A7;
+    		methodTypeAndParameters : "EObject owner, String name";
+    		facade calls {
+    			// first call
+    			metaclassObject : "BmodelPackage.eINSTANCE.getB7()";
+    	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
+				mapping "BModel otherOwner = (BModel) o";
+				methodCall : "RedefinedBModelAction.createNewB7(perspective, scene, otherRoleName, 
+					true, otherOwner, name)";
+					
+    		} 
+    	}
+    	
+    	facadeAction create createOtherElementsForA8 {
+    		roleName : A_Model;
+    		metaclassName : A8;
+    		methodTypeAndParameters : "EObject owner, String name";
+    		facade calls {
+    			// first call
+    			metaclassObject : "BmodelPackage.eINSTANCE.getB8()";
+    	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
+				mapping "BModel otherOwner = (BModel) o";
+				methodCall : "RedefinedBModelAction.createNewB8(perspective, scene, otherRoleName, 
+					true, otherOwner, name)";
+					
+    		} 
+    	}
+    	
+    	facadeAction create createOtherElementsForA9 {
+    		roleName : A_Model;
+    		metaclassName : A9;
+    		methodTypeAndParameters : "EObject owner, String name";
+    		facade calls {
+    			// first call
+    			metaclassObject : "BmodelPackage.eINSTANCE.getB9()";
+    	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
+				mapping "BModel otherOwner = (BModel) o";
+				methodCall : "RedefinedBModelAction.createNewB9(perspective, scene, otherRoleName, 
+					true, otherOwner, name)";
+					
+    		} 
+    	}
+    	
+    	facadeAction create createOtherElementsForA10 {
+    		roleName : A_Model;
+    		metaclassName : A10;
+    		methodTypeAndParameters : "EObject owner, String name";
+    		facade calls {
+    			// first call
+    			metaclassObject : "BmodelPackage.eINSTANCE.getB10()";
+    	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
+				mapping "BModel otherOwner = (BModel) o";
+				methodCall : "RedefinedBModelAction.createNewB10(perspective, scene, otherRoleName, 
+					true, otherOwner, name)";
+					
+    		} 
+    	}
+    	
+    	facadeAction create createOtherElementsForA11 {
+    		roleName : A_Model;
+    		metaclassName : A11;
+    		methodTypeAndParameters : "EObject owner, String name";
+    		facade calls {
+    			// first call
+    			metaclassObject : "BmodelPackage.eINSTANCE.getB11()";
+    	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
+				mapping "BModel otherOwner = (BModel) o";
+				methodCall : "RedefinedBModelAction.createNewB11(perspective, scene, otherRoleName, 
+					true, otherOwner, name)";
+					
+    		}  
+    	}
+    	
+    	facadeAction create createOtherElementsForA12 {
+    		roleName : A_Model;
+    		metaclassName : A12;
+    		methodTypeAndParameters : "EObject owner, String name";
+    		facade calls {
+    			// first call
+    			metaclassObject : "BmodelPackage.eINSTANCE.getB12()";
+    	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
+				mapping "BModel otherOwner = (BModel) o";
+				methodCall : "RedefinedBModelAction.createNewB12(perspective, scene, otherRoleName, 
+					true, otherOwner, name)";
+					
+    		} 
+    	}
+    	
+    facadeAction delete deleteModelElement {
+    		roleName : A_Model;
+    		elementName : otherElement;
+    		method calls { 
+    			metaclassName : A1;
+    			methodCall : "AModelController.getInstance().removeA1((A1) otherElement)";
+    			
+    			metaclassName : A2;
+    			methodCall : "AModelController.getInstance().removeA2((A2) otherElement)";
+    			
+    			metaclassName : A3;
+    			methodCall : "AModelController.getInstance().removeA3((A3) otherElement)";
+    			
+    			metaclassName : A4;
+    			methodCall : "AModelController.getInstance().removeA4((A4) otherElement)";
+    			
+    			metaclassName : A5;
+    			methodCall : "AModelController.getInstance().removeA5((A5) otherElement)";
+    			
+    			metaclassName : A6;
+    			methodCall : "AModelController.getInstance().removeA6((A6) otherElement)";
+    			
+    			metaclassName : A7;
+    			methodCall : "AModelController.getInstance().removeA7((A7) otherElement)";
+    			
+    			metaclassName : A8;
+    			methodCall : "AModelController.getInstance().removeA8((A8) otherElement)";
+    			
+    			metaclassName : A9;
+    			methodCall : "AModelController.getInstance().removeA9((A9) otherElement)";
+    			
+    			metaclassName : A10;
+    			methodCall : "AModelController.getInstance().removeA10((A10) otherElement)";
+    			
+    			metaclassName : A11;
+    			methodCall : "AModelController.getInstance().removeA11((A11) otherElement)";
+    			
+    			metaclassName : A12;
+    			methodCall : "AModelController.getInstance().removeA12((A12) otherElement)";
+    			
+    			metaclassName : B1;
+    			methodCall : "BModelController.getInstance().removeB1((B1) otherElement)";
+    			
+    			metaclassName : B2;
+    			methodCall : "BModelController.getInstance().removeB2((B2) otherElement)";
+    			
+    			metaclassName : B3;
+    			methodCall : "BModelController.getInstance().removeB3((B3) otherElement)";
+    			
+    			metaclassName : B4;
+    			methodCall : "BModelController.getInstance().removeB4((B4) otherElement)";
+    			
+    			metaclassName : B5;
+    			methodCall : "BModelController.getInstance().removeB5((B5) otherElement)";
+    			
+    			metaclassName : B6;
+    			methodCall : "BModelController.getInstance().removeB6((B6) otherElement)";
+    			
+    			metaclassName : B7;
+    			methodCall : "BModelController.getInstance().removeB7((B7) otherElement)";
+    			
+    			metaclassName : B8;
+    			methodCall : "BModelController.getInstance().removeB8((B8) otherElement)";
+    			
+    			metaclassName : B9;
+    			methodCall : "BModelController.getInstance().removeB9((B9) otherElement)";
+    			
+    			metaclassName : B10;
+    			methodCall : "BModelController.getInstance().removeB10((B10) otherElement)";
+    			
+    			metaclassName : B11;
+    			methodCall : "BModelController.getInstance().removeB11((B11) otherElement)";
+    			
+    			metaclassName : B12;
+    			methodCall : "BModelController.getInstance().removeB12((B12) otherElement)";
+    		}
+    	}
+    	
+    	// B Model facade actions
+    	facadeAction create createOtherElementsForB1 {
+    		roleName : B_Model;
+    		metaclassName : B1;
+    		methodTypeAndParameters : "EObject owner, String name";
+    		facade calls {
+    			// first call
+    			metaclassObject : "AmodelPackage.eINSTANCE.getA1()";
+    	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
+				mapping "AModel otherOwner = (AModel) o";
+				methodCall : "RedefinedAModelAction.createNewA1(perspective, scene, otherRoleName, 
+					true, otherOwner, name)";
+					
+    		} 
+    	}
+    	
+    	facadeAction create createOtherElementsForB2 {
+    		roleName : B_Model;
+    		metaclassName : B2;
+    		methodTypeAndParameters : "EObject owner, String name";
+    		facade calls {
+    			// first call
+    			metaclassObject : "AmodelPackage.eINSTANCE.getA2()";
+    	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
+				mapping "AModel otherOwner = (AModel) o";
+				methodCall : "RedefinedAModelAction.createNewA2(perspective, scene, otherRoleName, 
+					true, otherOwner, name)";
+					
+    		} 
+    	}
+    	
+    	facadeAction create createOtherElementsForB3 {
+    		roleName : B_Model;
+    		metaclassName : B3;
+    		methodTypeAndParameters : "EObject owner, String name";
+    		facade calls {
+    			// first call
+    			metaclassObject : "AmodelPackage.eINSTANCE.getA3()";
+    	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
+				mapping "AModel otherOwner = (AModel) o";
+				methodCall : "RedefinedAModelAction.createNewA3(perspective, scene, otherRoleName, 
+					true, otherOwner, name)";
+					
+    		} 
+    	}
+    	
+    	facadeAction create createOtherElementsForB4 {
+    		roleName : B_Model;
+    		metaclassName : B4;
+    		methodTypeAndParameters : "EObject owner, String name";
+    		facade calls {
+    			// first call
+    			metaclassObject : "AmodelPackage.eINSTANCE.getA4()";
+    	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
+				mapping "AModel otherOwner = (AModel) o";
+				methodCall : "RedefinedAModelAction.createNewA4(perspective, scene, otherRoleName, 
+					true, otherOwner, name)";
+					
+    		} 
+    	}
+    	
+    	facadeAction create createOtherElementsForB5 {
+    		roleName : B_Model;
+    		metaclassName : B5;
+    		methodTypeAndParameters : "EObject owner, String name";
+    		facade calls {
+    			// first call
+    			metaclassObject : "AmodelPackage.eINSTANCE.getA5()";
+    	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
+				mapping "AModel otherOwner = (AModel) o";
+				methodCall : "RedefinedAModelAction.createNewA5(perspective, scene, otherRoleName, 
+					true, otherOwner, name)";
+					
+    		} 
+    	}
+    	
+    	facadeAction create createOtherElementsForB6 {
+    		roleName : B_Model;
+    		metaclassName : B6;
+    		methodTypeAndParameters : "EObject owner, String name";
+    		facade calls {
+    			// first call
+    			metaclassObject : "AmodelPackage.eINSTANCE.getA6()";
+    	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
+				mapping "AModel otherOwner = (AModel) o";
+				methodCall : "RedefinedAModelAction.createNewA6(perspective, scene, otherRoleName, 
+					true, otherOwner, name)";
+					
+    		} 
+    	}
+    	
+    	facadeAction create createOtherElementsForB7 {
+    		roleName : B_Model;
+    		metaclassName : B7;
+    		methodTypeAndParameters : "EObject owner, String name";
+    		facade calls {
+    			// first call
+    			metaclassObject : "AmodelPackage.eINSTANCE.getA7()";
+    	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
+				mapping "AModel otherOwner = (AModel) o";
+				methodCall : "RedefinedAModelAction.createNewA7(perspective, scene, otherRoleName, 
+					true, otherOwner, name)";
+					
+    		} 
+    	}
+    	
+    	facadeAction create createOtherElementsForB8 {
+    		roleName : B_Model;
+    		metaclassName : B8;
+    		methodTypeAndParameters : "EObject owner, String name";
+    		facade calls {
+    			// first call
+    			metaclassObject : "AmodelPackage.eINSTANCE.getA8()";
+    	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
+				mapping "AModel otherOwner = (AModel) o";
+				methodCall : "RedefinedAModelAction.createNewA8(perspective, scene, otherRoleName, 
+					true, otherOwner, name)";
+					
+    		} 
+    	}
+    	
+    	facadeAction create createOtherElementsForB9 {
+    		roleName : B_Model;
+    		metaclassName : B9;
+    		methodTypeAndParameters : "EObject owner, String name";
+    		facade calls {
+    			// first call
+    			metaclassObject : "AmodelPackage.eINSTANCE.getA9()";
+    	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
+				mapping "AModel otherOwner = (AModel) o";
+				methodCall : "RedefinedAModelAction.createNewA9(perspective, scene, otherRoleName, 
+					true, otherOwner, name)";
+					
+    		} 
+    	}
+    	
+    	facadeAction create createOtherElementsForB10 {
+    		roleName : B_Model;
+    		metaclassName : B10;
+    		methodTypeAndParameters : "EObject owner, String name";
+    		facade calls {
+    			// first call
+    			metaclassObject : "AmodelPackage.eINSTANCE.getA10()";
+    	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
+				mapping "AModel otherOwner = (AModel) o";
+				methodCall : "RedefinedAModelAction.createNewA10(perspective, scene, otherRoleName, 
+					true, otherOwner, name)";
+					
+    		} 
+    	}
+    	
+    	facadeAction create createOtherElementsForB11 {
+    		roleName : B_Model;
+    		metaclassName : B11;
+    		methodTypeAndParameters : "EObject owner, String name";
+    		facade calls {
+    			// first call
+    			metaclassObject : "AmodelPackage.eINSTANCE.getA11()";
+    	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
+				mapping "AModel otherOwner = (AModel) o";
+				methodCall : "RedefinedAModelAction.createNewA11(perspective, scene, otherRoleName, 
+					true, otherOwner, name)";
+					
+    		}  
+    	}
+    	
+    	facadeAction create createOtherElementsForB12 {
+    		roleName : B_Model;
+    		metaclassName : B12;
+    		methodTypeAndParameters : "EObject owner, String name";
+    		facade calls {
+    			// first call
+    			metaclassObject : "AmodelPackage.eINSTANCE.getA12()";
+    	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
+				mapping "AModel otherOwner = (AModel) o";
+				methodCall : "RedefinedAModelAction.createNewA12(perspective, scene, otherRoleName, 
+					true, otherOwner, name)";
+					
+    		} 
+    	}
+    	
+    facadeAction delete deleteModelElement {
+    		roleName : B_Model;
+    		elementName : otherElement;
+    		method calls { 
+    			metaclassName : A1;
+    			methodCall : "AModelController.getInstance().removeA1((A1) otherElement)";
+    			
+    			metaclassName : A2;
+    			methodCall : "AModelController.getInstance().removeA2((A2) otherElement)";
+    			
+    			metaclassName : A3;
+    			methodCall : "AModelController.getInstance().removeA3((A3) otherElement)";
+    			
+    			metaclassName : A4;
+    			methodCall : "AModelController.getInstance().removeA4((A4) otherElement)";
+    			
+    			metaclassName : A5;
+    			methodCall : "AModelController.getInstance().removeA5((A5) otherElement)";
+    			
+    			metaclassName : A6;
+    			methodCall : "AModelController.getInstance().removeA6((A6) otherElement)";
+    			
+    			metaclassName : A7;
+    			methodCall : "AModelController.getInstance().removeA7((A7) otherElement)";
+    			
+    			metaclassName : A8;
+    			methodCall : "AModelController.getInstance().removeA8((A8) otherElement)";
+    			
+    			metaclassName : A9;
+    			methodCall : "AModelController.getInstance().removeA9((A9) otherElement)";
+    			
+    			metaclassName : A10;
+    			methodCall : "AModelController.getInstance().removeA10((A10) otherElement)";
+    			
+    			metaclassName : A11;
+    			methodCall : "AModelController.getInstance().removeA11((A11) otherElement)";
+    			
+    			metaclassName : A12;
+    			methodCall : "AModelController.getInstance().removeA12((A12) otherElement)";
+    			
+    			metaclassName : B1;
+    			methodCall : "BModelController.getInstance().removeB1((B1) otherElement)";
+    			
+    			metaclassName : B2;
+    			methodCall : "BModelController.getInstance().removeB2((B2) otherElement)";
+    			
+    			metaclassName : B3;
+    			methodCall : "BModelController.getInstance().removeB3((B3) otherElement)";
+    			
+    			metaclassName : B4;
+    			methodCall : "BModelController.getInstance().removeB4((B4) otherElement)";
+    			
+    			metaclassName : B5;
+    			methodCall : "BModelController.getInstance().removeB5((B5) otherElement)";
+    			
+    			metaclassName : B6;
+    			methodCall : "BModelController.getInstance().removeB6((B6) otherElement)";
+    			
+    			metaclassName : B7;
+    			methodCall : "BModelController.getInstance().removeB7((B7) otherElement)";
+    			
+    			metaclassName : B8;
+    			methodCall : "BModelController.getInstance().removeB8((B8) otherElement)";
+    			
+    			metaclassName : B9;
+    			methodCall : "BModelController.getInstance().removeB9((B9) otherElement)";
+    			
+    			metaclassName : B10;
+    			methodCall : "BModelController.getInstance().removeB10((B10) otherElement)";
+    			
+    			metaclassName : B11;
+    			methodCall : "BModelController.getInstance().removeB11((B11) otherElement)";
+    			
+    			metaclassName : B12;
+    			methodCall : "BModelController.getInstance().removeB12((B12) otherElement)";
+    		}
+    	}
+    	
+    	
+    } 
       
        // mappings
        // root model element mapping
