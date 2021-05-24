@@ -10,7 +10,6 @@ perspective PerspectiveTest {
             packageClassName AmodelPackage;
             controllerPackage "ca.mcgill.sel.amodel.controller";
             roleName A_Model;
-            utilPackage : "ca.mcgill.sel.perspective.test";
             otherRootPackage "ca.mcgill.sel.bmodel";
         }  
               
@@ -19,7 +18,6 @@ perspective PerspectiveTest {
             packageClassName BmodelPackage;
             controllerPackage "ca.mcgill.sel.bmodel.controller";
             roleName B_Model;
-            utilPackage : "ca.mcgill.sel.perspective.test";
             otherRootPackage "ca.mcgill.sel.amodel";
         }
           
@@ -909,6 +907,47 @@ perspective PerspectiveTest {
     	
     	
     } 
+    
+    secondary effects {
+    	create secondary effects {
+    		// first call
+    		metaclassObject : "AmodelPackage.eINSTANCE.getA2()";
+			methodCall : "RedefinedAModelAction.createOtherElementsForA2(perspective, scene, currentRole, newElement,
+							newElement.eContainer(), name)";
+							
+    		metaclassObject : "AmodelPackage.eINSTANCE.getA3()";
+			methodCall : "RedefinedAModelAction.createOtherElementsForA3(perspective, scene, currentRole, newElement,
+							newElement.eContainer(), name)";
+							
+			metaclassObject : "AmodelPackage.eINSTANCE.getA4()";
+			methodCall : "RedefinedAModelAction.createOtherElementsForA4(perspective, scene, currentRole, newElement,
+							newElement.eContainer(), name)";
+							
+			metaclassObject : "BmodelPackage.eINSTANCE.getB2()";
+			methodCall : "RedefinedBModelAction.createOtherElementsForB2(perspective, scene, currentRole, newElement,
+							newElement.eContainer(), name)";
+							
+    		metaclassObject : "BmodelPackage.eINSTANCE.getB3()";
+			methodCall : "RedefinedBModelAction.createOtherElementsForB3(perspective, scene, currentRole, newElement,
+							newElement.eContainer(), name)";
+							
+			metaclassObject : "BmodelPackage.eINSTANCE.getB4()";
+			methodCall : "RedefinedBModelAction.createOtherElementsForB4(perspective, scene, currentRole, newElement,
+							newElement.eContainer(), name)";
+	
+    	}
+    	
+    	delete secondary effects  {
+    		metaclassObject : "AmodelPackage.eINSTANCE.getA2()";
+			methodCall : "RedefinedAModelAction.deleteOtherElementsForA2(perspective, scene, currentRole, deletedElement)";
+			
+			metaclassObject : "AmodelPackage.eINSTANCE.getA3()";
+			methodCall : "RedefinedAModelAction.deleteOtherElementsForA3(perspective, scene, currentRole, deletedElement)";
+			
+			metaclassObject : "AmodelPackage.eINSTANCE.getA4()";
+			methodCall : "RedefinedAModelAction.deleteOtherElementsForA4(perspective, scene, currentRole, deletedElement)";
+    	}
+    }
       
        // mappings
        // root model element mapping

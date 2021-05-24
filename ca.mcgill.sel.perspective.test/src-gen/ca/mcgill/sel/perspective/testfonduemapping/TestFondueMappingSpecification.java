@@ -37,11 +37,6 @@ public class TestFondueMappingSpecification {
         COREPerspectiveAction pAction = null;
         
         pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
-        pAction.setName("createNewA1");
-        pAction.setForRole("A_Model");
-        perspective.getActions().add(pAction);
-        
-        pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
         pAction.setName("createNewA2");
         pAction.setForRole("A_Model");
         perspective.getActions().add(pAction);
@@ -53,11 +48,6 @@ public class TestFondueMappingSpecification {
         
         pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
         pAction.setName("createNewA4");
-        pAction.setForRole("A_Model");
-        perspective.getActions().add(pAction);
-        
-        pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
-        pAction.setName("deleteA1");
         pAction.setForRole("A_Model");
         perspective.getActions().add(pAction);
         
@@ -107,32 +97,12 @@ public class TestFondueMappingSpecification {
         perspective.getActions().add(pAction);
         
         pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
-        pAction.setName("createNewC3");
-        pAction.setForRole("C_Model");
-        perspective.getActions().add(pAction);
-        
-        pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
-        pAction.setName("createNewC4");
-        pAction.setForRole("C_Model");
-        perspective.getActions().add(pAction);
-        
-        pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
         pAction.setName("deleteC1");
         pAction.setForRole("C_Model");
         perspective.getActions().add(pAction);
         
         pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
         pAction.setName("deleteC2");
-        pAction.setForRole("C_Model");
-        perspective.getActions().add(pAction);
-        
-        pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
-        pAction.setName("deleteC3");
-        pAction.setForRole("C_Model");
-        perspective.getActions().add(pAction);
-        
-        pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
-        pAction.setName("deleteC4");
         pAction.setForRole("C_Model");
         perspective.getActions().add(pAction);
         

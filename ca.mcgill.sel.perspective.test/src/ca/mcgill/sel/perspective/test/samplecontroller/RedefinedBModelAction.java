@@ -15,10 +15,9 @@ import ca.mcgill.sel.core.MappingEnd;
 import ca.mcgill.sel.core.perspective.ActionType;
 import ca.mcgill.sel.core.perspective.COREPerspectiveUtil;
 import ca.mcgill.sel.core.perspective.TemplateType;
-import ca.mcgill.sel.ram.ui.perspective.QueryAction;
 import ca.mcgill.sel.ram.ui.perspective.controller.BasePerspectiveController;
 import ca.mcgill.sel.ram.ui.perspective.controller.PerspectiveException;
-
+import ca.mcgill.sel.ram.ui.perspective.controller.QueryAction;
 import ca.mcgill.sel.bmodel.*;
 import ca.mcgill.sel.bmodel.controller.*;
 import ca.mcgill.sel.perspective.test.*;

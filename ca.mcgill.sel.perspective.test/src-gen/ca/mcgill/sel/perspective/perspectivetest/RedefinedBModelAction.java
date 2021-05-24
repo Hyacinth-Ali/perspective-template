@@ -10,12 +10,10 @@ import org.eclipse.emf.ecore.EObject;
 
 import ca.mcgill.sel.core.*;
 import ca.mcgill.sel.core.perspective.*;
-import ca.mcgill.sel.ram.ui.perspective.*;
 import ca.mcgill.sel.ram.ui.perspective.controller.*;
 
 import ca.mcgill.sel.bmodel.*;
 import ca.mcgill.sel.bmodel.controller.*;
-import ca.mcgill.sel.perspective.test.*;
 
 public class RedefinedBModelAction {
 	public static EObject createNewB1(COREPerspective perspective, COREScene scene, String currentRole, 

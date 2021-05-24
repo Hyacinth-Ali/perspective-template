@@ -38,8 +38,8 @@ import ca.mcgill.sel.core.perspective.COREPerspectiveUtil;
 import ca.mcgill.sel.core.perspective.TemplateType;
 import ca.mcgill.sel.perspective.testfonduemapping.RedefinedAModelAction;
 import ca.mcgill.sel.perspective.testfonduemapping.RedefinedCModelAction;
-import ca.mcgill.sel.ram.ui.perspective.QueryAction;
 import ca.mcgill.sel.ram.ui.perspective.controller.PerspectiveException;
+import ca.mcgill.sel.ram.ui.perspective.controller.QueryAction;
 
 public class TestFonduMapping {
 
