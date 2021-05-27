@@ -42,10 +42,9 @@ import ca.mcgill.sel.core.perspective.TemplateType;
 import ca.mcgill.sel.perspective.testfonduemapping.RedefinedAModelAction;
 import ca.mcgill.sel.perspective.testfonduemapping.RedefinedCModelAction;
 import ca.mcgill.sel.ram.ui.perspective.controller.PerspectiveControllerFactory;
-import ca.mcgill.sel.ram.ui.perspective.controller.PerspectiveException;
-import ca.mcgill.sel.ram.ui.perspective.controller.QueryAction;
+import ca.mcgill.sel.ram.ui.perspective.*;
 
-public class TestFonduMapping {
+public class FonduePerspectiveTest {
 
 	private static AModelController aModelController;
 	private static BModelController bModelController;

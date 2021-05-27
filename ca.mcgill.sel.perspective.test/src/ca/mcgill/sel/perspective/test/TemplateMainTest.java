@@ -28,9 +28,7 @@ import ca.mcgill.sel.core.COREScene;
 import ca.mcgill.sel.core.CoreFactory;
 import ca.mcgill.sel.core.perspective.COREPerspectiveUtil;
 import ca.mcgill.sel.ram.ui.perspective.controller.PerspectiveControllerFactory;
-import ca.mcgill.sel.ram.ui.perspective.controller.QueryAction;
-//import ca.mcgill.sel.ram.ui.perspective.test.samplecontroller.RedefinedAModelAction;
-//import ca.mcgill.sel.ram.ui.perspective.test.samplecontroller.RedefinedBModelAction;
+import ca.mcgill.sel.ram.ui.perspective.*;
 import ca.mcgill.sel.perspective.perspectivetest.*;
 
 public class TemplateMainTest {
@@ -790,7 +788,7 @@ public class TemplateMainTest {
 	}
 
 	private static void setUpModels() {
-		perspective = TemplateTestPerspective.initializePerspective();
+		perspective = MainPerspectiveTest.initializePerspective();
 		scene = CoreFactory.eINSTANCE.createCOREScene();
 		aModelController = AModelController.getInstance();
 		bModelController = BModelController.getInstance();

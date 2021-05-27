@@ -435,7 +435,7 @@ perspective TestFondueMapping {
     			
     			metaclassName : B1;
     			methodCall : "RedefinedBModelAction.deleteB1(perspective, scene, otherRoleName, otherElement)";
-    			
+    			 
     			metaclassName : B3;
     			methodCall : "RedefinedBModelAction.deleteB3(perspective, scene, otherRoleName, otherElement)";
     			

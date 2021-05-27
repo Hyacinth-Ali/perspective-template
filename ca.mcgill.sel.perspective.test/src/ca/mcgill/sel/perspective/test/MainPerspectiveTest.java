@@ -14,7 +14,7 @@ import ca.mcgill.sel.core.Cardinality;
 import ca.mcgill.sel.core.CoreFactory;
 import ca.mcgill.sel.core.MappingEnd;
 
-public class TemplateTestPerspective {
+public class MainPerspectiveTest {
 
     public static COREPerspective initializePerspective() {
     	
