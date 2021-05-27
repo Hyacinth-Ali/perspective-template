@@ -180,7 +180,7 @@ public class AModelFacadeAction {
 		return newElement;						
 	}
 
-	public static void deleteModelElement(EObject otherElement) {
+	public static void deleteModelElement(COREPerspective perspective, COREScene scene, String otherRoleName, EObject otherElement) {
 		if (otherElement instanceof A1) {
 			AModelController.getInstance().removeA1((A1) otherElement);
 		}

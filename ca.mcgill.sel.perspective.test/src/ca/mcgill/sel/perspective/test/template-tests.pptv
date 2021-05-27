@@ -402,7 +402,7 @@ perspective PerspectiveTest {
 					
     		} 
     	}
-    	
+    	  
     	facadeAction create createOtherElementsForA2 {
     		roleName : A_Model;
     		metaclassName : A2;
@@ -552,7 +552,7 @@ perspective PerspectiveTest {
 					
     		}  
     	}
-    	
+    	 
     	facadeAction create createOtherElementsForA12 {
     		roleName : A_Model;
     		metaclassName : A12;

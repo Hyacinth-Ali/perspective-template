@@ -49,27 +49,27 @@ public class CModelFacadeAction {
 		return newElement;						
 	}
 
-	public static void deleteModelElement(EObject otherElement) {
+	public static void deleteModelElement(COREPerspective perspective, COREScene scene, String otherRoleName, EObject otherElement) {
 		if (otherElement instanceof A2) {
-			AModelController.getInstance().removeA2((A2) otherElement);
+			RedefinedAModelAction.deleteA2(perspective, scene, otherRoleName, otherElement);
 		}
 		else if (otherElement instanceof A3) {
-			AModelController.getInstance().removeA3((A3) otherElement);
+			RedefinedAModelAction.deleteA3(perspective, scene, otherRoleName, otherElement);
 		}
 		else if (otherElement instanceof A4) {
-			AModelController.getInstance().removeA4((A4) otherElement);
+			RedefinedAModelAction.deleteA4(perspective, scene, otherRoleName, otherElement);
 		}
 		else if (otherElement instanceof B1) {
-			BModelController.getInstance().removeB1((B1) otherElement);
+			RedefinedBModelAction.deleteB1(perspective, scene, otherRoleName, otherElement);
 		}
 		else if (otherElement instanceof B3) {
-			BModelController.getInstance().removeB3((B3) otherElement);
+			RedefinedBModelAction.deleteB3(perspective, scene, otherRoleName, otherElement);
 		}
 		else if (otherElement instanceof C1) {
-			CModelController.getInstance().removeC1((C1) otherElement);
+			RedefinedCModelAction.deleteC1(perspective, scene, otherRoleName, otherElement);
 		}
 		else if (otherElement instanceof C2) {
-			CModelController.getInstance().removeC2((C2) otherElement);
+			RedefinedCModelAction.deleteC2(perspective, scene, otherRoleName, otherElement);
 		}
 	}
 

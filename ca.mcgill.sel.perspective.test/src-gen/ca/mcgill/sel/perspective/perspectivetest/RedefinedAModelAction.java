@@ -177,8 +177,7 @@ public class RedefinedAModelAction {
 			}
 		}
 	}
-	
-	
+
 	/**
 	 * (C2/C6): This method proactively creates a new element and then
 	 * establishes model element mapping between the "element" parameter and the
@@ -632,8 +631,7 @@ public class RedefinedAModelAction {
 			}
 		}
 	}
-	
-	
+
 	/**
 	 * (C2/C6): This method proactively creates a new element and then
 	 * establishes model element mapping between the "element" parameter and the
@@ -1087,8 +1085,7 @@ public class RedefinedAModelAction {
 			}
 		}
 	}
-	
-	
+
 	/**
 	 * (C2/C6): This method proactively creates a new element and then
 	 * establishes model element mapping between the "element" parameter and the
@@ -1542,8 +1539,7 @@ public class RedefinedAModelAction {
 			}
 		}
 	}
-	
-	
+
 	/**
 	 * (C2/C6): This method proactively creates a new element and then
 	 * establishes model element mapping between the "element" parameter and the
@@ -1997,8 +1993,7 @@ public class RedefinedAModelAction {
 			}
 		}
 	}
-	
-	
+
 	/**
 	 * (C2/C6): This method proactively creates a new element and then
 	 * establishes model element mapping between the "element" parameter and the
@@ -2452,8 +2447,7 @@ public class RedefinedAModelAction {
 			}
 		}
 	}
-	
-	
+
 	/**
 	 * (C2/C6): This method proactively creates a new element and then
 	 * establishes model element mapping between the "element" parameter and the
@@ -2907,8 +2901,7 @@ public class RedefinedAModelAction {
 			}
 		}
 	}
-	
-	
+
 	/**
 	 * (C2/C6): This method proactively creates a new element and then
 	 * establishes model element mapping between the "element" parameter and the
@@ -3362,8 +3355,7 @@ public class RedefinedAModelAction {
 			}
 		}
 	}
-	
-	
+
 	/**
 	 * (C2/C6): This method proactively creates a new element and then
 	 * establishes model element mapping between the "element" parameter and the
@@ -3817,8 +3809,7 @@ public class RedefinedAModelAction {
 			}
 		}
 	}
-	
-	
+
 	/**
 	 * (C2/C6): This method proactively creates a new element and then
 	 * establishes model element mapping between the "element" parameter and the
@@ -4272,8 +4263,7 @@ public class RedefinedAModelAction {
 			}
 		}
 	}
-	
-	
+
 	/**
 	 * (C2/C6): This method proactively creates a new element and then
 	 * establishes model element mapping between the "element" parameter and the
@@ -4727,8 +4717,7 @@ public class RedefinedAModelAction {
 			}
 		}
 	}
-	
-	
+
 	/**
 	 * (C2/C6): This method proactively creates a new element and then
 	 * establishes model element mapping between the "element" parameter and the
@@ -5182,8 +5171,7 @@ public class RedefinedAModelAction {
 			}
 		}
 	}
-	
-	
+
 	/**
 	 * (C2/C6): This method proactively creates a new element and then
 	 * establishes model element mapping between the "element" parameter and the
@@ -5523,7 +5511,7 @@ public class RedefinedAModelAction {
 			switch (deleteType) {
 	
 			case DELETE_OTHERS:
-				AModelFacadeAction.deleteModelElement(otherElement);
+				AModelFacadeAction.deleteModelElement(perspective, scene, otherRoleName, otherElement);
 				deleteOtherElementsForA1(perspective, scene, otherRoleName, otherElement);
 				break;
 	
@@ -5531,7 +5519,7 @@ public class RedefinedAModelAction {
 				List<COREModelElementMapping> otherMappings = COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene,
 						otherElement);
 				if (otherMappings.size() == 0) {
-					AModelFacadeAction.deleteModelElement(otherElement);
+					AModelFacadeAction.deleteModelElement(perspective, scene, otherRoleName, otherElement);
 					deleteOtherElementsForA1(perspective, scene, otherRoleName, otherElement);
 				}
 				break;
@@ -5579,7 +5567,7 @@ public class RedefinedAModelAction {
 			switch (deleteType) {
 	
 			case DELETE_OTHERS:
-				AModelFacadeAction.deleteModelElement(otherElement);
+				AModelFacadeAction.deleteModelElement(perspective, scene, otherRoleName, otherElement);
 				deleteOtherElementsForA2(perspective, scene, otherRoleName, otherElement);
 				break;
 	
@@ -5587,7 +5575,7 @@ public class RedefinedAModelAction {
 				List<COREModelElementMapping> otherMappings = COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene,
 						otherElement);
 				if (otherMappings.size() == 0) {
-					AModelFacadeAction.deleteModelElement(otherElement);
+					AModelFacadeAction.deleteModelElement(perspective, scene, otherRoleName, otherElement);
 					deleteOtherElementsForA2(perspective, scene, otherRoleName, otherElement);
 				}
 				break;
@@ -5635,7 +5623,7 @@ public class RedefinedAModelAction {
 			switch (deleteType) {
 	
 			case DELETE_OTHERS:
-				AModelFacadeAction.deleteModelElement(otherElement);
+				AModelFacadeAction.deleteModelElement(perspective, scene, otherRoleName, otherElement);
 				deleteOtherElementsForA3(perspective, scene, otherRoleName, otherElement);
 				break;
 	
@@ -5643,7 +5631,7 @@ public class RedefinedAModelAction {
 				List<COREModelElementMapping> otherMappings = COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene,
 						otherElement);
 				if (otherMappings.size() == 0) {
-					AModelFacadeAction.deleteModelElement(otherElement);
+					AModelFacadeAction.deleteModelElement(perspective, scene, otherRoleName, otherElement);
 					deleteOtherElementsForA3(perspective, scene, otherRoleName, otherElement);
 				}
 				break;
@@ -5691,7 +5679,7 @@ public class RedefinedAModelAction {
 			switch (deleteType) {
 	
 			case DELETE_OTHERS:
-				AModelFacadeAction.deleteModelElement(otherElement);
+				AModelFacadeAction.deleteModelElement(perspective, scene, otherRoleName, otherElement);
 				deleteOtherElementsForA4(perspective, scene, otherRoleName, otherElement);
 				break;
 	
@@ -5699,7 +5687,7 @@ public class RedefinedAModelAction {
 				List<COREModelElementMapping> otherMappings = COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene,
 						otherElement);
 				if (otherMappings.size() == 0) {
-					AModelFacadeAction.deleteModelElement(otherElement);
+					AModelFacadeAction.deleteModelElement(perspective, scene, otherRoleName, otherElement);
 					deleteOtherElementsForA4(perspective, scene, otherRoleName, otherElement);
 				}
 				break;
@@ -5747,7 +5735,7 @@ public class RedefinedAModelAction {
 			switch (deleteType) {
 	
 			case DELETE_OTHERS:
-				AModelFacadeAction.deleteModelElement(otherElement);
+				AModelFacadeAction.deleteModelElement(perspective, scene, otherRoleName, otherElement);
 				deleteOtherElementsForA5(perspective, scene, otherRoleName, otherElement);
 				break;
 	
@@ -5755,7 +5743,7 @@ public class RedefinedAModelAction {
 				List<COREModelElementMapping> otherMappings = COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene,
 						otherElement);
 				if (otherMappings.size() == 0) {
-					AModelFacadeAction.deleteModelElement(otherElement);
+					AModelFacadeAction.deleteModelElement(perspective, scene, otherRoleName, otherElement);
 					deleteOtherElementsForA5(perspective, scene, otherRoleName, otherElement);
 				}
 				break;
@@ -5803,7 +5791,7 @@ public class RedefinedAModelAction {
 			switch (deleteType) {
 	
 			case DELETE_OTHERS:
-				AModelFacadeAction.deleteModelElement(otherElement);
+				AModelFacadeAction.deleteModelElement(perspective, scene, otherRoleName, otherElement);
 				deleteOtherElementsForA6(perspective, scene, otherRoleName, otherElement);
 				break;
 	
@@ -5811,7 +5799,7 @@ public class RedefinedAModelAction {
 				List<COREModelElementMapping> otherMappings = COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene,
 						otherElement);
 				if (otherMappings.size() == 0) {
-					AModelFacadeAction.deleteModelElement(otherElement);
+					AModelFacadeAction.deleteModelElement(perspective, scene, otherRoleName, otherElement);
 					deleteOtherElementsForA6(perspective, scene, otherRoleName, otherElement);
 				}
 				break;
@@ -5859,7 +5847,7 @@ public class RedefinedAModelAction {
 			switch (deleteType) {
 	
 			case DELETE_OTHERS:
-				AModelFacadeAction.deleteModelElement(otherElement);
+				AModelFacadeAction.deleteModelElement(perspective, scene, otherRoleName, otherElement);
 				deleteOtherElementsForA7(perspective, scene, otherRoleName, otherElement);
 				break;
 	
@@ -5867,7 +5855,7 @@ public class RedefinedAModelAction {
 				List<COREModelElementMapping> otherMappings = COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene,
 						otherElement);
 				if (otherMappings.size() == 0) {
-					AModelFacadeAction.deleteModelElement(otherElement);
+					AModelFacadeAction.deleteModelElement(perspective, scene, otherRoleName, otherElement);
 					deleteOtherElementsForA7(perspective, scene, otherRoleName, otherElement);
 				}
 				break;
@@ -5915,7 +5903,7 @@ public class RedefinedAModelAction {
 			switch (deleteType) {
 	
 			case DELETE_OTHERS:
-				AModelFacadeAction.deleteModelElement(otherElement);
+				AModelFacadeAction.deleteModelElement(perspective, scene, otherRoleName, otherElement);
 				deleteOtherElementsForA8(perspective, scene, otherRoleName, otherElement);
 				break;
 	
@@ -5923,7 +5911,7 @@ public class RedefinedAModelAction {
 				List<COREModelElementMapping> otherMappings = COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene,
 						otherElement);
 				if (otherMappings.size() == 0) {
-					AModelFacadeAction.deleteModelElement(otherElement);
+					AModelFacadeAction.deleteModelElement(perspective, scene, otherRoleName, otherElement);
 					deleteOtherElementsForA8(perspective, scene, otherRoleName, otherElement);
 				}
 				break;
@@ -5971,7 +5959,7 @@ public class RedefinedAModelAction {
 			switch (deleteType) {
 	
 			case DELETE_OTHERS:
-				AModelFacadeAction.deleteModelElement(otherElement);
+				AModelFacadeAction.deleteModelElement(perspective, scene, otherRoleName, otherElement);
 				deleteOtherElementsForA9(perspective, scene, otherRoleName, otherElement);
 				break;
 	
@@ -5979,7 +5967,7 @@ public class RedefinedAModelAction {
 				List<COREModelElementMapping> otherMappings = COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene,
 						otherElement);
 				if (otherMappings.size() == 0) {
-					AModelFacadeAction.deleteModelElement(otherElement);
+					AModelFacadeAction.deleteModelElement(perspective, scene, otherRoleName, otherElement);
 					deleteOtherElementsForA9(perspective, scene, otherRoleName, otherElement);
 				}
 				break;
@@ -6027,7 +6015,7 @@ public class RedefinedAModelAction {
 			switch (deleteType) {
 	
 			case DELETE_OTHERS:
-				AModelFacadeAction.deleteModelElement(otherElement);
+				AModelFacadeAction.deleteModelElement(perspective, scene, otherRoleName, otherElement);
 				deleteOtherElementsForA10(perspective, scene, otherRoleName, otherElement);
 				break;
 	
@@ -6035,7 +6023,7 @@ public class RedefinedAModelAction {
 				List<COREModelElementMapping> otherMappings = COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene,
 						otherElement);
 				if (otherMappings.size() == 0) {
-					AModelFacadeAction.deleteModelElement(otherElement);
+					AModelFacadeAction.deleteModelElement(perspective, scene, otherRoleName, otherElement);
 					deleteOtherElementsForA10(perspective, scene, otherRoleName, otherElement);
 				}
 				break;
@@ -6083,7 +6071,7 @@ public class RedefinedAModelAction {
 			switch (deleteType) {
 	
 			case DELETE_OTHERS:
-				AModelFacadeAction.deleteModelElement(otherElement);
+				AModelFacadeAction.deleteModelElement(perspective, scene, otherRoleName, otherElement);
 				deleteOtherElementsForA11(perspective, scene, otherRoleName, otherElement);
 				break;
 	
@@ -6091,7 +6079,7 @@ public class RedefinedAModelAction {
 				List<COREModelElementMapping> otherMappings = COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene,
 						otherElement);
 				if (otherMappings.size() == 0) {
-					AModelFacadeAction.deleteModelElement(otherElement);
+					AModelFacadeAction.deleteModelElement(perspective, scene, otherRoleName, otherElement);
 					deleteOtherElementsForA11(perspective, scene, otherRoleName, otherElement);
 				}
 				break;
@@ -6139,7 +6127,7 @@ public class RedefinedAModelAction {
 			switch (deleteType) {
 	
 			case DELETE_OTHERS:
-				AModelFacadeAction.deleteModelElement(otherElement);
+				AModelFacadeAction.deleteModelElement(perspective, scene, otherRoleName, otherElement);
 				deleteOtherElementsForA12(perspective, scene, otherRoleName, otherElement);
 				break;
 	
@@ -6147,7 +6135,7 @@ public class RedefinedAModelAction {
 				List<COREModelElementMapping> otherMappings = COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene,
 						otherElement);
 				if (otherMappings.size() == 0) {
-					AModelFacadeAction.deleteModelElement(otherElement);
+					AModelFacadeAction.deleteModelElement(perspective, scene, otherRoleName, otherElement);
 					deleteOtherElementsForA12(perspective, scene, otherRoleName, otherElement);
 				}
 				break;

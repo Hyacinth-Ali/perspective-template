@@ -97,6 +97,10 @@ perspective TestFondueMapping {
     		methodParameters : "currentElement";
     		metaclassName : A2;
     		metaclassObject : "AmodelPackage.eINSTANCE.getA2()";
+    		secondaryEffects {
+    			element : "AModelController.getInstance().getA3()";
+    			element : "AModelController.getInstance().getA4()";
+    		}
     	}  
     	
     	redefined delete action deleteA3 {
@@ -215,6 +219,7 @@ perspective TestFondueMapping {
     		methodParameters : "currentElement";
     		metaclassName : C2;
     		metaclassObject : "CmodelPackage.eINSTANCE.getC2()";
+    		
     	}
     	
 //    	redefined delete action deleteC3 {
@@ -290,32 +295,32 @@ perspective TestFondueMapping {
 					
     		} 
     	}
-    	
+    	 
     	facadeAction delete deleteModelElement {
     		roleName : A_Model;
     		elementName : otherElement;
     		method calls { 
     			
     			metaclassName : A2;
-    			methodCall : "AModelController.getInstance().removeA2((A2) otherElement)";
+    			methodCall : "RedefinedAModelAction.deleteA2(perspective, scene, otherRoleName, otherElement)";
     			
     			metaclassName : A3;
-    			methodCall : "AModelController.getInstance().removeA3((A3) otherElement)";
+    			methodCall : "RedefinedAModelAction.deleteA3(perspective, scene, otherRoleName, otherElement)";
     			
     			metaclassName : A4;
-    			methodCall : "AModelController.getInstance().removeA4((A4) otherElement)";
+    			methodCall : "RedefinedAModelAction.deleteA4(perspective, scene, otherRoleName, otherElement)";
     			
     			metaclassName : B1;
-    			methodCall : "BModelController.getInstance().removeB1((B1) otherElement)";
+    			methodCall : "RedefinedBModelAction.deleteB1(perspective, scene, otherRoleName, otherElement)";
     			
     			metaclassName : B3;
-    			methodCall : "BModelController.getInstance().removeB3((B3) otherElement)";
+    			methodCall : "RedefinedBModelAction.deleteB3(perspective, scene, otherRoleName, otherElement)";
     			
     			metaclassName : C1;
-    			methodCall : "CModelController.getInstance().removeC1((C1) otherElement)";
+    			methodCall : "RedefinedCModelAction.deleteC1(perspective, scene, otherRoleName, otherElement)";
     			
     			metaclassName : C2;
-    			methodCall : "CModelController.getInstance().removeC2((C2) otherElement)";
+    			methodCall : "RedefinedCModelAction.deleteC2(perspective, scene, otherRoleName, otherElement)";
     			
     			
     		}
@@ -359,25 +364,25 @@ perspective TestFondueMapping {
     		method calls { 
     			
     			metaclassName : A2;
-    			methodCall : "AModelController.getInstance().removeA2((A2) otherElement)";
+    			methodCall : "RedefinedAModelAction.deleteA2(perspective, scene, otherRoleName, otherElement)";
     			
     			metaclassName : A3;
-    			methodCall : "AModelController.getInstance().removeA3((A3) otherElement)";
+    			methodCall : "RedefinedAModelAction.deleteA3(perspective, scene, otherRoleName, otherElement)";
     			
     			metaclassName : A4;
-    			methodCall : "AModelController.getInstance().removeA4((A4) otherElement)";
+    			methodCall : "RedefinedAModelAction.deleteA4(perspective, scene, otherRoleName, otherElement)";
     			
     			metaclassName : B1;
-    			methodCall : "BModelController.getInstance().removeB1((B1) otherElement)";
+    			methodCall : "RedefinedBModelAction.deleteB1(perspective, scene, otherRoleName, otherElement)";
     			
     			metaclassName : B3;
-    			methodCall : "BModelController.getInstance().removeB3((B3) otherElement)";
+    			methodCall : "RedefinedBModelAction.deleteB3(perspective, scene, otherRoleName, otherElement)";
     			
     			metaclassName : C1;
-    			methodCall : "CModelController.getInstance().removeC1((C1) otherElement)";
+    			methodCall : "RedefinedCModelAction.deleteC1(perspective, scene, otherRoleName, otherElement)";
     			
     			metaclassName : C2;
-    			methodCall : "CModelController.getInstance().removeC2((C2) otherElement)";
+    			methodCall : "RedefinedCModelAction.deleteC2(perspective, scene, otherRoleName, otherElement)";
     			
     			
     		}
@@ -420,25 +425,25 @@ perspective TestFondueMapping {
     		elementName : otherElement;
     		method calls { 
     			metaclassName : A2;
-    			methodCall : "AModelController.getInstance().removeA2((A2) otherElement)";
+    			methodCall : "RedefinedAModelAction.deleteA2(perspective, scene, otherRoleName, otherElement)";
     			
     			metaclassName : A3;
-    			methodCall : "AModelController.getInstance().removeA3((A3) otherElement)";
+    			methodCall : "RedefinedAModelAction.deleteA3(perspective, scene, otherRoleName, otherElement)";
     			
     			metaclassName : A4;
-    			methodCall : "AModelController.getInstance().removeA4((A4) otherElement)";
+    			methodCall : "RedefinedAModelAction.deleteA4(perspective, scene, otherRoleName, otherElement)";
     			
     			metaclassName : B1;
-    			methodCall : "BModelController.getInstance().removeB1((B1) otherElement)";
+    			methodCall : "RedefinedBModelAction.deleteB1(perspective, scene, otherRoleName, otherElement)";
     			
     			metaclassName : B3;
-    			methodCall : "BModelController.getInstance().removeB3((B3) otherElement)";
+    			methodCall : "RedefinedBModelAction.deleteB3(perspective, scene, otherRoleName, otherElement)";
     			
     			metaclassName : C1;
-    			methodCall : "CModelController.getInstance().removeC1((C1) otherElement)";
+    			methodCall : "RedefinedCModelAction.deleteC1(perspective, scene, otherRoleName, otherElement)";
     			
     			metaclassName : C2;
-    			methodCall : "CModelController.getInstance().removeC2((C2) otherElement)";
+    			methodCall : "RedefinedCModelAction.deleteC2(perspective, scene, otherRoleName, otherElement)";
     			
     			
     		}

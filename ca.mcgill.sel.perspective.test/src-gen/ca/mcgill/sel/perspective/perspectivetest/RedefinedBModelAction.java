@@ -172,8 +172,7 @@ public class RedefinedBModelAction {
 			}
 		}
 	}
-	
-	
+
 	/**
 	 * (C2/C6): This method proactively creates a new element and then
 	 * establishes model element mapping between the "element" parameter and the
@@ -627,8 +626,7 @@ public class RedefinedBModelAction {
 			}
 		}
 	}
-	
-	
+
 	/**
 	 * (C2/C6): This method proactively creates a new element and then
 	 * establishes model element mapping between the "element" parameter and the
@@ -1082,8 +1080,7 @@ public class RedefinedBModelAction {
 			}
 		}
 	}
-	
-	
+
 	/**
 	 * (C2/C6): This method proactively creates a new element and then
 	 * establishes model element mapping between the "element" parameter and the
@@ -1537,8 +1534,7 @@ public class RedefinedBModelAction {
 			}
 		}
 	}
-	
-	
+
 	/**
 	 * (C2/C6): This method proactively creates a new element and then
 	 * establishes model element mapping between the "element" parameter and the
@@ -1992,8 +1988,7 @@ public class RedefinedBModelAction {
 			}
 		}
 	}
-	
-	
+
 	/**
 	 * (C2/C6): This method proactively creates a new element and then
 	 * establishes model element mapping between the "element" parameter and the
@@ -2447,8 +2442,7 @@ public class RedefinedBModelAction {
 			}
 		}
 	}
-	
-	
+
 	/**
 	 * (C2/C6): This method proactively creates a new element and then
 	 * establishes model element mapping between the "element" parameter and the
@@ -2902,8 +2896,7 @@ public class RedefinedBModelAction {
 			}
 		}
 	}
-	
-	
+
 	/**
 	 * (C2/C6): This method proactively creates a new element and then
 	 * establishes model element mapping between the "element" parameter and the
@@ -3357,8 +3350,7 @@ public class RedefinedBModelAction {
 			}
 		}
 	}
-	
-	
+
 	/**
 	 * (C2/C6): This method proactively creates a new element and then
 	 * establishes model element mapping between the "element" parameter and the
@@ -3812,8 +3804,7 @@ public class RedefinedBModelAction {
 			}
 		}
 	}
-	
-	
+
 	/**
 	 * (C2/C6): This method proactively creates a new element and then
 	 * establishes model element mapping between the "element" parameter and the
@@ -4267,8 +4258,7 @@ public class RedefinedBModelAction {
 			}
 		}
 	}
-	
-	
+
 	/**
 	 * (C2/C6): This method proactively creates a new element and then
 	 * establishes model element mapping between the "element" parameter and the
@@ -4722,8 +4712,7 @@ public class RedefinedBModelAction {
 			}
 		}
 	}
-	
-	
+
 	/**
 	 * (C2/C6): This method proactively creates a new element and then
 	 * establishes model element mapping between the "element" parameter and the
@@ -5177,8 +5166,7 @@ public class RedefinedBModelAction {
 			}
 		}
 	}
-	
-	
+
 	/**
 	 * (C2/C6): This method proactively creates a new element and then
 	 * establishes model element mapping between the "element" parameter and the
@@ -5516,7 +5504,7 @@ public class RedefinedBModelAction {
 			switch (deleteType) {
 	
 			case DELETE_OTHERS:
-				BModelFacadeAction.deleteModelElement(otherElement);
+				BModelFacadeAction.deleteModelElement(perspective, scene, otherRoleName, otherElement);
 				deleteOtherElementsForB4(perspective, scene, otherRoleName, otherElement);
 				break;
 	
@@ -5524,7 +5512,7 @@ public class RedefinedBModelAction {
 				List<COREModelElementMapping> otherMappings = COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene,
 						otherElement);
 				if (otherMappings.size() == 0) {
-					BModelFacadeAction.deleteModelElement(otherElement);
+					BModelFacadeAction.deleteModelElement(perspective, scene, otherRoleName, otherElement);
 					deleteOtherElementsForB4(perspective, scene, otherRoleName, otherElement);
 				}
 				break;
@@ -5572,7 +5560,7 @@ public class RedefinedBModelAction {
 			switch (deleteType) {
 	
 			case DELETE_OTHERS:
-				BModelFacadeAction.deleteModelElement(otherElement);
+				BModelFacadeAction.deleteModelElement(perspective, scene, otherRoleName, otherElement);
 				deleteOtherElementsForB11(perspective, scene, otherRoleName, otherElement);
 				break;
 	
@@ -5580,7 +5568,7 @@ public class RedefinedBModelAction {
 				List<COREModelElementMapping> otherMappings = COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene,
 						otherElement);
 				if (otherMappings.size() == 0) {
-					BModelFacadeAction.deleteModelElement(otherElement);
+					BModelFacadeAction.deleteModelElement(perspective, scene, otherRoleName, otherElement);
 					deleteOtherElementsForB11(perspective, scene, otherRoleName, otherElement);
 				}
 				break;
@@ -5628,7 +5616,7 @@ public class RedefinedBModelAction {
 			switch (deleteType) {
 	
 			case DELETE_OTHERS:
-				BModelFacadeAction.deleteModelElement(otherElement);
+				BModelFacadeAction.deleteModelElement(perspective, scene, otherRoleName, otherElement);
 				deleteOtherElementsForB12(perspective, scene, otherRoleName, otherElement);
 				break;
 	
@@ -5636,7 +5624,7 @@ public class RedefinedBModelAction {
 				List<COREModelElementMapping> otherMappings = COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene,
 						otherElement);
 				if (otherMappings.size() == 0) {
-					BModelFacadeAction.deleteModelElement(otherElement);
+					BModelFacadeAction.deleteModelElement(perspective, scene, otherRoleName, otherElement);
 					deleteOtherElementsForB12(perspective, scene, otherRoleName, otherElement);
 				}
 				break;
