@@ -14,7 +14,7 @@ import ca.mcgill.sel.core.*;
 
 import ca.mcgill.sel.cmodel.*;
 
-public class CModelLanguage {
+public class CModel {
 
     public static void main (String[] args) {
 
@@ -46,10 +46,10 @@ public class CModelLanguage {
     public static COREExternalLanguage createLanguage() {
 
     // create a language concern
-    COREConcern langConcern = COREModelUtil.createConcern("CModelLanguage");
+    // COREConcern langConcern = COREModelUtil.createConcern("CModel");
 
     COREExternalLanguage language = CoreFactory.eINSTANCE.createCOREExternalLanguage();
-    language.setName("CModelLanguage");
+    language.setName("CModel");
     language.setNsURI("http://cs.mcgill.ca/sel/cmodel/1.0");
     language.setResourceFactory("ca.mcgill.sel.cmodel.util.CdmResourceFactoryImpl");
     language.setAdapterFactory("ca.mcgill.sel.cmodel.provider.CdmItemProviderAdapterFactory");
@@ -61,17 +61,17 @@ public class CModelLanguage {
 
     createLanguageActions(language);
 
-    langConcern.getArtefacts().add(language);
+    // langConcern.getArtefacts().add(language);
 
-    String language1FileName = "/Users/hyacinthali/workspace/TouchCORE2/touchram/ca.mcgill.sel.ram/resources/models/languages/"
-            + "CModelLanguage";
+    // String language1FileName = "/Users/hyacinthali/workspace/TouchCORE2/touchram/ca.mcgill.sel.ram/resources/models/languages/"
+    //         + "CModel";
 
-     try {
-         ResourceManager.saveModel(langConcern, language1FileName.concat("." + "core"));
-     } catch (IOException e) {
-         // Shouldn't happen.
-         e.printStackTrace();
-     }
+    // try {
+    //     ResourceManager.saveModel(langConcern, language1FileName.concat("." + "core"));
+    // } catch (IOException e) {
+    //     // Shouldn't happen.
+    //    e.printStackTrace();
+    // }
 
      return language;
     }

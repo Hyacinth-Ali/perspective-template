@@ -1,7 +1,125 @@
 
+language AModel {
+    rootPackage "ca.mcgill.sel.amodel";
+    rootControllerPackage "ca.mcgill.sel.cmodel.controller";
+    packageClassName AmodelPackage;
+    nsURI "http://cs.mcgill.ca/sel/cmodel/1.0";
+    resourceFactory "ca.mcgill.sel.cmodel.util.CdmResourceFactoryImpl";
+    adapterFactory "ca.mcgill.sel.cmodel.provider.CdmItemProviderAdapterFactory";
+    weaverClassName "";
+    fileExtension  amodel;
+    modelUtilClassName "ca.mcgill.sel.cmodel.util.CModelUtil";
+      
+    language elements {
+    	languageElement AModel {
+        	 
+        }
+        languageElement A1 {
+        	nestedElement NamedElement_Name elementName name;
+        }
+        languageElement A2 {
+        	nestedElement NamedElement_Name elementName name;
+        }
+        languageElement A3 {
+        	nestedElement NamedElement_Name elementName name;
+        }
+        languageElement A4 {
+        	nestedElement NamedElement_Name elementName name;
+        }
+        languageElement A5 {
+        	nestedElement NamedElement_Name elementName name;
+        }
+        languageElement A6 {
+        	nestedElement NamedElement_Name elementName name;
+        }
+        languageElement A7 {
+        	nestedElement NamedElement_Name elementName name;
+        }
+        languageElement A8 {
+        	nestedElement NamedElement_Name elementName name;
+        }
+        languageElement A9 {
+        	nestedElement NamedElement_Name elementName name;
+        }
+        languageElement A10 {
+        	nestedElement NamedElement_Name elementName name;
+        }
+        languageElement A11 {
+        	nestedElement NamedElement_Name elementName name;
+        }
+        languageElement A12 {
+        	nestedElement NamedElement_Name elementName name;
+        }
+        
+    }
+      
+    actions {
 
+    }
+         
+} 
 
-language CModelLanguage {
+language BModel {
+    rootPackage "ca.mcgill.sel.bmodel";
+    rootControllerPackage "ca.mcgill.sel.cmodel.controller";
+    packageClassName BmodelPackage;
+    nsURI "http://cs.mcgill.ca/sel/cmodel/1.0";
+    resourceFactory "ca.mcgill.sel.cmodel.util.CdmResourceFactoryImpl";
+    adapterFactory "ca.mcgill.sel.cmodel.provider.CdmItemProviderAdapterFactory";
+    weaverClassName "";
+    fileExtension  bmodel;
+    modelUtilClassName "ca.mcgill.sel.cmodel.util.CModelUtil";
+      
+    language elements {
+    	languageElement BModel {
+        	 
+        }
+        languageElement B1 {
+        	nestedElement NamedElement_Name elementName name;
+        }
+        languageElement B2 {
+        	nestedElement NamedElement_Name elementName name;
+        }
+        languageElement B3 {
+        	nestedElement NamedElement_Name elementName name;
+        }
+        languageElement B4 {
+        	nestedElement NamedElement_Name elementName name;
+        }
+        languageElement B5 {
+        	nestedElement NamedElement_Name elementName name;
+        }
+        languageElement B6 {
+        	nestedElement NamedElement_Name elementName name;
+        }
+        languageElement B7 {
+        	nestedElement NamedElement_Name elementName name;
+        }
+        languageElement B8 {
+        	nestedElement NamedElement_Name elementName name;
+        }
+        languageElement B9 {
+        	nestedElement NamedElement_Name elementName name;
+        }
+        languageElement B10 {
+        	nestedElement NamedElement_Name elementName name;
+        }
+        languageElement B11 {
+        	nestedElement NamedElement_Name elementName name;
+        }
+        languageElement B12 {
+        	nestedElement NamedElement_Name elementName name;
+        }
+        
+    }
+      
+    actions {
+
+    }
+         
+} 
+
+language CModel {
     rootPackage "ca.mcgill.sel.cmodel";
     rootControllerPackage "ca.mcgill.sel.cmodel.controller";
     packageClassName CmodelPackage;

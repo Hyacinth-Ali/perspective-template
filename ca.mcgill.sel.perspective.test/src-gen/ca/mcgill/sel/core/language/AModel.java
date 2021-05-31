@@ -1,15 +1,41 @@
-package ca.mcgill.sel.perspective.test;
+package ca.mcgill.sel.core.language;
 
+import java.io.IOException;
 import org.eclipse.emf.ecore.EObject;
 
-import ca.mcgill.sel.amodel.AmodelPackage;
-import ca.mcgill.sel.core.COREExternalLanguage;
-import ca.mcgill.sel.core.CORELanguageElement;
-import ca.mcgill.sel.core.CoreFactory;
+import ca.mcgill.sel.commons.emf.util.AdapterFactoryRegistry;
+import ca.mcgill.sel.commons.emf.util.ResourceManager;
+import ca.mcgill.sel.core.util.CoreResourceFactoryImpl;
+import ca.mcgill.sel.core.provider.CoreItemProviderAdapterFactory;
+import ca.mcgill.sel.ram.ui.utils.ResourceUtils;
+import ca.mcgill.sel.core.util.COREModelUtil;
 
-public class AModelLanguage {
+import ca.mcgill.sel.core.*;
 
-	/**
+import ca.mcgill.sel.amodel.*;
+
+public class AModel {
+
+    public static void main (String[] args) {
+
+        // Initialize ResourceManager
+        ResourceManager.initialize();
+
+        // Initialize CORE packages.
+        CorePackage.eINSTANCE.eClass();
+
+        // Register resource factories
+        ResourceManager.registerExtensionFactory("core", new CoreResourceFactoryImpl());
+
+        // Initialize adapter factories
+        AdapterFactoryRegistry.INSTANCE.addAdapterFactory(CoreItemProviderAdapterFactory.class);
+
+        ResourceUtils.loadLibraries();
+
+        createLanguage();
+    }
+
+    /**
      * This method registers existing language (with its details) in TouchCORE.
      *
      * @author Hyacinth Ali
@@ -20,32 +46,32 @@ public class AModelLanguage {
     public static COREExternalLanguage createLanguage() {
 
     // create a language concern
-//    COREConcern langConcern = COREModelUtil.createConcern("AModel");
+    // COREConcern langConcern = COREModelUtil.createConcern("AModel");
 
     COREExternalLanguage language = CoreFactory.eINSTANCE.createCOREExternalLanguage();
     language.setName("AModel");
-    language.setNsURI("http://cs.mcgill.ca/sel/amodel/1.0");
-    language.setResourceFactory("ca.mcgill.sel.amodel.util.AmodelResourceFactoryImpl");
-    language.setAdapterFactory("ca.mcgill.sel.amodel.provider.AmodelItemProviderAdapterFactory");
+    language.setNsURI("http://cs.mcgill.ca/sel/cmodel/1.0");
+    language.setResourceFactory("ca.mcgill.sel.cmodel.util.CdmResourceFactoryImpl");
+    language.setAdapterFactory("ca.mcgill.sel.cmodel.provider.CdmItemProviderAdapterFactory");
     language.setWeaverClassName("");
     language.setFileExtension("amodel");
-    language.setModelUtilClassName("ca.mcgill.sel.amodel.util.AModelUtil");
+    language.setModelUtilClassName("ca.mcgill.sel.cmodel.util.CModelUtil");
 
     createLanguageElements(language);
 
     createLanguageActions(language);
 
-//    langConcern.getArtefacts().add(language);
-//
-//    String language1FileName = "/Users/hyacinthali/workspace/TouchCORE2/touchram/ca.mcgill.sel.ram/resources/models/testlanguages/"
-//            + "AModel";
-//
-//     try {
-//         ResourceManager.saveModel(langConcern, language1FileName.concat("." + "core"));
-//     } catch (IOException e) {
-//         // Shouldn't happen.
-//         e.printStackTrace();
-//     }
+    // langConcern.getArtefacts().add(language);
+
+    // String language1FileName = "/Users/hyacinthali/workspace/TouchCORE2/touchram/ca.mcgill.sel.ram/resources/models/languages/"
+    //         + "AModel";
+
+    // try {
+    //     ResourceManager.saveModel(langConcern, language1FileName.concat("." + "core"));
+    // } catch (IOException e) {
+    //     // Shouldn't happen.
+    //    e.printStackTrace();
+    // }
 
      return language;
     }

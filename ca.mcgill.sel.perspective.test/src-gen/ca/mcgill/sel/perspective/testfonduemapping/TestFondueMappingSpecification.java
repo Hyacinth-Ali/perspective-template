@@ -20,8 +20,22 @@ import ca.mcgill.sel.cmodel.*;
 
 public class TestFondueMappingSpecification {
 
-    public static COREPerspective initializePerspective(COREPerspective perspective) {
+    public static COREPerspective initializePerspective() {
 
+		// Remove these lines of code while generating for TouchCORE
+		COREPerspective perspective = CoreFactory.eINSTANCE.createCOREPerspective();
+		perspective.setName("TestFondueMapping");
+		
+		// create external languages, if any
+		COREExternalLanguage language = null;
+		language = AModel.createLanguage();
+		perspective.getLanguages().put("A_Model", language);	
+		language = BModel.createLanguage();
+		perspective.getLanguages().put("B_Model", language);	
+		language = CModel.createLanguage();
+		perspective.getLanguages().put("C_Model", language);	
+		// End of codes to be removed
+		
         // create perspective actions
         createPerspectiveAction(perspective);
 

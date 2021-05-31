@@ -13,7 +13,7 @@ import ca.mcgill.sel.core.Cardinality;
 import ca.mcgill.sel.core.CoreFactory;
 import ca.mcgill.sel.core.MappingEnd;
 //import ca.mcgill.sel.core.perspective.design.ElementMapping;
-
+import ca.mcgill.sel.core.language.CModel;
 import ca.mcgill.sel.amodel.*;
 import ca.mcgill.sel.bmodel.*;
 import ca.mcgill.sel.cmodel.*;
@@ -32,7 +32,7 @@ public class TestFonduEPerspective {
 		COREExternalLanguage language2 = BModelLanguage.createLanguage();
 		perspective.getLanguages().put("B_Model", language2);
         
-		COREExternalLanguage language3 = CModelLanguage.createLanguage();
+		COREExternalLanguage language3 = CModel.createLanguage();
 		perspective.getLanguages().put("C_Model", language3);
         
 		// create perspective actions

@@ -89,7 +89,7 @@ perspective TestFondueMapping {
 //    			element : "AModelController.getInstance().getA4()";
 //    		}
 //    	} 
-    	 
+    	  
     	redefined delete action deleteA2 {
     		roleName : A_Model;
     		methodTypeAndParameters : "EObject currentElement";
@@ -300,7 +300,7 @@ perspective TestFondueMapping {
     		roleName : A_Model;
     		elementName : otherElement;
     		method calls { 
-    			
+    			  
     			metaclassName : A2;
     			methodCall : "RedefinedAModelAction.deleteA2(perspective, scene, otherRoleName, otherElement)";
     			

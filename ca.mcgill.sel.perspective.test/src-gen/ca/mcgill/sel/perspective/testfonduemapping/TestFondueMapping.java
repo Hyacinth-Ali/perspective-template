@@ -102,7 +102,8 @@ public class TestFondueMapping {
         }
         
         // initialize perspective with perspective actions and mappings
-        TestFondueMappingSpecification.initializePerspective(perspective);
+        // TODO update for TouchCORE codes
+        TestFondueMappingSpecification.initializePerspective();
         
         String fileName = "/Users/hyacinthali/workspace/TouchCORE2/touchram/ca.mcgill.sel.ram/resources/models/perspectives/"
            + "TestFondueMapping_Perspective";

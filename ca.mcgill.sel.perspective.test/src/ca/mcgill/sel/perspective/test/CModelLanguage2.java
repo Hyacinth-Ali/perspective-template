@@ -14,7 +14,7 @@ import ca.mcgill.sel.core.*;
 
 import ca.mcgill.sel.cmodel.*;
 
-public class CModelLanguage {
+public class CModelLanguage2 {
 
     /**
      * This method registers existing language (with its details) in TouchCORE.
