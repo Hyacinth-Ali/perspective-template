@@ -15,7 +15,7 @@ import ca.mcgill.sel.ram.ui.perspective.*;
 import ca.mcgill.sel.cmodel.*;
 import ca.mcgill.sel.cmodel.controller.*;
 
-public class RedefinedCModelAction {
+public class RedefinedCModelLanguageAction {
 	public static EObject createNewC1(COREPerspective perspective, COREScene scene, String currentRole, 
 		boolean isFacadeCall, EObject owner, String name) {
 		
@@ -162,7 +162,7 @@ public class RedefinedCModelAction {
 			otherElement = QueryAction.INSTANCE.findCorrespondingElement(scene, mappingType, currentElement.eClass(), currentElement, currentRoleName, otherRoleName);
 			if (otherElement == null) {
 				otherExist = false;
-				otherElement = CModelFacadeAction.createOtherElementsForC1(perspective, otherLE, otherRoleName, scene, owner, name);
+				otherElement = CModelLanguageFacadeAction.createOtherElementsForC1(perspective, otherLE, otherRoleName, scene, owner, name);
 			}
 			COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
 			// save the recent changes
@@ -198,7 +198,7 @@ public class RedefinedCModelAction {
 		otherElement = QueryAction.INSTANCE.findCorrespondingElement(scene, mappingType, currentElement.eClass(), currentElement, currentRoleName, otherRoleName);
 		if (otherElement == null) {
 			otherExist = false;
-			otherElement = CModelFacadeAction.createOtherElementsForC1(perspective, otherLE, otherRoleName, scene, 
+			otherElement = CModelLanguageFacadeAction.createOtherElementsForC1(perspective, otherLE, otherRoleName, scene, 
 				owner, name);
 		}
 		COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
@@ -245,7 +245,7 @@ public class RedefinedCModelAction {
 			}
 		}
 		for (int count = 0; count < numberOfMappings; count++) {
-			otherElement = CModelFacadeAction.createOtherElementsForC1(perspective, otherLE, otherRoleName, scene, 
+			otherElement = CModelLanguageFacadeAction.createOtherElementsForC1(perspective, otherLE, otherRoleName, scene, 
 										owner, name);
 			COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
 			// BasePerspectiveController.saveModel(scene);
@@ -288,7 +288,7 @@ public class RedefinedCModelAction {
 			}
 		}
 		for (int count = 0; count < numberOfMappings; count++) {
-			otherElement = CModelFacadeAction.createOtherElementsForC1(perspective, otherLE, otherRoleName, scene, 
+			otherElement = CModelLanguageFacadeAction.createOtherElementsForC1(perspective, otherLE, otherRoleName, scene, 
 										owner, name);
 			COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
 			// BasePerspectiveController.saveModel(scene);
@@ -325,7 +325,7 @@ public class RedefinedCModelAction {
 			// already mapped.
 			if (otherElement == null || COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene, otherElement).size() != 0) {
 				otherExist = false;
-				otherElement = CModelFacadeAction.createOtherElementsForC1(perspective, otherLE, otherRoleName, scene, 
+				otherElement = CModelLanguageFacadeAction.createOtherElementsForC1(perspective, otherLE, otherRoleName, scene, 
 											owner, name);
 			}
 			COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
@@ -366,7 +366,7 @@ public class RedefinedCModelAction {
 		// or mapped.
 		if (otherElement == null || COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene, otherElement).size() > 0) {
 			otherExist = false;
-			otherElement = CModelFacadeAction.createOtherElementsForC1(perspective, otherLE, otherRoleName, scene, 
+			otherElement = CModelLanguageFacadeAction.createOtherElementsForC1(perspective, otherLE, otherRoleName, scene, 
 										owner, name);
 		}
 		COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
@@ -415,7 +415,7 @@ public class RedefinedCModelAction {
 			}
 		}
 		for (int count = 0; count < numberOfMappings; count++) {
-			otherElement = CModelFacadeAction.createOtherElementsForC1(perspective, otherLE, otherRoleName, scene, 
+			otherElement = CModelLanguageFacadeAction.createOtherElementsForC1(perspective, otherLE, otherRoleName, scene, 
 										owner, name);
 			COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
 		  	// BasePerspectiveController.saveModel(scene);
@@ -462,7 +462,7 @@ public class RedefinedCModelAction {
 			}
 		}
 		for (int count = 0; count < numberOfMappings; count++) {
-			otherElement = CModelFacadeAction.createOtherElementsForC1(perspective, otherLE, otherRoleName, scene, 
+			otherElement = CModelLanguageFacadeAction.createOtherElementsForC1(perspective, otherLE, otherRoleName, scene, 
 										owner, name);
 			COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
 		  	// BasePerspectiveController.saveModel(scene);
@@ -619,7 +619,7 @@ public class RedefinedCModelAction {
 			otherElement = QueryAction.INSTANCE.findCorrespondingElement(scene, mappingType, currentElement.eClass(), currentElement, currentRoleName, otherRoleName);
 			if (otherElement == null) {
 				otherExist = false;
-				otherElement = CModelFacadeAction.createOtherElementsForC2(perspective, otherLE, otherRoleName, scene, owner, name);
+				otherElement = CModelLanguageFacadeAction.createOtherElementsForC2(perspective, otherLE, otherRoleName, scene, owner, name);
 			}
 			COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
 			// save the recent changes
@@ -655,7 +655,7 @@ public class RedefinedCModelAction {
 		otherElement = QueryAction.INSTANCE.findCorrespondingElement(scene, mappingType, currentElement.eClass(), currentElement, currentRoleName, otherRoleName);
 		if (otherElement == null) {
 			otherExist = false;
-			otherElement = CModelFacadeAction.createOtherElementsForC2(perspective, otherLE, otherRoleName, scene, 
+			otherElement = CModelLanguageFacadeAction.createOtherElementsForC2(perspective, otherLE, otherRoleName, scene, 
 				owner, name);
 		}
 		COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
@@ -702,7 +702,7 @@ public class RedefinedCModelAction {
 			}
 		}
 		for (int count = 0; count < numberOfMappings; count++) {
-			otherElement = CModelFacadeAction.createOtherElementsForC2(perspective, otherLE, otherRoleName, scene, 
+			otherElement = CModelLanguageFacadeAction.createOtherElementsForC2(perspective, otherLE, otherRoleName, scene, 
 										owner, name);
 			COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
 			// BasePerspectiveController.saveModel(scene);
@@ -745,7 +745,7 @@ public class RedefinedCModelAction {
 			}
 		}
 		for (int count = 0; count < numberOfMappings; count++) {
-			otherElement = CModelFacadeAction.createOtherElementsForC2(perspective, otherLE, otherRoleName, scene, 
+			otherElement = CModelLanguageFacadeAction.createOtherElementsForC2(perspective, otherLE, otherRoleName, scene, 
 										owner, name);
 			COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
 			// BasePerspectiveController.saveModel(scene);
@@ -782,7 +782,7 @@ public class RedefinedCModelAction {
 			// already mapped.
 			if (otherElement == null || COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene, otherElement).size() != 0) {
 				otherExist = false;
-				otherElement = CModelFacadeAction.createOtherElementsForC2(perspective, otherLE, otherRoleName, scene, 
+				otherElement = CModelLanguageFacadeAction.createOtherElementsForC2(perspective, otherLE, otherRoleName, scene, 
 											owner, name);
 			}
 			COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
@@ -823,7 +823,7 @@ public class RedefinedCModelAction {
 		// or mapped.
 		if (otherElement == null || COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene, otherElement).size() > 0) {
 			otherExist = false;
-			otherElement = CModelFacadeAction.createOtherElementsForC2(perspective, otherLE, otherRoleName, scene, 
+			otherElement = CModelLanguageFacadeAction.createOtherElementsForC2(perspective, otherLE, otherRoleName, scene, 
 										owner, name);
 		}
 		COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
@@ -872,7 +872,7 @@ public class RedefinedCModelAction {
 			}
 		}
 		for (int count = 0; count < numberOfMappings; count++) {
-			otherElement = CModelFacadeAction.createOtherElementsForC2(perspective, otherLE, otherRoleName, scene, 
+			otherElement = CModelLanguageFacadeAction.createOtherElementsForC2(perspective, otherLE, otherRoleName, scene, 
 										owner, name);
 			COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
 		  	// BasePerspectiveController.saveModel(scene);
@@ -919,7 +919,7 @@ public class RedefinedCModelAction {
 			}
 		}
 		for (int count = 0; count < numberOfMappings; count++) {
-			otherElement = CModelFacadeAction.createOtherElementsForC2(perspective, otherLE, otherRoleName, scene, 
+			otherElement = CModelLanguageFacadeAction.createOtherElementsForC2(perspective, otherLE, otherRoleName, scene, 
 										owner, name);
 			COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
 		  	// BasePerspectiveController.saveModel(scene);
@@ -967,7 +967,7 @@ public class RedefinedCModelAction {
 			switch (deleteType) {
 	
 			case DELETE_OTHERS:
-				CModelFacadeAction.deleteModelElement(perspective, scene, otherRoleName, otherElement);
+				CModelLanguageFacadeAction.deleteModelElement(perspective, scene, otherRoleName, otherElement);
 				deleteOtherElementsForC1(perspective, scene, otherRoleName, otherElement);
 				break;
 	
@@ -975,7 +975,7 @@ public class RedefinedCModelAction {
 				List<COREModelElementMapping> otherMappings = COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene,
 						otherElement);
 				if (otherMappings.size() == 0) {
-					CModelFacadeAction.deleteModelElement(perspective, scene, otherRoleName, otherElement);
+					CModelLanguageFacadeAction.deleteModelElement(perspective, scene, otherRoleName, otherElement);
 					deleteOtherElementsForC1(perspective, scene, otherRoleName, otherElement);
 				}
 				break;
@@ -1023,7 +1023,7 @@ public class RedefinedCModelAction {
 			switch (deleteType) {
 	
 			case DELETE_OTHERS:
-				CModelFacadeAction.deleteModelElement(perspective, scene, otherRoleName, otherElement);
+				CModelLanguageFacadeAction.deleteModelElement(perspective, scene, otherRoleName, otherElement);
 				deleteOtherElementsForC2(perspective, scene, otherRoleName, otherElement);
 				break;
 	
@@ -1031,7 +1031,7 @@ public class RedefinedCModelAction {
 				List<COREModelElementMapping> otherMappings = COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene,
 						otherElement);
 				if (otherMappings.size() == 0) {
-					CModelFacadeAction.deleteModelElement(perspective, scene, otherRoleName, otherElement);
+					CModelLanguageFacadeAction.deleteModelElement(perspective, scene, otherRoleName, otherElement);
 					deleteOtherElementsForC2(perspective, scene, otherRoleName, otherElement);
 				}
 				break;

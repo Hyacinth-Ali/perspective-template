@@ -26,19 +26,19 @@ public class HandleSecondaryEffect {
 				if (newElement.eClass().equals(AmodelPackage.eINSTANCE.getA3())) {
 								
 					// Call the respective redefined recursive method
-					RedefinedAModelAction.createOtherElementsForA3(perspective, scene, currentRole, newElement,
+					RedefinedAModelLanguageAction.createOtherElementsForA3(perspective, scene, currentRole, newElement,
 												newElement.eContainer(), name);
 				}
 				else if (newElement.eClass().equals(AmodelPackage.eINSTANCE.getA4())) {
 						
 					// Call the respective redefined recursive method
-					RedefinedAModelAction.createOtherElementsForA4(perspective, scene, currentRole, newElement,
+					RedefinedAModelLanguageAction.createOtherElementsForA4(perspective, scene, currentRole, newElement,
 												newElement.eContainer(), name);
 					}
 				else if (newElement.eClass().equals(CmodelPackage.eINSTANCE.getC1())) {
 						
 					// Call the respective redefined recursive method
-					RedefinedCModelAction.createOtherElementsForC1(perspective, scene, currentRole, newElement,
+					RedefinedCModelLanguageAction.createOtherElementsForC1(perspective, scene, currentRole, newElement,
 												newElement.eContainer(), name);
 					}
 			}
@@ -50,17 +50,17 @@ public class HandleSecondaryEffect {
 				if (deletedElement.eClass().equals(AmodelPackage.eINSTANCE.getA3())) {
 								
 					// Call the respective redefined recursive method
-					RedefinedAModelAction.deleteOtherElementsForA3(perspective, scene, currentRole, deletedElement);
+					RedefinedAModelLanguageAction.deleteOtherElementsForA3(perspective, scene, currentRole, deletedElement);
 				}
 				else if (deletedElement.eClass().equals(AmodelPackage.eINSTANCE.getA4())) {
 						
 					// Call the respective redefined recursive method
-					RedefinedAModelAction.deleteOtherElementsForA4(perspective, scene, currentRole, deletedElement);
+					RedefinedAModelLanguageAction.deleteOtherElementsForA4(perspective, scene, currentRole, deletedElement);
 					}
 				else if (deletedElement.eClass().equals(CmodelPackage.eINSTANCE.getC1())) {
 						
 					// Call the respective redefined recursive method
-					RedefinedCModelAction.deleteOtherElementsForC1(perspective, scene, currentRole, deletedElement);
+					RedefinedCModelLanguageAction.deleteOtherElementsForC1(perspective, scene, currentRole, deletedElement);
 					}
 			}
 				

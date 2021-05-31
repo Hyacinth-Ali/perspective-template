@@ -25,37 +25,37 @@ public class HandleSecondaryEffect {
 				if (newElement.eClass().equals(AmodelPackage.eINSTANCE.getA2())) {
 								
 					// Call the respective redefined recursive method
-					RedefinedAModelAction.createOtherElementsForA2(perspective, scene, currentRole, newElement,
+					RedefinedAModelLanguageAction.createOtherElementsForA2(perspective, scene, currentRole, newElement,
 												newElement.eContainer(), name);
 				}
 				else if (newElement.eClass().equals(AmodelPackage.eINSTANCE.getA3())) {
 						
 					// Call the respective redefined recursive method
-					RedefinedAModelAction.createOtherElementsForA3(perspective, scene, currentRole, newElement,
+					RedefinedAModelLanguageAction.createOtherElementsForA3(perspective, scene, currentRole, newElement,
 												newElement.eContainer(), name);
 					}
 				else if (newElement.eClass().equals(AmodelPackage.eINSTANCE.getA4())) {
 						
 					// Call the respective redefined recursive method
-					RedefinedAModelAction.createOtherElementsForA4(perspective, scene, currentRole, newElement,
+					RedefinedAModelLanguageAction.createOtherElementsForA4(perspective, scene, currentRole, newElement,
 												newElement.eContainer(), name);
 					}
 				else if (newElement.eClass().equals(BmodelPackage.eINSTANCE.getB2())) {
 						
 					// Call the respective redefined recursive method
-					RedefinedBModelAction.createOtherElementsForB2(perspective, scene, currentRole, newElement,
+					RedefinedBModelLanguageAction.createOtherElementsForB2(perspective, scene, currentRole, newElement,
 												newElement.eContainer(), name);
 					}
 				else if (newElement.eClass().equals(BmodelPackage.eINSTANCE.getB3())) {
 						
 					// Call the respective redefined recursive method
-					RedefinedBModelAction.createOtherElementsForB3(perspective, scene, currentRole, newElement,
+					RedefinedBModelLanguageAction.createOtherElementsForB3(perspective, scene, currentRole, newElement,
 												newElement.eContainer(), name);
 					}
 				else if (newElement.eClass().equals(BmodelPackage.eINSTANCE.getB4())) {
 						
 					// Call the respective redefined recursive method
-					RedefinedBModelAction.createOtherElementsForB4(perspective, scene, currentRole, newElement,
+					RedefinedBModelLanguageAction.createOtherElementsForB4(perspective, scene, currentRole, newElement,
 												newElement.eContainer(), name);
 					}
 			}
@@ -67,17 +67,17 @@ public class HandleSecondaryEffect {
 				if (deletedElement.eClass().equals(AmodelPackage.eINSTANCE.getA2())) {
 								
 					// Call the respective redefined recursive method
-					RedefinedAModelAction.deleteOtherElementsForA2(perspective, scene, currentRole, deletedElement);
+					RedefinedAModelLanguageAction.deleteOtherElementsForA2(perspective, scene, currentRole, deletedElement);
 				}
 				else if (deletedElement.eClass().equals(AmodelPackage.eINSTANCE.getA3())) {
 						
 					// Call the respective redefined recursive method
-					RedefinedAModelAction.deleteOtherElementsForA3(perspective, scene, currentRole, deletedElement);
+					RedefinedAModelLanguageAction.deleteOtherElementsForA3(perspective, scene, currentRole, deletedElement);
 					}
 				else if (deletedElement.eClass().equals(AmodelPackage.eINSTANCE.getA4())) {
 						
 					// Call the respective redefined recursive method
-					RedefinedAModelAction.deleteOtherElementsForA4(perspective, scene, currentRole, deletedElement);
+					RedefinedAModelLanguageAction.deleteOtherElementsForA4(perspective, scene, currentRole, deletedElement);
 					}
 			}
 				

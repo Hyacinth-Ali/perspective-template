@@ -13,14 +13,27 @@ import ca.mcgill.sel.core.Cardinality;
 import ca.mcgill.sel.core.CoreFactory;
 import ca.mcgill.sel.core.MappingEnd;
 //import ca.mcgill.sel.core.perspective.design.ElementMapping;
+import ca.mcgill.sel.core.language.*;
 
 import ca.mcgill.sel.amodel.*;
 import ca.mcgill.sel.bmodel.*;
 
 public class PerspectiveTestSpecification {
 
-    public static COREPerspective initializePerspective(COREPerspective perspective) {
+    public static COREPerspective initializePerspective() {
 
+		// Remove these lines of code while generating for TouchCORE
+		COREPerspective perspective = CoreFactory.eINSTANCE.createCOREPerspective();
+		perspective.setName("PerspectiveTest");
+		
+		// create external languages, if any
+		COREExternalLanguage language = null;
+		language = AModelLanguage.createLanguage();
+		perspective.getLanguages().put("A_Model", language);	
+		language = BModelLanguage.createLanguage();
+		perspective.getLanguages().put("B_Model", language);	
+		// End of codes to be removed
+		
         // create perspective actions
         createPerspectiveAction(perspective);
 

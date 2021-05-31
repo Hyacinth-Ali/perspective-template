@@ -66,7 +66,7 @@ public class TestFondueMapping {
         		for (COREArtefact a : languageConcern.getArtefacts()) {
         			if (a instanceof COREExternalLanguage) {
         				COREExternalLanguage existingLanguage = (COREExternalLanguage) a;
-        				if (existingLanguage.getName().equals("AModel")) {
+        				if (existingLanguage.getName().equals("AModelLanguage")) {
         					perspective.getLanguages().put("A_Model", existingLanguage);
         				} 
         			}
@@ -79,7 +79,7 @@ public class TestFondueMapping {
         		for (COREArtefact a : languageConcern.getArtefacts()) {
         			if (a instanceof COREExternalLanguage) {
         				COREExternalLanguage existingLanguage = (COREExternalLanguage) a;
-        				if (existingLanguage.getName().equals("BModel")) {
+        				if (existingLanguage.getName().equals("BModelLanguage")) {
         					perspective.getLanguages().put("B_Model", existingLanguage);
         				} 
         			}
@@ -92,7 +92,7 @@ public class TestFondueMapping {
         		for (COREArtefact a : languageConcern.getArtefacts()) {
         			if (a instanceof COREExternalLanguage) {
         				COREExternalLanguage existingLanguage = (COREExternalLanguage) a;
-        				if (existingLanguage.getName().equals("CModel")) {
+        				if (existingLanguage.getName().equals("CModelLanguage")) {
         					perspective.getLanguages().put("C_Model", existingLanguage);
         				} 
         			}

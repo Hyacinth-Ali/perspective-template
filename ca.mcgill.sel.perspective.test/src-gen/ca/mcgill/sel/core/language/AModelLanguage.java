@@ -14,7 +14,7 @@ import ca.mcgill.sel.core.*;
 
 import ca.mcgill.sel.amodel.*;
 
-public class AModel {
+public class AModelLanguage {
 
     public static void main (String[] args) {
 
@@ -46,10 +46,10 @@ public class AModel {
     public static COREExternalLanguage createLanguage() {
 
     // create a language concern
-    // COREConcern langConcern = COREModelUtil.createConcern("AModel");
+    // COREConcern langConcern = COREModelUtil.createConcern("AModelLanguage");
 
     COREExternalLanguage language = CoreFactory.eINSTANCE.createCOREExternalLanguage();
-    language.setName("AModel");
+    language.setName("AModelLanguage");
     language.setNsURI("http://cs.mcgill.ca/sel/cmodel/1.0");
     language.setResourceFactory("ca.mcgill.sel.cmodel.util.CdmResourceFactoryImpl");
     language.setAdapterFactory("ca.mcgill.sel.cmodel.provider.CdmItemProviderAdapterFactory");
@@ -64,7 +64,7 @@ public class AModel {
     // langConcern.getArtefacts().add(language);
 
     // String language1FileName = "/Users/hyacinthali/workspace/TouchCORE2/touchram/ca.mcgill.sel.ram/resources/models/languages/"
-    //         + "AModel";
+    //         + "AModelLanguage";
 
     // try {
     //     ResourceManager.saveModel(langConcern, language1FileName.concat("." + "core"));

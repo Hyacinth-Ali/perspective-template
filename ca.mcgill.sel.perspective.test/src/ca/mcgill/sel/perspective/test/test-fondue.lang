@@ -1,5 +1,5 @@
 
-language AModel {
+language AModelLanguage {
     rootPackage "ca.mcgill.sel.amodel";
     rootControllerPackage "ca.mcgill.sel.cmodel.controller";
     packageClassName AmodelPackage;
@@ -59,7 +59,7 @@ language AModel {
          
 } 
 
-language BModel {
+language BModelLanguage {
     rootPackage "ca.mcgill.sel.bmodel";
     rootControllerPackage "ca.mcgill.sel.cmodel.controller";
     packageClassName BmodelPackage;
@@ -119,7 +119,7 @@ language BModel {
          
 } 
 
-language CModel {
+language CModelLanguage {
     rootPackage "ca.mcgill.sel.cmodel";
     rootControllerPackage "ca.mcgill.sel.cmodel.controller";
     packageClassName CmodelPackage;

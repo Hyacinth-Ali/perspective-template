@@ -5,7 +5,7 @@ perspective TestFondueMapping {
     display name "Fondue Mapping Test";
            
     languages {
-    	existing language AModel {
+    	existing language AModelLanguage {
             rootPackage "ca.mcgill.sel.amodel";
             packageClassName AmodelPackage;
             controllerPackage "ca.mcgill.sel.amodel.controller";
@@ -14,7 +14,7 @@ perspective TestFondueMapping {
             otherRootPackage "ca.mcgill.sel.cmodel";
         }  
                 
-        existing language BModel {
+        existing language BModelLanguage {
             rootPackage "ca.mcgill.sel.bmodel";
             packageClassName BmodelPackage;
             controllerPackage "ca.mcgill.sel.bmodel.controller";
@@ -23,7 +23,7 @@ perspective TestFondueMapping {
             otherRootPackage "ca.mcgill.sel.cmodel";
         }
         
-        existing language CModel {
+        existing language CModelLanguage {
             rootPackage "ca.mcgill.sel.cmodel";
             packageClassName CmodelPackage;
             controllerPackage "ca.mcgill.sel.cmodel.controller";
@@ -32,7 +32,7 @@ perspective TestFondueMapping {
             otherRootPackage "ca.mcgill.sel.bmodel";
         }
            
-    }    
+    }     
            
     actions {
     	
@@ -254,7 +254,7 @@ perspective TestFondueMapping {
     			metaclassObject : "CmodelPackage.eINSTANCE.getC2()";
     	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
 				mapping "CModel otherOwner = (CModel) o";
-				methodCall : "RedefinedCModelAction.createNewC2(perspective, scene, otherRoleName, 
+				methodCall : "RedefinedCModelLanguageAction.createNewC2(perspective, scene, otherRoleName, 
 					true, otherOwner, name)";
 					
     		} 
@@ -269,7 +269,7 @@ perspective TestFondueMapping {
     			metaclassObject : "BmodelPackage.eINSTANCE.getB3()";
     	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
 				mapping "BModel otherOwner = (BModel) o";
-				methodCall : "RedefinedBModelAction.createNewB3(perspective, scene, otherRoleName, 
+				methodCall : "RedefinedBModelLanguageAction.createNewB3(perspective, scene, otherRoleName, 
 					true, otherOwner, name)";
 					
     		} 
@@ -284,13 +284,13 @@ perspective TestFondueMapping {
     			metaclassObject : "BmodelPackage.eINSTANCE.getB1()";
     	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
 				mapping "BModel otherOwner = (BModel) o";
-				methodCall : "RedefinedBModelAction.createNewB1(perspective, scene, otherRoleName, 
+				methodCall : "RedefinedBModelLanguageAction.createNewB1(perspective, scene, otherRoleName, 
 					true, otherOwner, name)";
 					
 				metaclassObject : "CmodelPackage.eINSTANCE.getC1()";
     	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
 				mapping "CModel otherOwner = (CModel) o";
-				methodCall : "RedefinedCModelAction.createNewC1(perspective, scene, otherRoleName, 
+				methodCall : "RedefinedCModelLanguageAction.createNewC1(perspective, scene, otherRoleName, 
 					true, otherOwner, name)";
 					
     		} 
@@ -302,25 +302,25 @@ perspective TestFondueMapping {
     		method calls { 
     			  
     			metaclassName : A2;
-    			methodCall : "RedefinedAModelAction.deleteA2(perspective, scene, otherRoleName, otherElement)";
+    			methodCall : "RedefinedAModelLanguageAction.deleteA2(perspective, scene, otherRoleName, otherElement)";
     			
     			metaclassName : A3;
-    			methodCall : "RedefinedAModelAction.deleteA3(perspective, scene, otherRoleName, otherElement)";
+    			methodCall : "RedefinedAModelLanguageAction.deleteA3(perspective, scene, otherRoleName, otherElement)";
     			
     			metaclassName : A4;
-    			methodCall : "RedefinedAModelAction.deleteA4(perspective, scene, otherRoleName, otherElement)";
+    			methodCall : "RedefinedAModelLanguageAction.deleteA4(perspective, scene, otherRoleName, otherElement)";
     			
     			metaclassName : B1;
-    			methodCall : "RedefinedBModelAction.deleteB1(perspective, scene, otherRoleName, otherElement)";
+    			methodCall : "RedefinedBModelLanguageAction.deleteB1(perspective, scene, otherRoleName, otherElement)";
     			
     			metaclassName : B3;
-    			methodCall : "RedefinedBModelAction.deleteB3(perspective, scene, otherRoleName, otherElement)";
+    			methodCall : "RedefinedBModelLanguageAction.deleteB3(perspective, scene, otherRoleName, otherElement)";
     			
     			metaclassName : C1;
-    			methodCall : "RedefinedCModelAction.deleteC1(perspective, scene, otherRoleName, otherElement)";
+    			methodCall : "RedefinedCModelLanguageAction.deleteC1(perspective, scene, otherRoleName, otherElement)";
     			
     			metaclassName : C2;
-    			methodCall : "RedefinedCModelAction.deleteC2(perspective, scene, otherRoleName, otherElement)";
+    			methodCall : "RedefinedCModelLanguageAction.deleteC2(perspective, scene, otherRoleName, otherElement)";
     			
     			
     		}
@@ -337,7 +337,7 @@ perspective TestFondueMapping {
     			metaclassObject : "CmodelPackage.eINSTANCE.getC1()";
     	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
 				mapping "CModel otherOwner = (CModel) o";
-				methodCall : "RedefinedCModelAction.createNewC1(perspective, scene, otherRoleName, 
+				methodCall : "RedefinedCModelLanguageAction.createNewC1(perspective, scene, otherRoleName, 
 					true, otherOwner, name)";
 					
     		} 
@@ -352,7 +352,7 @@ perspective TestFondueMapping {
     			metaclassObject : "AmodelPackage.eINSTANCE.getA3()";
     	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
 				mapping "AModel otherOwner = (AModel) o";
-				methodCall : "RedefinedAModelAction.createNewA3(perspective, scene, otherRoleName, 
+				methodCall : "RedefinedAModelLanguageAction.createNewA3(perspective, scene, otherRoleName, 
 					true, otherOwner, name)";
 					
     		} 
@@ -364,25 +364,25 @@ perspective TestFondueMapping {
     		method calls { 
     			
     			metaclassName : A2;
-    			methodCall : "RedefinedAModelAction.deleteA2(perspective, scene, otherRoleName, otherElement)";
+    			methodCall : "RedefinedAModelLanguageAction.deleteA2(perspective, scene, otherRoleName, otherElement)";
     			
     			metaclassName : A3;
-    			methodCall : "RedefinedAModelAction.deleteA3(perspective, scene, otherRoleName, otherElement)";
+    			methodCall : "RedefinedAModelLanguageAction.deleteA3(perspective, scene, otherRoleName, otherElement)";
     			
     			metaclassName : A4;
-    			methodCall : "RedefinedAModelAction.deleteA4(perspective, scene, otherRoleName, otherElement)";
+    			methodCall : "RedefinedAModelLanguageAction.deleteA4(perspective, scene, otherRoleName, otherElement)";
     			
     			metaclassName : B1;
-    			methodCall : "RedefinedBModelAction.deleteB1(perspective, scene, otherRoleName, otherElement)";
+    			methodCall : "RedefinedBModelLanguageAction.deleteB1(perspective, scene, otherRoleName, otherElement)";
     			
     			metaclassName : B3;
-    			methodCall : "RedefinedBModelAction.deleteB3(perspective, scene, otherRoleName, otherElement)";
+    			methodCall : "RedefinedBModelLanguageAction.deleteB3(perspective, scene, otherRoleName, otherElement)";
     			
     			metaclassName : C1;
-    			methodCall : "RedefinedCModelAction.deleteC1(perspective, scene, otherRoleName, otherElement)";
+    			methodCall : "RedefinedCModelLanguageAction.deleteC1(perspective, scene, otherRoleName, otherElement)";
     			
     			metaclassName : C2;
-    			methodCall : "RedefinedCModelAction.deleteC2(perspective, scene, otherRoleName, otherElement)";
+    			methodCall : "RedefinedCModelLanguageAction.deleteC2(perspective, scene, otherRoleName, otherElement)";
     			
     			
     		}
@@ -399,7 +399,7 @@ perspective TestFondueMapping {
     			metaclassObject : "BmodelPackage.eINSTANCE.getB1()";
     	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
 				mapping "BModel otherOwner = (BModel) o";
-				methodCall : "RedefinedBModelAction.createNewB1(perspective, scene, otherRoleName, 
+				methodCall : "RedefinedBModelLanguageAction.createNewB1(perspective, scene, otherRoleName, 
 					true, otherOwner, name)";
 					
     		} 
@@ -414,7 +414,7 @@ perspective TestFondueMapping {
     			metaclassObject : "AmodelPackage.eINSTANCE.getA2()";
     	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
 				mapping "AModel otherOwner = (AModel) o";
-				methodCall : "RedefinedAModelAction.createNewA2(perspective, scene, otherRoleName, 
+				methodCall : "RedefinedAModelLanguageAction.createNewA2(perspective, scene, otherRoleName, 
 					true, otherOwner, name)";
 					
     		} 
@@ -425,25 +425,25 @@ perspective TestFondueMapping {
     		elementName : otherElement;
     		method calls { 
     			metaclassName : A2;
-    			methodCall : "RedefinedAModelAction.deleteA2(perspective, scene, otherRoleName, otherElement)";
+    			methodCall : "RedefinedAModelLanguageAction.deleteA2(perspective, scene, otherRoleName, otherElement)";
     			
     			metaclassName : A3;
-    			methodCall : "RedefinedAModelAction.deleteA3(perspective, scene, otherRoleName, otherElement)";
+    			methodCall : "RedefinedAModelLanguageAction.deleteA3(perspective, scene, otherRoleName, otherElement)";
     			
     			metaclassName : A4;
-    			methodCall : "RedefinedAModelAction.deleteA4(perspective, scene, otherRoleName, otherElement)";
+    			methodCall : "RedefinedAModelLanguageAction.deleteA4(perspective, scene, otherRoleName, otherElement)";
     			
     			metaclassName : B1;
-    			methodCall : "RedefinedBModelAction.deleteB1(perspective, scene, otherRoleName, otherElement)";
+    			methodCall : "RedefinedBModelLanguageAction.deleteB1(perspective, scene, otherRoleName, otherElement)";
     			 
     			metaclassName : B3;
-    			methodCall : "RedefinedBModelAction.deleteB3(perspective, scene, otherRoleName, otherElement)";
+    			methodCall : "RedefinedBModelLanguageAction.deleteB3(perspective, scene, otherRoleName, otherElement)";
     			
     			metaclassName : C1;
-    			methodCall : "RedefinedCModelAction.deleteC1(perspective, scene, otherRoleName, otherElement)";
+    			methodCall : "RedefinedCModelLanguageAction.deleteC1(perspective, scene, otherRoleName, otherElement)";
     			
     			metaclassName : C2;
-    			methodCall : "RedefinedCModelAction.deleteC2(perspective, scene, otherRoleName, otherElement)";
+    			methodCall : "RedefinedCModelLanguageAction.deleteC2(perspective, scene, otherRoleName, otherElement)";
     			
     			
     		}
@@ -456,16 +456,16 @@ perspective TestFondueMapping {
     			
     			 // first call
     			metaclassObject : "AmodelPackage.eINSTANCE.getA3()";
-				methodCall : "RedefinedAModelAction.createOtherElementsForA3(perspective, scene, currentRole, newElement,
+				methodCall : "RedefinedAModelLanguageAction.createOtherElementsForA3(perspective, scene, currentRole, newElement,
 							newElement.eContainer(), name)";
 							
 				// other calls
 				metaclassObject : "AmodelPackage.eINSTANCE.getA4()";
-				methodCall : "RedefinedAModelAction.createOtherElementsForA4(perspective, scene, currentRole, newElement,
+				methodCall : "RedefinedAModelLanguageAction.createOtherElementsForA4(perspective, scene, currentRole, newElement,
 							newElement.eContainer(), name)";
 							
 				metaclassObject : "CmodelPackage.eINSTANCE.getC1()";
-				methodCall : "RedefinedCModelAction.createOtherElementsForC1(perspective, scene, currentRole, newElement,
+				methodCall : "RedefinedCModelLanguageAction.createOtherElementsForC1(perspective, scene, currentRole, newElement,
 							newElement.eContainer(), name)";
     						 
     		}
@@ -473,13 +473,13 @@ perspective TestFondueMapping {
     			  			
     			// first call
     			metaclassObject : "AmodelPackage.eINSTANCE.getA3()";
-				methodCall : "RedefinedAModelAction.deleteOtherElementsForA3(perspective, scene, currentRole, deletedElement)";
+				methodCall : "RedefinedAModelLanguageAction.deleteOtherElementsForA3(perspective, scene, currentRole, deletedElement)";
 							
 				metaclassObject : "AmodelPackage.eINSTANCE.getA4()";
-				methodCall : "RedefinedAModelAction.deleteOtherElementsForA4(perspective, scene, currentRole, deletedElement)";
+				methodCall : "RedefinedAModelLanguageAction.deleteOtherElementsForA4(perspective, scene, currentRole, deletedElement)";
 					 		
 				metaclassObject : "CmodelPackage.eINSTANCE.getC1()";
-				methodCall : "RedefinedCModelAction.deleteOtherElementsForC1(perspective, scene, currentRole, deletedElement)";
+				methodCall : "RedefinedCModelLanguageAction.deleteOtherElementsForC1(perspective, scene, currentRole, deletedElement)";
 				
     		}
     	}

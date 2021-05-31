@@ -66,7 +66,7 @@ public class PerspectiveTest {
         		for (COREArtefact a : languageConcern.getArtefacts()) {
         			if (a instanceof COREExternalLanguage) {
         				COREExternalLanguage existingLanguage = (COREExternalLanguage) a;
-        				if (existingLanguage.getName().equals("AModel")) {
+        				if (existingLanguage.getName().equals("AModelLanguage")) {
         					perspective.getLanguages().put("A_Model", existingLanguage);
         				} 
         			}
@@ -79,7 +79,7 @@ public class PerspectiveTest {
         		for (COREArtefact a : languageConcern.getArtefacts()) {
         			if (a instanceof COREExternalLanguage) {
         				COREExternalLanguage existingLanguage = (COREExternalLanguage) a;
-        				if (existingLanguage.getName().equals("BModel")) {
+        				if (existingLanguage.getName().equals("BModelLanguage")) {
         					perspective.getLanguages().put("B_Model", existingLanguage);
         				} 
         			}
@@ -89,7 +89,8 @@ public class PerspectiveTest {
         }
         
         // initialize perspective with perspective actions and mappings
-        PerspectiveTestSpecification.initializePerspective(perspective);
+        // TODO update for TouchCORE codes
+        PerspectiveTestSpecification.initializePerspective();
         
         String fileName = "/Users/hyacinthali/workspace/TouchCORE2/touchram/ca.mcgill.sel.ram/resources/models/perspectives/"
            + "PerspectiveTest_Perspective";

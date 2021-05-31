@@ -6,187 +6,174 @@ import org.eclipse.emf.ecore.EObject;
 import ca.mcgill.sel.core.*;
 import ca.mcgill.sel.core.perspective.COREPerspectiveUtil;
 
-import ca.mcgill.sel.bmodel.*;
 import ca.mcgill.sel.amodel.*;
+import ca.mcgill.sel.bmodel.*;
 import ca.mcgill.sel.amodel.controller.*;
 import ca.mcgill.sel.bmodel.controller.*;
 
-public class BModelFacadeAction {
-
-
-
-
-
-
-
-
-
-
-
-
-
-	public static EObject createOtherElementsForB1(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
+public class AModelLanguageFacadeAction {
+	public static EObject createOtherElementsForA1(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
 			EObject owner, String name) {
 		EObject newElement = null;
-		if (otherLE.equals(AmodelPackage.eINSTANCE.getA1())) {
+		if (otherLE.equals(BmodelPackage.eINSTANCE.getB1())) {
 			// Handle parameter mappings
 			EObject o = getOwner(perspective, scene, owner, otherRoleName);
-			AModel otherOwner = (AModel) o;
-			newElement = RedefinedAModelAction.createNewA1(perspective, scene, otherRoleName, 
+			BModel otherOwner = (BModel) o;
+			newElement = RedefinedBModelLanguageAction.createNewB1(perspective, scene, otherRoleName, 
 								true, otherOwner, name);
 		}
 		
 		return newElement;						
 	}
 
-	public static EObject createOtherElementsForB2(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
+	public static EObject createOtherElementsForA2(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
 			EObject owner, String name) {
 		EObject newElement = null;
-		if (otherLE.equals(AmodelPackage.eINSTANCE.getA2())) {
+		if (otherLE.equals(BmodelPackage.eINSTANCE.getB2())) {
 			// Handle parameter mappings
 			EObject o = getOwner(perspective, scene, owner, otherRoleName);
-			AModel otherOwner = (AModel) o;
-			newElement = RedefinedAModelAction.createNewA2(perspective, scene, otherRoleName, 
+			BModel otherOwner = (BModel) o;
+			newElement = RedefinedBModelLanguageAction.createNewB2(perspective, scene, otherRoleName, 
 								true, otherOwner, name);
 		}
 		
 		return newElement;						
 	}
 
-	public static EObject createOtherElementsForB3(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
+	public static EObject createOtherElementsForA4(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
 			EObject owner, String name) {
 		EObject newElement = null;
-		if (otherLE.equals(AmodelPackage.eINSTANCE.getA3())) {
+		if (otherLE.equals(BmodelPackage.eINSTANCE.getB4())) {
 			// Handle parameter mappings
 			EObject o = getOwner(perspective, scene, owner, otherRoleName);
-			AModel otherOwner = (AModel) o;
-			newElement = RedefinedAModelAction.createNewA3(perspective, scene, otherRoleName, 
+			BModel otherOwner = (BModel) o;
+			newElement = RedefinedBModelLanguageAction.createNewB4(perspective, scene, otherRoleName, 
 								true, otherOwner, name);
 		}
 		
 		return newElement;						
 	}
 
-	public static EObject createOtherElementsForB4(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
+	public static EObject createOtherElementsForA3(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
 			EObject owner, String name) {
 		EObject newElement = null;
-		if (otherLE.equals(AmodelPackage.eINSTANCE.getA4())) {
+		if (otherLE.equals(BmodelPackage.eINSTANCE.getB3())) {
 			// Handle parameter mappings
 			EObject o = getOwner(perspective, scene, owner, otherRoleName);
-			AModel otherOwner = (AModel) o;
-			newElement = RedefinedAModelAction.createNewA4(perspective, scene, otherRoleName, 
+			BModel otherOwner = (BModel) o;
+			newElement = RedefinedBModelLanguageAction.createNewB3(perspective, scene, otherRoleName, 
 								true, otherOwner, name);
 		}
 		
 		return newElement;						
 	}
 
-	public static EObject createOtherElementsForB5(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
+	public static EObject createOtherElementsForA5(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
 			EObject owner, String name) {
 		EObject newElement = null;
-		if (otherLE.equals(AmodelPackage.eINSTANCE.getA5())) {
+		if (otherLE.equals(BmodelPackage.eINSTANCE.getB5())) {
 			// Handle parameter mappings
 			EObject o = getOwner(perspective, scene, owner, otherRoleName);
-			AModel otherOwner = (AModel) o;
-			newElement = RedefinedAModelAction.createNewA5(perspective, scene, otherRoleName, 
+			BModel otherOwner = (BModel) o;
+			newElement = RedefinedBModelLanguageAction.createNewB5(perspective, scene, otherRoleName, 
 								true, otherOwner, name);
 		}
 		
 		return newElement;						
 	}
 
-	public static EObject createOtherElementsForB6(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
+	public static EObject createOtherElementsForA6(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
 			EObject owner, String name) {
 		EObject newElement = null;
-		if (otherLE.equals(AmodelPackage.eINSTANCE.getA6())) {
+		if (otherLE.equals(BmodelPackage.eINSTANCE.getB6())) {
 			// Handle parameter mappings
 			EObject o = getOwner(perspective, scene, owner, otherRoleName);
-			AModel otherOwner = (AModel) o;
-			newElement = RedefinedAModelAction.createNewA6(perspective, scene, otherRoleName, 
+			BModel otherOwner = (BModel) o;
+			newElement = RedefinedBModelLanguageAction.createNewB6(perspective, scene, otherRoleName, 
 								true, otherOwner, name);
 		}
 		
 		return newElement;						
 	}
 
-	public static EObject createOtherElementsForB7(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
+	public static EObject createOtherElementsForA7(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
 			EObject owner, String name) {
 		EObject newElement = null;
-		if (otherLE.equals(AmodelPackage.eINSTANCE.getA7())) {
+		if (otherLE.equals(BmodelPackage.eINSTANCE.getB7())) {
 			// Handle parameter mappings
 			EObject o = getOwner(perspective, scene, owner, otherRoleName);
-			AModel otherOwner = (AModel) o;
-			newElement = RedefinedAModelAction.createNewA7(perspective, scene, otherRoleName, 
+			BModel otherOwner = (BModel) o;
+			newElement = RedefinedBModelLanguageAction.createNewB7(perspective, scene, otherRoleName, 
 								true, otherOwner, name);
 		}
 		
 		return newElement;						
 	}
 
-	public static EObject createOtherElementsForB8(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
+	public static EObject createOtherElementsForA8(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
 			EObject owner, String name) {
 		EObject newElement = null;
-		if (otherLE.equals(AmodelPackage.eINSTANCE.getA8())) {
+		if (otherLE.equals(BmodelPackage.eINSTANCE.getB8())) {
 			// Handle parameter mappings
 			EObject o = getOwner(perspective, scene, owner, otherRoleName);
-			AModel otherOwner = (AModel) o;
-			newElement = RedefinedAModelAction.createNewA8(perspective, scene, otherRoleName, 
+			BModel otherOwner = (BModel) o;
+			newElement = RedefinedBModelLanguageAction.createNewB8(perspective, scene, otherRoleName, 
 								true, otherOwner, name);
 		}
 		
 		return newElement;						
 	}
 
-	public static EObject createOtherElementsForB9(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
+	public static EObject createOtherElementsForA9(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
 			EObject owner, String name) {
 		EObject newElement = null;
-		if (otherLE.equals(AmodelPackage.eINSTANCE.getA9())) {
+		if (otherLE.equals(BmodelPackage.eINSTANCE.getB9())) {
 			// Handle parameter mappings
 			EObject o = getOwner(perspective, scene, owner, otherRoleName);
-			AModel otherOwner = (AModel) o;
-			newElement = RedefinedAModelAction.createNewA9(perspective, scene, otherRoleName, 
+			BModel otherOwner = (BModel) o;
+			newElement = RedefinedBModelLanguageAction.createNewB9(perspective, scene, otherRoleName, 
 								true, otherOwner, name);
 		}
 		
 		return newElement;						
 	}
 
-	public static EObject createOtherElementsForB10(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
+	public static EObject createOtherElementsForA10(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
 			EObject owner, String name) {
 		EObject newElement = null;
-		if (otherLE.equals(AmodelPackage.eINSTANCE.getA10())) {
+		if (otherLE.equals(BmodelPackage.eINSTANCE.getB10())) {
 			// Handle parameter mappings
 			EObject o = getOwner(perspective, scene, owner, otherRoleName);
-			AModel otherOwner = (AModel) o;
-			newElement = RedefinedAModelAction.createNewA10(perspective, scene, otherRoleName, 
+			BModel otherOwner = (BModel) o;
+			newElement = RedefinedBModelLanguageAction.createNewB10(perspective, scene, otherRoleName, 
 								true, otherOwner, name);
 		}
 		
 		return newElement;						
 	}
 
-	public static EObject createOtherElementsForB11(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
+	public static EObject createOtherElementsForA11(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
 			EObject owner, String name) {
 		EObject newElement = null;
-		if (otherLE.equals(AmodelPackage.eINSTANCE.getA11())) {
+		if (otherLE.equals(BmodelPackage.eINSTANCE.getB11())) {
 			// Handle parameter mappings
 			EObject o = getOwner(perspective, scene, owner, otherRoleName);
-			AModel otherOwner = (AModel) o;
-			newElement = RedefinedAModelAction.createNewA11(perspective, scene, otherRoleName, 
+			BModel otherOwner = (BModel) o;
+			newElement = RedefinedBModelLanguageAction.createNewB11(perspective, scene, otherRoleName, 
 								true, otherOwner, name);
 		}
 		
 		return newElement;						
 	}
 
-	public static EObject createOtherElementsForB12(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
+	public static EObject createOtherElementsForA12(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
 			EObject owner, String name) {
 		EObject newElement = null;
-		if (otherLE.equals(AmodelPackage.eINSTANCE.getA12())) {
+		if (otherLE.equals(BmodelPackage.eINSTANCE.getB12())) {
 			// Handle parameter mappings
 			EObject o = getOwner(perspective, scene, owner, otherRoleName);
-			AModel otherOwner = (AModel) o;
-			newElement = RedefinedAModelAction.createNewA12(perspective, scene, otherRoleName, 
+			BModel otherOwner = (BModel) o;
+			newElement = RedefinedBModelLanguageAction.createNewB12(perspective, scene, otherRoleName, 
 								true, otherOwner, name);
 		}
 		
@@ -267,6 +254,19 @@ public class BModelFacadeAction {
 			BModelController.getInstance().removeB12((B12) otherElement);
 		}
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	/**
 	 * This is a helper method which retrieves the corresponding container of an

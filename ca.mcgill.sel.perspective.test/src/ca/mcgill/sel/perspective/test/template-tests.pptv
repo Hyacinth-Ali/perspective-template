@@ -5,7 +5,7 @@ perspective PerspectiveTest {
     display name "Template Test";
             
     languages {
-    	existing language AModel {
+    	existing language AModelLanguage {
             rootPackage "ca.mcgill.sel.amodel";
             packageClassName AmodelPackage;
             controllerPackage "ca.mcgill.sel.amodel.controller";
@@ -13,7 +13,7 @@ perspective PerspectiveTest {
             otherRootPackage "ca.mcgill.sel.bmodel";
         }  
               
-        existing language BModel {
+        existing language BModelLanguage {
             rootPackage "ca.mcgill.sel.bmodel";
             packageClassName BmodelPackage;
             controllerPackage "ca.mcgill.sel.bmodel.controller";
@@ -397,7 +397,7 @@ perspective PerspectiveTest {
     			metaclassObject : "BmodelPackage.eINSTANCE.getB1()";
     	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
 				mapping "BModel otherOwner = (BModel) o";
-				methodCall : "RedefinedBModelAction.createNewB1(perspective, scene, otherRoleName, 
+				methodCall : "RedefinedBModelLanguageAction.createNewB1(perspective, scene, otherRoleName, 
 					true, otherOwner, name)";
 					
     		} 
@@ -412,7 +412,7 @@ perspective PerspectiveTest {
     			metaclassObject : "BmodelPackage.eINSTANCE.getB2()";
     	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
 				mapping "BModel otherOwner = (BModel) o";
-				methodCall : "RedefinedBModelAction.createNewB2(perspective, scene, otherRoleName, 
+				methodCall : "RedefinedBModelLanguageAction.createNewB2(perspective, scene, otherRoleName, 
 					true, otherOwner, name)";
 					
     		} 
@@ -427,7 +427,7 @@ perspective PerspectiveTest {
     			metaclassObject : "BmodelPackage.eINSTANCE.getB4()";
     	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
 				mapping "BModel otherOwner = (BModel) o";
-				methodCall : "RedefinedBModelAction.createNewB4(perspective, scene, otherRoleName, 
+				methodCall : "RedefinedBModelLanguageAction.createNewB4(perspective, scene, otherRoleName, 
 					true, otherOwner, name)";
 					
     		} 
@@ -442,7 +442,7 @@ perspective PerspectiveTest {
     			metaclassObject : "BmodelPackage.eINSTANCE.getB3()";
     	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
 				mapping "BModel otherOwner = (BModel) o";
-				methodCall : "RedefinedBModelAction.createNewB3(perspective, scene, otherRoleName, 
+				methodCall : "RedefinedBModelLanguageAction.createNewB3(perspective, scene, otherRoleName, 
 					true, otherOwner, name)";
 					
     		} 
@@ -457,7 +457,7 @@ perspective PerspectiveTest {
     			metaclassObject : "BmodelPackage.eINSTANCE.getB5()";
     	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
 				mapping "BModel otherOwner = (BModel) o";
-				methodCall : "RedefinedBModelAction.createNewB5(perspective, scene, otherRoleName, 
+				methodCall : "RedefinedBModelLanguageAction.createNewB5(perspective, scene, otherRoleName, 
 					true, otherOwner, name)";
 					
     		} 
@@ -472,7 +472,7 @@ perspective PerspectiveTest {
     			metaclassObject : "BmodelPackage.eINSTANCE.getB6()";
     	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
 				mapping "BModel otherOwner = (BModel) o";
-				methodCall : "RedefinedBModelAction.createNewB6(perspective, scene, otherRoleName, 
+				methodCall : "RedefinedBModelLanguageAction.createNewB6(perspective, scene, otherRoleName, 
 					true, otherOwner, name)";
 					
     		} 
@@ -487,7 +487,7 @@ perspective PerspectiveTest {
     			metaclassObject : "BmodelPackage.eINSTANCE.getB7()";
     	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
 				mapping "BModel otherOwner = (BModel) o";
-				methodCall : "RedefinedBModelAction.createNewB7(perspective, scene, otherRoleName, 
+				methodCall : "RedefinedBModelLanguageAction.createNewB7(perspective, scene, otherRoleName, 
 					true, otherOwner, name)";
 					
     		} 
@@ -502,7 +502,7 @@ perspective PerspectiveTest {
     			metaclassObject : "BmodelPackage.eINSTANCE.getB8()";
     	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
 				mapping "BModel otherOwner = (BModel) o";
-				methodCall : "RedefinedBModelAction.createNewB8(perspective, scene, otherRoleName, 
+				methodCall : "RedefinedBModelLanguageAction.createNewB8(perspective, scene, otherRoleName, 
 					true, otherOwner, name)";
 					
     		} 
@@ -517,7 +517,7 @@ perspective PerspectiveTest {
     			metaclassObject : "BmodelPackage.eINSTANCE.getB9()";
     	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
 				mapping "BModel otherOwner = (BModel) o";
-				methodCall : "RedefinedBModelAction.createNewB9(perspective, scene, otherRoleName, 
+				methodCall : "RedefinedBModelLanguageAction.createNewB9(perspective, scene, otherRoleName, 
 					true, otherOwner, name)";
 					
     		} 
@@ -532,7 +532,7 @@ perspective PerspectiveTest {
     			metaclassObject : "BmodelPackage.eINSTANCE.getB10()";
     	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
 				mapping "BModel otherOwner = (BModel) o";
-				methodCall : "RedefinedBModelAction.createNewB10(perspective, scene, otherRoleName, 
+				methodCall : "RedefinedBModelLanguageAction.createNewB10(perspective, scene, otherRoleName, 
 					true, otherOwner, name)";
 					
     		} 
@@ -547,7 +547,7 @@ perspective PerspectiveTest {
     			metaclassObject : "BmodelPackage.eINSTANCE.getB11()";
     	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
 				mapping "BModel otherOwner = (BModel) o";
-				methodCall : "RedefinedBModelAction.createNewB11(perspective, scene, otherRoleName, 
+				methodCall : "RedefinedBModelLanguageAction.createNewB11(perspective, scene, otherRoleName, 
 					true, otherOwner, name)";
 					
     		}  
@@ -562,7 +562,7 @@ perspective PerspectiveTest {
     			metaclassObject : "BmodelPackage.eINSTANCE.getB12()";
     	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
 				mapping "BModel otherOwner = (BModel) o";
-				methodCall : "RedefinedBModelAction.createNewB12(perspective, scene, otherRoleName, 
+				methodCall : "RedefinedBModelLanguageAction.createNewB12(perspective, scene, otherRoleName, 
 					true, otherOwner, name)";
 					
     		} 
@@ -656,7 +656,7 @@ perspective PerspectiveTest {
     			metaclassObject : "AmodelPackage.eINSTANCE.getA1()";
     	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
 				mapping "AModel otherOwner = (AModel) o";
-				methodCall : "RedefinedAModelAction.createNewA1(perspective, scene, otherRoleName, 
+				methodCall : "RedefinedAModelLanguageAction.createNewA1(perspective, scene, otherRoleName, 
 					true, otherOwner, name)";
 					
     		} 
@@ -671,7 +671,7 @@ perspective PerspectiveTest {
     			metaclassObject : "AmodelPackage.eINSTANCE.getA2()";
     	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
 				mapping "AModel otherOwner = (AModel) o";
-				methodCall : "RedefinedAModelAction.createNewA2(perspective, scene, otherRoleName, 
+				methodCall : "RedefinedAModelLanguageAction.createNewA2(perspective, scene, otherRoleName, 
 					true, otherOwner, name)";
 					
     		} 
@@ -686,7 +686,7 @@ perspective PerspectiveTest {
     			metaclassObject : "AmodelPackage.eINSTANCE.getA3()";
     	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
 				mapping "AModel otherOwner = (AModel) o";
-				methodCall : "RedefinedAModelAction.createNewA3(perspective, scene, otherRoleName, 
+				methodCall : "RedefinedAModelLanguageAction.createNewA3(perspective, scene, otherRoleName, 
 					true, otherOwner, name)";
 					
     		} 
@@ -701,7 +701,7 @@ perspective PerspectiveTest {
     			metaclassObject : "AmodelPackage.eINSTANCE.getA4()";
     	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
 				mapping "AModel otherOwner = (AModel) o";
-				methodCall : "RedefinedAModelAction.createNewA4(perspective, scene, otherRoleName, 
+				methodCall : "RedefinedAModelLanguageAction.createNewA4(perspective, scene, otherRoleName, 
 					true, otherOwner, name)";
 					
     		} 
@@ -716,7 +716,7 @@ perspective PerspectiveTest {
     			metaclassObject : "AmodelPackage.eINSTANCE.getA5()";
     	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
 				mapping "AModel otherOwner = (AModel) o";
-				methodCall : "RedefinedAModelAction.createNewA5(perspective, scene, otherRoleName, 
+				methodCall : "RedefinedAModelLanguageAction.createNewA5(perspective, scene, otherRoleName, 
 					true, otherOwner, name)";
 					
     		} 
@@ -731,7 +731,7 @@ perspective PerspectiveTest {
     			metaclassObject : "AmodelPackage.eINSTANCE.getA6()";
     	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
 				mapping "AModel otherOwner = (AModel) o";
-				methodCall : "RedefinedAModelAction.createNewA6(perspective, scene, otherRoleName, 
+				methodCall : "RedefinedAModelLanguageAction.createNewA6(perspective, scene, otherRoleName, 
 					true, otherOwner, name)";
 					
     		} 
@@ -746,7 +746,7 @@ perspective PerspectiveTest {
     			metaclassObject : "AmodelPackage.eINSTANCE.getA7()";
     	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
 				mapping "AModel otherOwner = (AModel) o";
-				methodCall : "RedefinedAModelAction.createNewA7(perspective, scene, otherRoleName, 
+				methodCall : "RedefinedAModelLanguageAction.createNewA7(perspective, scene, otherRoleName, 
 					true, otherOwner, name)";
 					
     		} 
@@ -761,7 +761,7 @@ perspective PerspectiveTest {
     			metaclassObject : "AmodelPackage.eINSTANCE.getA8()";
     	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
 				mapping "AModel otherOwner = (AModel) o";
-				methodCall : "RedefinedAModelAction.createNewA8(perspective, scene, otherRoleName, 
+				methodCall : "RedefinedAModelLanguageAction.createNewA8(perspective, scene, otherRoleName, 
 					true, otherOwner, name)";
 					
     		} 
@@ -776,7 +776,7 @@ perspective PerspectiveTest {
     			metaclassObject : "AmodelPackage.eINSTANCE.getA9()";
     	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
 				mapping "AModel otherOwner = (AModel) o";
-				methodCall : "RedefinedAModelAction.createNewA9(perspective, scene, otherRoleName, 
+				methodCall : "RedefinedAModelLanguageAction.createNewA9(perspective, scene, otherRoleName, 
 					true, otherOwner, name)";
 					
     		} 
@@ -791,7 +791,7 @@ perspective PerspectiveTest {
     			metaclassObject : "AmodelPackage.eINSTANCE.getA10()";
     	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
 				mapping "AModel otherOwner = (AModel) o";
-				methodCall : "RedefinedAModelAction.createNewA10(perspective, scene, otherRoleName, 
+				methodCall : "RedefinedAModelLanguageAction.createNewA10(perspective, scene, otherRoleName, 
 					true, otherOwner, name)";
 					
     		} 
@@ -806,7 +806,7 @@ perspective PerspectiveTest {
     			metaclassObject : "AmodelPackage.eINSTANCE.getA11()";
     	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
 				mapping "AModel otherOwner = (AModel) o";
-				methodCall : "RedefinedAModelAction.createNewA11(perspective, scene, otherRoleName, 
+				methodCall : "RedefinedAModelLanguageAction.createNewA11(perspective, scene, otherRoleName, 
 					true, otherOwner, name)";
 					
     		}  
@@ -821,7 +821,7 @@ perspective PerspectiveTest {
     			metaclassObject : "AmodelPackage.eINSTANCE.getA12()";
     	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
 				mapping "AModel otherOwner = (AModel) o";
-				methodCall : "RedefinedAModelAction.createNewA12(perspective, scene, otherRoleName, 
+				methodCall : "RedefinedAModelLanguageAction.createNewA12(perspective, scene, otherRoleName, 
 					true, otherOwner, name)";
 					
     		} 
@@ -912,40 +912,40 @@ perspective PerspectiveTest {
     	create secondary effects {
     		// first call
     		metaclassObject : "AmodelPackage.eINSTANCE.getA2()";
-			methodCall : "RedefinedAModelAction.createOtherElementsForA2(perspective, scene, currentRole, newElement,
+			methodCall : "RedefinedAModelLanguageAction.createOtherElementsForA2(perspective, scene, currentRole, newElement,
 							newElement.eContainer(), name)";
 							
     		metaclassObject : "AmodelPackage.eINSTANCE.getA3()";
-			methodCall : "RedefinedAModelAction.createOtherElementsForA3(perspective, scene, currentRole, newElement,
+			methodCall : "RedefinedAModelLanguageAction.createOtherElementsForA3(perspective, scene, currentRole, newElement,
 							newElement.eContainer(), name)";
 							
 			metaclassObject : "AmodelPackage.eINSTANCE.getA4()";
-			methodCall : "RedefinedAModelAction.createOtherElementsForA4(perspective, scene, currentRole, newElement,
+			methodCall : "RedefinedAModelLanguageAction.createOtherElementsForA4(perspective, scene, currentRole, newElement,
 							newElement.eContainer(), name)";
 							
 			metaclassObject : "BmodelPackage.eINSTANCE.getB2()";
-			methodCall : "RedefinedBModelAction.createOtherElementsForB2(perspective, scene, currentRole, newElement,
+			methodCall : "RedefinedBModelLanguageAction.createOtherElementsForB2(perspective, scene, currentRole, newElement,
 							newElement.eContainer(), name)";
 							
     		metaclassObject : "BmodelPackage.eINSTANCE.getB3()";
-			methodCall : "RedefinedBModelAction.createOtherElementsForB3(perspective, scene, currentRole, newElement,
+			methodCall : "RedefinedBModelLanguageAction.createOtherElementsForB3(perspective, scene, currentRole, newElement,
 							newElement.eContainer(), name)";
 							
 			metaclassObject : "BmodelPackage.eINSTANCE.getB4()";
-			methodCall : "RedefinedBModelAction.createOtherElementsForB4(perspective, scene, currentRole, newElement,
+			methodCall : "RedefinedBModelLanguageAction.createOtherElementsForB4(perspective, scene, currentRole, newElement,
 							newElement.eContainer(), name)";
 	
     	}
     	
     	delete secondary effects  {
     		metaclassObject : "AmodelPackage.eINSTANCE.getA2()";
-			methodCall : "RedefinedAModelAction.deleteOtherElementsForA2(perspective, scene, currentRole, deletedElement)";
+			methodCall : "RedefinedAModelLanguageAction.deleteOtherElementsForA2(perspective, scene, currentRole, deletedElement)";
 			
 			metaclassObject : "AmodelPackage.eINSTANCE.getA3()";
-			methodCall : "RedefinedAModelAction.deleteOtherElementsForA3(perspective, scene, currentRole, deletedElement)";
+			methodCall : "RedefinedAModelLanguageAction.deleteOtherElementsForA3(perspective, scene, currentRole, deletedElement)";
 			
 			metaclassObject : "AmodelPackage.eINSTANCE.getA4()";
-			methodCall : "RedefinedAModelAction.deleteOtherElementsForA4(perspective, scene, currentRole, deletedElement)";
+			methodCall : "RedefinedAModelLanguageAction.deleteOtherElementsForA4(perspective, scene, currentRole, deletedElement)";
     	}
     }
       

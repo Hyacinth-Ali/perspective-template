@@ -13,7 +13,7 @@ import ca.mcgill.sel.amodel.controller.*;
 import ca.mcgill.sel.bmodel.controller.*;
 import ca.mcgill.sel.cmodel.controller.*;
 
-public class AModelFacadeAction {
+public class AModelLanguageFacadeAction {
 	public static EObject createOtherElementsForA2(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
 			EObject owner, String name) {
 		EObject newElement = null;
@@ -21,7 +21,7 @@ public class AModelFacadeAction {
 			// Handle parameter mappings
 			EObject o = getOwner(perspective, scene, owner, otherRoleName);
 			CModel otherOwner = (CModel) o;
-			newElement = RedefinedCModelAction.createNewC2(perspective, scene, otherRoleName, 
+			newElement = RedefinedCModelLanguageAction.createNewC2(perspective, scene, otherRoleName, 
 								true, otherOwner, name);
 		}
 		
@@ -35,7 +35,7 @@ public class AModelFacadeAction {
 			// Handle parameter mappings
 			EObject o = getOwner(perspective, scene, owner, otherRoleName);
 			BModel otherOwner = (BModel) o;
-			newElement = RedefinedBModelAction.createNewB3(perspective, scene, otherRoleName, 
+			newElement = RedefinedBModelLanguageAction.createNewB3(perspective, scene, otherRoleName, 
 								true, otherOwner, name);
 		}
 		
@@ -49,14 +49,14 @@ public class AModelFacadeAction {
 			// Handle parameter mappings
 			EObject o = getOwner(perspective, scene, owner, otherRoleName);
 			BModel otherOwner = (BModel) o;
-			newElement = RedefinedBModelAction.createNewB1(perspective, scene, otherRoleName, 
+			newElement = RedefinedBModelLanguageAction.createNewB1(perspective, scene, otherRoleName, 
 								true, otherOwner, name);
 		}
 		else if (otherLE.equals(CmodelPackage.eINSTANCE.getC1())) {
 			// Handle parameter mappings
 			EObject o = getOwner(perspective, scene, owner, otherRoleName);
 			CModel otherOwner = (CModel) o;
-			newElement = RedefinedCModelAction.createNewC1(perspective, scene, otherRoleName, 
+			newElement = RedefinedCModelLanguageAction.createNewC1(perspective, scene, otherRoleName, 
 								true, otherOwner, name);
 		}
 		
@@ -65,25 +65,25 @@ public class AModelFacadeAction {
 
 	public static void deleteModelElement(COREPerspective perspective, COREScene scene, String otherRoleName, EObject otherElement) {
 		if (otherElement instanceof A2) {
-			RedefinedAModelAction.deleteA2(perspective, scene, otherRoleName, otherElement);
+			RedefinedAModelLanguageAction.deleteA2(perspective, scene, otherRoleName, otherElement);
 		}
 		else if (otherElement instanceof A3) {
-			RedefinedAModelAction.deleteA3(perspective, scene, otherRoleName, otherElement);
+			RedefinedAModelLanguageAction.deleteA3(perspective, scene, otherRoleName, otherElement);
 		}
 		else if (otherElement instanceof A4) {
-			RedefinedAModelAction.deleteA4(perspective, scene, otherRoleName, otherElement);
+			RedefinedAModelLanguageAction.deleteA4(perspective, scene, otherRoleName, otherElement);
 		}
 		else if (otherElement instanceof B1) {
-			RedefinedBModelAction.deleteB1(perspective, scene, otherRoleName, otherElement);
+			RedefinedBModelLanguageAction.deleteB1(perspective, scene, otherRoleName, otherElement);
 		}
 		else if (otherElement instanceof B3) {
-			RedefinedBModelAction.deleteB3(perspective, scene, otherRoleName, otherElement);
+			RedefinedBModelLanguageAction.deleteB3(perspective, scene, otherRoleName, otherElement);
 		}
 		else if (otherElement instanceof C1) {
-			RedefinedCModelAction.deleteC1(perspective, scene, otherRoleName, otherElement);
+			RedefinedCModelLanguageAction.deleteC1(perspective, scene, otherRoleName, otherElement);
 		}
 		else if (otherElement instanceof C2) {
-			RedefinedCModelAction.deleteC2(perspective, scene, otherRoleName, otherElement);
+			RedefinedCModelLanguageAction.deleteC2(perspective, scene, otherRoleName, otherElement);
 		}
 	}
 

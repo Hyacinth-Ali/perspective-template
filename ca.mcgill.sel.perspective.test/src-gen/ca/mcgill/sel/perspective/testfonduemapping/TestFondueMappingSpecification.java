@@ -13,7 +13,7 @@ import ca.mcgill.sel.core.Cardinality;
 import ca.mcgill.sel.core.CoreFactory;
 import ca.mcgill.sel.core.MappingEnd;
 //import ca.mcgill.sel.core.perspective.design.ElementMapping;
-
+import ca.mcgill.sel.core.language.*;
 import ca.mcgill.sel.amodel.*;
 import ca.mcgill.sel.bmodel.*;
 import ca.mcgill.sel.cmodel.*;
@@ -28,11 +28,11 @@ public class TestFondueMappingSpecification {
 		
 		// create external languages, if any
 		COREExternalLanguage language = null;
-		language = AModel.createLanguage();
+		language = AModelLanguage.createLanguage();
 		perspective.getLanguages().put("A_Model", language);	
-		language = BModel.createLanguage();
+		language = BModelLanguage.createLanguage();
 		perspective.getLanguages().put("B_Model", language);	
-		language = CModel.createLanguage();
+		language = CModelLanguage.createLanguage();
 		perspective.getLanguages().put("C_Model", language);	
 		// End of codes to be removed
 		

@@ -39,10 +39,12 @@ import ca.mcgill.sel.core.CoreFactory;
 import ca.mcgill.sel.core.perspective.ActionType;
 import ca.mcgill.sel.core.perspective.COREPerspectiveUtil;
 import ca.mcgill.sel.core.perspective.TemplateType;
-import ca.mcgill.sel.perspective.testfonduemapping.RedefinedAModelAction;
-import ca.mcgill.sel.perspective.testfonduemapping.RedefinedCModelAction;
+import ca.mcgill.sel.perspective.testfonduemapping.RedefinedAModelLanguageAction;
+import ca.mcgill.sel.perspective.testfonduemapping.RedefinedCModelLanguageAction;
+import ca.mcgill.sel.perspective.testfonduemapping.TestFondueMappingSpecification;
+import ca.mcgill.sel.ram.ui.perspective.PerspectiveException;
+import ca.mcgill.sel.ram.ui.perspective.QueryAction;
 import ca.mcgill.sel.ram.ui.perspective.controller.PerspectiveControllerFactory;
-import ca.mcgill.sel.ram.ui.perspective.*;
 
 public class FonduePerspectiveTest {
 
@@ -119,7 +121,7 @@ public class FonduePerspectiveTest {
 		aModelController.setComplexAction(true);
 		QueryAction.INSTANCE.setNumberOfMapping(5);
 //		QueryAction.INSTANCE.setCreateMapping(true);
-		RedefinedAModelAction.createNewA2(perspective, scene, "A_Model", false, aModel, "name");
+		RedefinedAModelLanguageAction.createNewA2(perspective, scene, "A_Model", false, aModel, "name");
 
 		int nElements = aModel.getA2s().size();
 		assertEquals(1, nElements);
@@ -150,7 +152,7 @@ public class FonduePerspectiveTest {
 		aModelController.setComplexAction(true);
 		QueryAction.INSTANCE.setNumberOfMapping(5);
 		QueryAction.INSTANCE.setCreateMapping(true);
-		RedefinedAModelAction.createNewA2(perspective, scene, "A_Model", false, aModel, "name");
+		RedefinedAModelLanguageAction.createNewA2(perspective, scene, "A_Model", false, aModel, "name");
 
 		int nElements = aModel.getA2s().size();
 		assertEquals(1, nElements);
@@ -179,7 +181,7 @@ public class FonduePerspectiveTest {
 
 		QueryAction.INSTANCE.setNumberOfMapping(5);
 		QueryAction.INSTANCE.setCreateMapping(true);
-		RedefinedCModelAction.createNewC2(perspective, scene, "C_Model", false, cModel, "name");
+		RedefinedCModelLanguageAction.createNewC2(perspective, scene, "C_Model", false, cModel, "name");
 
 		int nElements = cModel.getC2s().size();
 		assertEquals(1, nElements);
@@ -207,7 +209,7 @@ public class FonduePerspectiveTest {
 
 		aModelController.setComplexAction(true);
 		QueryAction.INSTANCE.setNumberOfMapping(5);
-		RedefinedAModelAction.createNewA2(perspective, scene, "A_Model", false, aModel, "name");
+		RedefinedAModelLanguageAction.createNewA2(perspective, scene, "A_Model", false, aModel, "name");
 
 		
 		int nElements = aModel.getA2s().size();
@@ -222,7 +224,7 @@ public class FonduePerspectiveTest {
 		assertEquals(1, nElements);
 		
 		A2 a2 = aModel.getA2s().get(0);
-		RedefinedAModelAction.deleteA2(perspective, scene, "A_Model", a2);
+		RedefinedAModelLanguageAction.deleteA2(perspective, scene, "A_Model", a2);
 		
 		nElements = aModel.getA2s().size();
 		assertEquals(0, nElements);
@@ -237,7 +239,7 @@ public class FonduePerspectiveTest {
 
 		aModelController.setComplexAction(true);
 		QueryAction.INSTANCE.setNumberOfMapping(5);
-		RedefinedAModelAction.createNewA2(perspective, scene, "A_Model", false, aModel, "name");
+		RedefinedAModelLanguageAction.createNewA2(perspective, scene, "A_Model", false, aModel, "name");
 
 		int nElements = aModel.getA2s().size();
 		assertEquals(1, nElements);
@@ -261,7 +263,7 @@ public class FonduePerspectiveTest {
 		assertTrue(a2_c2);
 		
 		A2 a2 = aModel.getA2s().get(0);
-		RedefinedAModelAction.deleteA2(perspective, scene, "A_Model", a2);
+		RedefinedAModelLanguageAction.deleteA2(perspective, scene, "A_Model", a2);
 		
 		nElements = aModel.getA2s().size();
 		assertEquals(0, nElements);
@@ -287,7 +289,7 @@ public class FonduePerspectiveTest {
 
 		QueryAction.INSTANCE.setNumberOfMapping(5);
 		QueryAction.INSTANCE.setCreateMapping(true);
-		RedefinedCModelAction.createNewC2(perspective, scene, "C_Model", false, cModel, "name");
+		RedefinedCModelLanguageAction.createNewC2(perspective, scene, "C_Model", false, cModel, "name");
 
 		int nElements = cModel.getC2s().size();
 		assertEquals(1, nElements);
@@ -305,7 +307,7 @@ public class FonduePerspectiveTest {
 		assertEquals(5, nElements);
 		
 		C2 c2 = cModel.getC2s().get(0);
-		RedefinedCModelAction.deleteC2(perspective, scene, "C_Model", c2);
+		RedefinedCModelLanguageAction.deleteC2(perspective, scene, "C_Model", c2);
 		
 		nElements = cModel.getC2s().size();
 		assertEquals(0, nElements);
@@ -328,7 +330,7 @@ public class FonduePerspectiveTest {
 		
 		aModelController.setComplexAction(true);
 		QueryAction.INSTANCE.setNumberOfMapping(5);
-		RedefinedAModelAction.createNewA2(perspective, scene, "A_Model", false, aModel, "name");
+		RedefinedAModelLanguageAction.createNewA2(perspective, scene, "A_Model", false, aModel, "name");
 
 		PerspectiveControllerFactory.INSTANCE.getBasePerspectiveController().updateElement(perspective, scene,
 				"A_Model", aModel.getA2s().get(0), AmodelPackage.eINSTANCE.getNamedElement_Name(), "name2");
@@ -349,7 +351,7 @@ public class FonduePerspectiveTest {
 		
 		aModelController.setComplexAction(true);
 		QueryAction.INSTANCE.setNumberOfMapping(5);
-		RedefinedAModelAction.createNewA4(perspective, scene, "A_Model", false, aModel, "name");
+		RedefinedAModelLanguageAction.createNewA4(perspective, scene, "A_Model", false, aModel, "name");
 
 		int nElements = aModel.getA4s().size();
 		assertEquals(1, nElements);
@@ -390,7 +392,7 @@ public class FonduePerspectiveTest {
 
 	private static void setUpModels() {
 		existingModels = new HashMap<String, EObject>();
-		perspective = TestFonduEPerspective.initializePerspective();
+		perspective = TestFondueMappingSpecification.initializePerspective();
 		scene = CoreFactory.eINSTANCE.createCOREScene();
 		aModelController = AModelController.getInstance();
 		bModelController = BModelController.getInstance();

@@ -15,7 +15,7 @@ import ca.mcgill.sel.ram.ui.perspective.*;
 import ca.mcgill.sel.bmodel.*;
 import ca.mcgill.sel.bmodel.controller.*;
 
-public class RedefinedBModelAction {
+public class RedefinedBModelLanguageAction {
 	public static EObject createNewB1(COREPerspective perspective, COREScene scene, String currentRole, 
 		boolean isFacadeCall, EObject owner, String name) {
 		
@@ -162,7 +162,7 @@ public class RedefinedBModelAction {
 			otherElement = QueryAction.INSTANCE.findCorrespondingElement(scene, mappingType, currentElement.eClass(), currentElement, currentRoleName, otherRoleName);
 			if (otherElement == null) {
 				otherExist = false;
-				otherElement = BModelFacadeAction.createOtherElementsForB1(perspective, otherLE, otherRoleName, scene, owner, name);
+				otherElement = BModelLanguageFacadeAction.createOtherElementsForB1(perspective, otherLE, otherRoleName, scene, owner, name);
 			}
 			COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
 			// save the recent changes
@@ -198,7 +198,7 @@ public class RedefinedBModelAction {
 		otherElement = QueryAction.INSTANCE.findCorrespondingElement(scene, mappingType, currentElement.eClass(), currentElement, currentRoleName, otherRoleName);
 		if (otherElement == null) {
 			otherExist = false;
-			otherElement = BModelFacadeAction.createOtherElementsForB1(perspective, otherLE, otherRoleName, scene, 
+			otherElement = BModelLanguageFacadeAction.createOtherElementsForB1(perspective, otherLE, otherRoleName, scene, 
 				owner, name);
 		}
 		COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
@@ -245,7 +245,7 @@ public class RedefinedBModelAction {
 			}
 		}
 		for (int count = 0; count < numberOfMappings; count++) {
-			otherElement = BModelFacadeAction.createOtherElementsForB1(perspective, otherLE, otherRoleName, scene, 
+			otherElement = BModelLanguageFacadeAction.createOtherElementsForB1(perspective, otherLE, otherRoleName, scene, 
 										owner, name);
 			COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
 			// BasePerspectiveController.saveModel(scene);
@@ -288,7 +288,7 @@ public class RedefinedBModelAction {
 			}
 		}
 		for (int count = 0; count < numberOfMappings; count++) {
-			otherElement = BModelFacadeAction.createOtherElementsForB1(perspective, otherLE, otherRoleName, scene, 
+			otherElement = BModelLanguageFacadeAction.createOtherElementsForB1(perspective, otherLE, otherRoleName, scene, 
 										owner, name);
 			COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
 			// BasePerspectiveController.saveModel(scene);
@@ -325,7 +325,7 @@ public class RedefinedBModelAction {
 			// already mapped.
 			if (otherElement == null || COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene, otherElement).size() != 0) {
 				otherExist = false;
-				otherElement = BModelFacadeAction.createOtherElementsForB1(perspective, otherLE, otherRoleName, scene, 
+				otherElement = BModelLanguageFacadeAction.createOtherElementsForB1(perspective, otherLE, otherRoleName, scene, 
 											owner, name);
 			}
 			COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
@@ -366,7 +366,7 @@ public class RedefinedBModelAction {
 		// or mapped.
 		if (otherElement == null || COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene, otherElement).size() > 0) {
 			otherExist = false;
-			otherElement = BModelFacadeAction.createOtherElementsForB1(perspective, otherLE, otherRoleName, scene, 
+			otherElement = BModelLanguageFacadeAction.createOtherElementsForB1(perspective, otherLE, otherRoleName, scene, 
 										owner, name);
 		}
 		COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
@@ -415,7 +415,7 @@ public class RedefinedBModelAction {
 			}
 		}
 		for (int count = 0; count < numberOfMappings; count++) {
-			otherElement = BModelFacadeAction.createOtherElementsForB1(perspective, otherLE, otherRoleName, scene, 
+			otherElement = BModelLanguageFacadeAction.createOtherElementsForB1(perspective, otherLE, otherRoleName, scene, 
 										owner, name);
 			COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
 		  	// BasePerspectiveController.saveModel(scene);
@@ -462,7 +462,7 @@ public class RedefinedBModelAction {
 			}
 		}
 		for (int count = 0; count < numberOfMappings; count++) {
-			otherElement = BModelFacadeAction.createOtherElementsForB1(perspective, otherLE, otherRoleName, scene, 
+			otherElement = BModelLanguageFacadeAction.createOtherElementsForB1(perspective, otherLE, otherRoleName, scene, 
 										owner, name);
 			COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
 		  	// BasePerspectiveController.saveModel(scene);
@@ -616,7 +616,7 @@ public class RedefinedBModelAction {
 			otherElement = QueryAction.INSTANCE.findCorrespondingElement(scene, mappingType, currentElement.eClass(), currentElement, currentRoleName, otherRoleName);
 			if (otherElement == null) {
 				otherExist = false;
-				otherElement = BModelFacadeAction.createOtherElementsForB3(perspective, otherLE, otherRoleName, scene, owner, name);
+				otherElement = BModelLanguageFacadeAction.createOtherElementsForB3(perspective, otherLE, otherRoleName, scene, owner, name);
 			}
 			COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
 			// save the recent changes
@@ -652,7 +652,7 @@ public class RedefinedBModelAction {
 		otherElement = QueryAction.INSTANCE.findCorrespondingElement(scene, mappingType, currentElement.eClass(), currentElement, currentRoleName, otherRoleName);
 		if (otherElement == null) {
 			otherExist = false;
-			otherElement = BModelFacadeAction.createOtherElementsForB3(perspective, otherLE, otherRoleName, scene, 
+			otherElement = BModelLanguageFacadeAction.createOtherElementsForB3(perspective, otherLE, otherRoleName, scene, 
 				owner, name);
 		}
 		COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
@@ -699,7 +699,7 @@ public class RedefinedBModelAction {
 			}
 		}
 		for (int count = 0; count < numberOfMappings; count++) {
-			otherElement = BModelFacadeAction.createOtherElementsForB3(perspective, otherLE, otherRoleName, scene, 
+			otherElement = BModelLanguageFacadeAction.createOtherElementsForB3(perspective, otherLE, otherRoleName, scene, 
 										owner, name);
 			COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
 			// BasePerspectiveController.saveModel(scene);
@@ -742,7 +742,7 @@ public class RedefinedBModelAction {
 			}
 		}
 		for (int count = 0; count < numberOfMappings; count++) {
-			otherElement = BModelFacadeAction.createOtherElementsForB3(perspective, otherLE, otherRoleName, scene, 
+			otherElement = BModelLanguageFacadeAction.createOtherElementsForB3(perspective, otherLE, otherRoleName, scene, 
 										owner, name);
 			COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
 			// BasePerspectiveController.saveModel(scene);
@@ -779,7 +779,7 @@ public class RedefinedBModelAction {
 			// already mapped.
 			if (otherElement == null || COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene, otherElement).size() != 0) {
 				otherExist = false;
-				otherElement = BModelFacadeAction.createOtherElementsForB3(perspective, otherLE, otherRoleName, scene, 
+				otherElement = BModelLanguageFacadeAction.createOtherElementsForB3(perspective, otherLE, otherRoleName, scene, 
 											owner, name);
 			}
 			COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
@@ -820,7 +820,7 @@ public class RedefinedBModelAction {
 		// or mapped.
 		if (otherElement == null || COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene, otherElement).size() > 0) {
 			otherExist = false;
-			otherElement = BModelFacadeAction.createOtherElementsForB3(perspective, otherLE, otherRoleName, scene, 
+			otherElement = BModelLanguageFacadeAction.createOtherElementsForB3(perspective, otherLE, otherRoleName, scene, 
 										owner, name);
 		}
 		COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
@@ -869,7 +869,7 @@ public class RedefinedBModelAction {
 			}
 		}
 		for (int count = 0; count < numberOfMappings; count++) {
-			otherElement = BModelFacadeAction.createOtherElementsForB3(perspective, otherLE, otherRoleName, scene, 
+			otherElement = BModelLanguageFacadeAction.createOtherElementsForB3(perspective, otherLE, otherRoleName, scene, 
 										owner, name);
 			COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
 		  	// BasePerspectiveController.saveModel(scene);
@@ -916,7 +916,7 @@ public class RedefinedBModelAction {
 			}
 		}
 		for (int count = 0; count < numberOfMappings; count++) {
-			otherElement = BModelFacadeAction.createOtherElementsForB3(perspective, otherLE, otherRoleName, scene, 
+			otherElement = BModelLanguageFacadeAction.createOtherElementsForB3(perspective, otherLE, otherRoleName, scene, 
 										owner, name);
 			COREPerspectiveUtil.INSTANCE.createMapping(perspective, scene, mappingType, currentElement, otherElement, false);
 		  	// BasePerspectiveController.saveModel(scene);
@@ -964,7 +964,7 @@ public class RedefinedBModelAction {
 			switch (deleteType) {
 	
 			case DELETE_OTHERS:
-				BModelFacadeAction.deleteModelElement(perspective, scene, otherRoleName, otherElement);
+				BModelLanguageFacadeAction.deleteModelElement(perspective, scene, otherRoleName, otherElement);
 				deleteOtherElementsForB1(perspective, scene, otherRoleName, otherElement);
 				break;
 	
@@ -972,7 +972,7 @@ public class RedefinedBModelAction {
 				List<COREModelElementMapping> otherMappings = COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene,
 						otherElement);
 				if (otherMappings.size() == 0) {
-					BModelFacadeAction.deleteModelElement(perspective, scene, otherRoleName, otherElement);
+					BModelLanguageFacadeAction.deleteModelElement(perspective, scene, otherRoleName, otherElement);
 					deleteOtherElementsForB1(perspective, scene, otherRoleName, otherElement);
 				}
 				break;
@@ -1020,7 +1020,7 @@ public class RedefinedBModelAction {
 			switch (deleteType) {
 	
 			case DELETE_OTHERS:
-				BModelFacadeAction.deleteModelElement(perspective, scene, otherRoleName, otherElement);
+				BModelLanguageFacadeAction.deleteModelElement(perspective, scene, otherRoleName, otherElement);
 				deleteOtherElementsForB3(perspective, scene, otherRoleName, otherElement);
 				break;
 	
@@ -1028,7 +1028,7 @@ public class RedefinedBModelAction {
 				List<COREModelElementMapping> otherMappings = COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene,
 						otherElement);
 				if (otherMappings.size() == 0) {
-					BModelFacadeAction.deleteModelElement(perspective, scene, otherRoleName, otherElement);
+					BModelLanguageFacadeAction.deleteModelElement(perspective, scene, otherRoleName, otherElement);
 					deleteOtherElementsForB3(perspective, scene, otherRoleName, otherElement);
 				}
 				break;
