@@ -194,76 +194,76 @@ public class BModelLanguageFacadeAction {
 	}
 
 	public static void deleteModelElement(COREPerspective perspective, COREScene scene, String otherRoleName, EObject otherElement) {
-		if (otherElement instanceof A1) {
+		if (otherElement.eClass().equals(AmodelPackage.eINSTANCE.getA1())) {
 			AModelController.getInstance().removeA1((A1) otherElement);
 		}
-		else if (otherElement instanceof A2) {
+		else if (otherElement.eClass().equals(AmodelPackage.eINSTANCE.getA2())) {
 			AModelController.getInstance().removeA2((A2) otherElement);
 		}
-		else if (otherElement instanceof A3) {
+		else if (otherElement.eClass().equals(AmodelPackage.eINSTANCE.getA3())) {
 			AModelController.getInstance().removeA3((A3) otherElement);
 		}
-		else if (otherElement instanceof A4) {
+		else if (otherElement.eClass().equals(AmodelPackage.eINSTANCE.getA4())) {
 			AModelController.getInstance().removeA4((A4) otherElement);
 		}
-		else if (otherElement instanceof A5) {
+		else if (otherElement.eClass().equals(AmodelPackage.eINSTANCE.getA5())) {
 			AModelController.getInstance().removeA5((A5) otherElement);
 		}
-		else if (otherElement instanceof A6) {
+		else if (otherElement.eClass().equals(AmodelPackage.eINSTANCE.getA6())) {
 			AModelController.getInstance().removeA6((A6) otherElement);
 		}
-		else if (otherElement instanceof A7) {
+		else if (otherElement.eClass().equals(AmodelPackage.eINSTANCE.getA7())) {
 			AModelController.getInstance().removeA7((A7) otherElement);
 		}
-		else if (otherElement instanceof A8) {
+		else if (otherElement.eClass().equals(AmodelPackage.eINSTANCE.getA8())) {
 			AModelController.getInstance().removeA8((A8) otherElement);
 		}
-		else if (otherElement instanceof A9) {
+		else if (otherElement.eClass().equals(AmodelPackage.eINSTANCE.getA9())) {
 			AModelController.getInstance().removeA9((A9) otherElement);
 		}
-		else if (otherElement instanceof A10) {
+		else if (otherElement.eClass().equals(AmodelPackage.eINSTANCE.getA10())) {
 			AModelController.getInstance().removeA10((A10) otherElement);
 		}
-		else if (otherElement instanceof A11) {
+		else if (otherElement.eClass().equals(AmodelPackage.eINSTANCE.getA11())) {
 			AModelController.getInstance().removeA11((A11) otherElement);
 		}
-		else if (otherElement instanceof A12) {
+		else if (otherElement.eClass().equals(AmodelPackage.eINSTANCE.getA12())) {
 			AModelController.getInstance().removeA12((A12) otherElement);
 		}
-		else if (otherElement instanceof B1) {
+		else if (otherElement.eClass().equals(BmodelPackage.eINSTANCE.getB1())) {
 			BModelController.getInstance().removeB1((B1) otherElement);
 		}
-		else if (otherElement instanceof B2) {
+		else if (otherElement.eClass().equals(BmodelPackage.eINSTANCE.getB2())) {
 			BModelController.getInstance().removeB2((B2) otherElement);
 		}
-		else if (otherElement instanceof B3) {
+		else if (otherElement.eClass().equals(BmodelPackage.eINSTANCE.getB3())) {
 			BModelController.getInstance().removeB3((B3) otherElement);
 		}
-		else if (otherElement instanceof B4) {
+		else if (otherElement.eClass().equals(BmodelPackage.eINSTANCE.getB4())) {
 			BModelController.getInstance().removeB4((B4) otherElement);
 		}
-		else if (otherElement instanceof B5) {
+		else if (otherElement.eClass().equals(BmodelPackage.eINSTANCE.getB5())) {
 			BModelController.getInstance().removeB5((B5) otherElement);
 		}
-		else if (otherElement instanceof B6) {
+		else if (otherElement.eClass().equals(BmodelPackage.eINSTANCE.getB6())) {
 			BModelController.getInstance().removeB6((B6) otherElement);
 		}
-		else if (otherElement instanceof B7) {
+		else if (otherElement.eClass().equals(BmodelPackage.eINSTANCE.getB7())) {
 			BModelController.getInstance().removeB7((B7) otherElement);
 		}
-		else if (otherElement instanceof B8) {
+		else if (otherElement.eClass().equals(BmodelPackage.eINSTANCE.getB8())) {
 			BModelController.getInstance().removeB8((B8) otherElement);
 		}
-		else if (otherElement instanceof B9) {
+		else if (otherElement.eClass().equals(BmodelPackage.eINSTANCE.getB9())) {
 			BModelController.getInstance().removeB9((B9) otherElement);
 		}
-		else if (otherElement instanceof B10) {
+		else if (otherElement.eClass().equals(BmodelPackage.eINSTANCE.getB10())) {
 			BModelController.getInstance().removeB10((B10) otherElement);
 		}
-		else if (otherElement instanceof B11) {
+		else if (otherElement.eClass().equals(BmodelPackage.eINSTANCE.getB11())) {
 			BModelController.getInstance().removeB11((B11) otherElement);
 		}
-		else if (otherElement instanceof B12) {
+		else if (otherElement.eClass().equals(BmodelPackage.eINSTANCE.getB12())) {
 			BModelController.getInstance().removeB12((B12) otherElement);
 		}
 	}

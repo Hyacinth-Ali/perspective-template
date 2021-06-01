@@ -64,25 +64,25 @@ public class AModelLanguageFacadeAction {
 	}
 
 	public static void deleteModelElement(COREPerspective perspective, COREScene scene, String otherRoleName, EObject otherElement) {
-		if (otherElement instanceof A2) {
+		if (otherElement.eClass().equals(AmodelPackage.eINSTANCE.getA2())) {
 			RedefinedAModelLanguageAction.deleteA2(perspective, scene, otherRoleName, otherElement);
 		}
-		else if (otherElement instanceof A3) {
+		else if (otherElement.eClass().equals(AmodelPackage.eINSTANCE.getA3())) {
 			RedefinedAModelLanguageAction.deleteA3(perspective, scene, otherRoleName, otherElement);
 		}
-		else if (otherElement instanceof A4) {
+		else if (otherElement.eClass().equals(AmodelPackage.eINSTANCE.getA4())) {
 			RedefinedAModelLanguageAction.deleteA4(perspective, scene, otherRoleName, otherElement);
 		}
-		else if (otherElement instanceof B1) {
+		else if (otherElement.eClass().equals(BmodelPackage.eINSTANCE.getB1())) {
 			RedefinedBModelLanguageAction.deleteB1(perspective, scene, otherRoleName, otherElement);
 		}
-		else if (otherElement instanceof B3) {
+		else if (otherElement.eClass().equals(BmodelPackage.eINSTANCE.getB3())) {
 			RedefinedBModelLanguageAction.deleteB3(perspective, scene, otherRoleName, otherElement);
 		}
-		else if (otherElement instanceof C1) {
+		else if (otherElement.eClass().equals(CmodelPackage.eINSTANCE.getC1())) {
 			RedefinedCModelLanguageAction.deleteC1(perspective, scene, otherRoleName, otherElement);
 		}
-		else if (otherElement instanceof C2) {
+		else if (otherElement.eClass().equals(CmodelPackage.eINSTANCE.getC2())) {
 			RedefinedCModelLanguageAction.deleteC2(perspective, scene, otherRoleName, otherElement);
 		}
 	}
