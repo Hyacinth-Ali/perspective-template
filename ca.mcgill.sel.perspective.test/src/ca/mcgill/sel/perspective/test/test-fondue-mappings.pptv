@@ -13,7 +13,7 @@ perspective TestFondueMapping {
             otherRootPackage "ca.mcgill.sel.bmodel";
             otherRootPackage "ca.mcgill.sel.cmodel";
         }  
-                
+                 
         existing language BModelLanguage {
             rootPackage "ca.mcgill.sel.bmodel";
             packageClassName BmodelPackage;
@@ -55,8 +55,18 @@ perspective TestFondueMapping {
     		metaclassName : A2;
     		metaclassObject : "AmodelPackage.eINSTANCE.getA2()";
     		secondaryEffects {
+    			create effects {
+    				// first call
     			languageElement : "AmodelPackage.eINSTANCE.getA3()";
-    			languageElement : "AmodelPackage.eINSTANCE.getA4()";
+				methodCall : "RedefinedAModelLanguageAction.createOtherElementsForA3(perspective, scene, currentRole, newElement,
+							newElement.eContainer(), name)";
+							
+				// other calls
+				languageElement : "AmodelPackage.eINSTANCE.getA4()";
+				methodCall : "RedefinedAModelLanguageAction.createOtherElementsForA4(perspective, scene, currentRole, newElement,
+							newElement.eContainer(), name)";
+    			}
+    			
     		}
     	}
     	 
@@ -88,7 +98,7 @@ perspective TestFondueMapping {
 //    		secondaryEffects {
 //    			element : "AModelController.getInstance().getA4()";
 //    		}
-//    	} 
+//    	}  
     	  
     	redefined delete action deleteA2 {
     		roleName : A_Model;
@@ -98,8 +108,15 @@ perspective TestFondueMapping {
     		metaclassName : A2;
     		metaclassObject : "AmodelPackage.eINSTANCE.getA2()";
     		secondaryEffects {
+    			delete effects {
+    				// first call
     			element : "AModelController.getInstance().getA3()";
-    			element : "AModelController.getInstance().getA4()";
+				methodCall : "RedefinedAModelLanguageAction.deleteOtherElementsForA3(perspective, scene, currentRole, deletedElement)";
+							
+				element : "AModelController.getInstance().getA4()";
+				methodCall : "RedefinedAModelLanguageAction.deleteOtherElementsForA4(perspective, scene, currentRole, deletedElement)";
+    			}
+    			
     		}
     	}  
     	 
@@ -179,7 +196,11 @@ perspective TestFondueMapping {
     		metaclassName : C2;
     		metaclassObject : "CmodelPackage.eINSTANCE.getC2()";
     		secondaryEffects {
-    			languageElement : "CmodelPackage.eINSTANCE.getC1()";
+    			create effects {
+    				languageElement : "CmodelPackage.eINSTANCE.getC1()";
+					methodCall : "RedefinedCModelLanguageAction.deleteOtherElementsForC1(perspective, scene, currentRole, deletedElement)";
+				}
+    			
     		}
     	} 
     	

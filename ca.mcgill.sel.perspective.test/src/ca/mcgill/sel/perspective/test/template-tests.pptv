@@ -12,7 +12,7 @@ perspective PerspectiveTest {
             roleName A_Model;
             otherRootPackage "ca.mcgill.sel.bmodel";
         }  
-              
+               
         existing language BModelLanguage {
             rootPackage "ca.mcgill.sel.bmodel";
             packageClassName BmodelPackage;
@@ -34,9 +34,20 @@ perspective PerspectiveTest {
     		metaclassName : A1;
     		metaclassObject : "AmodelPackage.eINSTANCE.getA1()";
     		secondaryEffects {
-    			languageElement : "AmodelPackage.eINSTANCE.getA2()";
-    			languageElement : "AmodelPackage.eINSTANCE.getA3()";
-    			languageElement : "AmodelPackage.eINSTANCE.getA4()";
+    			create effects {
+    				languageElement : "AmodelPackage.eINSTANCE.getA2()";
+					methodCall : "RedefinedAModelLanguageAction.createOtherElementsForA2(perspective, scene, currentRole, newElement,
+							newElement.eContainer(), name)";
+							
+    				languageElement : "AmodelPackage.eINSTANCE.getA3()";
+					methodCall : "RedefinedAModelLanguageAction.createOtherElementsForA3(perspective, scene, currentRole, newElement,
+							newElement.eContainer(), name)";
+							
+					languageElement : "AmodelPackage.eINSTANCE.getA4()";
+					methodCall : "RedefinedAModelLanguageAction.createOtherElementsForA4(perspective, scene, currentRole, newElement,
+							newElement.eContainer(), name)";
+    			}
+    			
     		}
     	}
     	 
@@ -147,7 +158,13 @@ perspective PerspectiveTest {
     		metaclassName : A1;
     		metaclassObject : "AmodelPackage.eINSTANCE.getA1()";
     		secondaryEffects {
-    			element : "AModelController.getInstance().getA4()";
+    			delete effects {
+    						
+					element : "AModelController.getInstance().getA4()";
+					methodCall : "RedefinedAModelLanguageAction.createOtherElementsForA4(perspective, scene, currentRole, newElement,
+							newElement.eContainer(), name)";
+    			}
+    			
     		}
     	} 
     	
