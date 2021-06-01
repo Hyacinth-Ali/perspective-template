@@ -21,7 +21,7 @@ perspective PerspectiveTest {
             otherRootPackage "ca.mcgill.sel.amodel";
         }
           
-    }      
+    }       
            
     actions {
     	
@@ -572,76 +572,76 @@ perspective PerspectiveTest {
     		roleName : A_Model;
     		elementName : otherElement;
     		method calls { 
-    			metaclassName : A1;
+    			metaclassObject : "AmodelPackage.eINSTANCE.getA1()";
     			methodCall : "AModelController.getInstance().removeA1((A1) otherElement)";
     			
-    			metaclassName : A2;
+    			metaclassObject : "AmodelPackage.eINSTANCE.getA2()";
     			methodCall : "AModelController.getInstance().removeA2((A2) otherElement)";
     			
-    			metaclassName : A3;
+    			metaclassObject : "AmodelPackage.eINSTANCE.getA3()";
     			methodCall : "AModelController.getInstance().removeA3((A3) otherElement)";
     			
-    			metaclassName : A4;
+    			metaclassObject : "AmodelPackage.eINSTANCE.getA4()";
     			methodCall : "AModelController.getInstance().removeA4((A4) otherElement)";
     			
-    			metaclassName : A5;
+    			metaclassObject : "AmodelPackage.eINSTANCE.getA5()";
     			methodCall : "AModelController.getInstance().removeA5((A5) otherElement)";
     			
-    			metaclassName : A6;
+    			metaclassObject : "AmodelPackage.eINSTANCE.getA6()";
     			methodCall : "AModelController.getInstance().removeA6((A6) otherElement)";
     			
-    			metaclassName : A7;
+    			metaclassObject : "AmodelPackage.eINSTANCE.getA7()";
     			methodCall : "AModelController.getInstance().removeA7((A7) otherElement)";
     			
-    			metaclassName : A8;
+    			metaclassObject : "AmodelPackage.eINSTANCE.getA8()";
     			methodCall : "AModelController.getInstance().removeA8((A8) otherElement)";
     			
-    			metaclassName : A9;
+    			metaclassObject : "AmodelPackage.eINSTANCE.getA9()";
     			methodCall : "AModelController.getInstance().removeA9((A9) otherElement)";
     			
-    			metaclassName : A10;
+    			metaclassObject : "AmodelPackage.eINSTANCE.getA10()";
     			methodCall : "AModelController.getInstance().removeA10((A10) otherElement)";
     			
-    			metaclassName : A11;
+    			metaclassObject : "AmodelPackage.eINSTANCE.getA11()";
     			methodCall : "AModelController.getInstance().removeA11((A11) otherElement)";
     			
-    			metaclassName : A12;
+    			metaclassObject : "AmodelPackage.eINSTANCE.getA12()";
     			methodCall : "AModelController.getInstance().removeA12((A12) otherElement)";
     			
-    			metaclassName : B1;
+    			metaclassObject : "BmodelPackage.eINSTANCE.getB1()";
     			methodCall : "BModelController.getInstance().removeB1((B1) otherElement)";
     			
-    			metaclassName : B2;
+    			metaclassObject : "BmodelPackage.eINSTANCE.getB2()";
     			methodCall : "BModelController.getInstance().removeB2((B2) otherElement)";
     			
-    			metaclassName : B3;
+    			metaclassObject : "BmodelPackage.eINSTANCE.getB3()";
     			methodCall : "BModelController.getInstance().removeB3((B3) otherElement)";
     			
-    			metaclassName : B4;
+    			metaclassObject : "BmodelPackage.eINSTANCE.getB4()";
     			methodCall : "BModelController.getInstance().removeB4((B4) otherElement)";
     			
-    			metaclassName : B5;
+    			metaclassObject : "BmodelPackage.eINSTANCE.getB5()";
     			methodCall : "BModelController.getInstance().removeB5((B5) otherElement)";
     			
-    			metaclassName : B6;
+    			metaclassObject : "BmodelPackage.eINSTANCE.getB6()";
     			methodCall : "BModelController.getInstance().removeB6((B6) otherElement)";
     			
-    			metaclassName : B7;
+    			metaclassObject : "BmodelPackage.eINSTANCE.getB7()";
     			methodCall : "BModelController.getInstance().removeB7((B7) otherElement)";
     			
-    			metaclassName : B8;
+    			metaclassObject : "BmodelPackage.eINSTANCE.getB8()";
     			methodCall : "BModelController.getInstance().removeB8((B8) otherElement)";
     			
-    			metaclassName : B9;
+    			metaclassObject : "BmodelPackage.eINSTANCE.getB9()";
     			methodCall : "BModelController.getInstance().removeB9((B9) otherElement)";
     			
-    			metaclassName : B10;
+    			metaclassObject : "BmodelPackage.eINSTANCE.getB10()";
     			methodCall : "BModelController.getInstance().removeB10((B10) otherElement)";
     			
-    			metaclassName : B11;
+    			metaclassObject : "BmodelPackage.eINSTANCE.getB11()";
     			methodCall : "BModelController.getInstance().removeB11((B11) otherElement)";
     			
-    			metaclassName : B12;
+    			metaclassObject : "BmodelPackage.eINSTANCE.getB12()";
     			methodCall : "BModelController.getInstance().removeB12((B12) otherElement)";
     		}
     	}
@@ -831,76 +831,76 @@ perspective PerspectiveTest {
     		roleName : B_Model;
     		elementName : otherElement;
     		method calls { 
-    			metaclassName : A1;
+    			metaclassObject : "AmodelPackage.eINSTANCE.getA1()";
     			methodCall : "AModelController.getInstance().removeA1((A1) otherElement)";
     			
-    			metaclassName : A2;
+    			metaclassObject : "AmodelPackage.eINSTANCE.getA2()";
     			methodCall : "AModelController.getInstance().removeA2((A2) otherElement)";
     			
-    			metaclassName : A3;
+    			metaclassObject : "AmodelPackage.eINSTANCE.getA3()";
     			methodCall : "AModelController.getInstance().removeA3((A3) otherElement)";
     			
-    			metaclassName : A4;
+    			metaclassObject : "AmodelPackage.eINSTANCE.getA4()";
     			methodCall : "AModelController.getInstance().removeA4((A4) otherElement)";
     			
-    			metaclassName : A5;
+    			metaclassObject : "AmodelPackage.eINSTANCE.getA5()";
     			methodCall : "AModelController.getInstance().removeA5((A5) otherElement)";
     			
-    			metaclassName : A6;
+    			metaclassObject : "AmodelPackage.eINSTANCE.getA6()";
     			methodCall : "AModelController.getInstance().removeA6((A6) otherElement)";
     			
-    			metaclassName : A7;
+    			metaclassObject : "AmodelPackage.eINSTANCE.getA7()";
     			methodCall : "AModelController.getInstance().removeA7((A7) otherElement)";
     			
-    			metaclassName : A8;
+    			metaclassObject : "AmodelPackage.eINSTANCE.getA8()";
     			methodCall : "AModelController.getInstance().removeA8((A8) otherElement)";
     			
-    			metaclassName : A9;
+    			metaclassObject : "AmodelPackage.eINSTANCE.getA9()";
     			methodCall : "AModelController.getInstance().removeA9((A9) otherElement)";
     			
-    			metaclassName : A10;
+    			metaclassObject : "AmodelPackage.eINSTANCE.getA10()";
     			methodCall : "AModelController.getInstance().removeA10((A10) otherElement)";
     			
-    			metaclassName : A11;
+    			metaclassObject : "AmodelPackage.eINSTANCE.getA11()";
     			methodCall : "AModelController.getInstance().removeA11((A11) otherElement)";
     			
-    			metaclassName : A12;
+    			metaclassObject : "AmodelPackage.eINSTANCE.getA12()";
     			methodCall : "AModelController.getInstance().removeA12((A12) otherElement)";
     			
-    			metaclassName : B1;
+    			metaclassObject : "BmodelPackage.eINSTANCE.getB1()";
     			methodCall : "BModelController.getInstance().removeB1((B1) otherElement)";
-    			
-    			metaclassName : B2;
+    			 
+    			metaclassObject : "BmodelPackage.eINSTANCE.getB2()";
     			methodCall : "BModelController.getInstance().removeB2((B2) otherElement)";
     			
-    			metaclassName : B3;
+    			metaclassObject : "BmodelPackage.eINSTANCE.getB3()";
     			methodCall : "BModelController.getInstance().removeB3((B3) otherElement)";
     			
-    			metaclassName : B4;
+    			metaclassObject : "BmodelPackage.eINSTANCE.getB4()";
     			methodCall : "BModelController.getInstance().removeB4((B4) otherElement)";
     			
-    			metaclassName : B5;
+    			metaclassObject : "BmodelPackage.eINSTANCE.getB5()";
     			methodCall : "BModelController.getInstance().removeB5((B5) otherElement)";
     			
-    			metaclassName : B6;
+    			metaclassObject : "BmodelPackage.eINSTANCE.getB6()";
     			methodCall : "BModelController.getInstance().removeB6((B6) otherElement)";
     			
-    			metaclassName : B7;
+    			metaclassObject : "BmodelPackage.eINSTANCE.getB7()";
     			methodCall : "BModelController.getInstance().removeB7((B7) otherElement)";
     			
-    			metaclassName : B8;
+    			metaclassObject : "BmodelPackage.eINSTANCE.getB8()";
     			methodCall : "BModelController.getInstance().removeB8((B8) otherElement)";
     			
-    			metaclassName : B9;
+    			metaclassObject : "BmodelPackage.eINSTANCE.getB9()";
     			methodCall : "BModelController.getInstance().removeB9((B9) otherElement)";
     			
-    			metaclassName : B10;
+    			metaclassObject : "BmodelPackage.eINSTANCE.getB10()";
     			methodCall : "BModelController.getInstance().removeB10((B10) otherElement)";
     			
-    			metaclassName : B11;
+    			metaclassObject : "BmodelPackage.eINSTANCE.getB11()";
     			methodCall : "BModelController.getInstance().removeB11((B11) otherElement)";
     			
-    			metaclassName : B12;
+    			metaclassObject : "BmodelPackage.eINSTANCE.getB12()";
     			methodCall : "BModelController.getInstance().removeB12((B12) otherElement)";
     		}
     	}
