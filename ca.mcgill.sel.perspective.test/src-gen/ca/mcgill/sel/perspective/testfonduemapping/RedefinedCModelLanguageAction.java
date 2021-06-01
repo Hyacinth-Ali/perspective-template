@@ -14,8 +14,61 @@ import ca.mcgill.sel.ram.ui.perspective.*;
 
 import ca.mcgill.sel.cmodel.*;
 import ca.mcgill.sel.cmodel.controller.*;
+import ca.mcgill.sel.amodel.*;
+import ca.mcgill.sel.bmodel.*;
 
 public class RedefinedCModelLanguageAction {
+	private static void createNewA2CreateSecondaryEffects(COREPerspective perspective, COREScene scene, String currentRole, Map<EObject, Collection<EObject>> after, 
+			EObject owner, String name) {
+		for (Map.Entry<EObject, Collection<EObject>> e : after.entrySet()) {
+			Collection<EObject> newElements = e.getValue();
+			for (EObject newElement : newElements) {
+				if (newElement.eClass().equals(AmodelPackage.eINSTANCE.getA3())) {
+								
+					// Call the respective redefined recursive method
+					RedefinedAModelLanguageAction.createOtherElementsForA3(perspective, scene, currentRole, newElement,
+												newElement.eContainer(), name);
+				}
+				else if (newElement.eClass().equals(AmodelPackage.eINSTANCE.getA4())) {
+						
+					// Call the respective redefined recursive method
+					RedefinedAModelLanguageAction.createOtherElementsForA4(perspective, scene, currentRole, newElement,
+												newElement.eContainer(), name);
+					}
+			}
+		}
+	}
+
+
+
+	private static void deleteA2DeleteSecondaryEffects(COREPerspective perspective, COREScene scene, String currentRole,
+				List<EObject> deleteSecondaryEffects) {
+		for (EObject deletedElement : deleteSecondaryEffects) {
+				if (deletedElement.eClass().equals(AmodelPackage.eINSTANCE.getA3())) {
+								
+					// Call the respective redefined recursive method
+					RedefinedAModelLanguageAction.deleteOtherElementsForA3(perspective, scene, currentRole, deletedElement);
+				}
+				else if (deletedElement.eClass().equals(AmodelPackage.eINSTANCE.getA4())) {
+						
+					// Call the respective redefined recursive method
+					RedefinedAModelLanguageAction.deleteOtherElementsForA4(perspective, scene, currentRole, deletedElement);
+					}
+				else if (deletedElement.eClass().equals(CmodelPackage.eINSTANCE.getC1())) {
+						
+					// Call the respective redefined recursive method
+					RedefinedCModelLanguageAction.deleteOtherElementsForC1(perspective, scene, currentRole, deletedElement);
+					}
+			}
+				
+	}
+
+
+
+
+
+
+
 	public static EObject createNewC1(COREPerspective perspective, COREScene scene, String currentRole, 
 		boolean isFacadeCall, EObject owner, String name) {
 		
@@ -470,6 +523,7 @@ public class RedefinedCModelLanguageAction {
 		}
 	}
 	
+
 	public static EObject createNewC2(COREPerspective perspective, COREScene scene, String currentRole, 
 		boolean isFacadeCall, EObject owner, String name) {
 		
@@ -494,7 +548,7 @@ public class RedefinedCModelLanguageAction {
 			createOtherElementsForC2(perspective, scene, currentRole, newElement, owner,
 			 	name);						
 		}
-		HandleSecondaryEffect.INSTANCE.createSecondaryEffects(perspective, scene, currentRole, after, owner, 
+		createNewC2CreateSecondaryEffects(perspective, scene, currentRole, after, owner, 
 			name);
 	
 	//		try {
@@ -927,6 +981,21 @@ public class RedefinedCModelLanguageAction {
 		}
 	}
 	
+	private static void createNewC2CreateSecondaryEffects(COREPerspective perspective, COREScene scene, String currentRole, Map<EObject, Collection<EObject>> after, 
+			EObject owner, String name) {
+		for (Map.Entry<EObject, Collection<EObject>> e : after.entrySet()) {
+			Collection<EObject> newElements = e.getValue();
+			for (EObject newElement : newElements) {
+				if (newElement.eClass().equals(CmodelPackage.eINSTANCE.getC1())) {
+								
+					// Call the respective redefined recursive method
+					RedefinedCModelLanguageAction.createOtherElementsForC1(perspective, scene, currentRole, newElement,
+												newElement.eContainer(), name);
+				}
+			}
+		}
+	}
+
 	public static void deleteC1(COREPerspective perspective, COREScene scene, String currentRole, EObject currentElement) {
 		
 		List<EObject> deleteSecondaryEffects = new ArrayList<EObject>();
@@ -983,6 +1052,7 @@ public class RedefinedCModelLanguageAction {
 		}
 	}
 	
+
 	public static void deleteC2(COREPerspective perspective, COREScene scene, String currentRole, EObject currentElement) {
 		
 		List<EObject> deleteSecondaryEffects = new ArrayList<EObject>();
@@ -1039,6 +1109,7 @@ public class RedefinedCModelLanguageAction {
 		}
 	}
 	
+
 }
 
 

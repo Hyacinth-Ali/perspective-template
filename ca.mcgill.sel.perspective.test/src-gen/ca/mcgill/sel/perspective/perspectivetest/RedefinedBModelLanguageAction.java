@@ -14,8 +14,80 @@ import ca.mcgill.sel.ram.ui.perspective.*;
 
 import ca.mcgill.sel.bmodel.*;
 import ca.mcgill.sel.bmodel.controller.*;
+import ca.mcgill.sel.amodel.*;
 
 public class RedefinedBModelLanguageAction {
+	private static void createNewA1CreateSecondaryEffects(COREPerspective perspective, COREScene scene, String currentRole, Map<EObject, Collection<EObject>> after, 
+			EObject owner, String name) {
+		for (Map.Entry<EObject, Collection<EObject>> e : after.entrySet()) {
+			Collection<EObject> newElements = e.getValue();
+			for (EObject newElement : newElements) {
+				if (newElement.eClass().equals(AmodelPackage.eINSTANCE.getA2())) {
+								
+					// Call the respective redefined recursive method
+					RedefinedAModelLanguageAction.createOtherElementsForA2(perspective, scene, currentRole, newElement,
+												newElement.eContainer(), name);
+				}
+				else if (newElement.eClass().equals(AmodelPackage.eINSTANCE.getA3())) {
+						
+					// Call the respective redefined recursive method
+					RedefinedAModelLanguageAction.createOtherElementsForA3(perspective, scene, currentRole, newElement,
+												newElement.eContainer(), name);
+					}
+				else if (newElement.eClass().equals(AmodelPackage.eINSTANCE.getA4())) {
+						
+					// Call the respective redefined recursive method
+					RedefinedAModelLanguageAction.createOtherElementsForA4(perspective, scene, currentRole, newElement,
+												newElement.eContainer(), name);
+					}
+			}
+		}
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+	private static void deleteA1DeleteSecondaryEffects(COREPerspective perspective, COREScene scene, String currentRole,
+				List<EObject> deleteSecondaryEffects) {
+		for (EObject deletedElement : deleteSecondaryEffects) {
+				if (deletedElement.eClass().equals(AmodelPackage.eINSTANCE.getA2())) {
+								
+					// Call the respective redefined recursive method
+					RedefinedAModelLanguageAction.deleteOtherElementsForA2(perspective, scene, currentRole, deletedElement);
+				}
+				else if (deletedElement.eClass().equals(AmodelPackage.eINSTANCE.getA3())) {
+						
+					// Call the respective redefined recursive method
+					RedefinedAModelLanguageAction.deleteOtherElementsForA3(perspective, scene, currentRole, deletedElement);
+					}
+				else if (deletedElement.eClass().equals(AmodelPackage.eINSTANCE.getA4())) {
+						
+					// Call the respective redefined recursive method
+					RedefinedAModelLanguageAction.deleteOtherElementsForA4(perspective, scene, currentRole, deletedElement);
+					}
+			}
+				
+	}
+
+
+
+
+
+
+
+
+
+
+
+
 	public static EObject createNewB1(COREPerspective perspective, COREScene scene, String currentRole, 
 		boolean isFacadeCall, EObject owner, String name) {
 		
@@ -470,6 +542,7 @@ public class RedefinedBModelLanguageAction {
 		}
 	}
 	
+
 	public static EObject createNewB2(COREPerspective perspective, COREScene scene, String currentRole, 
 		boolean isFacadeCall, EObject owner, String name) {
 		
@@ -924,6 +997,7 @@ public class RedefinedBModelLanguageAction {
 		}
 	}
 	
+
 	public static EObject createNewB3(COREPerspective perspective, COREScene scene, String currentRole, 
 		boolean isFacadeCall, EObject owner, String name) {
 		
@@ -1378,6 +1452,7 @@ public class RedefinedBModelLanguageAction {
 		}
 	}
 	
+
 	public static EObject createNewB4(COREPerspective perspective, COREScene scene, String currentRole, 
 		boolean isFacadeCall, EObject owner, String name) {
 		
@@ -1832,6 +1907,7 @@ public class RedefinedBModelLanguageAction {
 		}
 	}
 	
+
 	public static EObject createNewB5(COREPerspective perspective, COREScene scene, String currentRole, 
 		boolean isFacadeCall, EObject owner, String name) {
 		
@@ -2286,6 +2362,7 @@ public class RedefinedBModelLanguageAction {
 		}
 	}
 	
+
 	public static EObject createNewB6(COREPerspective perspective, COREScene scene, String currentRole, 
 		boolean isFacadeCall, EObject owner, String name) {
 		
@@ -2740,6 +2817,7 @@ public class RedefinedBModelLanguageAction {
 		}
 	}
 	
+
 	public static EObject createNewB7(COREPerspective perspective, COREScene scene, String currentRole, 
 		boolean isFacadeCall, EObject owner, String name) {
 		
@@ -3194,6 +3272,7 @@ public class RedefinedBModelLanguageAction {
 		}
 	}
 	
+
 	public static EObject createNewB8(COREPerspective perspective, COREScene scene, String currentRole, 
 		boolean isFacadeCall, EObject owner, String name) {
 		
@@ -3648,6 +3727,7 @@ public class RedefinedBModelLanguageAction {
 		}
 	}
 	
+
 	public static EObject createNewB9(COREPerspective perspective, COREScene scene, String currentRole, 
 		boolean isFacadeCall, EObject owner, String name) {
 		
@@ -4102,6 +4182,7 @@ public class RedefinedBModelLanguageAction {
 		}
 	}
 	
+
 	public static EObject createNewB10(COREPerspective perspective, COREScene scene, String currentRole, 
 		boolean isFacadeCall, EObject owner, String name) {
 		
@@ -4556,6 +4637,7 @@ public class RedefinedBModelLanguageAction {
 		}
 	}
 	
+
 	public static EObject createNewB11(COREPerspective perspective, COREScene scene, String currentRole, 
 		boolean isFacadeCall, EObject owner, String name) {
 		
@@ -5010,6 +5092,7 @@ public class RedefinedBModelLanguageAction {
 		}
 	}
 	
+
 	public static EObject createNewB12(COREPerspective perspective, COREScene scene, String currentRole, 
 		boolean isFacadeCall, EObject owner, String name) {
 		
@@ -5464,6 +5547,7 @@ public class RedefinedBModelLanguageAction {
 		}
 	}
 	
+
 	public static void deleteB4(COREPerspective perspective, COREScene scene, String currentRole, EObject currentElement) {
 		
 		List<EObject> deleteSecondaryEffects = new ArrayList<EObject>();
@@ -5520,6 +5604,7 @@ public class RedefinedBModelLanguageAction {
 		}
 	}
 	
+
 	public static void deleteB11(COREPerspective perspective, COREScene scene, String currentRole, EObject currentElement) {
 		
 		List<EObject> deleteSecondaryEffects = new ArrayList<EObject>();
@@ -5576,6 +5661,7 @@ public class RedefinedBModelLanguageAction {
 		}
 	}
 	
+
 	public static void deleteB12(COREPerspective perspective, COREScene scene, String currentRole, EObject currentElement) {
 		
 		List<EObject> deleteSecondaryEffects = new ArrayList<EObject>();
@@ -5632,6 +5718,7 @@ public class RedefinedBModelLanguageAction {
 		}
 	}
 	
+
 }
 
 

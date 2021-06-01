@@ -165,7 +165,7 @@ perspective PerspectiveTest {
 							newElement.eContainer(), name)";
     			}
     			
-    		}
+    		} 
     	} 
     	
     	redefined delete action deleteA2 {

@@ -13,7 +13,7 @@ perspective TestFondueMapping {
             otherRootPackage "ca.mcgill.sel.bmodel";
             otherRootPackage "ca.mcgill.sel.cmodel";
         }  
-                 
+                   
         existing language BModelLanguage {
             rootPackage "ca.mcgill.sel.bmodel";
             packageClassName BmodelPackage;
@@ -98,7 +98,7 @@ perspective TestFondueMapping {
 //    		secondaryEffects {
 //    			element : "AModelController.getInstance().getA4()";
 //    		}
-//    	}  
+//    	}   
     	  
     	redefined delete action deleteA2 {
     		roleName : A_Model;
@@ -198,9 +198,10 @@ perspective TestFondueMapping {
     		secondaryEffects {
     			create effects {
     				languageElement : "CmodelPackage.eINSTANCE.getC1()";
-					methodCall : "RedefinedCModelLanguageAction.deleteOtherElementsForC1(perspective, scene, currentRole, deletedElement)";
+					methodCall : "RedefinedCModelLanguageAction.createOtherElementsForC1(perspective, scene, currentRole, newElement,
+							newElement.eContainer(), name)";
 				}
-    			
+				
     		}
     	} 
     	
