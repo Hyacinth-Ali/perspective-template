@@ -52,199 +52,159 @@ public class PerspectiveTestSpecification {
         pAction.setName("createNewA1");
         pAction.setForRole("A_Model");
         perspective.getActions().add(pAction);
-        
         pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
         pAction.setName("createNewA2");
         pAction.setForRole("A_Model");
         perspective.getActions().add(pAction);
-        
         pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
         pAction.setName("createNewA3");
         pAction.setForRole("A_Model");
         perspective.getActions().add(pAction);
-        
         pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
         pAction.setName("createNewA4");
         pAction.setForRole("A_Model");
         perspective.getActions().add(pAction);
-        
         pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
         pAction.setName("createNewA5");
         pAction.setForRole("A_Model");
         perspective.getActions().add(pAction);
-        
         pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
         pAction.setName("createNewA6");
         pAction.setForRole("A_Model");
         perspective.getActions().add(pAction);
-        
         pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
         pAction.setName("createNewA7");
         pAction.setForRole("A_Model");
         perspective.getActions().add(pAction);
-        
         pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
         pAction.setName("createNewA8");
         pAction.setForRole("A_Model");
         perspective.getActions().add(pAction);
-        
         pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
         pAction.setName("createNewA9");
         pAction.setForRole("A_Model");
         perspective.getActions().add(pAction);
-        
         pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
         pAction.setName("createNewA10");
         pAction.setForRole("A_Model");
         perspective.getActions().add(pAction);
-        
         pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
         pAction.setName("createNewA11");
         pAction.setForRole("A_Model");
         perspective.getActions().add(pAction);
-        
         pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
         pAction.setName("createNewA12");
         pAction.setForRole("A_Model");
         perspective.getActions().add(pAction);
-        
         pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
         pAction.setName("deleteA1");
         pAction.setForRole("A_Model");
         perspective.getActions().add(pAction);
-        
         pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
         pAction.setName("deleteA2");
         pAction.setForRole("A_Model");
         perspective.getActions().add(pAction);
-        
         pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
         pAction.setName("deleteA3");
         pAction.setForRole("A_Model");
         perspective.getActions().add(pAction);
-        
         pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
         pAction.setName("deleteA4");
         pAction.setForRole("A_Model");
         perspective.getActions().add(pAction);
-        
         pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
         pAction.setName("deleteA5");
         pAction.setForRole("A_Model");
         perspective.getActions().add(pAction);
-        
         pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
         pAction.setName("deleteA6");
         pAction.setForRole("A_Model");
         perspective.getActions().add(pAction);
-        
         pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
         pAction.setName("deleteA7");
         pAction.setForRole("A_Model");
         perspective.getActions().add(pAction);
-        
         pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
         pAction.setName("deleteA8");
         pAction.setForRole("A_Model");
         perspective.getActions().add(pAction);
-        
         pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
         pAction.setName("deleteA9");
         pAction.setForRole("A_Model");
         perspective.getActions().add(pAction);
-        
         pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
         pAction.setName("deleteA10");
         pAction.setForRole("A_Model");
         perspective.getActions().add(pAction);
-        
         pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
         pAction.setName("deleteA11");
         pAction.setForRole("A_Model");
         perspective.getActions().add(pAction);
-        
         pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
         pAction.setName("deleteA12");
         pAction.setForRole("A_Model");
         perspective.getActions().add(pAction);
-        
         pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
         pAction.setName("createNewB1");
         pAction.setForRole("B_Model");
         perspective.getActions().add(pAction);
-        
         pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
         pAction.setName("createNewB2");
         pAction.setForRole("B_Model");
         perspective.getActions().add(pAction);
-        
         pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
         pAction.setName("createNewB3");
         pAction.setForRole("B_Model");
         perspective.getActions().add(pAction);
-        
         pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
         pAction.setName("createNewB4");
         pAction.setForRole("B_Model");
         perspective.getActions().add(pAction);
-        
         pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
         pAction.setName("createNewB5");
         pAction.setForRole("B_Model");
         perspective.getActions().add(pAction);
-        
         pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
         pAction.setName("createNewB6");
         pAction.setForRole("B_Model");
         perspective.getActions().add(pAction);
-        
         pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
         pAction.setName("createNewB7");
         pAction.setForRole("B_Model");
         perspective.getActions().add(pAction);
-        
         pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
         pAction.setName("createNewB8");
         pAction.setForRole("B_Model");
         perspective.getActions().add(pAction);
-        
         pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
         pAction.setName("createNewB9");
         pAction.setForRole("B_Model");
         perspective.getActions().add(pAction);
-        
         pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
         pAction.setName("createNewB10");
         pAction.setForRole("B_Model");
         perspective.getActions().add(pAction);
-        
         pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
         pAction.setName("createNewB11");
         pAction.setForRole("B_Model");
         perspective.getActions().add(pAction);
-        
         pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
         pAction.setName("createNewB12");
         pAction.setForRole("B_Model");
         perspective.getActions().add(pAction);
-        
         pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
         pAction.setName("deleteB4");
         pAction.setForRole("B_Model");
         perspective.getActions().add(pAction);
-        
         pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
         pAction.setName("deleteB11");
         pAction.setForRole("B_Model");
         perspective.getActions().add(pAction);
-        
         pAction = CoreFactory.eINSTANCE.createCORERedefineAction();
         pAction.setName("deleteB12");
         pAction.setForRole("B_Model");
         perspective.getActions().add(pAction);
-        
-
-    }
+       }
 
     private static void createPerspectiveMappings(COREPerspective perspective) {
 
@@ -266,11 +226,9 @@ public class PerspectiveTestSpecification {
         // get to mapped language element, i.e., the to container of the feature to be mapped.
         CORELanguageElement a1_B1MappingToLanguageELement = a1_B1Mapping.getToLanguageElement();
         
-
-                          createNestedMapping(a1_B1MappingType, a1_B1MappingFromLanguageELement, 
-                            a1_B1MappingToLanguageELement, "name", "name", 
+createNestedMapping(a1_B1MappingType, a1_B1MappingFromLanguageELement, 
+                        a1_B1MappingToLanguageELement, "name", "name", 
                             "A_Model", "B_Model", true);
-
                   
 	 	        		 	        
         
@@ -286,11 +244,9 @@ public class PerspectiveTestSpecification {
         // get to mapped language element, i.e., the to container of the feature to be mapped.
         CORELanguageElement a2_B2MappingToLanguageELement = a2_B2Mapping.getToLanguageElement();
         
-
-                          createNestedMapping(a2_B2MappingType, a2_B2MappingFromLanguageELement, 
-                            a2_B2MappingToLanguageELement, "name", "name", 
+createNestedMapping(a2_B2MappingType, a2_B2MappingFromLanguageELement, 
+                        a2_B2MappingToLanguageELement, "name", "name", 
                             "A_Model", "B_Model", true);
-
                   
 	 	        		 	        
         
@@ -306,11 +262,9 @@ public class PerspectiveTestSpecification {
         // get to mapped language element, i.e., the to container of the feature to be mapped.
         CORELanguageElement a3_B3MappingToLanguageELement = a3_B3Mapping.getToLanguageElement();
         
-
-                          createNestedMapping(a3_B3MappingType, a3_B3MappingFromLanguageELement, 
-                            a3_B3MappingToLanguageELement, "name", "name", 
+createNestedMapping(a3_B3MappingType, a3_B3MappingFromLanguageELement, 
+                        a3_B3MappingToLanguageELement, "name", "name", 
                             "A_Model", "B_Model", true);
-
                   
 	 	        		 	        
         
@@ -326,11 +280,9 @@ public class PerspectiveTestSpecification {
         // get to mapped language element, i.e., the to container of the feature to be mapped.
         CORELanguageElement a4_B4MappingToLanguageELement = a4_B4Mapping.getToLanguageElement();
         
-
-                          createNestedMapping(a4_B4MappingType, a4_B4MappingFromLanguageELement, 
-                            a4_B4MappingToLanguageELement, "name", "name", 
+createNestedMapping(a4_B4MappingType, a4_B4MappingFromLanguageELement, 
+                        a4_B4MappingToLanguageELement, "name", "name", 
                             "A_Model", "B_Model", true);
-
                   
 	 	        		 	        
         
@@ -346,11 +298,9 @@ public class PerspectiveTestSpecification {
         // get to mapped language element, i.e., the to container of the feature to be mapped.
         CORELanguageElement a5_B5MappingToLanguageELement = a5_B5Mapping.getToLanguageElement();
         
-
-                          createNestedMapping(a5_B5MappingType, a5_B5MappingFromLanguageELement, 
-                            a5_B5MappingToLanguageELement, "name", "name", 
+createNestedMapping(a5_B5MappingType, a5_B5MappingFromLanguageELement, 
+                        a5_B5MappingToLanguageELement, "name", "name", 
                             "A_Model", "B_Model", true);
-
                   
 	 	        		 	        
         
@@ -366,11 +316,9 @@ public class PerspectiveTestSpecification {
         // get to mapped language element, i.e., the to container of the feature to be mapped.
         CORELanguageElement a6_B6MappingToLanguageELement = a6_B6Mapping.getToLanguageElement();
         
-
-                          createNestedMapping(a6_B6MappingType, a6_B6MappingFromLanguageELement, 
-                            a6_B6MappingToLanguageELement, "name", "name", 
+createNestedMapping(a6_B6MappingType, a6_B6MappingFromLanguageELement, 
+                        a6_B6MappingToLanguageELement, "name", "name", 
                             "A_Model", "B_Model", true);
-
                   
 	 	        		 	        
         
@@ -386,11 +334,9 @@ public class PerspectiveTestSpecification {
         // get to mapped language element, i.e., the to container of the feature to be mapped.
         CORELanguageElement a7_B7MappingToLanguageELement = a7_B7Mapping.getToLanguageElement();
         
-
-                          createNestedMapping(a7_B7MappingType, a7_B7MappingFromLanguageELement, 
-                            a7_B7MappingToLanguageELement, "name", "name", 
+createNestedMapping(a7_B7MappingType, a7_B7MappingFromLanguageELement, 
+                        a7_B7MappingToLanguageELement, "name", "name", 
                             "A_Model", "B_Model", true);
-
                   
 	 	        		 	        
         
@@ -406,11 +352,9 @@ public class PerspectiveTestSpecification {
         // get to mapped language element, i.e., the to container of the feature to be mapped.
         CORELanguageElement a8_B8MappingToLanguageELement = a8_B8Mapping.getToLanguageElement();
         
-
-                          createNestedMapping(a8_B8MappingType, a8_B8MappingFromLanguageELement, 
-                            a8_B8MappingToLanguageELement, "name", "name", 
+createNestedMapping(a8_B8MappingType, a8_B8MappingFromLanguageELement, 
+                        a8_B8MappingToLanguageELement, "name", "name", 
                             "A_Model", "B_Model", true);
-
                   
 	 	        		 	        
         
@@ -426,11 +370,9 @@ public class PerspectiveTestSpecification {
         // get to mapped language element, i.e., the to container of the feature to be mapped.
         CORELanguageElement a9_B9MappingToLanguageELement = a9_B9Mapping.getToLanguageElement();
         
-
-                          createNestedMapping(a9_B9MappingType, a9_B9MappingFromLanguageELement, 
-                            a9_B9MappingToLanguageELement, "name", "name", 
+createNestedMapping(a9_B9MappingType, a9_B9MappingFromLanguageELement, 
+                        a9_B9MappingToLanguageELement, "name", "name", 
                             "A_Model", "B_Model", true);
-
                   
 	 	        		 	        
         
@@ -446,11 +388,9 @@ public class PerspectiveTestSpecification {
         // get to mapped language element, i.e., the to container of the feature to be mapped.
         CORELanguageElement a10_B10MappingToLanguageELement = a10_B10Mapping.getToLanguageElement();
         
-
-                          createNestedMapping(a10_B10MappingType, a10_B10MappingFromLanguageELement, 
-                            a10_B10MappingToLanguageELement, "name", "name", 
+createNestedMapping(a10_B10MappingType, a10_B10MappingFromLanguageELement, 
+                        a10_B10MappingToLanguageELement, "name", "name", 
                             "A_Model", "B_Model", true);
-
                   
 	 	        		 	        
         
@@ -466,11 +406,9 @@ public class PerspectiveTestSpecification {
         // get to mapped language element, i.e., the to container of the feature to be mapped.
         CORELanguageElement a11_B11MappingToLanguageELement = a11_B11Mapping.getToLanguageElement();
         
-
-                          createNestedMapping(a11_B11MappingType, a11_B11MappingFromLanguageELement, 
-                            a11_B11MappingToLanguageELement, "name", "name", 
+createNestedMapping(a11_B11MappingType, a11_B11MappingFromLanguageELement, 
+                        a11_B11MappingToLanguageELement, "name", "name", 
                             "A_Model", "B_Model", true);
-
                   
 	 	        		 	        
         
@@ -486,11 +424,9 @@ public class PerspectiveTestSpecification {
         // get to mapped language element, i.e., the to container of the feature to be mapped.
         CORELanguageElement a12_B12MappingToLanguageELement = a12_B12Mapping.getToLanguageElement();
         
-
-                          createNestedMapping(a12_B12MappingType, a12_B12MappingFromLanguageELement, 
-                            a12_B12MappingToLanguageELement, "name", "name", 
+createNestedMapping(a12_B12MappingType, a12_B12MappingFromLanguageELement, 
+                        a12_B12MappingToLanguageELement, "name", "name", 
                             "A_Model", "B_Model", true);
-
                   
 	 	        		 	        
         

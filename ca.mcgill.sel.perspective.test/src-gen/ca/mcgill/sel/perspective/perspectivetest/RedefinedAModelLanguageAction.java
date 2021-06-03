@@ -20,6 +20,7 @@ public class RedefinedAModelLanguageAction {
 	public static EObject createNewA1(COREPerspective perspective, COREScene scene, String currentRole, 
 		boolean isFacadeCall, EObject owner, String name) {
 		
+		EObject newElement = null;
 		List<EObject> createSecondaryEffects = new ArrayList<EObject>();
 		createSecondaryEffects.add(AmodelPackage.eINSTANCE.getA2());
 		createSecondaryEffects.add(AmodelPackage.eINSTANCE.getA3());
@@ -29,23 +30,24 @@ public class RedefinedAModelLanguageAction {
 		ModelElementStatus.INSTANCE.setMainExistingElements(owner, AmodelPackage.eINSTANCE.getA1());
 		ModelElementStatus.INSTANCE.setOtherExistingElements(owner, createSecondaryEffects);
 		
-		// primary language action to create a new class
+		// primary language action to create a new element
 		AModelController.getInstance().createA1((AModel) owner, name);
-	
+						
 		// retrieve the new element
-		EObject newElement = ModelElementStatus.INSTANCE.getNewElement(owner, AmodelPackage.eINSTANCE.getA1());
+		newElement = ModelElementStatus.INSTANCE.getNewElement(owner, AmodelPackage.eINSTANCE.getA1());
 		
 		// get other new elements for each language element
 		Map<EObject, Collection<EObject>> a = ModelElementStatus.INSTANCE.getOtherNewElements(owner, createSecondaryEffects);
 		Map<EObject, Collection<EObject>> after = new HashMap<EObject, Collection<EObject>>(a);
-	
+		
 		if (!isFacadeCall) {
 			createOtherElementsForA1(perspective, scene, currentRole, newElement, owner,
 			 	name);						
 		}
 		createNewA1CreateSecondaryEffects(perspective, scene, currentRole, after, owner, 
 			name);
-	
+		
+
 	//		try {
 	//			createOtherElementsForLEMA1(perspective, scene, newElement, currentRole, owner, name);
 	//		} catch (PerspectiveException e) {
@@ -476,6 +478,7 @@ public class RedefinedAModelLanguageAction {
 		}
 	}
 	
+	
 	private static void createNewA1CreateSecondaryEffects(COREPerspective perspective, COREScene scene, String currentRole, Map<EObject, Collection<EObject>> after, 
 			EObject owner, String name) {
 		for (Map.Entry<EObject, Collection<EObject>> e : after.entrySet()) {
@@ -506,27 +509,29 @@ public class RedefinedAModelLanguageAction {
 	public static EObject createNewA2(COREPerspective perspective, COREScene scene, String currentRole, 
 		boolean isFacadeCall, EObject owner, String name) {
 		
+		EObject newElement = null;
 		List<EObject> createSecondaryEffects = new ArrayList<EObject>();
 		
 		// record existing elements.
 		ModelElementStatus.INSTANCE.setMainExistingElements(owner, AmodelPackage.eINSTANCE.getA2());
 		ModelElementStatus.INSTANCE.setOtherExistingElements(owner, createSecondaryEffects);
 		
-		// primary language action to create a new class
+		// primary language action to create a new element
 		AModelController.getInstance().createA2((AModel) owner, name);
-	
+						
 		// retrieve the new element
-		EObject newElement = ModelElementStatus.INSTANCE.getNewElement(owner, AmodelPackage.eINSTANCE.getA2());
+		newElement = ModelElementStatus.INSTANCE.getNewElement(owner, AmodelPackage.eINSTANCE.getA2());
 		
 		// get other new elements for each language element
 		Map<EObject, Collection<EObject>> a = ModelElementStatus.INSTANCE.getOtherNewElements(owner, createSecondaryEffects);
 		Map<EObject, Collection<EObject>> after = new HashMap<EObject, Collection<EObject>>(a);
-	
+		
 		if (!isFacadeCall) {
 			createOtherElementsForA2(perspective, scene, currentRole, newElement, owner,
 			 	name);						
 		}
-	
+		
+
 	//		try {
 	//			createOtherElementsForLEMA1(perspective, scene, newElement, currentRole, owner, name);
 	//		} catch (PerspectiveException e) {
@@ -957,31 +962,34 @@ public class RedefinedAModelLanguageAction {
 		}
 	}
 	
+	
 
 	public static EObject createNewA3(COREPerspective perspective, COREScene scene, String currentRole, 
 		boolean isFacadeCall, EObject owner, String name) {
 		
+		EObject newElement = null;
 		List<EObject> createSecondaryEffects = new ArrayList<EObject>();
 		
 		// record existing elements.
 		ModelElementStatus.INSTANCE.setMainExistingElements(owner, AmodelPackage.eINSTANCE.getA3());
 		ModelElementStatus.INSTANCE.setOtherExistingElements(owner, createSecondaryEffects);
 		
-		// primary language action to create a new class
+		// primary language action to create a new element
 		AModelController.getInstance().createA3((AModel) owner, name);
-	
+						
 		// retrieve the new element
-		EObject newElement = ModelElementStatus.INSTANCE.getNewElement(owner, AmodelPackage.eINSTANCE.getA3());
+		newElement = ModelElementStatus.INSTANCE.getNewElement(owner, AmodelPackage.eINSTANCE.getA3());
 		
 		// get other new elements for each language element
 		Map<EObject, Collection<EObject>> a = ModelElementStatus.INSTANCE.getOtherNewElements(owner, createSecondaryEffects);
 		Map<EObject, Collection<EObject>> after = new HashMap<EObject, Collection<EObject>>(a);
-	
+		
 		if (!isFacadeCall) {
 			createOtherElementsForA3(perspective, scene, currentRole, newElement, owner,
 			 	name);						
 		}
-	
+		
+
 	//		try {
 	//			createOtherElementsForLEMA1(perspective, scene, newElement, currentRole, owner, name);
 	//		} catch (PerspectiveException e) {
@@ -1412,31 +1420,34 @@ public class RedefinedAModelLanguageAction {
 		}
 	}
 	
+	
 
 	public static EObject createNewA4(COREPerspective perspective, COREScene scene, String currentRole, 
 		boolean isFacadeCall, EObject owner, String name) {
 		
+		EObject newElement = null;
 		List<EObject> createSecondaryEffects = new ArrayList<EObject>();
 		
 		// record existing elements.
 		ModelElementStatus.INSTANCE.setMainExistingElements(owner, AmodelPackage.eINSTANCE.getA4());
 		ModelElementStatus.INSTANCE.setOtherExistingElements(owner, createSecondaryEffects);
 		
-		// primary language action to create a new class
+		// primary language action to create a new element
 		AModelController.getInstance().createA4((AModel) owner, name);
-	
+						
 		// retrieve the new element
-		EObject newElement = ModelElementStatus.INSTANCE.getNewElement(owner, AmodelPackage.eINSTANCE.getA4());
+		newElement = ModelElementStatus.INSTANCE.getNewElement(owner, AmodelPackage.eINSTANCE.getA4());
 		
 		// get other new elements for each language element
 		Map<EObject, Collection<EObject>> a = ModelElementStatus.INSTANCE.getOtherNewElements(owner, createSecondaryEffects);
 		Map<EObject, Collection<EObject>> after = new HashMap<EObject, Collection<EObject>>(a);
-	
+		
 		if (!isFacadeCall) {
 			createOtherElementsForA4(perspective, scene, currentRole, newElement, owner,
 			 	name);						
 		}
-	
+		
+
 	//		try {
 	//			createOtherElementsForLEMA1(perspective, scene, newElement, currentRole, owner, name);
 	//		} catch (PerspectiveException e) {
@@ -1867,31 +1878,34 @@ public class RedefinedAModelLanguageAction {
 		}
 	}
 	
+	
 
 	public static EObject createNewA5(COREPerspective perspective, COREScene scene, String currentRole, 
 		boolean isFacadeCall, EObject owner, String name) {
 		
+		EObject newElement = null;
 		List<EObject> createSecondaryEffects = new ArrayList<EObject>();
 		
 		// record existing elements.
 		ModelElementStatus.INSTANCE.setMainExistingElements(owner, AmodelPackage.eINSTANCE.getA5());
 		ModelElementStatus.INSTANCE.setOtherExistingElements(owner, createSecondaryEffects);
 		
-		// primary language action to create a new class
+		// primary language action to create a new element
 		AModelController.getInstance().createA5((AModel) owner, name);
-	
+						
 		// retrieve the new element
-		EObject newElement = ModelElementStatus.INSTANCE.getNewElement(owner, AmodelPackage.eINSTANCE.getA5());
+		newElement = ModelElementStatus.INSTANCE.getNewElement(owner, AmodelPackage.eINSTANCE.getA5());
 		
 		// get other new elements for each language element
 		Map<EObject, Collection<EObject>> a = ModelElementStatus.INSTANCE.getOtherNewElements(owner, createSecondaryEffects);
 		Map<EObject, Collection<EObject>> after = new HashMap<EObject, Collection<EObject>>(a);
-	
+		
 		if (!isFacadeCall) {
 			createOtherElementsForA5(perspective, scene, currentRole, newElement, owner,
 			 	name);						
 		}
-	
+		
+
 	//		try {
 	//			createOtherElementsForLEMA1(perspective, scene, newElement, currentRole, owner, name);
 	//		} catch (PerspectiveException e) {
@@ -2322,31 +2336,34 @@ public class RedefinedAModelLanguageAction {
 		}
 	}
 	
+	
 
 	public static EObject createNewA6(COREPerspective perspective, COREScene scene, String currentRole, 
 		boolean isFacadeCall, EObject owner, String name) {
 		
+		EObject newElement = null;
 		List<EObject> createSecondaryEffects = new ArrayList<EObject>();
 		
 		// record existing elements.
 		ModelElementStatus.INSTANCE.setMainExistingElements(owner, AmodelPackage.eINSTANCE.getA6());
 		ModelElementStatus.INSTANCE.setOtherExistingElements(owner, createSecondaryEffects);
 		
-		// primary language action to create a new class
+		// primary language action to create a new element
 		AModelController.getInstance().createA6((AModel) owner, name);
-	
+						
 		// retrieve the new element
-		EObject newElement = ModelElementStatus.INSTANCE.getNewElement(owner, AmodelPackage.eINSTANCE.getA6());
+		newElement = ModelElementStatus.INSTANCE.getNewElement(owner, AmodelPackage.eINSTANCE.getA6());
 		
 		// get other new elements for each language element
 		Map<EObject, Collection<EObject>> a = ModelElementStatus.INSTANCE.getOtherNewElements(owner, createSecondaryEffects);
 		Map<EObject, Collection<EObject>> after = new HashMap<EObject, Collection<EObject>>(a);
-	
+		
 		if (!isFacadeCall) {
 			createOtherElementsForA6(perspective, scene, currentRole, newElement, owner,
 			 	name);						
 		}
-	
+		
+
 	//		try {
 	//			createOtherElementsForLEMA1(perspective, scene, newElement, currentRole, owner, name);
 	//		} catch (PerspectiveException e) {
@@ -2777,31 +2794,34 @@ public class RedefinedAModelLanguageAction {
 		}
 	}
 	
+	
 
 	public static EObject createNewA7(COREPerspective perspective, COREScene scene, String currentRole, 
 		boolean isFacadeCall, EObject owner, String name) {
 		
+		EObject newElement = null;
 		List<EObject> createSecondaryEffects = new ArrayList<EObject>();
 		
 		// record existing elements.
 		ModelElementStatus.INSTANCE.setMainExistingElements(owner, AmodelPackage.eINSTANCE.getA7());
 		ModelElementStatus.INSTANCE.setOtherExistingElements(owner, createSecondaryEffects);
 		
-		// primary language action to create a new class
+		// primary language action to create a new element
 		AModelController.getInstance().createA7((AModel) owner, name);
-	
+						
 		// retrieve the new element
-		EObject newElement = ModelElementStatus.INSTANCE.getNewElement(owner, AmodelPackage.eINSTANCE.getA7());
+		newElement = ModelElementStatus.INSTANCE.getNewElement(owner, AmodelPackage.eINSTANCE.getA7());
 		
 		// get other new elements for each language element
 		Map<EObject, Collection<EObject>> a = ModelElementStatus.INSTANCE.getOtherNewElements(owner, createSecondaryEffects);
 		Map<EObject, Collection<EObject>> after = new HashMap<EObject, Collection<EObject>>(a);
-	
+		
 		if (!isFacadeCall) {
 			createOtherElementsForA7(perspective, scene, currentRole, newElement, owner,
 			 	name);						
 		}
-	
+		
+
 	//		try {
 	//			createOtherElementsForLEMA1(perspective, scene, newElement, currentRole, owner, name);
 	//		} catch (PerspectiveException e) {
@@ -3232,31 +3252,34 @@ public class RedefinedAModelLanguageAction {
 		}
 	}
 	
+	
 
 	public static EObject createNewA8(COREPerspective perspective, COREScene scene, String currentRole, 
 		boolean isFacadeCall, EObject owner, String name) {
 		
+		EObject newElement = null;
 		List<EObject> createSecondaryEffects = new ArrayList<EObject>();
 		
 		// record existing elements.
 		ModelElementStatus.INSTANCE.setMainExistingElements(owner, AmodelPackage.eINSTANCE.getA8());
 		ModelElementStatus.INSTANCE.setOtherExistingElements(owner, createSecondaryEffects);
 		
-		// primary language action to create a new class
+		// primary language action to create a new element
 		AModelController.getInstance().createA8((AModel) owner, name);
-	
+						
 		// retrieve the new element
-		EObject newElement = ModelElementStatus.INSTANCE.getNewElement(owner, AmodelPackage.eINSTANCE.getA8());
+		newElement = ModelElementStatus.INSTANCE.getNewElement(owner, AmodelPackage.eINSTANCE.getA8());
 		
 		// get other new elements for each language element
 		Map<EObject, Collection<EObject>> a = ModelElementStatus.INSTANCE.getOtherNewElements(owner, createSecondaryEffects);
 		Map<EObject, Collection<EObject>> after = new HashMap<EObject, Collection<EObject>>(a);
-	
+		
 		if (!isFacadeCall) {
 			createOtherElementsForA8(perspective, scene, currentRole, newElement, owner,
 			 	name);						
 		}
-	
+		
+
 	//		try {
 	//			createOtherElementsForLEMA1(perspective, scene, newElement, currentRole, owner, name);
 	//		} catch (PerspectiveException e) {
@@ -3687,31 +3710,34 @@ public class RedefinedAModelLanguageAction {
 		}
 	}
 	
+	
 
 	public static EObject createNewA9(COREPerspective perspective, COREScene scene, String currentRole, 
 		boolean isFacadeCall, EObject owner, String name) {
 		
+		EObject newElement = null;
 		List<EObject> createSecondaryEffects = new ArrayList<EObject>();
 		
 		// record existing elements.
 		ModelElementStatus.INSTANCE.setMainExistingElements(owner, AmodelPackage.eINSTANCE.getA9());
 		ModelElementStatus.INSTANCE.setOtherExistingElements(owner, createSecondaryEffects);
 		
-		// primary language action to create a new class
+		// primary language action to create a new element
 		AModelController.getInstance().createA9((AModel) owner, name);
-	
+						
 		// retrieve the new element
-		EObject newElement = ModelElementStatus.INSTANCE.getNewElement(owner, AmodelPackage.eINSTANCE.getA9());
+		newElement = ModelElementStatus.INSTANCE.getNewElement(owner, AmodelPackage.eINSTANCE.getA9());
 		
 		// get other new elements for each language element
 		Map<EObject, Collection<EObject>> a = ModelElementStatus.INSTANCE.getOtherNewElements(owner, createSecondaryEffects);
 		Map<EObject, Collection<EObject>> after = new HashMap<EObject, Collection<EObject>>(a);
-	
+		
 		if (!isFacadeCall) {
 			createOtherElementsForA9(perspective, scene, currentRole, newElement, owner,
 			 	name);						
 		}
-	
+		
+
 	//		try {
 	//			createOtherElementsForLEMA1(perspective, scene, newElement, currentRole, owner, name);
 	//		} catch (PerspectiveException e) {
@@ -4142,31 +4168,34 @@ public class RedefinedAModelLanguageAction {
 		}
 	}
 	
+	
 
 	public static EObject createNewA10(COREPerspective perspective, COREScene scene, String currentRole, 
 		boolean isFacadeCall, EObject owner, String name) {
 		
+		EObject newElement = null;
 		List<EObject> createSecondaryEffects = new ArrayList<EObject>();
 		
 		// record existing elements.
 		ModelElementStatus.INSTANCE.setMainExistingElements(owner, AmodelPackage.eINSTANCE.getA10());
 		ModelElementStatus.INSTANCE.setOtherExistingElements(owner, createSecondaryEffects);
 		
-		// primary language action to create a new class
+		// primary language action to create a new element
 		AModelController.getInstance().createA10((AModel) owner, name);
-	
+						
 		// retrieve the new element
-		EObject newElement = ModelElementStatus.INSTANCE.getNewElement(owner, AmodelPackage.eINSTANCE.getA10());
+		newElement = ModelElementStatus.INSTANCE.getNewElement(owner, AmodelPackage.eINSTANCE.getA10());
 		
 		// get other new elements for each language element
 		Map<EObject, Collection<EObject>> a = ModelElementStatus.INSTANCE.getOtherNewElements(owner, createSecondaryEffects);
 		Map<EObject, Collection<EObject>> after = new HashMap<EObject, Collection<EObject>>(a);
-	
+		
 		if (!isFacadeCall) {
 			createOtherElementsForA10(perspective, scene, currentRole, newElement, owner,
 			 	name);						
 		}
-	
+		
+
 	//		try {
 	//			createOtherElementsForLEMA1(perspective, scene, newElement, currentRole, owner, name);
 	//		} catch (PerspectiveException e) {
@@ -4597,31 +4626,34 @@ public class RedefinedAModelLanguageAction {
 		}
 	}
 	
+	
 
 	public static EObject createNewA11(COREPerspective perspective, COREScene scene, String currentRole, 
 		boolean isFacadeCall, EObject owner, String name) {
 		
+		EObject newElement = null;
 		List<EObject> createSecondaryEffects = new ArrayList<EObject>();
 		
 		// record existing elements.
 		ModelElementStatus.INSTANCE.setMainExistingElements(owner, AmodelPackage.eINSTANCE.getA11());
 		ModelElementStatus.INSTANCE.setOtherExistingElements(owner, createSecondaryEffects);
 		
-		// primary language action to create a new class
+		// primary language action to create a new element
 		AModelController.getInstance().createA11((AModel) owner, name);
-	
+						
 		// retrieve the new element
-		EObject newElement = ModelElementStatus.INSTANCE.getNewElement(owner, AmodelPackage.eINSTANCE.getA11());
+		newElement = ModelElementStatus.INSTANCE.getNewElement(owner, AmodelPackage.eINSTANCE.getA11());
 		
 		// get other new elements for each language element
 		Map<EObject, Collection<EObject>> a = ModelElementStatus.INSTANCE.getOtherNewElements(owner, createSecondaryEffects);
 		Map<EObject, Collection<EObject>> after = new HashMap<EObject, Collection<EObject>>(a);
-	
+		
 		if (!isFacadeCall) {
 			createOtherElementsForA11(perspective, scene, currentRole, newElement, owner,
 			 	name);						
 		}
-	
+		
+
 	//		try {
 	//			createOtherElementsForLEMA1(perspective, scene, newElement, currentRole, owner, name);
 	//		} catch (PerspectiveException e) {
@@ -5052,31 +5084,34 @@ public class RedefinedAModelLanguageAction {
 		}
 	}
 	
+	
 
 	public static EObject createNewA12(COREPerspective perspective, COREScene scene, String currentRole, 
 		boolean isFacadeCall, EObject owner, String name) {
 		
+		EObject newElement = null;
 		List<EObject> createSecondaryEffects = new ArrayList<EObject>();
 		
 		// record existing elements.
 		ModelElementStatus.INSTANCE.setMainExistingElements(owner, AmodelPackage.eINSTANCE.getA12());
 		ModelElementStatus.INSTANCE.setOtherExistingElements(owner, createSecondaryEffects);
 		
-		// primary language action to create a new class
+		// primary language action to create a new element
 		AModelController.getInstance().createA12((AModel) owner, name);
-	
+						
 		// retrieve the new element
-		EObject newElement = ModelElementStatus.INSTANCE.getNewElement(owner, AmodelPackage.eINSTANCE.getA12());
+		newElement = ModelElementStatus.INSTANCE.getNewElement(owner, AmodelPackage.eINSTANCE.getA12());
 		
 		// get other new elements for each language element
 		Map<EObject, Collection<EObject>> a = ModelElementStatus.INSTANCE.getOtherNewElements(owner, createSecondaryEffects);
 		Map<EObject, Collection<EObject>> after = new HashMap<EObject, Collection<EObject>>(a);
-	
+		
 		if (!isFacadeCall) {
 			createOtherElementsForA12(perspective, scene, currentRole, newElement, owner,
 			 	name);						
 		}
-	
+		
+
 	//		try {
 	//			createOtherElementsForLEMA1(perspective, scene, newElement, currentRole, owner, name);
 	//		} catch (PerspectiveException e) {
@@ -5507,6 +5542,7 @@ public class RedefinedAModelLanguageAction {
 		}
 	}
 	
+	
 
 	public static void deleteA1(COREPerspective perspective, COREScene scene, String currentRole, EObject currentElement) {
 		
@@ -5566,24 +5602,15 @@ public class RedefinedAModelLanguageAction {
 		}
 	}
 	
+	
 	private static void deleteA1DeleteSecondaryEffects(COREPerspective perspective, COREScene scene, String currentRole,
 				List<EObject> deleteSecondaryEffects) {
 		for (EObject deletedElement : deleteSecondaryEffects) {
-				if (deletedElement.eClass().equals(AmodelPackage.eINSTANCE.getA2())) {
+				if (deletedElement.eClass().equals(AmodelPackage.eINSTANCE.getA4())) {
 								
 					// Call the respective redefined recursive method
-					RedefinedAModelLanguageAction.deleteOtherElementsForA2(perspective, scene, currentRole, deletedElement);
-				}
-				else if (deletedElement.eClass().equals(AmodelPackage.eINSTANCE.getA3())) {
-						
-					// Call the respective redefined recursive method
-					RedefinedAModelLanguageAction.deleteOtherElementsForA3(perspective, scene, currentRole, deletedElement);
-					}
-				else if (deletedElement.eClass().equals(AmodelPackage.eINSTANCE.getA4())) {
-						
-					// Call the respective redefined recursive method
 					RedefinedAModelLanguageAction.deleteOtherElementsForA4(perspective, scene, currentRole, deletedElement);
-					}
+				}
 			}
 				
 	}
@@ -5644,6 +5671,7 @@ public class RedefinedAModelLanguageAction {
 		}
 	}
 	
+	
 
 	public static void deleteA3(COREPerspective perspective, COREScene scene, String currentRole, EObject currentElement) {
 		
@@ -5700,6 +5728,7 @@ public class RedefinedAModelLanguageAction {
 			}
 		}
 	}
+	
 	
 
 	public static void deleteA4(COREPerspective perspective, COREScene scene, String currentRole, EObject currentElement) {
@@ -5758,6 +5787,7 @@ public class RedefinedAModelLanguageAction {
 		}
 	}
 	
+	
 
 	public static void deleteA5(COREPerspective perspective, COREScene scene, String currentRole, EObject currentElement) {
 		
@@ -5814,6 +5844,7 @@ public class RedefinedAModelLanguageAction {
 			}
 		}
 	}
+	
 	
 
 	public static void deleteA6(COREPerspective perspective, COREScene scene, String currentRole, EObject currentElement) {
@@ -5872,6 +5903,7 @@ public class RedefinedAModelLanguageAction {
 		}
 	}
 	
+	
 
 	public static void deleteA7(COREPerspective perspective, COREScene scene, String currentRole, EObject currentElement) {
 		
@@ -5928,6 +5960,7 @@ public class RedefinedAModelLanguageAction {
 			}
 		}
 	}
+	
 	
 
 	public static void deleteA8(COREPerspective perspective, COREScene scene, String currentRole, EObject currentElement) {
@@ -5986,6 +6019,7 @@ public class RedefinedAModelLanguageAction {
 		}
 	}
 	
+	
 
 	public static void deleteA9(COREPerspective perspective, COREScene scene, String currentRole, EObject currentElement) {
 		
@@ -6042,6 +6076,7 @@ public class RedefinedAModelLanguageAction {
 			}
 		}
 	}
+	
 	
 
 	public static void deleteA10(COREPerspective perspective, COREScene scene, String currentRole, EObject currentElement) {
@@ -6100,6 +6135,7 @@ public class RedefinedAModelLanguageAction {
 		}
 	}
 	
+	
 
 	public static void deleteA11(COREPerspective perspective, COREScene scene, String currentRole, EObject currentElement) {
 		
@@ -6156,6 +6192,7 @@ public class RedefinedAModelLanguageAction {
 			}
 		}
 	}
+	
 	
 
 	public static void deleteA12(COREPerspective perspective, COREScene scene, String currentRole, EObject currentElement) {
@@ -6214,22 +6251,34 @@ public class RedefinedAModelLanguageAction {
 		}
 	}
 	
+	
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	/**
+	 * This is a helper method which retrieves the corresponding container of an
+	 * element to create.
+	 * @param perspective
+	 * @param scene -  the scene of the models
+	 * @param currentOwner
+	 * @param otherRole
+	 * @return the container of the element to create.
+	 */
+	private static EObject getOwner(COREPerspective perspective, COREScene scene, EObject currentOwner, String otherRole) {
+		EObject ownerOther = null;
+	
+		List<COREModelElementMapping> ownerMappings = COREPerspectiveUtil.INSTANCE.getMappings(currentOwner, scene);
+		outerloop: for (COREModelElementMapping mapping : ownerMappings) {
+			ownerOther = COREPerspectiveUtil.INSTANCE.getOtherElement(mapping, currentOwner);
+			CORELanguageElementMapping mappingType = COREPerspectiveUtil.INSTANCE.getMappingType(perspective, mapping);
+			for (MappingEnd mappingEnd : mappingType.getMappingEnds()) {
+				if (mappingEnd.getRoleName().equals(otherRole)) {
+					ownerOther = COREPerspectiveUtil.INSTANCE.getOtherElement(mapping, currentOwner);
+					break outerloop;
+				}
+			}
+		}
+	
+		return ownerOther;
+	}
 }
 
 

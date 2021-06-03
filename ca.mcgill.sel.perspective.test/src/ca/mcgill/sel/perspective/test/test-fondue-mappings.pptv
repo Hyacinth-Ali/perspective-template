@@ -12,48 +12,32 @@ perspective TestFondueMapping {
             roleName A_Model;
             otherRootPackage "ca.mcgill.sel.bmodel";
             otherRootPackage "ca.mcgill.sel.cmodel";
-        }  
-                   
-        existing language BModelLanguage {
-            rootPackage "ca.mcgill.sel.bmodel";
-            packageClassName BmodelPackage;
-            controllerPackage "ca.mcgill.sel.bmodel.controller";
-            roleName B_Model;
-            otherRootPackage "ca.mcgill.sel.amodel";
-            otherRootPackage "ca.mcgill.sel.cmodel";
-        }
-        
-        existing language CModelLanguage {
-            rootPackage "ca.mcgill.sel.cmodel";
-            packageClassName CmodelPackage;
-            controllerPackage "ca.mcgill.sel.cmodel.controller";
-            roleName C_Model;
-            otherRootPackage "ca.mcgill.sel.amodel";
-            otherRootPackage "ca.mcgill.sel.bmodel";
-        }
-           
-    }     
-           
-    actions {
+            
+            actions {
+         
+    			redefined create action createNewA2 {
+		    		roleName : A_Model;
+		    		methodTypeAndParameters : "EObject owner, String name";
+		    		methodCall :  "AModelController.getInstance().createA2((AModel) owner, name)";
+		    		methodParameters : "name";
+		    		metaclassName : A2;
+		    		metaclassObject : "AmodelPackage.eINSTANCE.getA2()";
+		    		
+		    		facadeAction create createOtherElementsForA2 {
+		    		roleName : A_Model;
+		    		metaclassName : A2;
+		    		methodTypeAndParameters : "EObject owner, String name";
+		    		facade calls {
+		    			// first call
+		    			metaclassObject : "CmodelPackage.eINSTANCE.getC2()";
+		    	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
+						mapping "CModel otherOwner = (CModel) o";
+						methodCall : "RedefinedCModelLanguageAction.createNewC2(perspective, scene, otherRoleName, 
+							true, otherOwner, name)";
+							
+    				} 
+    		}
     	
-    	// A model language actions
-//    	redefined create action createNewA1 {
-//    		roleName : A_Model;
-//    		methodTypeAndParameters : "EObject owner, String name";
-//    		methodCall :  "AModelController.getInstance().createA1((AModel) owner, name)";
-//    		methodParameters : "name";
-//    		metaclassName : A1;
-//    		metaclassObject : "AmodelPackage.eINSTANCE.getA1()";
-//    		
-//    	}
-    	 
-    	redefined create action createNewA2 {
-    		roleName : A_Model;
-    		methodTypeAndParameters : "EObject owner, String name";
-    		methodCall :  "AModelController.getInstance().createA2((AModel) owner, name)";
-    		methodParameters : "name";
-    		metaclassName : A2;
-    		metaclassObject : "AmodelPackage.eINSTANCE.getA2()";
     		secondaryEffects {
     			create effects {
     				// first call
@@ -66,7 +50,6 @@ perspective TestFondueMapping {
 				methodCall : "RedefinedAModelLanguageAction.createOtherElementsForA4(perspective, scene, currentRole, newElement,
 							newElement.eContainer(), name)";
     			}
-    			
     		}
     	}
     	 
@@ -77,6 +60,21 @@ perspective TestFondueMapping {
     		methodParameters : "name";
     		metaclassName : A3;
     		metaclassObject : "AmodelPackage.eINSTANCE.getA3()";
+    		
+    		facadeAction create createOtherElementsForA3 {
+    		roleName : A_Model;
+    		metaclassName : A3;
+    		methodTypeAndParameters : "EObject owner, String name";
+    		facade calls {
+    			// first call
+    			metaclassObject : "BmodelPackage.eINSTANCE.getB3()";
+    	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
+				mapping "BModel otherOwner = (BModel) o";
+				methodCall : "RedefinedBModelLanguageAction.createNewB3(perspective, scene, otherRoleName, 
+					true, otherOwner, name)";
+					
+    			} 
+    		}
     	}
     	
     	redefined create action createNewA4 {
@@ -86,19 +84,29 @@ perspective TestFondueMapping {
     		methodParameters : "name";
     		metaclassName : A4;
     		metaclassObject : "AmodelPackage.eINSTANCE.getA4()";
-    	}
     	
-//    	redefined delete action deleteA1 {
-//    		roleName : A_Model;
-//    		methodTypeAndParameters : "EObject currentElement";
-//    		methodCall :  "AModelController.getInstance().removeA1((A1) currentElement)";
-//    		methodParameters : "currentElement";
-//    		metaclassName : A1;
-//    		metaclassObject : "AmodelPackage.eINSTANCE.getA1()";
-//    		secondaryEffects {
-//    			element : "AModelController.getInstance().getA4()";
-//    		}
-//    	}   
+    		facadeAction create createOtherElementsForA4 {
+    		roleName : A_Model;
+    		metaclassName : A4;
+    		methodTypeAndParameters : "EObject owner, String name";
+    		facade calls {
+    			// first call
+    			metaclassObject : "BmodelPackage.eINSTANCE.getB1()";
+    	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
+				mapping "BModel otherOwner = (BModel) o";
+				methodCall : "RedefinedBModelLanguageAction.createNewB1(perspective, scene, otherRoleName, 
+					true, otherOwner, name)";
+					
+				metaclassObject : "CmodelPackage.eINSTANCE.getC1()";
+    	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
+				mapping "CModel otherOwner = (CModel) o";
+				methodCall : "RedefinedCModelLanguageAction.createNewC1(perspective, scene, otherRoleName, 
+					true, otherOwner, name)";
+					
+    			} 
+    		}
+    	}
+    	    
     	  
     	redefined delete action deleteA2 {
     		roleName : A_Model;
@@ -109,11 +117,13 @@ perspective TestFondueMapping {
     		metaclassObject : "AmodelPackage.eINSTANCE.getA2()";
     		secondaryEffects {
     			delete effects {
-    				// first call
+    				// first call 
     			element : "AModelController.getInstance().getA3()";
+    			languageElement : "AmodelPackage.eINSTANCE.getA3()";
 				methodCall : "RedefinedAModelLanguageAction.deleteOtherElementsForA3(perspective, scene, currentRole, deletedElement)";
 							
 				element : "AModelController.getInstance().getA4()";
+				languageElement : "AmodelPackage.eINSTANCE.getA4()";
 				methodCall : "RedefinedAModelLanguageAction.deleteOtherElementsForA4(perspective, scene, currentRole, deletedElement)";
     			}
     			
@@ -136,186 +146,6 @@ perspective TestFondueMapping {
     		methodParameters : "currentElement";
     		metaclassName : A4;
     		metaclassObject : "AmodelPackage.eINSTANCE.getA4()";
-    	}  
-    	
-    	
-    	// B model language actions
-    	
-    	redefined create action createNewB1 {
-    		roleName : B_Model;
-    		methodTypeAndParameters : "EObject owner, String name";
-    		methodCall :  "BModelController.getInstance().createB1((BModel) owner, name)";
-    		methodParameters : "name";
-    		metaclassName : B1;
-    		metaclassObject : "BmodelPackage.eINSTANCE.getB1()";
-    	}
-    	
-    	redefined create action createNewB3 {
-    		roleName : B_Model;
-    		methodTypeAndParameters : "EObject owner, String name";
-    		methodCall :  "BModelController.getInstance().createB3((BModel) owner, name)";
-    		methodParameters : "name";
-    		metaclassName : B3;
-    		metaclassObject : "BmodelPackage.eINSTANCE.getB3()";
-    	}
-    	
-    	redefined delete action deleteB1 {
-    		roleName : B_Model;
-    		methodTypeAndParameters : "EObject currentElement";
-    		methodCall :  "BModelController.getInstance().removeB1((B1) currentElement)";
-    		methodParameters : "currentElement";
-    		metaclassName : B1;
-    		metaclassObject : "BmodelPackage.eINSTANCE.getB1()";
-    	}  
-    	
-    	redefined delete action deleteB3 {
-    		roleName : B_Model;
-    		methodTypeAndParameters : "EObject currentElement";
-    		methodCall :  "BModelController.getInstance().removeB3((B3) currentElement)";
-    		methodParameters : "currentElement";
-    		metaclassName : B3;
-    		metaclassObject : "BmodelPackage.eINSTANCE.getB3()";
-    	}
-    	
-    	// C MOdel actions
-    	redefined create action createNewC1 {
-    		roleName : C_Model;
-    		methodTypeAndParameters : "EObject owner, String name";
-    		methodCall :  "CModelController.getInstance().createC1((CModel) owner, name)";
-    		methodParameters : "name";
-    		metaclassName : C1;
-    		metaclassObject : "CmodelPackage.eINSTANCE.getC1()";
-    		
-    	}
-    	 
-    	 redefined create action createNewC2 {
-    		roleName : C_Model;
-    		methodTypeAndParameters : "EObject owner, String name";
-    		methodCall :  "CModelController.getInstance().createC2((CModel) owner, name)";
-    		methodParameters : "name";
-    		metaclassName : C2;
-    		metaclassObject : "CmodelPackage.eINSTANCE.getC2()";
-    		secondaryEffects {
-    			create effects {
-    				languageElement : "CmodelPackage.eINSTANCE.getC1()";
-					methodCall : "RedefinedCModelLanguageAction.createOtherElementsForC1(perspective, scene, currentRole, newElement,
-							newElement.eContainer(), name)";
-				}
-				
-    		}
-    	} 
-    	
-//    	redefined create action createNewC3 {
-//    		roleName : C_Model;
-//    		methodTypeAndParameters : "EObject owner, String name";
-//    		methodCall :  "CModelController.getInstance().createC3((CModel) owner, name)";
-//    		methodParameters : "name";
-//    		metaclassName : C3;
-//    		metaclassObject : "CmodelPackage.eINSTANCE.getC3()";
-//    		
-//    	}
-//    	
-//    	redefined create action createNewC4 {
-//    		roleName : C_Model;
-//    		methodTypeAndParameters : "EObject owner, String name";
-//    		methodCall :  "CModelController.getInstance().createC4((CModel) owner, name)";
-//    		methodParameters : "name";
-//    		metaclassName : C4;
-//    		metaclassObject : "CmodelPackage.eINSTANCE.getC4()";
-//    		
-//    	}  
-    	
-    	redefined delete action deleteC1 {
-    		roleName : C_Model;
-    		methodTypeAndParameters : "EObject currentElement";
-    		methodCall :  "CModelController.getInstance().removeC1((C1) currentElement)";
-    		methodParameters : "currentElement";
-    		metaclassName : C1;
-    		metaclassObject : "CmodelPackage.eINSTANCE.getC1()";
-    	}
-    	
-    	redefined delete action deleteC2 {
-    		roleName : C_Model;
-    		methodTypeAndParameters : "EObject currentElement";
-    		methodCall :  "CModelController.getInstance().removeC2((C2) currentElement)";
-    		methodParameters : "currentElement";
-    		metaclassName : C2;
-    		metaclassObject : "CmodelPackage.eINSTANCE.getC2()";
-    		
-    	}
-    	
-//    	redefined delete action deleteC3 {
-//    		roleName : C_Model;
-//    		methodTypeAndParameters : "EObject currentElement";
-//    		methodCall :  "CModelController.getInstance().removeC3((C3) currentElement)";
-//    		methodParameters : "currentElement";
-//    		metaclassName : C3;
-//    		metaclassObject : "CmodelPackage.eINSTANCE.getC3()";
-//    	}
-//    	
-//    	redefined delete action deleteC4 {
-//    		roleName : C_Model;
-//    		methodTypeAndParameters : "EObject currentElement";
-//    		methodCall :  "CModelController.getInstance().removeC4((C4) currentElement)";
-//    		methodParameters : "currentElement";
-//    		metaclassName : C4;
-//    		metaclassObject : "CmodelPackage.eINSTANCE.getC4()";
-//    	}    
-    }
-    
-    facade actions {
-    	
-    	// A model facade actions
-    	
-		facadeAction create createOtherElementsForA2 {
-    		roleName : A_Model;
-    		metaclassName : A2;
-    		methodTypeAndParameters : "EObject owner, String name";
-    		facade calls {
-    			// first call
-    			metaclassObject : "CmodelPackage.eINSTANCE.getC2()";
-    	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
-				mapping "CModel otherOwner = (CModel) o";
-				methodCall : "RedefinedCModelLanguageAction.createNewC2(perspective, scene, otherRoleName, 
-					true, otherOwner, name)";
-					
-    		} 
-    	}
-    	
-    	facadeAction create createOtherElementsForA3 {
-    		roleName : A_Model;
-    		metaclassName : A3;
-    		methodTypeAndParameters : "EObject owner, String name";
-    		facade calls {
-    			// first call
-    			metaclassObject : "BmodelPackage.eINSTANCE.getB3()";
-    	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
-				mapping "BModel otherOwner = (BModel) o";
-				methodCall : "RedefinedBModelLanguageAction.createNewB3(perspective, scene, otherRoleName, 
-					true, otherOwner, name)";
-					
-    		} 
-    	}
-    	
-    	facadeAction create createOtherElementsForA4 {
-    		roleName : A_Model;
-    		metaclassName : A4;
-    		methodTypeAndParameters : "EObject owner, String name";
-    		facade calls {
-    			// first call
-    			metaclassObject : "BmodelPackage.eINSTANCE.getB1()";
-    	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
-				mapping "BModel otherOwner = (BModel) o";
-				methodCall : "RedefinedBModelLanguageAction.createNewB1(perspective, scene, otherRoleName, 
-					true, otherOwner, name)";
-					
-				metaclassObject : "CmodelPackage.eINSTANCE.getC1()";
-    	 		mapping "EObject o = getOwner(perspective, scene, owner, otherRoleName)";
-				mapping "CModel otherOwner = (CModel) o";
-				methodCall : "RedefinedCModelLanguageAction.createNewC1(perspective, scene, otherRoleName, 
-					true, otherOwner, name)";
-					
-    		} 
     	}
     	 
     	facadeAction delete deleteModelElement {
@@ -346,10 +176,30 @@ perspective TestFondueMapping {
     			
     			
     		}
-    	}
+    	} 
     	
-    	// B Model facade actions
-    	
+          }
+            
+        }  
+                   
+        existing language BModelLanguage {
+            rootPackage "ca.mcgill.sel.bmodel";
+            packageClassName BmodelPackage;
+            controllerPackage "ca.mcgill.sel.bmodel.controller";
+            roleName B_Model;
+            otherRootPackage "ca.mcgill.sel.amodel";
+            otherRootPackage "ca.mcgill.sel.cmodel";
+             
+            actions { 
+            redefined create action createNewB1 {
+    		roleName : B_Model;
+    		methodTypeAndParameters : "EObject owner, String name";
+    		methodCall :  "BModelController.getInstance().createB1((BModel) owner, name)";
+    		methodParameters : "name";
+    		metaclassName : B1;
+    		metaclassObject : "BmodelPackage.eINSTANCE.getB1()";
+    		
+    		    	
     	facadeAction create createOtherElementsForB1 {
     		roleName : B_Model;
     		metaclassName : B1;
@@ -364,8 +214,17 @@ perspective TestFondueMapping {
 					
     		} 
     	}
+    	}
     	
-    	facadeAction create createOtherElementsForB3 {
+    	redefined create action createNewB3 {
+    		roleName : B_Model;
+    		methodTypeAndParameters : "EObject owner, String name";
+    		methodCall :  "BModelController.getInstance().createB3((BModel) owner, name)";
+    		methodParameters : "name";
+    		metaclassName : B3;
+    		metaclassObject : "BmodelPackage.eINSTANCE.getB3()";
+    		
+    		 	facadeAction create createOtherElementsForB3 {
     		roleName : B_Model;
     		metaclassName : B3;
     		methodTypeAndParameters : "EObject owner, String name";
@@ -378,7 +237,26 @@ perspective TestFondueMapping {
 					true, otherOwner, name)";
 					
     		} 
-    	} 
+    	}
+    	}
+    	
+    	redefined delete action deleteB1 {
+    		roleName : B_Model;
+    		methodTypeAndParameters : "EObject currentElement";
+    		methodCall :  "BModelController.getInstance().removeB1((B1) currentElement)";
+    		methodParameters : "currentElement";
+    		metaclassName : B1;
+    		metaclassObject : "BmodelPackage.eINSTANCE.getB1()";
+    	}  
+    	
+    	redefined delete action deleteB3 {
+    		roleName : B_Model;
+    		methodTypeAndParameters : "EObject currentElement";
+    		methodCall :  "BModelController.getInstance().removeB3((B3) currentElement)";
+    		methodParameters : "currentElement";
+    		metaclassName : B3;
+    		metaclassObject : "BmodelPackage.eINSTANCE.getB3()";
+    	}
     	
     	facadeAction delete deleteModelElement {
     		roleName : B_Model;
@@ -410,9 +288,27 @@ perspective TestFondueMapping {
     		}
     	}
     	
-    	// C Model facade actions
-    	
-    	facadeAction create createOtherElementsForC1 {
+            }
+        }
+        
+        existing language CModelLanguage {
+            rootPackage "ca.mcgill.sel.cmodel";
+            packageClassName CmodelPackage;
+            controllerPackage "ca.mcgill.sel.cmodel.controller";
+            roleName C_Model;
+            otherRootPackage "ca.mcgill.sel.amodel";
+            otherRootPackage "ca.mcgill.sel.bmodel";
+            
+            actions {
+            	redefined create action createNewC1 {
+    		roleName : C_Model;
+    		methodTypeAndParameters : "EObject owner, String name";
+    		methodCall :  "CModelController.getInstance().createC1((CModel) owner, name)";
+    		methodParameters : "name";
+    		metaclassName : C1;
+    		metaclassObject : "CmodelPackage.eINSTANCE.getC1()";
+    		
+    		   	facadeAction create createOtherElementsForC1 {
     		roleName : C_Model;
     		metaclassName : C1;
     		methodTypeAndParameters : "EObject owner, String name";
@@ -426,8 +322,18 @@ perspective TestFondueMapping {
 					
     		} 
     	}
-    	
-    	facadeAction create createOtherElementsForC2 {
+    		
+    	}
+    	 
+    	 redefined create action createNewC2 {
+    		roleName : C_Model;
+    		methodTypeAndParameters : "EObject owner, String name";
+    		methodCall :  "CModelController.getInstance().createC2((CModel) owner, name)";
+    		methodParameters : "name";
+    		metaclassName : C2;
+    		metaclassObject : "CmodelPackage.eINSTANCE.getC2()";
+    		
+    		  	facadeAction create createOtherElementsForC2 {
     		roleName : C_Model;
     		metaclassName : C2;
     		methodTypeAndParameters : "EObject owner, String name";
@@ -440,6 +346,36 @@ perspective TestFondueMapping {
 					true, otherOwner, name)";
 					
     		} 
+    	}
+    		secondaryEffects {
+    			create effects {
+    				languageElement : "CmodelPackage.eINSTANCE.getC1()";
+					methodCall : "RedefinedCModelLanguageAction.createOtherElementsForC1(perspective, scene, currentRole, newElement,
+							newElement.eContainer(), name)";
+				}
+				
+    		}
+    	} 
+    	
+ 
+    	
+    	redefined delete action deleteC1 {
+    		roleName : C_Model;
+    		methodTypeAndParameters : "EObject currentElement";
+    		methodCall :  "CModelController.getInstance().removeC1((C1) currentElement)";
+    		methodParameters : "currentElement";
+    		metaclassName : C1;
+    		metaclassObject : "CmodelPackage.eINSTANCE.getC1()";
+    	}
+    	
+    	redefined delete action deleteC2 {
+    		roleName : C_Model;
+    		methodTypeAndParameters : "EObject currentElement";
+    		methodCall :  "CModelController.getInstance().removeC2((C2) currentElement)";
+    		methodParameters : "currentElement";
+    		metaclassName : C2;
+    		metaclassObject : "CmodelPackage.eINSTANCE.getC2()";
+    		
     	}
     	
     	facadeAction delete deleteModelElement {
@@ -471,41 +407,11 @@ perspective TestFondueMapping {
     			
     		}
     	}
-    	
-    	}
-    	
-    	secondary effects {
-    		create secondary effects {
-    			
-    			 // first call
-    			metaclassObject : "AmodelPackage.eINSTANCE.getA3()";
-				methodCall : "RedefinedAModelLanguageAction.createOtherElementsForA3(perspective, scene, currentRole, newElement,
-							newElement.eContainer(), name)";
-							
-				// other calls
-				metaclassObject : "AmodelPackage.eINSTANCE.getA4()";
-				methodCall : "RedefinedAModelLanguageAction.createOtherElementsForA4(perspective, scene, currentRole, newElement,
-							newElement.eContainer(), name)";
-							
-				metaclassObject : "CmodelPackage.eINSTANCE.getC1()";
-				methodCall : "RedefinedCModelLanguageAction.createOtherElementsForC1(perspective, scene, currentRole, newElement,
-							newElement.eContainer(), name)";
-    						 
-    		}
-    		delete secondary effects {
-    			  			
-    			// first call
-    			metaclassObject : "AmodelPackage.eINSTANCE.getA3()";
-				methodCall : "RedefinedAModelLanguageAction.deleteOtherElementsForA3(perspective, scene, currentRole, deletedElement)";
-							
-				metaclassObject : "AmodelPackage.eINSTANCE.getA4()";
-				methodCall : "RedefinedAModelLanguageAction.deleteOtherElementsForA4(perspective, scene, currentRole, deletedElement)";
-					 		
-				metaclassObject : "CmodelPackage.eINSTANCE.getC1()";
-				methodCall : "RedefinedCModelLanguageAction.deleteOtherElementsForC1(perspective, scene, currentRole, deletedElement)";
-				
-    		}
-    	}
+            }
+        }
+           
+    }     
+  
     
        // mappings
        // root model element mapping

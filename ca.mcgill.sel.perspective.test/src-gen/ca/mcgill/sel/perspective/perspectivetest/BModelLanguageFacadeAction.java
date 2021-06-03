@@ -12,19 +12,6 @@ import ca.mcgill.sel.amodel.controller.*;
 import ca.mcgill.sel.bmodel.controller.*;
 
 public class BModelLanguageFacadeAction {
-
-
-
-
-
-
-
-
-
-
-
-
-
 	public static EObject createOtherElementsForB1(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
 			EObject owner, String name) {
 		EObject newElement = null;
@@ -38,7 +25,6 @@ public class BModelLanguageFacadeAction {
 		
 		return newElement;						
 	}
-
 	public static EObject createOtherElementsForB2(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
 			EObject owner, String name) {
 		EObject newElement = null;
@@ -52,7 +38,6 @@ public class BModelLanguageFacadeAction {
 		
 		return newElement;						
 	}
-
 	public static EObject createOtherElementsForB3(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
 			EObject owner, String name) {
 		EObject newElement = null;
@@ -66,7 +51,6 @@ public class BModelLanguageFacadeAction {
 		
 		return newElement;						
 	}
-
 	public static EObject createOtherElementsForB4(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
 			EObject owner, String name) {
 		EObject newElement = null;
@@ -80,7 +64,6 @@ public class BModelLanguageFacadeAction {
 		
 		return newElement;						
 	}
-
 	public static EObject createOtherElementsForB5(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
 			EObject owner, String name) {
 		EObject newElement = null;
@@ -94,7 +77,6 @@ public class BModelLanguageFacadeAction {
 		
 		return newElement;						
 	}
-
 	public static EObject createOtherElementsForB6(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
 			EObject owner, String name) {
 		EObject newElement = null;
@@ -108,7 +90,6 @@ public class BModelLanguageFacadeAction {
 		
 		return newElement;						
 	}
-
 	public static EObject createOtherElementsForB7(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
 			EObject owner, String name) {
 		EObject newElement = null;
@@ -122,7 +103,6 @@ public class BModelLanguageFacadeAction {
 		
 		return newElement;						
 	}
-
 	public static EObject createOtherElementsForB8(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
 			EObject owner, String name) {
 		EObject newElement = null;
@@ -136,7 +116,6 @@ public class BModelLanguageFacadeAction {
 		
 		return newElement;						
 	}
-
 	public static EObject createOtherElementsForB9(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
 			EObject owner, String name) {
 		EObject newElement = null;
@@ -150,7 +129,6 @@ public class BModelLanguageFacadeAction {
 		
 		return newElement;						
 	}
-
 	public static EObject createOtherElementsForB10(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
 			EObject owner, String name) {
 		EObject newElement = null;
@@ -164,7 +142,6 @@ public class BModelLanguageFacadeAction {
 		
 		return newElement;						
 	}
-
 	public static EObject createOtherElementsForB11(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
 			EObject owner, String name) {
 		EObject newElement = null;
@@ -178,7 +155,6 @@ public class BModelLanguageFacadeAction {
 		
 		return newElement;						
 	}
-
 	public static EObject createOtherElementsForB12(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
 			EObject owner, String name) {
 		EObject newElement = null;

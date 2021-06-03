@@ -14,10 +14,6 @@ import ca.mcgill.sel.bmodel.controller.*;
 import ca.mcgill.sel.cmodel.controller.*;
 
 public class BModelLanguageFacadeAction {
-
-
-
-
 	public static EObject createOtherElementsForB1(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
 			EObject owner, String name) {
 		EObject newElement = null;
@@ -31,7 +27,6 @@ public class BModelLanguageFacadeAction {
 		
 		return newElement;						
 	}
-
 	public static EObject createOtherElementsForB3(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
 			EObject owner, String name) {
 		EObject newElement = null;
@@ -69,9 +64,6 @@ public class BModelLanguageFacadeAction {
 			RedefinedCModelLanguageAction.deleteC2(perspective, scene, otherRoleName, otherElement);
 		}
 	}
-
-
-
 
 	/**
 	 * This is a helper method which retrieves the corresponding container of an

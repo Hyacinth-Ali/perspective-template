@@ -22,12 +22,11 @@ public class AModelLanguageFacadeAction {
 			EObject o = getOwner(perspective, scene, owner, otherRoleName);
 			CModel otherOwner = (CModel) o;
 			newElement = RedefinedCModelLanguageAction.createNewC2(perspective, scene, otherRoleName, 
-								true, otherOwner, name);
+										true, otherOwner, name);
 		}
 		
 		return newElement;						
 	}
-
 	public static EObject createOtherElementsForA3(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
 			EObject owner, String name) {
 		EObject newElement = null;
@@ -41,7 +40,6 @@ public class AModelLanguageFacadeAction {
 		
 		return newElement;						
 	}
-
 	public static EObject createOtherElementsForA4(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
 			EObject owner, String name) {
 		EObject newElement = null;
@@ -86,12 +84,6 @@ public class AModelLanguageFacadeAction {
 			RedefinedCModelLanguageAction.deleteC2(perspective, scene, otherRoleName, otherElement);
 		}
 	}
-
-
-
-
-
-
 
 	/**
 	 * This is a helper method which retrieves the corresponding container of an

@@ -25,7 +25,6 @@ public class AModelLanguageFacadeAction {
 		
 		return newElement;						
 	}
-
 	public static EObject createOtherElementsForA2(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
 			EObject owner, String name) {
 		EObject newElement = null;
@@ -39,21 +38,6 @@ public class AModelLanguageFacadeAction {
 		
 		return newElement;						
 	}
-
-	public static EObject createOtherElementsForA4(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
-			EObject owner, String name) {
-		EObject newElement = null;
-		if (otherLE.equals(BmodelPackage.eINSTANCE.getB4())) {
-			// Handle parameter mappings
-			EObject o = getOwner(perspective, scene, owner, otherRoleName);
-			BModel otherOwner = (BModel) o;
-			newElement = RedefinedBModelLanguageAction.createNewB4(perspective, scene, otherRoleName, 
-								true, otherOwner, name);
-		}
-		
-		return newElement;						
-	}
-
 	public static EObject createOtherElementsForA3(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
 			EObject owner, String name) {
 		EObject newElement = null;
@@ -67,7 +51,19 @@ public class AModelLanguageFacadeAction {
 		
 		return newElement;						
 	}
-
+	public static EObject createOtherElementsForA4(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
+			EObject owner, String name) {
+		EObject newElement = null;
+		if (otherLE.equals(BmodelPackage.eINSTANCE.getB4())) {
+			// Handle parameter mappings
+			EObject o = getOwner(perspective, scene, owner, otherRoleName);
+			BModel otherOwner = (BModel) o;
+			newElement = RedefinedBModelLanguageAction.createNewB4(perspective, scene, otherRoleName, 
+								true, otherOwner, name);
+		}
+		
+		return newElement;						
+	}
 	public static EObject createOtherElementsForA5(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
 			EObject owner, String name) {
 		EObject newElement = null;
@@ -81,7 +77,6 @@ public class AModelLanguageFacadeAction {
 		
 		return newElement;						
 	}
-
 	public static EObject createOtherElementsForA6(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
 			EObject owner, String name) {
 		EObject newElement = null;
@@ -95,7 +90,6 @@ public class AModelLanguageFacadeAction {
 		
 		return newElement;						
 	}
-
 	public static EObject createOtherElementsForA7(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
 			EObject owner, String name) {
 		EObject newElement = null;
@@ -109,7 +103,6 @@ public class AModelLanguageFacadeAction {
 		
 		return newElement;						
 	}
-
 	public static EObject createOtherElementsForA8(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
 			EObject owner, String name) {
 		EObject newElement = null;
@@ -123,7 +116,6 @@ public class AModelLanguageFacadeAction {
 		
 		return newElement;						
 	}
-
 	public static EObject createOtherElementsForA9(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
 			EObject owner, String name) {
 		EObject newElement = null;
@@ -137,7 +129,6 @@ public class AModelLanguageFacadeAction {
 		
 		return newElement;						
 	}
-
 	public static EObject createOtherElementsForA10(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
 			EObject owner, String name) {
 		EObject newElement = null;
@@ -151,7 +142,6 @@ public class AModelLanguageFacadeAction {
 		
 		return newElement;						
 	}
-
 	public static EObject createOtherElementsForA11(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
 			EObject owner, String name) {
 		EObject newElement = null;
@@ -165,7 +155,6 @@ public class AModelLanguageFacadeAction {
 		
 		return newElement;						
 	}
-
 	public static EObject createOtherElementsForA12(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
 			EObject owner, String name) {
 		EObject newElement = null;
@@ -254,19 +243,6 @@ public class AModelLanguageFacadeAction {
 			BModelController.getInstance().removeB12((B12) otherElement);
 		}
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	/**
 	 * This is a helper method which retrieves the corresponding container of an

@@ -14,13 +14,6 @@ import ca.mcgill.sel.bmodel.controller.*;
 import ca.mcgill.sel.cmodel.controller.*;
 
 public class CModelLanguageFacadeAction {
-
-
-
-
-
-
-
 	public static EObject createOtherElementsForC1(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
 			EObject owner, String name) {
 		EObject newElement = null;
@@ -34,7 +27,6 @@ public class CModelLanguageFacadeAction {
 		
 		return newElement;						
 	}
-
 	public static EObject createOtherElementsForC2(COREPerspective perspective, EObject otherLE, String otherRoleName, COREScene scene, 
 			EObject owner, String name) {
 		EObject newElement = null;
