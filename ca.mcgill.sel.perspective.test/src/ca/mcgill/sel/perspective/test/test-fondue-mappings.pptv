@@ -3,7 +3,7 @@ perspective TestFondueMapping {
     default A_Model;
       
     display name "Fondue Mapping Test";
-           
+            
     languages {
     	existing language AModelLanguage {
             rootPackage "ca.mcgill.sel.amodel";
@@ -286,7 +286,7 @@ perspective TestFondueMapping {
     			
     			
     		}
-    	}
+    	} 
     	
             }
         }
@@ -418,6 +418,8 @@ perspective TestFondueMapping {
     mappings {
     	// language element mappings for root model element
     	 mapping AModel_BModel {
+    	 	fromIsRootElement : false;
+    	 	toIsRootElement : false;
             fromCardinality : 1;
             toCardinality : 1;
             fromElement : AModel from A_Model fromGetElement "AmodelPackage.eINSTANCE.getAModel()";
@@ -426,6 +428,8 @@ perspective TestFondueMapping {
         }
         
         mapping AModel_CModel {
+        	fromIsRootElement : false;
+    	 	toIsRootElement : false;
             fromCardinality : 1;
             toCardinality : 1;
             fromElement : AModel from A_Model fromGetElement "AmodelPackage.eINSTANCE.getAModel()";
@@ -434,6 +438,8 @@ perspective TestFondueMapping {
         }
         
         mapping BModel_CModel {
+        	fromIsRootElement : false;
+    	 	toIsRootElement : false;
             fromCardinality : 1;
             toCardinality : 1;
             fromElement : BModel from B_Model fromGetElement "BmodelPackage.eINSTANCE.getBModel()";
@@ -442,6 +448,8 @@ perspective TestFondueMapping {
         }         
                  // CREATE - C2
         mapping A2_C2 {
+        	fromIsRootElement : false;
+    	 	toIsRootElement : false;
             fromCardinality : 1;
             toCardinality : 1..*;
             fromElement : AModel from A_Model fromGetElement "AmodelPackage.eINSTANCE.getA2()";
@@ -450,14 +458,16 @@ perspective TestFondueMapping {
             nested mappings {
             	nested mapping A2Name_C2Name {
             		matchMaker : true;
-            		fromElement : elementName "name" from A_Model;
-                    toELement : elementName "name" from C_Model;
+            		fromElement : "name" from A_Model;
+                    toElement : "name" from C_Model;
             	}	
             }
         } 
         
           // CAN_CREATE_MANY - C3
         mapping A3_B3 {
+        	fromIsRootElement : false;
+    	 	toIsRootElement : false;
             fromCardinality : 0..1;
             toCardinality : 1..*;
             fromElement : AModel from A_Model fromGetElement "AmodelPackage.eINSTANCE.getA3()";
@@ -466,14 +476,16 @@ perspective TestFondueMapping {
             nested mappings {
             	nested mapping A3Name_B3Name {
             		matchMaker : true;
-            		fromElement : elementName "name" from A_Model;
-                    toELement : elementName "name" from B_Model;
+            		fromElement : "name" from A_Model;
+                    toElement : "name" from B_Model;
             	}	
             }
         }
         
           // CREATE_AT_LEAST_ONE - C4
         mapping A4_B1 {
+        	fromIsRootElement : false;
+    	 	toIsRootElement : false;
             fromCardinality : 1;
             toCardinality : 1;
             fromElement : AModel from A_Model fromGetElement "AmodelPackage.eINSTANCE.getA4()";
@@ -482,13 +494,15 @@ perspective TestFondueMapping {
             nested mappings {
             	nested mapping A4Name_B1Name {
             		matchMaker : true;
-            		fromElement : elementName "name" from A_Model;
-                    toELement : elementName "name" from B_Model;
+            		fromElement : "name" from A_Model;
+                    toElement : "name" from B_Model;
             	}	
             }
         }
         
         mapping B1_C1 {
+        	fromIsRootElement : false;
+    	 	toIsRootElement : false;
             fromCardinality : 0..1;
             toCardinality : 1..*;
             fromElement : BModel from B_Model fromGetElement "BmodelPackage.eINSTANCE.getB1()";
@@ -497,8 +511,8 @@ perspective TestFondueMapping {
             nested mappings {
             	nested mapping B1Name_C1Name {
             		matchMaker : true;
-            		fromElement : elementName "name" from A_Model;
-                    toELement : elementName "name" from B_Model;
+            		fromElement : "name" from A_Model;
+                    toElement : "name" from B_Model;
             	}	
             }
         }

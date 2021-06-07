@@ -113,21 +113,21 @@ public class TestFondueMappingSpecification {
 
         // language element mapping 
         createLanguageElementMapping(perspective, Cardinality.COMPULSORY, "A_Model", 
-        AmodelPackage.eINSTANCE.getAModel(), Cardinality.COMPULSORY, "B_Model", BmodelPackage.eINSTANCE.getBModel());
+        AmodelPackage.eINSTANCE.getAModel(), false, Cardinality.COMPULSORY, "B_Model", BmodelPackage.eINSTANCE.getBModel(), false);
             
 	 	        		 	        
         createLanguageElementMapping(perspective, Cardinality.COMPULSORY, "A_Model", 
-        AmodelPackage.eINSTANCE.getAModel(), Cardinality.COMPULSORY, "C_Model", CmodelPackage.eINSTANCE.getCModel());
+        AmodelPackage.eINSTANCE.getAModel(), false, Cardinality.COMPULSORY, "C_Model", CmodelPackage.eINSTANCE.getCModel(), false);
             
 	 	        		 	        
         createLanguageElementMapping(perspective, Cardinality.COMPULSORY, "B_Model", 
-        BmodelPackage.eINSTANCE.getBModel(), Cardinality.COMPULSORY, "C_Model", CmodelPackage.eINSTANCE.getCModel());
+        BmodelPackage.eINSTANCE.getBModel(), false, Cardinality.COMPULSORY, "C_Model", CmodelPackage.eINSTANCE.getCModel(), false);
             
 	 	        		 	        
         
         ElementMapping a2_C2Mapping = createLanguageElementMapping(perspective, Cardinality.COMPULSORY,
-         "A_Model", AmodelPackage.eINSTANCE.getA2(), Cardinality.COMPULSORY_MULTIPLE, "C_Model",
-                     CmodelPackage.eINSTANCE.getC2());
+         "A_Model", AmodelPackage.eINSTANCE.getA2(), false, Cardinality.COMPULSORY_MULTIPLE, "C_Model",
+                     CmodelPackage.eINSTANCE.getC2(), false);
         
         CORELanguageElementMapping a2_C2MappingType = a2_C2Mapping.getMappingType();
         
@@ -144,8 +144,8 @@ createNestedMapping(a2_C2MappingType, a2_C2MappingFromLanguageELement,
 	 	        		 	        
         
         ElementMapping a3_B3Mapping = createLanguageElementMapping(perspective, Cardinality.OPTIONAL,
-         "A_Model", AmodelPackage.eINSTANCE.getA3(), Cardinality.COMPULSORY_MULTIPLE, "B_Model",
-                     BmodelPackage.eINSTANCE.getB3());
+         "A_Model", AmodelPackage.eINSTANCE.getA3(), false, Cardinality.COMPULSORY_MULTIPLE, "B_Model",
+                     BmodelPackage.eINSTANCE.getB3(), false);
         
         CORELanguageElementMapping a3_B3MappingType = a3_B3Mapping.getMappingType();
         
@@ -162,8 +162,8 @@ createNestedMapping(a3_B3MappingType, a3_B3MappingFromLanguageELement,
 	 	        		 	        
         
         ElementMapping a4_B1Mapping = createLanguageElementMapping(perspective, Cardinality.COMPULSORY,
-         "A_Model", AmodelPackage.eINSTANCE.getA4(), Cardinality.COMPULSORY, "B_Model",
-                     BmodelPackage.eINSTANCE.getB1());
+         "A_Model", AmodelPackage.eINSTANCE.getA4(), false, Cardinality.COMPULSORY, "B_Model",
+                     BmodelPackage.eINSTANCE.getB1(), false);
         
         CORELanguageElementMapping a4_B1MappingType = a4_B1Mapping.getMappingType();
         
@@ -180,8 +180,8 @@ createNestedMapping(a4_B1MappingType, a4_B1MappingFromLanguageELement,
 	 	        		 	        
         
         ElementMapping b1_C1Mapping = createLanguageElementMapping(perspective, Cardinality.OPTIONAL,
-         "B_Model", BmodelPackage.eINSTANCE.getB1(), Cardinality.COMPULSORY_MULTIPLE, "C_Model",
-                     CmodelPackage.eINSTANCE.getC1());
+         "B_Model", BmodelPackage.eINSTANCE.getB1(), false, Cardinality.COMPULSORY_MULTIPLE, "C_Model",
+                     CmodelPackage.eINSTANCE.getC1(), false);
         
         CORELanguageElementMapping b1_C1MappingType = b1_C1Mapping.getMappingType();
         
@@ -213,14 +213,15 @@ createNestedMapping(b1_C1MappingType, b1_C1MappingFromLanguageELement,
      * @author Hyacinth Ali
      */
     private static ElementMapping createLanguageElementMapping(COREPerspective perspective,
-            Cardinality fromCardinality, String fromRoleName, EObject fromMetaclass, Cardinality toCardinality, 
-            String toRoleName, EObject toMetaclass) {
+                Cardinality fromCardinality, String fromRoleName, EObject fromMetaclass, boolean fromIsRootMapping, Cardinality toCardinality, 
+                String toRoleName, EObject toMetaclass, boolean toIsRootMapping) {
 
         CORELanguageElementMapping mappingType = CoreFactory.eINSTANCE.createCORELanguageElementMapping();
         mappingType.setIdentifier(getNextMappingId(perspective));
-
+		
         // from mapping end settings
         MappingEnd fromMappingEnd = CoreFactory.eINSTANCE.createMappingEnd();
+        fromMappingEnd.setRootMappingEnd(fromIsRootMapping);
         fromMappingEnd.setCardinality(fromCardinality);
         fromMappingEnd.setRoleName(fromRoleName);
         COREExternalLanguage fromLanguage = (COREExternalLanguage) perspective.getLanguages().get(fromRoleName);
@@ -229,6 +230,7 @@ createNestedMapping(b1_C1MappingType, b1_C1MappingFromLanguageELement,
 
         // to mapping end settings
         MappingEnd toMappingEnd = CoreFactory.eINSTANCE.createMappingEnd();
+        toMappingEnd.setRootMappingEnd(toIsRootMapping);
         toMappingEnd.setCardinality(toCardinality);
         toMappingEnd.setRoleName(toRoleName);
         COREExternalLanguage toLanguage = (COREExternalLanguage) perspective.getLanguages().get(toRoleName);

@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 import ca.mcgill.sel.core.*;
@@ -67,77 +69,92 @@ public class RedefinedAModelLanguageAction {
 		for (CORELanguageElementMapping mappingType : mappingTypes) {
 			List<COREModelElementMapping> mappings = COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene,
 					currentElement);
+		
+		if (COREPerspectiveUtil.INSTANCE.mappingsContainsElement(mappings, currentElement)) {
+			continue;
+		}
+		
+		MappingEnd currentMappingEnd = COREPerspectiveUtil.INSTANCE.getMappingEnd(mappingType, currentElement.eClass(), currentRoleName);
+		MappingEnd otherMappingEnd = COREPerspectiveUtil.INSTANCE.getOtherMappingEnds(currentMappingEnd).get(0);
 	
-			String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRoleName);
-	
-			// the metaclass of the element to be created.
-			EObject otherLE = COREPerspectiveUtil.INSTANCE
-					.getOtherLanguageElements(mappingType, currentElement.eClass(), currentRoleName).get(0);
-	
-			ActionType actionType = TemplateType.INSTANCE.getCreateType(mappingType, currentRoleName);
-	
-			// check that the number of existing mappings is not zero.
-			if (mappings.size() != 0) {
-				continue;
-			}
-			switch (actionType) {
+		if (otherMappingEnd.isRootMappingEnd()) {
+			CreateModel.createOtherRootModels(perspective, mappingType, scene, currentRoleName, currentElement, name);
+		} else {
+			createOtherElementsForA1(perspective, mappingType, scene, currentRoleName, currentElement, owner,
+											 	name);
+		}
 			
-			// C1/C9
-			case CAN_CREATE:
-			case CAN_CREATE_OR_USE_NON_MAPPED:
-				canCreateOrUseNonMappedElementForA1(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
-						otherLE, owner, name);
-				break;
+		}
+	}
 	
-			// C2/C10
-			case CREATE:
-			case CREATE_OR_USE_NON_MAPPED:
-				createOrUseNonMappedElementForA1(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
-						otherLE, owner, name);
-				break;
-	
-			// C3/C11
-			case CAN_CREATE_MANY:
-			case CAN_CREATE_OR_USE_NON_MAPPED_MANY:
-				canCreateOrUseNonMappedManyElementsForA1(perspective, mappingType, scene, currentElement, currentRoleName,
-						otherRoleName, otherLE, owner, name);
-				break;
-	
-			// C4/C12
-			case CREATE_AT_LEAST_ONE:
-			case CREATE_OR_USE_NON_MAPPED_AT_LEAST_ONE:
-				createOrUseNonMappedAtLeastOneElementForA1(perspective, mappingType, scene, currentElement, currentRoleName,
-						otherRoleName, otherLE, owner, name);
-				break;
+	private static void createOtherElementsForA1(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene, String currentRoleName,
+				EObject currentElement, EObject owner, String name) {
 			
-			// C5
-			case CAN_CREATE_OR_USE:
-				canCreateOrUseElementForA1(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
-						owner, name);
-				break;
+		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRoleName);
 	
-			// C6
-			case CREATE_OR_USE:
-				createOrUseElementForA1(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
-						owner, name);
-				break;
+		// the metaclass of the element to be created.
+		EObject otherLE = COREPerspectiveUtil.INSTANCE
+				.getOtherLanguageElements(mappingType, currentElement.eClass(), currentRoleName).get(0);
 	
-			// C7
-			case CAN_CREATE_OR_USE_MANY:
-				canCreateOrUseManyElementsForA1(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
-						owner, name);
-				break;
+		ActionType actionType = TemplateType.INSTANCE.getCreateType(mappingType, currentRoleName);
+
+		switch (actionType) {
+			
+		// C1/C9
+		case CAN_CREATE:
+		case CAN_CREATE_OR_USE_NON_MAPPED:
+			canCreateOrUseNonMappedElementForA1(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
+					otherLE, owner, name);
+			break;
 	
-			// C8
-			case CREATE_OR_USE_AT_LEAST_ONE:
-				createOrUseAtLeastOneElementForA1(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
-						owner, name);
-				break;
+		// C2/C10
+		case CREATE:
+		case CREATE_OR_USE_NON_MAPPED:
+			createOrUseNonMappedElementForA1(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
+					otherLE, owner, name);
+			break;
+	
+		// C3/C11
+		case CAN_CREATE_MANY:
+		case CAN_CREATE_OR_USE_NON_MAPPED_MANY:
+			canCreateOrUseNonMappedManyElementsForA1(perspective, mappingType, scene, currentElement, currentRoleName,
+					otherRoleName, otherLE, owner, name);
+			break;
+	
+		// C4/C12
+		case CREATE_AT_LEAST_ONE:
+		case CREATE_OR_USE_NON_MAPPED_AT_LEAST_ONE:
+			createOrUseNonMappedAtLeastOneElementForA1(perspective, mappingType, scene, currentElement, currentRoleName,
+					otherRoleName, otherLE, owner, name);
+			break;
+			
+		// C5
+		case CAN_CREATE_OR_USE:
+			canCreateOrUseElementForA1(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
+					owner, name);
+			break;
+	
+		// C6
+		case CREATE_OR_USE:
+			createOrUseElementForA1(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
+					owner, name);
+			break;
+	
+		// C7
+		case CAN_CREATE_OR_USE_MANY:
+			canCreateOrUseManyElementsForA1(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
+					owner, name);
+			break;
+	
+		// C8
+		case CREATE_OR_USE_AT_LEAST_ONE:
+			createOrUseAtLeastOneElementForA1(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
+					owner, name);
+			break;
 				
-			default:
-				// does nothing
+		default:
+			// does nothing
 	
-			}
 		}
 	}
 	
@@ -551,77 +568,92 @@ public class RedefinedAModelLanguageAction {
 		for (CORELanguageElementMapping mappingType : mappingTypes) {
 			List<COREModelElementMapping> mappings = COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene,
 					currentElement);
+		
+		if (COREPerspectiveUtil.INSTANCE.mappingsContainsElement(mappings, currentElement)) {
+			continue;
+		}
+		
+		MappingEnd currentMappingEnd = COREPerspectiveUtil.INSTANCE.getMappingEnd(mappingType, currentElement.eClass(), currentRoleName);
+		MappingEnd otherMappingEnd = COREPerspectiveUtil.INSTANCE.getOtherMappingEnds(currentMappingEnd).get(0);
 	
-			String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRoleName);
-	
-			// the metaclass of the element to be created.
-			EObject otherLE = COREPerspectiveUtil.INSTANCE
-					.getOtherLanguageElements(mappingType, currentElement.eClass(), currentRoleName).get(0);
-	
-			ActionType actionType = TemplateType.INSTANCE.getCreateType(mappingType, currentRoleName);
-	
-			// check that the number of existing mappings is not zero.
-			if (mappings.size() != 0) {
-				continue;
-			}
-			switch (actionType) {
+		if (otherMappingEnd.isRootMappingEnd()) {
+			CreateModel.createOtherRootModels(perspective, mappingType, scene, currentRoleName, currentElement, name);
+		} else {
+			createOtherElementsForA2(perspective, mappingType, scene, currentRoleName, currentElement, owner,
+											 	name);
+		}
 			
-			// C1/C9
-			case CAN_CREATE:
-			case CAN_CREATE_OR_USE_NON_MAPPED:
-				canCreateOrUseNonMappedElementForA2(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
-						otherLE, owner, name);
-				break;
+		}
+	}
 	
-			// C2/C10
-			case CREATE:
-			case CREATE_OR_USE_NON_MAPPED:
-				createOrUseNonMappedElementForA2(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
-						otherLE, owner, name);
-				break;
-	
-			// C3/C11
-			case CAN_CREATE_MANY:
-			case CAN_CREATE_OR_USE_NON_MAPPED_MANY:
-				canCreateOrUseNonMappedManyElementsForA2(perspective, mappingType, scene, currentElement, currentRoleName,
-						otherRoleName, otherLE, owner, name);
-				break;
-	
-			// C4/C12
-			case CREATE_AT_LEAST_ONE:
-			case CREATE_OR_USE_NON_MAPPED_AT_LEAST_ONE:
-				createOrUseNonMappedAtLeastOneElementForA2(perspective, mappingType, scene, currentElement, currentRoleName,
-						otherRoleName, otherLE, owner, name);
-				break;
+	private static void createOtherElementsForA2(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene, String currentRoleName,
+				EObject currentElement, EObject owner, String name) {
 			
-			// C5
-			case CAN_CREATE_OR_USE:
-				canCreateOrUseElementForA2(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
-						owner, name);
-				break;
+		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRoleName);
 	
-			// C6
-			case CREATE_OR_USE:
-				createOrUseElementForA2(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
-						owner, name);
-				break;
+		// the metaclass of the element to be created.
+		EObject otherLE = COREPerspectiveUtil.INSTANCE
+				.getOtherLanguageElements(mappingType, currentElement.eClass(), currentRoleName).get(0);
 	
-			// C7
-			case CAN_CREATE_OR_USE_MANY:
-				canCreateOrUseManyElementsForA2(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
-						owner, name);
-				break;
+		ActionType actionType = TemplateType.INSTANCE.getCreateType(mappingType, currentRoleName);
+
+		switch (actionType) {
+			
+		// C1/C9
+		case CAN_CREATE:
+		case CAN_CREATE_OR_USE_NON_MAPPED:
+			canCreateOrUseNonMappedElementForA2(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
+					otherLE, owner, name);
+			break;
 	
-			// C8
-			case CREATE_OR_USE_AT_LEAST_ONE:
-				createOrUseAtLeastOneElementForA2(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
-						owner, name);
-				break;
+		// C2/C10
+		case CREATE:
+		case CREATE_OR_USE_NON_MAPPED:
+			createOrUseNonMappedElementForA2(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
+					otherLE, owner, name);
+			break;
+	
+		// C3/C11
+		case CAN_CREATE_MANY:
+		case CAN_CREATE_OR_USE_NON_MAPPED_MANY:
+			canCreateOrUseNonMappedManyElementsForA2(perspective, mappingType, scene, currentElement, currentRoleName,
+					otherRoleName, otherLE, owner, name);
+			break;
+	
+		// C4/C12
+		case CREATE_AT_LEAST_ONE:
+		case CREATE_OR_USE_NON_MAPPED_AT_LEAST_ONE:
+			createOrUseNonMappedAtLeastOneElementForA2(perspective, mappingType, scene, currentElement, currentRoleName,
+					otherRoleName, otherLE, owner, name);
+			break;
+			
+		// C5
+		case CAN_CREATE_OR_USE:
+			canCreateOrUseElementForA2(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
+					owner, name);
+			break;
+	
+		// C6
+		case CREATE_OR_USE:
+			createOrUseElementForA2(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
+					owner, name);
+			break;
+	
+		// C7
+		case CAN_CREATE_OR_USE_MANY:
+			canCreateOrUseManyElementsForA2(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
+					owner, name);
+			break;
+	
+		// C8
+		case CREATE_OR_USE_AT_LEAST_ONE:
+			createOrUseAtLeastOneElementForA2(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
+					owner, name);
+			break;
 				
-			default:
-				// does nothing
+		default:
+			// does nothing
 	
-			}
 		}
 	}
 	
@@ -1009,77 +1041,92 @@ public class RedefinedAModelLanguageAction {
 		for (CORELanguageElementMapping mappingType : mappingTypes) {
 			List<COREModelElementMapping> mappings = COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene,
 					currentElement);
+		
+		if (COREPerspectiveUtil.INSTANCE.mappingsContainsElement(mappings, currentElement)) {
+			continue;
+		}
+		
+		MappingEnd currentMappingEnd = COREPerspectiveUtil.INSTANCE.getMappingEnd(mappingType, currentElement.eClass(), currentRoleName);
+		MappingEnd otherMappingEnd = COREPerspectiveUtil.INSTANCE.getOtherMappingEnds(currentMappingEnd).get(0);
 	
-			String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRoleName);
-	
-			// the metaclass of the element to be created.
-			EObject otherLE = COREPerspectiveUtil.INSTANCE
-					.getOtherLanguageElements(mappingType, currentElement.eClass(), currentRoleName).get(0);
-	
-			ActionType actionType = TemplateType.INSTANCE.getCreateType(mappingType, currentRoleName);
-	
-			// check that the number of existing mappings is not zero.
-			if (mappings.size() != 0) {
-				continue;
-			}
-			switch (actionType) {
+		if (otherMappingEnd.isRootMappingEnd()) {
+			CreateModel.createOtherRootModels(perspective, mappingType, scene, currentRoleName, currentElement, name);
+		} else {
+			createOtherElementsForA3(perspective, mappingType, scene, currentRoleName, currentElement, owner,
+											 	name);
+		}
 			
-			// C1/C9
-			case CAN_CREATE:
-			case CAN_CREATE_OR_USE_NON_MAPPED:
-				canCreateOrUseNonMappedElementForA3(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
-						otherLE, owner, name);
-				break;
+		}
+	}
 	
-			// C2/C10
-			case CREATE:
-			case CREATE_OR_USE_NON_MAPPED:
-				createOrUseNonMappedElementForA3(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
-						otherLE, owner, name);
-				break;
-	
-			// C3/C11
-			case CAN_CREATE_MANY:
-			case CAN_CREATE_OR_USE_NON_MAPPED_MANY:
-				canCreateOrUseNonMappedManyElementsForA3(perspective, mappingType, scene, currentElement, currentRoleName,
-						otherRoleName, otherLE, owner, name);
-				break;
-	
-			// C4/C12
-			case CREATE_AT_LEAST_ONE:
-			case CREATE_OR_USE_NON_MAPPED_AT_LEAST_ONE:
-				createOrUseNonMappedAtLeastOneElementForA3(perspective, mappingType, scene, currentElement, currentRoleName,
-						otherRoleName, otherLE, owner, name);
-				break;
+	private static void createOtherElementsForA3(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene, String currentRoleName,
+				EObject currentElement, EObject owner, String name) {
 			
-			// C5
-			case CAN_CREATE_OR_USE:
-				canCreateOrUseElementForA3(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
-						owner, name);
-				break;
+		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRoleName);
 	
-			// C6
-			case CREATE_OR_USE:
-				createOrUseElementForA3(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
-						owner, name);
-				break;
+		// the metaclass of the element to be created.
+		EObject otherLE = COREPerspectiveUtil.INSTANCE
+				.getOtherLanguageElements(mappingType, currentElement.eClass(), currentRoleName).get(0);
 	
-			// C7
-			case CAN_CREATE_OR_USE_MANY:
-				canCreateOrUseManyElementsForA3(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
-						owner, name);
-				break;
+		ActionType actionType = TemplateType.INSTANCE.getCreateType(mappingType, currentRoleName);
+
+		switch (actionType) {
+			
+		// C1/C9
+		case CAN_CREATE:
+		case CAN_CREATE_OR_USE_NON_MAPPED:
+			canCreateOrUseNonMappedElementForA3(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
+					otherLE, owner, name);
+			break;
 	
-			// C8
-			case CREATE_OR_USE_AT_LEAST_ONE:
-				createOrUseAtLeastOneElementForA3(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
-						owner, name);
-				break;
+		// C2/C10
+		case CREATE:
+		case CREATE_OR_USE_NON_MAPPED:
+			createOrUseNonMappedElementForA3(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
+					otherLE, owner, name);
+			break;
+	
+		// C3/C11
+		case CAN_CREATE_MANY:
+		case CAN_CREATE_OR_USE_NON_MAPPED_MANY:
+			canCreateOrUseNonMappedManyElementsForA3(perspective, mappingType, scene, currentElement, currentRoleName,
+					otherRoleName, otherLE, owner, name);
+			break;
+	
+		// C4/C12
+		case CREATE_AT_LEAST_ONE:
+		case CREATE_OR_USE_NON_MAPPED_AT_LEAST_ONE:
+			createOrUseNonMappedAtLeastOneElementForA3(perspective, mappingType, scene, currentElement, currentRoleName,
+					otherRoleName, otherLE, owner, name);
+			break;
+			
+		// C5
+		case CAN_CREATE_OR_USE:
+			canCreateOrUseElementForA3(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
+					owner, name);
+			break;
+	
+		// C6
+		case CREATE_OR_USE:
+			createOrUseElementForA3(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
+					owner, name);
+			break;
+	
+		// C7
+		case CAN_CREATE_OR_USE_MANY:
+			canCreateOrUseManyElementsForA3(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
+					owner, name);
+			break;
+	
+		// C8
+		case CREATE_OR_USE_AT_LEAST_ONE:
+			createOrUseAtLeastOneElementForA3(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
+					owner, name);
+			break;
 				
-			default:
-				// does nothing
+		default:
+			// does nothing
 	
-			}
 		}
 	}
 	
@@ -1467,77 +1514,92 @@ public class RedefinedAModelLanguageAction {
 		for (CORELanguageElementMapping mappingType : mappingTypes) {
 			List<COREModelElementMapping> mappings = COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene,
 					currentElement);
+		
+		if (COREPerspectiveUtil.INSTANCE.mappingsContainsElement(mappings, currentElement)) {
+			continue;
+		}
+		
+		MappingEnd currentMappingEnd = COREPerspectiveUtil.INSTANCE.getMappingEnd(mappingType, currentElement.eClass(), currentRoleName);
+		MappingEnd otherMappingEnd = COREPerspectiveUtil.INSTANCE.getOtherMappingEnds(currentMappingEnd).get(0);
 	
-			String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRoleName);
-	
-			// the metaclass of the element to be created.
-			EObject otherLE = COREPerspectiveUtil.INSTANCE
-					.getOtherLanguageElements(mappingType, currentElement.eClass(), currentRoleName).get(0);
-	
-			ActionType actionType = TemplateType.INSTANCE.getCreateType(mappingType, currentRoleName);
-	
-			// check that the number of existing mappings is not zero.
-			if (mappings.size() != 0) {
-				continue;
-			}
-			switch (actionType) {
+		if (otherMappingEnd.isRootMappingEnd()) {
+			CreateModel.createOtherRootModels(perspective, mappingType, scene, currentRoleName, currentElement, name);
+		} else {
+			createOtherElementsForA4(perspective, mappingType, scene, currentRoleName, currentElement, owner,
+											 	name);
+		}
 			
-			// C1/C9
-			case CAN_CREATE:
-			case CAN_CREATE_OR_USE_NON_MAPPED:
-				canCreateOrUseNonMappedElementForA4(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
-						otherLE, owner, name);
-				break;
+		}
+	}
 	
-			// C2/C10
-			case CREATE:
-			case CREATE_OR_USE_NON_MAPPED:
-				createOrUseNonMappedElementForA4(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
-						otherLE, owner, name);
-				break;
-	
-			// C3/C11
-			case CAN_CREATE_MANY:
-			case CAN_CREATE_OR_USE_NON_MAPPED_MANY:
-				canCreateOrUseNonMappedManyElementsForA4(perspective, mappingType, scene, currentElement, currentRoleName,
-						otherRoleName, otherLE, owner, name);
-				break;
-	
-			// C4/C12
-			case CREATE_AT_LEAST_ONE:
-			case CREATE_OR_USE_NON_MAPPED_AT_LEAST_ONE:
-				createOrUseNonMappedAtLeastOneElementForA4(perspective, mappingType, scene, currentElement, currentRoleName,
-						otherRoleName, otherLE, owner, name);
-				break;
+	private static void createOtherElementsForA4(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene, String currentRoleName,
+				EObject currentElement, EObject owner, String name) {
 			
-			// C5
-			case CAN_CREATE_OR_USE:
-				canCreateOrUseElementForA4(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
-						owner, name);
-				break;
+		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRoleName);
 	
-			// C6
-			case CREATE_OR_USE:
-				createOrUseElementForA4(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
-						owner, name);
-				break;
+		// the metaclass of the element to be created.
+		EObject otherLE = COREPerspectiveUtil.INSTANCE
+				.getOtherLanguageElements(mappingType, currentElement.eClass(), currentRoleName).get(0);
 	
-			// C7
-			case CAN_CREATE_OR_USE_MANY:
-				canCreateOrUseManyElementsForA4(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
-						owner, name);
-				break;
+		ActionType actionType = TemplateType.INSTANCE.getCreateType(mappingType, currentRoleName);
+
+		switch (actionType) {
+			
+		// C1/C9
+		case CAN_CREATE:
+		case CAN_CREATE_OR_USE_NON_MAPPED:
+			canCreateOrUseNonMappedElementForA4(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
+					otherLE, owner, name);
+			break;
 	
-			// C8
-			case CREATE_OR_USE_AT_LEAST_ONE:
-				createOrUseAtLeastOneElementForA4(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
-						owner, name);
-				break;
+		// C2/C10
+		case CREATE:
+		case CREATE_OR_USE_NON_MAPPED:
+			createOrUseNonMappedElementForA4(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
+					otherLE, owner, name);
+			break;
+	
+		// C3/C11
+		case CAN_CREATE_MANY:
+		case CAN_CREATE_OR_USE_NON_MAPPED_MANY:
+			canCreateOrUseNonMappedManyElementsForA4(perspective, mappingType, scene, currentElement, currentRoleName,
+					otherRoleName, otherLE, owner, name);
+			break;
+	
+		// C4/C12
+		case CREATE_AT_LEAST_ONE:
+		case CREATE_OR_USE_NON_MAPPED_AT_LEAST_ONE:
+			createOrUseNonMappedAtLeastOneElementForA4(perspective, mappingType, scene, currentElement, currentRoleName,
+					otherRoleName, otherLE, owner, name);
+			break;
+			
+		// C5
+		case CAN_CREATE_OR_USE:
+			canCreateOrUseElementForA4(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
+					owner, name);
+			break;
+	
+		// C6
+		case CREATE_OR_USE:
+			createOrUseElementForA4(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
+					owner, name);
+			break;
+	
+		// C7
+		case CAN_CREATE_OR_USE_MANY:
+			canCreateOrUseManyElementsForA4(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
+					owner, name);
+			break;
+	
+		// C8
+		case CREATE_OR_USE_AT_LEAST_ONE:
+			createOrUseAtLeastOneElementForA4(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
+					owner, name);
+			break;
 				
-			default:
-				// does nothing
+		default:
+			// does nothing
 	
-			}
 		}
 	}
 	
@@ -1925,77 +1987,92 @@ public class RedefinedAModelLanguageAction {
 		for (CORELanguageElementMapping mappingType : mappingTypes) {
 			List<COREModelElementMapping> mappings = COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene,
 					currentElement);
+		
+		if (COREPerspectiveUtil.INSTANCE.mappingsContainsElement(mappings, currentElement)) {
+			continue;
+		}
+		
+		MappingEnd currentMappingEnd = COREPerspectiveUtil.INSTANCE.getMappingEnd(mappingType, currentElement.eClass(), currentRoleName);
+		MappingEnd otherMappingEnd = COREPerspectiveUtil.INSTANCE.getOtherMappingEnds(currentMappingEnd).get(0);
 	
-			String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRoleName);
-	
-			// the metaclass of the element to be created.
-			EObject otherLE = COREPerspectiveUtil.INSTANCE
-					.getOtherLanguageElements(mappingType, currentElement.eClass(), currentRoleName).get(0);
-	
-			ActionType actionType = TemplateType.INSTANCE.getCreateType(mappingType, currentRoleName);
-	
-			// check that the number of existing mappings is not zero.
-			if (mappings.size() != 0) {
-				continue;
-			}
-			switch (actionType) {
+		if (otherMappingEnd.isRootMappingEnd()) {
+			CreateModel.createOtherRootModels(perspective, mappingType, scene, currentRoleName, currentElement, name);
+		} else {
+			createOtherElementsForA5(perspective, mappingType, scene, currentRoleName, currentElement, owner,
+											 	name);
+		}
 			
-			// C1/C9
-			case CAN_CREATE:
-			case CAN_CREATE_OR_USE_NON_MAPPED:
-				canCreateOrUseNonMappedElementForA5(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
-						otherLE, owner, name);
-				break;
+		}
+	}
 	
-			// C2/C10
-			case CREATE:
-			case CREATE_OR_USE_NON_MAPPED:
-				createOrUseNonMappedElementForA5(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
-						otherLE, owner, name);
-				break;
-	
-			// C3/C11
-			case CAN_CREATE_MANY:
-			case CAN_CREATE_OR_USE_NON_MAPPED_MANY:
-				canCreateOrUseNonMappedManyElementsForA5(perspective, mappingType, scene, currentElement, currentRoleName,
-						otherRoleName, otherLE, owner, name);
-				break;
-	
-			// C4/C12
-			case CREATE_AT_LEAST_ONE:
-			case CREATE_OR_USE_NON_MAPPED_AT_LEAST_ONE:
-				createOrUseNonMappedAtLeastOneElementForA5(perspective, mappingType, scene, currentElement, currentRoleName,
-						otherRoleName, otherLE, owner, name);
-				break;
+	private static void createOtherElementsForA5(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene, String currentRoleName,
+				EObject currentElement, EObject owner, String name) {
 			
-			// C5
-			case CAN_CREATE_OR_USE:
-				canCreateOrUseElementForA5(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
-						owner, name);
-				break;
+		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRoleName);
 	
-			// C6
-			case CREATE_OR_USE:
-				createOrUseElementForA5(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
-						owner, name);
-				break;
+		// the metaclass of the element to be created.
+		EObject otherLE = COREPerspectiveUtil.INSTANCE
+				.getOtherLanguageElements(mappingType, currentElement.eClass(), currentRoleName).get(0);
 	
-			// C7
-			case CAN_CREATE_OR_USE_MANY:
-				canCreateOrUseManyElementsForA5(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
-						owner, name);
-				break;
+		ActionType actionType = TemplateType.INSTANCE.getCreateType(mappingType, currentRoleName);
+
+		switch (actionType) {
+			
+		// C1/C9
+		case CAN_CREATE:
+		case CAN_CREATE_OR_USE_NON_MAPPED:
+			canCreateOrUseNonMappedElementForA5(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
+					otherLE, owner, name);
+			break;
 	
-			// C8
-			case CREATE_OR_USE_AT_LEAST_ONE:
-				createOrUseAtLeastOneElementForA5(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
-						owner, name);
-				break;
+		// C2/C10
+		case CREATE:
+		case CREATE_OR_USE_NON_MAPPED:
+			createOrUseNonMappedElementForA5(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
+					otherLE, owner, name);
+			break;
+	
+		// C3/C11
+		case CAN_CREATE_MANY:
+		case CAN_CREATE_OR_USE_NON_MAPPED_MANY:
+			canCreateOrUseNonMappedManyElementsForA5(perspective, mappingType, scene, currentElement, currentRoleName,
+					otherRoleName, otherLE, owner, name);
+			break;
+	
+		// C4/C12
+		case CREATE_AT_LEAST_ONE:
+		case CREATE_OR_USE_NON_MAPPED_AT_LEAST_ONE:
+			createOrUseNonMappedAtLeastOneElementForA5(perspective, mappingType, scene, currentElement, currentRoleName,
+					otherRoleName, otherLE, owner, name);
+			break;
+			
+		// C5
+		case CAN_CREATE_OR_USE:
+			canCreateOrUseElementForA5(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
+					owner, name);
+			break;
+	
+		// C6
+		case CREATE_OR_USE:
+			createOrUseElementForA5(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
+					owner, name);
+			break;
+	
+		// C7
+		case CAN_CREATE_OR_USE_MANY:
+			canCreateOrUseManyElementsForA5(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
+					owner, name);
+			break;
+	
+		// C8
+		case CREATE_OR_USE_AT_LEAST_ONE:
+			createOrUseAtLeastOneElementForA5(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
+					owner, name);
+			break;
 				
-			default:
-				// does nothing
+		default:
+			// does nothing
 	
-			}
 		}
 	}
 	
@@ -2383,77 +2460,92 @@ public class RedefinedAModelLanguageAction {
 		for (CORELanguageElementMapping mappingType : mappingTypes) {
 			List<COREModelElementMapping> mappings = COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene,
 					currentElement);
+		
+		if (COREPerspectiveUtil.INSTANCE.mappingsContainsElement(mappings, currentElement)) {
+			continue;
+		}
+		
+		MappingEnd currentMappingEnd = COREPerspectiveUtil.INSTANCE.getMappingEnd(mappingType, currentElement.eClass(), currentRoleName);
+		MappingEnd otherMappingEnd = COREPerspectiveUtil.INSTANCE.getOtherMappingEnds(currentMappingEnd).get(0);
 	
-			String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRoleName);
-	
-			// the metaclass of the element to be created.
-			EObject otherLE = COREPerspectiveUtil.INSTANCE
-					.getOtherLanguageElements(mappingType, currentElement.eClass(), currentRoleName).get(0);
-	
-			ActionType actionType = TemplateType.INSTANCE.getCreateType(mappingType, currentRoleName);
-	
-			// check that the number of existing mappings is not zero.
-			if (mappings.size() != 0) {
-				continue;
-			}
-			switch (actionType) {
+		if (otherMappingEnd.isRootMappingEnd()) {
+			CreateModel.createOtherRootModels(perspective, mappingType, scene, currentRoleName, currentElement, name);
+		} else {
+			createOtherElementsForA6(perspective, mappingType, scene, currentRoleName, currentElement, owner,
+											 	name);
+		}
 			
-			// C1/C9
-			case CAN_CREATE:
-			case CAN_CREATE_OR_USE_NON_MAPPED:
-				canCreateOrUseNonMappedElementForA6(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
-						otherLE, owner, name);
-				break;
+		}
+	}
 	
-			// C2/C10
-			case CREATE:
-			case CREATE_OR_USE_NON_MAPPED:
-				createOrUseNonMappedElementForA6(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
-						otherLE, owner, name);
-				break;
-	
-			// C3/C11
-			case CAN_CREATE_MANY:
-			case CAN_CREATE_OR_USE_NON_MAPPED_MANY:
-				canCreateOrUseNonMappedManyElementsForA6(perspective, mappingType, scene, currentElement, currentRoleName,
-						otherRoleName, otherLE, owner, name);
-				break;
-	
-			// C4/C12
-			case CREATE_AT_LEAST_ONE:
-			case CREATE_OR_USE_NON_MAPPED_AT_LEAST_ONE:
-				createOrUseNonMappedAtLeastOneElementForA6(perspective, mappingType, scene, currentElement, currentRoleName,
-						otherRoleName, otherLE, owner, name);
-				break;
+	private static void createOtherElementsForA6(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene, String currentRoleName,
+				EObject currentElement, EObject owner, String name) {
 			
-			// C5
-			case CAN_CREATE_OR_USE:
-				canCreateOrUseElementForA6(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
-						owner, name);
-				break;
+		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRoleName);
 	
-			// C6
-			case CREATE_OR_USE:
-				createOrUseElementForA6(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
-						owner, name);
-				break;
+		// the metaclass of the element to be created.
+		EObject otherLE = COREPerspectiveUtil.INSTANCE
+				.getOtherLanguageElements(mappingType, currentElement.eClass(), currentRoleName).get(0);
 	
-			// C7
-			case CAN_CREATE_OR_USE_MANY:
-				canCreateOrUseManyElementsForA6(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
-						owner, name);
-				break;
+		ActionType actionType = TemplateType.INSTANCE.getCreateType(mappingType, currentRoleName);
+
+		switch (actionType) {
+			
+		// C1/C9
+		case CAN_CREATE:
+		case CAN_CREATE_OR_USE_NON_MAPPED:
+			canCreateOrUseNonMappedElementForA6(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
+					otherLE, owner, name);
+			break;
 	
-			// C8
-			case CREATE_OR_USE_AT_LEAST_ONE:
-				createOrUseAtLeastOneElementForA6(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
-						owner, name);
-				break;
+		// C2/C10
+		case CREATE:
+		case CREATE_OR_USE_NON_MAPPED:
+			createOrUseNonMappedElementForA6(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
+					otherLE, owner, name);
+			break;
+	
+		// C3/C11
+		case CAN_CREATE_MANY:
+		case CAN_CREATE_OR_USE_NON_MAPPED_MANY:
+			canCreateOrUseNonMappedManyElementsForA6(perspective, mappingType, scene, currentElement, currentRoleName,
+					otherRoleName, otherLE, owner, name);
+			break;
+	
+		// C4/C12
+		case CREATE_AT_LEAST_ONE:
+		case CREATE_OR_USE_NON_MAPPED_AT_LEAST_ONE:
+			createOrUseNonMappedAtLeastOneElementForA6(perspective, mappingType, scene, currentElement, currentRoleName,
+					otherRoleName, otherLE, owner, name);
+			break;
+			
+		// C5
+		case CAN_CREATE_OR_USE:
+			canCreateOrUseElementForA6(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
+					owner, name);
+			break;
+	
+		// C6
+		case CREATE_OR_USE:
+			createOrUseElementForA6(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
+					owner, name);
+			break;
+	
+		// C7
+		case CAN_CREATE_OR_USE_MANY:
+			canCreateOrUseManyElementsForA6(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
+					owner, name);
+			break;
+	
+		// C8
+		case CREATE_OR_USE_AT_LEAST_ONE:
+			createOrUseAtLeastOneElementForA6(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
+					owner, name);
+			break;
 				
-			default:
-				// does nothing
+		default:
+			// does nothing
 	
-			}
 		}
 	}
 	
@@ -2841,77 +2933,92 @@ public class RedefinedAModelLanguageAction {
 		for (CORELanguageElementMapping mappingType : mappingTypes) {
 			List<COREModelElementMapping> mappings = COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene,
 					currentElement);
+		
+		if (COREPerspectiveUtil.INSTANCE.mappingsContainsElement(mappings, currentElement)) {
+			continue;
+		}
+		
+		MappingEnd currentMappingEnd = COREPerspectiveUtil.INSTANCE.getMappingEnd(mappingType, currentElement.eClass(), currentRoleName);
+		MappingEnd otherMappingEnd = COREPerspectiveUtil.INSTANCE.getOtherMappingEnds(currentMappingEnd).get(0);
 	
-			String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRoleName);
-	
-			// the metaclass of the element to be created.
-			EObject otherLE = COREPerspectiveUtil.INSTANCE
-					.getOtherLanguageElements(mappingType, currentElement.eClass(), currentRoleName).get(0);
-	
-			ActionType actionType = TemplateType.INSTANCE.getCreateType(mappingType, currentRoleName);
-	
-			// check that the number of existing mappings is not zero.
-			if (mappings.size() != 0) {
-				continue;
-			}
-			switch (actionType) {
+		if (otherMappingEnd.isRootMappingEnd()) {
+			CreateModel.createOtherRootModels(perspective, mappingType, scene, currentRoleName, currentElement, name);
+		} else {
+			createOtherElementsForA7(perspective, mappingType, scene, currentRoleName, currentElement, owner,
+											 	name);
+		}
 			
-			// C1/C9
-			case CAN_CREATE:
-			case CAN_CREATE_OR_USE_NON_MAPPED:
-				canCreateOrUseNonMappedElementForA7(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
-						otherLE, owner, name);
-				break;
+		}
+	}
 	
-			// C2/C10
-			case CREATE:
-			case CREATE_OR_USE_NON_MAPPED:
-				createOrUseNonMappedElementForA7(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
-						otherLE, owner, name);
-				break;
-	
-			// C3/C11
-			case CAN_CREATE_MANY:
-			case CAN_CREATE_OR_USE_NON_MAPPED_MANY:
-				canCreateOrUseNonMappedManyElementsForA7(perspective, mappingType, scene, currentElement, currentRoleName,
-						otherRoleName, otherLE, owner, name);
-				break;
-	
-			// C4/C12
-			case CREATE_AT_LEAST_ONE:
-			case CREATE_OR_USE_NON_MAPPED_AT_LEAST_ONE:
-				createOrUseNonMappedAtLeastOneElementForA7(perspective, mappingType, scene, currentElement, currentRoleName,
-						otherRoleName, otherLE, owner, name);
-				break;
+	private static void createOtherElementsForA7(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene, String currentRoleName,
+				EObject currentElement, EObject owner, String name) {
 			
-			// C5
-			case CAN_CREATE_OR_USE:
-				canCreateOrUseElementForA7(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
-						owner, name);
-				break;
+		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRoleName);
 	
-			// C6
-			case CREATE_OR_USE:
-				createOrUseElementForA7(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
-						owner, name);
-				break;
+		// the metaclass of the element to be created.
+		EObject otherLE = COREPerspectiveUtil.INSTANCE
+				.getOtherLanguageElements(mappingType, currentElement.eClass(), currentRoleName).get(0);
 	
-			// C7
-			case CAN_CREATE_OR_USE_MANY:
-				canCreateOrUseManyElementsForA7(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
-						owner, name);
-				break;
+		ActionType actionType = TemplateType.INSTANCE.getCreateType(mappingType, currentRoleName);
+
+		switch (actionType) {
+			
+		// C1/C9
+		case CAN_CREATE:
+		case CAN_CREATE_OR_USE_NON_MAPPED:
+			canCreateOrUseNonMappedElementForA7(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
+					otherLE, owner, name);
+			break;
 	
-			// C8
-			case CREATE_OR_USE_AT_LEAST_ONE:
-				createOrUseAtLeastOneElementForA7(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
-						owner, name);
-				break;
+		// C2/C10
+		case CREATE:
+		case CREATE_OR_USE_NON_MAPPED:
+			createOrUseNonMappedElementForA7(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
+					otherLE, owner, name);
+			break;
+	
+		// C3/C11
+		case CAN_CREATE_MANY:
+		case CAN_CREATE_OR_USE_NON_MAPPED_MANY:
+			canCreateOrUseNonMappedManyElementsForA7(perspective, mappingType, scene, currentElement, currentRoleName,
+					otherRoleName, otherLE, owner, name);
+			break;
+	
+		// C4/C12
+		case CREATE_AT_LEAST_ONE:
+		case CREATE_OR_USE_NON_MAPPED_AT_LEAST_ONE:
+			createOrUseNonMappedAtLeastOneElementForA7(perspective, mappingType, scene, currentElement, currentRoleName,
+					otherRoleName, otherLE, owner, name);
+			break;
+			
+		// C5
+		case CAN_CREATE_OR_USE:
+			canCreateOrUseElementForA7(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
+					owner, name);
+			break;
+	
+		// C6
+		case CREATE_OR_USE:
+			createOrUseElementForA7(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
+					owner, name);
+			break;
+	
+		// C7
+		case CAN_CREATE_OR_USE_MANY:
+			canCreateOrUseManyElementsForA7(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
+					owner, name);
+			break;
+	
+		// C8
+		case CREATE_OR_USE_AT_LEAST_ONE:
+			createOrUseAtLeastOneElementForA7(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
+					owner, name);
+			break;
 				
-			default:
-				// does nothing
+		default:
+			// does nothing
 	
-			}
 		}
 	}
 	
@@ -3299,77 +3406,92 @@ public class RedefinedAModelLanguageAction {
 		for (CORELanguageElementMapping mappingType : mappingTypes) {
 			List<COREModelElementMapping> mappings = COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene,
 					currentElement);
+		
+		if (COREPerspectiveUtil.INSTANCE.mappingsContainsElement(mappings, currentElement)) {
+			continue;
+		}
+		
+		MappingEnd currentMappingEnd = COREPerspectiveUtil.INSTANCE.getMappingEnd(mappingType, currentElement.eClass(), currentRoleName);
+		MappingEnd otherMappingEnd = COREPerspectiveUtil.INSTANCE.getOtherMappingEnds(currentMappingEnd).get(0);
 	
-			String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRoleName);
-	
-			// the metaclass of the element to be created.
-			EObject otherLE = COREPerspectiveUtil.INSTANCE
-					.getOtherLanguageElements(mappingType, currentElement.eClass(), currentRoleName).get(0);
-	
-			ActionType actionType = TemplateType.INSTANCE.getCreateType(mappingType, currentRoleName);
-	
-			// check that the number of existing mappings is not zero.
-			if (mappings.size() != 0) {
-				continue;
-			}
-			switch (actionType) {
+		if (otherMappingEnd.isRootMappingEnd()) {
+			CreateModel.createOtherRootModels(perspective, mappingType, scene, currentRoleName, currentElement, name);
+		} else {
+			createOtherElementsForA8(perspective, mappingType, scene, currentRoleName, currentElement, owner,
+											 	name);
+		}
 			
-			// C1/C9
-			case CAN_CREATE:
-			case CAN_CREATE_OR_USE_NON_MAPPED:
-				canCreateOrUseNonMappedElementForA8(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
-						otherLE, owner, name);
-				break;
+		}
+	}
 	
-			// C2/C10
-			case CREATE:
-			case CREATE_OR_USE_NON_MAPPED:
-				createOrUseNonMappedElementForA8(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
-						otherLE, owner, name);
-				break;
-	
-			// C3/C11
-			case CAN_CREATE_MANY:
-			case CAN_CREATE_OR_USE_NON_MAPPED_MANY:
-				canCreateOrUseNonMappedManyElementsForA8(perspective, mappingType, scene, currentElement, currentRoleName,
-						otherRoleName, otherLE, owner, name);
-				break;
-	
-			// C4/C12
-			case CREATE_AT_LEAST_ONE:
-			case CREATE_OR_USE_NON_MAPPED_AT_LEAST_ONE:
-				createOrUseNonMappedAtLeastOneElementForA8(perspective, mappingType, scene, currentElement, currentRoleName,
-						otherRoleName, otherLE, owner, name);
-				break;
+	private static void createOtherElementsForA8(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene, String currentRoleName,
+				EObject currentElement, EObject owner, String name) {
 			
-			// C5
-			case CAN_CREATE_OR_USE:
-				canCreateOrUseElementForA8(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
-						owner, name);
-				break;
+		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRoleName);
 	
-			// C6
-			case CREATE_OR_USE:
-				createOrUseElementForA8(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
-						owner, name);
-				break;
+		// the metaclass of the element to be created.
+		EObject otherLE = COREPerspectiveUtil.INSTANCE
+				.getOtherLanguageElements(mappingType, currentElement.eClass(), currentRoleName).get(0);
 	
-			// C7
-			case CAN_CREATE_OR_USE_MANY:
-				canCreateOrUseManyElementsForA8(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
-						owner, name);
-				break;
+		ActionType actionType = TemplateType.INSTANCE.getCreateType(mappingType, currentRoleName);
+
+		switch (actionType) {
+			
+		// C1/C9
+		case CAN_CREATE:
+		case CAN_CREATE_OR_USE_NON_MAPPED:
+			canCreateOrUseNonMappedElementForA8(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
+					otherLE, owner, name);
+			break;
 	
-			// C8
-			case CREATE_OR_USE_AT_LEAST_ONE:
-				createOrUseAtLeastOneElementForA8(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
-						owner, name);
-				break;
+		// C2/C10
+		case CREATE:
+		case CREATE_OR_USE_NON_MAPPED:
+			createOrUseNonMappedElementForA8(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
+					otherLE, owner, name);
+			break;
+	
+		// C3/C11
+		case CAN_CREATE_MANY:
+		case CAN_CREATE_OR_USE_NON_MAPPED_MANY:
+			canCreateOrUseNonMappedManyElementsForA8(perspective, mappingType, scene, currentElement, currentRoleName,
+					otherRoleName, otherLE, owner, name);
+			break;
+	
+		// C4/C12
+		case CREATE_AT_LEAST_ONE:
+		case CREATE_OR_USE_NON_MAPPED_AT_LEAST_ONE:
+			createOrUseNonMappedAtLeastOneElementForA8(perspective, mappingType, scene, currentElement, currentRoleName,
+					otherRoleName, otherLE, owner, name);
+			break;
+			
+		// C5
+		case CAN_CREATE_OR_USE:
+			canCreateOrUseElementForA8(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
+					owner, name);
+			break;
+	
+		// C6
+		case CREATE_OR_USE:
+			createOrUseElementForA8(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
+					owner, name);
+			break;
+	
+		// C7
+		case CAN_CREATE_OR_USE_MANY:
+			canCreateOrUseManyElementsForA8(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
+					owner, name);
+			break;
+	
+		// C8
+		case CREATE_OR_USE_AT_LEAST_ONE:
+			createOrUseAtLeastOneElementForA8(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
+					owner, name);
+			break;
 				
-			default:
-				// does nothing
+		default:
+			// does nothing
 	
-			}
 		}
 	}
 	
@@ -3757,77 +3879,92 @@ public class RedefinedAModelLanguageAction {
 		for (CORELanguageElementMapping mappingType : mappingTypes) {
 			List<COREModelElementMapping> mappings = COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene,
 					currentElement);
+		
+		if (COREPerspectiveUtil.INSTANCE.mappingsContainsElement(mappings, currentElement)) {
+			continue;
+		}
+		
+		MappingEnd currentMappingEnd = COREPerspectiveUtil.INSTANCE.getMappingEnd(mappingType, currentElement.eClass(), currentRoleName);
+		MappingEnd otherMappingEnd = COREPerspectiveUtil.INSTANCE.getOtherMappingEnds(currentMappingEnd).get(0);
 	
-			String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRoleName);
-	
-			// the metaclass of the element to be created.
-			EObject otherLE = COREPerspectiveUtil.INSTANCE
-					.getOtherLanguageElements(mappingType, currentElement.eClass(), currentRoleName).get(0);
-	
-			ActionType actionType = TemplateType.INSTANCE.getCreateType(mappingType, currentRoleName);
-	
-			// check that the number of existing mappings is not zero.
-			if (mappings.size() != 0) {
-				continue;
-			}
-			switch (actionType) {
+		if (otherMappingEnd.isRootMappingEnd()) {
+			CreateModel.createOtherRootModels(perspective, mappingType, scene, currentRoleName, currentElement, name);
+		} else {
+			createOtherElementsForA9(perspective, mappingType, scene, currentRoleName, currentElement, owner,
+											 	name);
+		}
 			
-			// C1/C9
-			case CAN_CREATE:
-			case CAN_CREATE_OR_USE_NON_MAPPED:
-				canCreateOrUseNonMappedElementForA9(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
-						otherLE, owner, name);
-				break;
+		}
+	}
 	
-			// C2/C10
-			case CREATE:
-			case CREATE_OR_USE_NON_MAPPED:
-				createOrUseNonMappedElementForA9(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
-						otherLE, owner, name);
-				break;
-	
-			// C3/C11
-			case CAN_CREATE_MANY:
-			case CAN_CREATE_OR_USE_NON_MAPPED_MANY:
-				canCreateOrUseNonMappedManyElementsForA9(perspective, mappingType, scene, currentElement, currentRoleName,
-						otherRoleName, otherLE, owner, name);
-				break;
-	
-			// C4/C12
-			case CREATE_AT_LEAST_ONE:
-			case CREATE_OR_USE_NON_MAPPED_AT_LEAST_ONE:
-				createOrUseNonMappedAtLeastOneElementForA9(perspective, mappingType, scene, currentElement, currentRoleName,
-						otherRoleName, otherLE, owner, name);
-				break;
+	private static void createOtherElementsForA9(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene, String currentRoleName,
+				EObject currentElement, EObject owner, String name) {
 			
-			// C5
-			case CAN_CREATE_OR_USE:
-				canCreateOrUseElementForA9(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
-						owner, name);
-				break;
+		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRoleName);
 	
-			// C6
-			case CREATE_OR_USE:
-				createOrUseElementForA9(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
-						owner, name);
-				break;
+		// the metaclass of the element to be created.
+		EObject otherLE = COREPerspectiveUtil.INSTANCE
+				.getOtherLanguageElements(mappingType, currentElement.eClass(), currentRoleName).get(0);
 	
-			// C7
-			case CAN_CREATE_OR_USE_MANY:
-				canCreateOrUseManyElementsForA9(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
-						owner, name);
-				break;
+		ActionType actionType = TemplateType.INSTANCE.getCreateType(mappingType, currentRoleName);
+
+		switch (actionType) {
+			
+		// C1/C9
+		case CAN_CREATE:
+		case CAN_CREATE_OR_USE_NON_MAPPED:
+			canCreateOrUseNonMappedElementForA9(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
+					otherLE, owner, name);
+			break;
 	
-			// C8
-			case CREATE_OR_USE_AT_LEAST_ONE:
-				createOrUseAtLeastOneElementForA9(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
-						owner, name);
-				break;
+		// C2/C10
+		case CREATE:
+		case CREATE_OR_USE_NON_MAPPED:
+			createOrUseNonMappedElementForA9(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
+					otherLE, owner, name);
+			break;
+	
+		// C3/C11
+		case CAN_CREATE_MANY:
+		case CAN_CREATE_OR_USE_NON_MAPPED_MANY:
+			canCreateOrUseNonMappedManyElementsForA9(perspective, mappingType, scene, currentElement, currentRoleName,
+					otherRoleName, otherLE, owner, name);
+			break;
+	
+		// C4/C12
+		case CREATE_AT_LEAST_ONE:
+		case CREATE_OR_USE_NON_MAPPED_AT_LEAST_ONE:
+			createOrUseNonMappedAtLeastOneElementForA9(perspective, mappingType, scene, currentElement, currentRoleName,
+					otherRoleName, otherLE, owner, name);
+			break;
+			
+		// C5
+		case CAN_CREATE_OR_USE:
+			canCreateOrUseElementForA9(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
+					owner, name);
+			break;
+	
+		// C6
+		case CREATE_OR_USE:
+			createOrUseElementForA9(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
+					owner, name);
+			break;
+	
+		// C7
+		case CAN_CREATE_OR_USE_MANY:
+			canCreateOrUseManyElementsForA9(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
+					owner, name);
+			break;
+	
+		// C8
+		case CREATE_OR_USE_AT_LEAST_ONE:
+			createOrUseAtLeastOneElementForA9(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
+					owner, name);
+			break;
 				
-			default:
-				// does nothing
+		default:
+			// does nothing
 	
-			}
 		}
 	}
 	
@@ -4215,77 +4352,92 @@ public class RedefinedAModelLanguageAction {
 		for (CORELanguageElementMapping mappingType : mappingTypes) {
 			List<COREModelElementMapping> mappings = COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene,
 					currentElement);
+		
+		if (COREPerspectiveUtil.INSTANCE.mappingsContainsElement(mappings, currentElement)) {
+			continue;
+		}
+		
+		MappingEnd currentMappingEnd = COREPerspectiveUtil.INSTANCE.getMappingEnd(mappingType, currentElement.eClass(), currentRoleName);
+		MappingEnd otherMappingEnd = COREPerspectiveUtil.INSTANCE.getOtherMappingEnds(currentMappingEnd).get(0);
 	
-			String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRoleName);
-	
-			// the metaclass of the element to be created.
-			EObject otherLE = COREPerspectiveUtil.INSTANCE
-					.getOtherLanguageElements(mappingType, currentElement.eClass(), currentRoleName).get(0);
-	
-			ActionType actionType = TemplateType.INSTANCE.getCreateType(mappingType, currentRoleName);
-	
-			// check that the number of existing mappings is not zero.
-			if (mappings.size() != 0) {
-				continue;
-			}
-			switch (actionType) {
+		if (otherMappingEnd.isRootMappingEnd()) {
+			CreateModel.createOtherRootModels(perspective, mappingType, scene, currentRoleName, currentElement, name);
+		} else {
+			createOtherElementsForA10(perspective, mappingType, scene, currentRoleName, currentElement, owner,
+											 	name);
+		}
 			
-			// C1/C9
-			case CAN_CREATE:
-			case CAN_CREATE_OR_USE_NON_MAPPED:
-				canCreateOrUseNonMappedElementForA10(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
-						otherLE, owner, name);
-				break;
+		}
+	}
 	
-			// C2/C10
-			case CREATE:
-			case CREATE_OR_USE_NON_MAPPED:
-				createOrUseNonMappedElementForA10(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
-						otherLE, owner, name);
-				break;
-	
-			// C3/C11
-			case CAN_CREATE_MANY:
-			case CAN_CREATE_OR_USE_NON_MAPPED_MANY:
-				canCreateOrUseNonMappedManyElementsForA10(perspective, mappingType, scene, currentElement, currentRoleName,
-						otherRoleName, otherLE, owner, name);
-				break;
-	
-			// C4/C12
-			case CREATE_AT_LEAST_ONE:
-			case CREATE_OR_USE_NON_MAPPED_AT_LEAST_ONE:
-				createOrUseNonMappedAtLeastOneElementForA10(perspective, mappingType, scene, currentElement, currentRoleName,
-						otherRoleName, otherLE, owner, name);
-				break;
+	private static void createOtherElementsForA10(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene, String currentRoleName,
+				EObject currentElement, EObject owner, String name) {
 			
-			// C5
-			case CAN_CREATE_OR_USE:
-				canCreateOrUseElementForA10(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
-						owner, name);
-				break;
+		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRoleName);
 	
-			// C6
-			case CREATE_OR_USE:
-				createOrUseElementForA10(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
-						owner, name);
-				break;
+		// the metaclass of the element to be created.
+		EObject otherLE = COREPerspectiveUtil.INSTANCE
+				.getOtherLanguageElements(mappingType, currentElement.eClass(), currentRoleName).get(0);
 	
-			// C7
-			case CAN_CREATE_OR_USE_MANY:
-				canCreateOrUseManyElementsForA10(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
-						owner, name);
-				break;
+		ActionType actionType = TemplateType.INSTANCE.getCreateType(mappingType, currentRoleName);
+
+		switch (actionType) {
+			
+		// C1/C9
+		case CAN_CREATE:
+		case CAN_CREATE_OR_USE_NON_MAPPED:
+			canCreateOrUseNonMappedElementForA10(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
+					otherLE, owner, name);
+			break;
 	
-			// C8
-			case CREATE_OR_USE_AT_LEAST_ONE:
-				createOrUseAtLeastOneElementForA10(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
-						owner, name);
-				break;
+		// C2/C10
+		case CREATE:
+		case CREATE_OR_USE_NON_MAPPED:
+			createOrUseNonMappedElementForA10(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
+					otherLE, owner, name);
+			break;
+	
+		// C3/C11
+		case CAN_CREATE_MANY:
+		case CAN_CREATE_OR_USE_NON_MAPPED_MANY:
+			canCreateOrUseNonMappedManyElementsForA10(perspective, mappingType, scene, currentElement, currentRoleName,
+					otherRoleName, otherLE, owner, name);
+			break;
+	
+		// C4/C12
+		case CREATE_AT_LEAST_ONE:
+		case CREATE_OR_USE_NON_MAPPED_AT_LEAST_ONE:
+			createOrUseNonMappedAtLeastOneElementForA10(perspective, mappingType, scene, currentElement, currentRoleName,
+					otherRoleName, otherLE, owner, name);
+			break;
+			
+		// C5
+		case CAN_CREATE_OR_USE:
+			canCreateOrUseElementForA10(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
+					owner, name);
+			break;
+	
+		// C6
+		case CREATE_OR_USE:
+			createOrUseElementForA10(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
+					owner, name);
+			break;
+	
+		// C7
+		case CAN_CREATE_OR_USE_MANY:
+			canCreateOrUseManyElementsForA10(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
+					owner, name);
+			break;
+	
+		// C8
+		case CREATE_OR_USE_AT_LEAST_ONE:
+			createOrUseAtLeastOneElementForA10(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
+					owner, name);
+			break;
 				
-			default:
-				// does nothing
+		default:
+			// does nothing
 	
-			}
 		}
 	}
 	
@@ -4673,77 +4825,92 @@ public class RedefinedAModelLanguageAction {
 		for (CORELanguageElementMapping mappingType : mappingTypes) {
 			List<COREModelElementMapping> mappings = COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene,
 					currentElement);
+		
+		if (COREPerspectiveUtil.INSTANCE.mappingsContainsElement(mappings, currentElement)) {
+			continue;
+		}
+		
+		MappingEnd currentMappingEnd = COREPerspectiveUtil.INSTANCE.getMappingEnd(mappingType, currentElement.eClass(), currentRoleName);
+		MappingEnd otherMappingEnd = COREPerspectiveUtil.INSTANCE.getOtherMappingEnds(currentMappingEnd).get(0);
 	
-			String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRoleName);
-	
-			// the metaclass of the element to be created.
-			EObject otherLE = COREPerspectiveUtil.INSTANCE
-					.getOtherLanguageElements(mappingType, currentElement.eClass(), currentRoleName).get(0);
-	
-			ActionType actionType = TemplateType.INSTANCE.getCreateType(mappingType, currentRoleName);
-	
-			// check that the number of existing mappings is not zero.
-			if (mappings.size() != 0) {
-				continue;
-			}
-			switch (actionType) {
+		if (otherMappingEnd.isRootMappingEnd()) {
+			CreateModel.createOtherRootModels(perspective, mappingType, scene, currentRoleName, currentElement, name);
+		} else {
+			createOtherElementsForA11(perspective, mappingType, scene, currentRoleName, currentElement, owner,
+											 	name);
+		}
 			
-			// C1/C9
-			case CAN_CREATE:
-			case CAN_CREATE_OR_USE_NON_MAPPED:
-				canCreateOrUseNonMappedElementForA11(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
-						otherLE, owner, name);
-				break;
+		}
+	}
 	
-			// C2/C10
-			case CREATE:
-			case CREATE_OR_USE_NON_MAPPED:
-				createOrUseNonMappedElementForA11(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
-						otherLE, owner, name);
-				break;
-	
-			// C3/C11
-			case CAN_CREATE_MANY:
-			case CAN_CREATE_OR_USE_NON_MAPPED_MANY:
-				canCreateOrUseNonMappedManyElementsForA11(perspective, mappingType, scene, currentElement, currentRoleName,
-						otherRoleName, otherLE, owner, name);
-				break;
-	
-			// C4/C12
-			case CREATE_AT_LEAST_ONE:
-			case CREATE_OR_USE_NON_MAPPED_AT_LEAST_ONE:
-				createOrUseNonMappedAtLeastOneElementForA11(perspective, mappingType, scene, currentElement, currentRoleName,
-						otherRoleName, otherLE, owner, name);
-				break;
+	private static void createOtherElementsForA11(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene, String currentRoleName,
+				EObject currentElement, EObject owner, String name) {
 			
-			// C5
-			case CAN_CREATE_OR_USE:
-				canCreateOrUseElementForA11(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
-						owner, name);
-				break;
+		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRoleName);
 	
-			// C6
-			case CREATE_OR_USE:
-				createOrUseElementForA11(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
-						owner, name);
-				break;
+		// the metaclass of the element to be created.
+		EObject otherLE = COREPerspectiveUtil.INSTANCE
+				.getOtherLanguageElements(mappingType, currentElement.eClass(), currentRoleName).get(0);
 	
-			// C7
-			case CAN_CREATE_OR_USE_MANY:
-				canCreateOrUseManyElementsForA11(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
-						owner, name);
-				break;
+		ActionType actionType = TemplateType.INSTANCE.getCreateType(mappingType, currentRoleName);
+
+		switch (actionType) {
+			
+		// C1/C9
+		case CAN_CREATE:
+		case CAN_CREATE_OR_USE_NON_MAPPED:
+			canCreateOrUseNonMappedElementForA11(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
+					otherLE, owner, name);
+			break;
 	
-			// C8
-			case CREATE_OR_USE_AT_LEAST_ONE:
-				createOrUseAtLeastOneElementForA11(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
-						owner, name);
-				break;
+		// C2/C10
+		case CREATE:
+		case CREATE_OR_USE_NON_MAPPED:
+			createOrUseNonMappedElementForA11(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
+					otherLE, owner, name);
+			break;
+	
+		// C3/C11
+		case CAN_CREATE_MANY:
+		case CAN_CREATE_OR_USE_NON_MAPPED_MANY:
+			canCreateOrUseNonMappedManyElementsForA11(perspective, mappingType, scene, currentElement, currentRoleName,
+					otherRoleName, otherLE, owner, name);
+			break;
+	
+		// C4/C12
+		case CREATE_AT_LEAST_ONE:
+		case CREATE_OR_USE_NON_MAPPED_AT_LEAST_ONE:
+			createOrUseNonMappedAtLeastOneElementForA11(perspective, mappingType, scene, currentElement, currentRoleName,
+					otherRoleName, otherLE, owner, name);
+			break;
+			
+		// C5
+		case CAN_CREATE_OR_USE:
+			canCreateOrUseElementForA11(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
+					owner, name);
+			break;
+	
+		// C6
+		case CREATE_OR_USE:
+			createOrUseElementForA11(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
+					owner, name);
+			break;
+	
+		// C7
+		case CAN_CREATE_OR_USE_MANY:
+			canCreateOrUseManyElementsForA11(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
+					owner, name);
+			break;
+	
+		// C8
+		case CREATE_OR_USE_AT_LEAST_ONE:
+			createOrUseAtLeastOneElementForA11(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
+					owner, name);
+			break;
 				
-			default:
-				// does nothing
+		default:
+			// does nothing
 	
-			}
 		}
 	}
 	
@@ -5131,77 +5298,92 @@ public class RedefinedAModelLanguageAction {
 		for (CORELanguageElementMapping mappingType : mappingTypes) {
 			List<COREModelElementMapping> mappings = COREPerspectiveUtil.INSTANCE.getMappings(mappingType, scene,
 					currentElement);
+		
+		if (COREPerspectiveUtil.INSTANCE.mappingsContainsElement(mappings, currentElement)) {
+			continue;
+		}
+		
+		MappingEnd currentMappingEnd = COREPerspectiveUtil.INSTANCE.getMappingEnd(mappingType, currentElement.eClass(), currentRoleName);
+		MappingEnd otherMappingEnd = COREPerspectiveUtil.INSTANCE.getOtherMappingEnds(currentMappingEnd).get(0);
 	
-			String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRoleName);
-	
-			// the metaclass of the element to be created.
-			EObject otherLE = COREPerspectiveUtil.INSTANCE
-					.getOtherLanguageElements(mappingType, currentElement.eClass(), currentRoleName).get(0);
-	
-			ActionType actionType = TemplateType.INSTANCE.getCreateType(mappingType, currentRoleName);
-	
-			// check that the number of existing mappings is not zero.
-			if (mappings.size() != 0) {
-				continue;
-			}
-			switch (actionType) {
+		if (otherMappingEnd.isRootMappingEnd()) {
+			CreateModel.createOtherRootModels(perspective, mappingType, scene, currentRoleName, currentElement, name);
+		} else {
+			createOtherElementsForA12(perspective, mappingType, scene, currentRoleName, currentElement, owner,
+											 	name);
+		}
 			
-			// C1/C9
-			case CAN_CREATE:
-			case CAN_CREATE_OR_USE_NON_MAPPED:
-				canCreateOrUseNonMappedElementForA12(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
-						otherLE, owner, name);
-				break;
+		}
+	}
 	
-			// C2/C10
-			case CREATE:
-			case CREATE_OR_USE_NON_MAPPED:
-				createOrUseNonMappedElementForA12(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
-						otherLE, owner, name);
-				break;
-	
-			// C3/C11
-			case CAN_CREATE_MANY:
-			case CAN_CREATE_OR_USE_NON_MAPPED_MANY:
-				canCreateOrUseNonMappedManyElementsForA12(perspective, mappingType, scene, currentElement, currentRoleName,
-						otherRoleName, otherLE, owner, name);
-				break;
-	
-			// C4/C12
-			case CREATE_AT_LEAST_ONE:
-			case CREATE_OR_USE_NON_MAPPED_AT_LEAST_ONE:
-				createOrUseNonMappedAtLeastOneElementForA12(perspective, mappingType, scene, currentElement, currentRoleName,
-						otherRoleName, otherLE, owner, name);
-				break;
+	private static void createOtherElementsForA12(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene, String currentRoleName,
+				EObject currentElement, EObject owner, String name) {
 			
-			// C5
-			case CAN_CREATE_OR_USE:
-				canCreateOrUseElementForA12(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
-						owner, name);
-				break;
+		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRoleName);
 	
-			// C6
-			case CREATE_OR_USE:
-				createOrUseElementForA12(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
-						owner, name);
-				break;
+		// the metaclass of the element to be created.
+		EObject otherLE = COREPerspectiveUtil.INSTANCE
+				.getOtherLanguageElements(mappingType, currentElement.eClass(), currentRoleName).get(0);
 	
-			// C7
-			case CAN_CREATE_OR_USE_MANY:
-				canCreateOrUseManyElementsForA12(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
-						owner, name);
-				break;
+		ActionType actionType = TemplateType.INSTANCE.getCreateType(mappingType, currentRoleName);
+
+		switch (actionType) {
+			
+		// C1/C9
+		case CAN_CREATE:
+		case CAN_CREATE_OR_USE_NON_MAPPED:
+			canCreateOrUseNonMappedElementForA12(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
+					otherLE, owner, name);
+			break;
 	
-			// C8
-			case CREATE_OR_USE_AT_LEAST_ONE:
-				createOrUseAtLeastOneElementForA12(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
-						owner, name);
-				break;
+		// C2/C10
+		case CREATE:
+		case CREATE_OR_USE_NON_MAPPED:
+			createOrUseNonMappedElementForA12(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName,
+					otherLE, owner, name);
+			break;
+	
+		// C3/C11
+		case CAN_CREATE_MANY:
+		case CAN_CREATE_OR_USE_NON_MAPPED_MANY:
+			canCreateOrUseNonMappedManyElementsForA12(perspective, mappingType, scene, currentElement, currentRoleName,
+					otherRoleName, otherLE, owner, name);
+			break;
+	
+		// C4/C12
+		case CREATE_AT_LEAST_ONE:
+		case CREATE_OR_USE_NON_MAPPED_AT_LEAST_ONE:
+			createOrUseNonMappedAtLeastOneElementForA12(perspective, mappingType, scene, currentElement, currentRoleName,
+					otherRoleName, otherLE, owner, name);
+			break;
+			
+		// C5
+		case CAN_CREATE_OR_USE:
+			canCreateOrUseElementForA12(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
+					owner, name);
+			break;
+	
+		// C6
+		case CREATE_OR_USE:
+			createOrUseElementForA12(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
+					owner, name);
+			break;
+	
+		// C7
+		case CAN_CREATE_OR_USE_MANY:
+			canCreateOrUseManyElementsForA12(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE,
+					owner, name);
+			break;
+	
+		// C8
+		case CREATE_OR_USE_AT_LEAST_ONE:
+			createOrUseAtLeastOneElementForA12(perspective, mappingType, scene, currentElement, currentRoleName, otherRoleName, otherLE, 
+					owner, name);
+			break;
 				
-			default:
-				// does nothing
+		default:
+			// does nothing
 	
-			}
 		}
 	}
 	

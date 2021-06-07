@@ -3,7 +3,7 @@ perspective PerspectiveTest {
     default A_Model;
      
     display name "Template Test";
-            
+             
     languages {
     	existing language AModelLanguage {
             rootPackage "ca.mcgill.sel.amodel";
@@ -939,6 +939,8 @@ perspective PerspectiveTest {
     mappings {
     	// language element mappings for root model element
     	 mapping AModel_BModel {
+    	 	fromIsRootElement : false;
+    	 	toIsRootElement : false; 
             fromCardinality : 1;
             toCardinality : 1;
             fromElement : AModel from A_Model fromGetElement "AmodelPackage.eINSTANCE.getAModel()";
@@ -948,6 +950,8 @@ perspective PerspectiveTest {
          
          // CAN_CREATE - C1
         mapping A1_B1 {
+        	fromIsRootElement : false;
+    	 	toIsRootElement : false;
             fromCardinality : 1;
             toCardinality : 0..1;
             fromElement : AModel from A_Model fromGetElement "AmodelPackage.eINSTANCE.getA1()";
@@ -956,14 +960,16 @@ perspective PerspectiveTest {
             nested mappings {
             	nested mapping A1Name_B1Name {
             		matchMaker : true;
-            		fromElement : elementName "name" from A_Model;
-                    toELement : elementName "name" from B_Model;
+            		fromElement : "name" from A_Model;
+                    toElement : "name" from B_Model;
             	}	
             }
         } 
         
                  // CREATE - C2
         mapping A2_B2 {
+        	fromIsRootElement : false;
+    	 	toIsRootElement : false;
             fromCardinality : 1;
             toCardinality : 1;
             fromElement : AModel from A_Model fromGetElement "AmodelPackage.eINSTANCE.getA2()";
@@ -972,14 +978,16 @@ perspective PerspectiveTest {
             nested mappings {
             	nested mapping A2Name_B2Name {
             		matchMaker : true;
-            		fromElement : elementName "name" from A_Model;
-                    toELement : elementName "name" from B_Model;
+            		fromElement : "name" from A_Model;
+                    toElement : "name" from B_Model;
             	}	
             }
         } 
         
           // CAN_CREATE_MANY - C3
         mapping A3_B3 {
+        	fromIsRootElement : false;
+    	 	toIsRootElement : false;
             fromCardinality : 1;
             toCardinality : 0..*;
             fromElement : AModel from A_Model fromGetElement "AmodelPackage.eINSTANCE.getA3()";
@@ -988,14 +996,16 @@ perspective PerspectiveTest {
             nested mappings {
             	nested mapping A3Name_B3Name {
             		matchMaker : true;
-            		fromElement : elementName "name" from A_Model;
-                    toELement : elementName "name" from B_Model;
+            		fromElement : "name" from A_Model;
+                    toElement : "name" from B_Model;
             	}	
             }
         }
         
           // CREATE_AT_LEAST_ONE - C4
         mapping A4_B4 {
+        	fromIsRootElement : false;
+    	 	toIsRootElement : false;
             fromCardinality : 1;
             toCardinality : 1..*;
             fromElement : AModel from A_Model fromGetElement "AmodelPackage.eINSTANCE.getA4()";
@@ -1004,14 +1014,16 @@ perspective PerspectiveTest {
             nested mappings {
             	nested mapping A4Name_B4Name {
             		matchMaker : true;
-            		fromElement : elementName "name" from A_Model;
-                    toELement : elementName "name" from B_Model;
+            		fromElement : "name" from A_Model;
+                    toElement : "name" from B_Model;
             	}	
             }
         }
         
           // CAN_CREATE_OR_USE - C5
         mapping A5_B5 {
+        	fromIsRootElement : false;
+    	 	toIsRootElement : false;
             fromCardinality : 0..*;
             toCardinality : 0..1;
             fromElement : AModel from A_Model fromGetElement "AmodelPackage.eINSTANCE.getA5()";
@@ -1020,14 +1032,16 @@ perspective PerspectiveTest {
             nested mappings {
             	nested mapping A5Name_B5Name {
             		matchMaker : true;
-            		fromElement : elementName "name" from A_Model;
-                    toELement : elementName "name" from B_Model;
+            		fromElement : "name" from A_Model;
+                    toElement : "name" from B_Model;
             	}	
             }
         }
         
           // CREATE_OR_USE - C6 
         mapping A6_B6 {
+        	fromIsRootElement : false;
+    	 	toIsRootElement : false;
             fromCardinality : 0..*;
             toCardinality : 1;
             fromElement : AModel from A_Model fromGetElement "AmodelPackage.eINSTANCE.getA6()";
@@ -1036,14 +1050,16 @@ perspective PerspectiveTest {
             nested mappings {
             	nested mapping A6Name_B6Name {
             		matchMaker : true;
-            		fromElement : elementName "name" from A_Model;
-                    toELement : elementName "name" from B_Model;
+            		fromElement : "name" from A_Model;
+                    toElement : "name" from B_Model;
             	}	
             }
         }
         
           // CAN_CREATE_OR_USE_MANY - C7
         mapping A7_B7 {
+        	fromIsRootElement : false;
+    	 	toIsRootElement : false;
             fromCardinality : 0..*;
             toCardinality : 0..*;
             fromElement : AModel from A_Model fromGetElement "AmodelPackage.eINSTANCE.getA7()";
@@ -1052,14 +1068,16 @@ perspective PerspectiveTest {
             nested mappings {
             	nested mapping A7Name_B7Name {
             		matchMaker : true;
-            		fromElement : elementName "name" from A_Model;
-                    toELement : elementName "name" from B_Model;
+            		fromElement : "name" from A_Model;
+                    toElement : "name" from B_Model;
             	}	
             }
         }
         
           // CREATE_OR_USE_AT_LEAST_ONE - C8
         mapping A8_B8 {
+        	fromIsRootElement : false;
+    	 	toIsRootElement : false;
             fromCardinality : 0..*;
             toCardinality : 1..*;
             fromElement : AModel from A_Model fromGetElement "AmodelPackage.eINSTANCE.getA8()";
@@ -1068,14 +1086,16 @@ perspective PerspectiveTest {
             nested mappings {
             	nested mapping A8Name_B8Name {
             		matchMaker : true;
-            		fromElement : elementName "name" from A_Model;
-                    toELement : elementName "name" from B_Model;
+            		fromElement : "name" from A_Model;
+                    toElement : "name" from B_Model;
             	}	
             }
         }
         
          // CAN_CREATE_OR_USE_NON_MAPPED - C9
         mapping A9_B9 {
+        	fromIsRootElement : false;
+    	 	toIsRootElement : false;
             fromCardinality : 0..1;
             toCardinality : 0..1;
             fromElement : AModel from A_Model fromGetElement "AmodelPackage.eINSTANCE.getA9()";
@@ -1084,14 +1104,16 @@ perspective PerspectiveTest {
             nested mappings {
             	nested mapping A9Name_B9Name {
             		matchMaker : true;
-            		fromElement : elementName "name" from A_Model;
-                    toELement : elementName "name" from B_Model;
+            		fromElement : "name" from A_Model;
+                    toElement : "name" from B_Model;
             	}	
             }
         }
         
             // CREATE_OR_USE_NON_MAPPED - C10
         mapping A10_B10 {
+        	fromIsRootElement : false;
+    	 	toIsRootElement : false;
             fromCardinality : 0..1;
             toCardinality : 1;
             fromElement : AModel from A_Model fromGetElement "AmodelPackage.eINSTANCE.getA10()";
@@ -1100,14 +1122,16 @@ perspective PerspectiveTest {
             nested mappings {
             	nested mapping A10Name_B10Name {
             		matchMaker : true;
-            		fromElement : elementName "name" from A_Model;
-                    toELement : elementName "name" from B_Model;
+            		fromElement : "name" from A_Model;
+                    toElement : "name" from B_Model;
             	}	
             }
         }
         
          // CAN_CREATE_OR_USE_NON_MAPPED_MANY - C11
         mapping A11_B11 {
+        	fromIsRootElement : false;
+    	 	toIsRootElement : false;
             fromCardinality : 0..1;
             toCardinality : 0..*;
             fromElement : AModel from A_Model fromGetElement "AmodelPackage.eINSTANCE.getA11()";
@@ -1116,25 +1140,27 @@ perspective PerspectiveTest {
             nested mappings {
             	nested mapping A11Name_B11Name {
             		matchMaker : true;
-            		fromElement : elementName "name" from A_Model;
-                    toELement : elementName "name" from B_Model;
+            		fromElement : "name" from A_Model;
+                    toElement : "name" from B_Model;
             	}	
             }
         }
         
          // CREATE_OR_USE_NON_MAPPED_AT_LEAST_ONE - C12
         mapping A12_B12 {
+        	fromIsRootElement : false;
+    	 	toIsRootElement : false;
             fromCardinality : 0..1;
             toCardinality : 1..*;
             fromElement : AModel from A_Model fromGetElement "AmodelPackage.eINSTANCE.getA12()";
             toELement : BModel from B_Model toGetElement "BmodelPackage.eINSTANCE.getB12()";
-            
+             
             nested mappings {
             	nested mapping A12Name_B12Name {
             		matchMaker : true;
-            		fromElement : elementName "name" from A_Model;
-                    toELement : elementName "name" from B_Model;
-            	}	
+            		fromElement : "name" from A_Model;
+                    toElement : "name" from B_Model;
+            	}  	
             }
         }
         
