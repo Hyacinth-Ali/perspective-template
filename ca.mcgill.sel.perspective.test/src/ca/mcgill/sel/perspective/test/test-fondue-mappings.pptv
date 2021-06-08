@@ -507,14 +507,14 @@ perspective TestFondueMapping {
             toCardinality : 1..*;
             fromElement : BModel from B_Model fromGetElement "BmodelPackage.eINSTANCE.getB1()";
             toELement : CModel from C_Model toGetElement "CmodelPackage.eINSTANCE.getC1()";
-            
+              
             nested mappings {
             	nested mapping B1Name_C1Name {
             		matchMaker : true;
             		fromElement : "name" from A_Model;
                     toElement : "name" from B_Model;
             	}	
-            }
+            } 
         }
         
     	}
