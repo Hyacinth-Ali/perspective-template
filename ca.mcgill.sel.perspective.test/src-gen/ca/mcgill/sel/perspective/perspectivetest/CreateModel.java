@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.lang.Class;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -118,6 +119,7 @@ public class CreateModel {
 
 		EObject otherLE = COREPerspectiveUtil.INSTANCE
 				.getOtherLanguageElements(mappingType, currentModel.eClass(), currentRoleName).get(0);
+		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRoleName);
 	
 	}
 
@@ -623,6 +625,33 @@ public class CreateModel {
 		}
 		elements.add(newElement);
 		existingModels.put(role, elements);
+	}
+	
+	/**
+	 * This is a helper method which retrieves the corresponding container of an
+	 * element to create.
+	 * @param perspective
+	 * @param scene -  the scene of the models
+	 * @param currentOwner
+	 * @param otherRole
+	 * @return the container of the element to create.
+	 */
+	private static EObject getOwner(COREPerspective perspective, COREScene scene, EObject currentOwner, String otherRole) {
+		EObject ownerOther = null;
+	
+		List<COREModelElementMapping> ownerMappings = COREPerspectiveUtil.INSTANCE.getMappings(currentOwner, scene);
+		outerloop: for (COREModelElementMapping mapping : ownerMappings) {
+			ownerOther = COREPerspectiveUtil.INSTANCE.getOtherElement(mapping, currentOwner);
+			CORELanguageElementMapping mappingType = COREPerspectiveUtil.INSTANCE.getMappingType(perspective, mapping);
+			for (MappingEnd mappingEnd : mappingType.getMappingEnds()) {
+				if (mappingEnd.getRoleName().equals(otherRole)) {
+					ownerOther = COREPerspectiveUtil.INSTANCE.getOtherElement(mapping, currentOwner);
+					break outerloop;
+				}
+			}
+		}
+	
+		return ownerOther;
 	}
 
 }

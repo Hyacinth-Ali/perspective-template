@@ -53,7 +53,6 @@ public class RedefinedBModelLanguageAction {
 	
 	return newElement;
 	
-	
 	}
 	
 	public static void createOtherElementsForB1(COREPerspective perspective, COREScene scene, String currentRoleName,
@@ -82,7 +81,7 @@ public class RedefinedBModelLanguageAction {
 		}
 	}
 	
-	private static void createOtherElementsForB1(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene, String currentRoleName,
+	public static void createOtherElementsForB1(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene, String currentRoleName,
 				EObject currentElement, EObject owner, String name) {
 			
 		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRoleName);
@@ -526,7 +525,6 @@ public class RedefinedBModelLanguageAction {
 	
 	return newElement;
 	
-	
 	}
 	
 	public static void createOtherElementsForB2(COREPerspective perspective, COREScene scene, String currentRoleName,
@@ -555,7 +553,7 @@ public class RedefinedBModelLanguageAction {
 		}
 	}
 	
-	private static void createOtherElementsForB2(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene, String currentRoleName,
+	public static void createOtherElementsForB2(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene, String currentRoleName,
 				EObject currentElement, EObject owner, String name) {
 			
 		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRoleName);
@@ -999,7 +997,6 @@ public class RedefinedBModelLanguageAction {
 	
 	return newElement;
 	
-	
 	}
 	
 	public static void createOtherElementsForB3(COREPerspective perspective, COREScene scene, String currentRoleName,
@@ -1028,7 +1025,7 @@ public class RedefinedBModelLanguageAction {
 		}
 	}
 	
-	private static void createOtherElementsForB3(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene, String currentRoleName,
+	public static void createOtherElementsForB3(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene, String currentRoleName,
 				EObject currentElement, EObject owner, String name) {
 			
 		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRoleName);
@@ -1472,7 +1469,6 @@ public class RedefinedBModelLanguageAction {
 	
 	return newElement;
 	
-	
 	}
 	
 	public static void createOtherElementsForB4(COREPerspective perspective, COREScene scene, String currentRoleName,
@@ -1501,7 +1497,7 @@ public class RedefinedBModelLanguageAction {
 		}
 	}
 	
-	private static void createOtherElementsForB4(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene, String currentRoleName,
+	public static void createOtherElementsForB4(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene, String currentRoleName,
 				EObject currentElement, EObject owner, String name) {
 			
 		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRoleName);
@@ -1945,7 +1941,6 @@ public class RedefinedBModelLanguageAction {
 	
 	return newElement;
 	
-	
 	}
 	
 	public static void createOtherElementsForB5(COREPerspective perspective, COREScene scene, String currentRoleName,
@@ -1974,7 +1969,7 @@ public class RedefinedBModelLanguageAction {
 		}
 	}
 	
-	private static void createOtherElementsForB5(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene, String currentRoleName,
+	public static void createOtherElementsForB5(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene, String currentRoleName,
 				EObject currentElement, EObject owner, String name) {
 			
 		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRoleName);
@@ -2418,7 +2413,6 @@ public class RedefinedBModelLanguageAction {
 	
 	return newElement;
 	
-	
 	}
 	
 	public static void createOtherElementsForB6(COREPerspective perspective, COREScene scene, String currentRoleName,
@@ -2447,7 +2441,7 @@ public class RedefinedBModelLanguageAction {
 		}
 	}
 	
-	private static void createOtherElementsForB6(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene, String currentRoleName,
+	public static void createOtherElementsForB6(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene, String currentRoleName,
 				EObject currentElement, EObject owner, String name) {
 			
 		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRoleName);
@@ -2891,7 +2885,6 @@ public class RedefinedBModelLanguageAction {
 	
 	return newElement;
 	
-	
 	}
 	
 	public static void createOtherElementsForB7(COREPerspective perspective, COREScene scene, String currentRoleName,
@@ -2920,7 +2913,7 @@ public class RedefinedBModelLanguageAction {
 		}
 	}
 	
-	private static void createOtherElementsForB7(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene, String currentRoleName,
+	public static void createOtherElementsForB7(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene, String currentRoleName,
 				EObject currentElement, EObject owner, String name) {
 			
 		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRoleName);
@@ -3364,7 +3357,6 @@ public class RedefinedBModelLanguageAction {
 	
 	return newElement;
 	
-	
 	}
 	
 	public static void createOtherElementsForB8(COREPerspective perspective, COREScene scene, String currentRoleName,
@@ -3393,7 +3385,7 @@ public class RedefinedBModelLanguageAction {
 		}
 	}
 	
-	private static void createOtherElementsForB8(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene, String currentRoleName,
+	public static void createOtherElementsForB8(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene, String currentRoleName,
 				EObject currentElement, EObject owner, String name) {
 			
 		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRoleName);
@@ -3837,7 +3829,6 @@ public class RedefinedBModelLanguageAction {
 	
 	return newElement;
 	
-	
 	}
 	
 	public static void createOtherElementsForB9(COREPerspective perspective, COREScene scene, String currentRoleName,
@@ -3866,7 +3857,7 @@ public class RedefinedBModelLanguageAction {
 		}
 	}
 	
-	private static void createOtherElementsForB9(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene, String currentRoleName,
+	public static void createOtherElementsForB9(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene, String currentRoleName,
 				EObject currentElement, EObject owner, String name) {
 			
 		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRoleName);
@@ -4310,7 +4301,6 @@ public class RedefinedBModelLanguageAction {
 	
 	return newElement;
 	
-	
 	}
 	
 	public static void createOtherElementsForB10(COREPerspective perspective, COREScene scene, String currentRoleName,
@@ -4339,7 +4329,7 @@ public class RedefinedBModelLanguageAction {
 		}
 	}
 	
-	private static void createOtherElementsForB10(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene, String currentRoleName,
+	public static void createOtherElementsForB10(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene, String currentRoleName,
 				EObject currentElement, EObject owner, String name) {
 			
 		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRoleName);
@@ -4783,7 +4773,6 @@ public class RedefinedBModelLanguageAction {
 	
 	return newElement;
 	
-	
 	}
 	
 	public static void createOtherElementsForB11(COREPerspective perspective, COREScene scene, String currentRoleName,
@@ -4812,7 +4801,7 @@ public class RedefinedBModelLanguageAction {
 		}
 	}
 	
-	private static void createOtherElementsForB11(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene, String currentRoleName,
+	public static void createOtherElementsForB11(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene, String currentRoleName,
 				EObject currentElement, EObject owner, String name) {
 			
 		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRoleName);
@@ -5256,7 +5245,6 @@ public class RedefinedBModelLanguageAction {
 	
 	return newElement;
 	
-	
 	}
 	
 	public static void createOtherElementsForB12(COREPerspective perspective, COREScene scene, String currentRoleName,
@@ -5285,7 +5273,7 @@ public class RedefinedBModelLanguageAction {
 		}
 	}
 	
-	private static void createOtherElementsForB12(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene, String currentRoleName,
+	public static void createOtherElementsForB12(COREPerspective perspective, CORELanguageElementMapping mappingType, COREScene scene, String currentRoleName,
 				EObject currentElement, EObject owner, String name) {
 			
 		String otherRoleName = COREPerspectiveUtil.INSTANCE.getOtherRoleName(mappingType, currentRoleName);

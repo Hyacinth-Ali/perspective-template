@@ -1154,7 +1154,7 @@ perspective PerspectiveTest {
             toCardinality : 1..*;
             fromElement : AModel from A_Model fromGetElement "AmodelPackage.eINSTANCE.getA12()";
             toELement : BModel from B_Model toGetElement "BmodelPackage.eINSTANCE.getB12()";
-             
+              
             nested mappings {
             	nested mapping A12Name_B12Name {
             		matchMaker : true;

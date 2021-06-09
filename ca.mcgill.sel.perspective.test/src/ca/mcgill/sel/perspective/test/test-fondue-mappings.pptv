@@ -3,7 +3,7 @@ perspective TestFondueMapping {
     default A_Model;
       
     display name "Fondue Mapping Test";
-            
+             
     languages {
     	existing language AModelLanguage {
             rootPackage "ca.mcgill.sel.amodel";
